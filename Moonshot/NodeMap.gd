@@ -46,7 +46,7 @@ func _ready():
 func drawRoomsTree(roomList):
 	var treeNode = preload("res://TreeNode.tscn")
 	var treeConnector = preload("res://TreeNodeConnector.tscn")
-	var currentPos = Vector2(50,50)
+	var currentPos = Vector2(10,10)
 	
 	if roomList.empty():
 		return
