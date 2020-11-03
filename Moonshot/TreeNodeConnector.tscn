@@ -1,7 +1,0 @@
-[gd_scene format=2]
-
-[node name="TreeNodeConnector" type="Node2D"]
-
-[node name="Polygon2D" type="Polygon2D" parent="."]
-color = Color( 0.364706, 0.364706, 0.364706, 1 )
-polygon = PoolVector2Array( 0, 0, 10, 0, 10, 10, 0, 10 )
