@@ -60,6 +60,15 @@ func drawRoomsTree(roomList):
 		#add node
 		r = treeNode.instance()
 		r.position = currentPos
+		match currentRoom.type:
+			"Event":
+				r.get_node("Polygon2D").color = Color.blue
+			"Fight":
+				r.get_node("Polygon2D").color = Color.red
+			"Shop":
+				r.get_node("Polygon2D").color = Color.gold
+			_:
+				r.get_node("Polygon2D").color = Color.white
 		add_child(r)
 		#add connector to next
 		r = treeConnector.instance()
