@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://NodeMap.gd" type="Script" id=1]
+[ext_resource path="res://Camera2D.gd" type="Script" id=2]
 
 [node name="Main" type="Node2D"]
 
@@ -20,3 +21,8 @@ readonly = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+process_mode = 0
+script = ExtResource( 2 )
