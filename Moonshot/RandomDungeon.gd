@@ -19,6 +19,8 @@ var start = {}
 var connected = []
 var light = 0
 
+func _init():
+	rng.randomize()
 
 func generate(world : Node):
 
@@ -262,7 +264,6 @@ func place_geometry(world : Node):
 
 
 func get_random_int(low, high):
-	self.rng.randomize()
 	return self.rng.randi_range(low, high - 1)
 
 
