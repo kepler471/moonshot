@@ -11,28 +11,30 @@
 * Procedural Map Generation - all code relating to procedural map generation
 * Room templates - Room template scenes 
 
-├── Moonshot
-│   ├── assets
-│   │   ├── tileset.png
-│   │   └── tileset.png.import
-│   ├── default_env.tres
-│   ├── player
-│   │   ├── player.gd
-│   │   ├── PLAYER.md
-│   │   ├── player.tscn
-│   │   ├── sealedbit_icon.png
-│   │   └── sealedbit_icon.png.import
-│   ├── procedural_map_generation
-│   │   ├── Camera2D.gd
-│   │   ├── Floor_Generator.gd
-│   │   └── LevelGen.gd
-│   ├── project.godot
-│   ├── README.md
-│   ├── room_templates
-│   │   ├── room_1.tscn
-│   │   └── room_entrance.tscn
-│   ├── TileMap.tscn
-│   └── WorldMap.tscn
-├── README.md
-└── scripts
-    └── saveMain.sh
+Files:
+
+    ├── Moonshot
+    │   ├── assets
+    │   │   ├── tileset.png
+    │   │   └── tileset.png.import
+    │   ├── default_env.tres
+    │   ├── player
+    │   │   ├── player.gd
+    │   │   ├── PLAYER.md
+    │   │   ├── player.tscn
+    │   │   ├── sealedbit_icon.png
+    │   │   └── sealedbit_icon.png.import
+    │   ├── procedural_map_generation
+    │   │   ├── Camera2D.gd
+    │   │   ├── Floor_Generator.gd
+    │   │   └── LevelGen.gd
+    │   ├── project.godot
+    │   ├── README.md
+    │   ├── room_templates
+    │   │   ├── room_1.tscn
+    │   │   └── room_entrance.tscn
+    │   ├── TileMap.tscn
+    │   └── WorldMap.tscn
+    ├── README.md
+    └── scripts
+        └── saveMain.sh
