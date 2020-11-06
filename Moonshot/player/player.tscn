@@ -4,20 +4,20 @@
 [ext_resource path="res://player/player.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 4.53168, 7.97183 )
+extents = Vector2( 7.39076e+06, 1.12796e+07 )
 
 [node name="Player" type="KinematicBody2D"]
-position = Vector2( 11.9027, 18.0259 )
-scale = Vector2( 0.0377031, 0.032602 )
+scale = Vector2( 0.13, 0.13 )
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2( 17.8383, 18.3182 )
+position = Vector2( 8, 16 )
+scale = Vector2( 1e-05, 1e-05 )
 shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 2071.38, -552.908 )
 current = true
-zoom = Vector2( 0.15, 0.15 )
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 smoothing_enabled = true
@@ -25,6 +25,4 @@ smoothing_speed = 10.0
 drag_margin_bottom = 0.0
 
 [node name="sealedbit_icon" type="Sprite" parent="."]
-position = Vector2( -10.014, -30.095 )
-scale = Vector2( 1.14083, 1.39554 )
 texture = ExtResource( 1 )

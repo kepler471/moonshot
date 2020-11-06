@@ -1,6 +1,6 @@
 extends Node2D
 
-const LG = preload("res://Scripts/Floor_Generator.gd")
+const LG = preload("res://procedural_map_generation/Floor_Generator.gd")
 
 var l = LG.new(1)
 
