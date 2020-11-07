@@ -1,6 +1,4 @@
-# Player
-
-![Placeholder sprite](./sealedbit_icon.png)
+# Player    ![Placeholder sprite](./test_idle.gif)
 
 This player is a scene with a basic collision shape, a camera, and a sprite (currently just a .png), all in 2D.
 The camera has some smoothing and drag margin settings.
@@ -24,9 +22,20 @@ To make changes to a local instance of the scene, click on the player instance w
 it into a node tree. You can then use the visual scene editor to update things like model size, rotation etc., but you 
 will not have all the options in the inspector that you would have from editing the original `player.tscn`.
 
-## Issues
+## Mechanics
 
-This player was created for an 8x8 pixel grid Tilemap, so it may be tiny, and the movement speed and rgavity may feel weird.
-You can try changing the values in the `player.gd` script to make it feel right.
+The player has a **KinematicBody2D** collision object, currently with a rectangular **CollisionShape2D**. 
+
+Code is run in `Player._physics_process(delat)` callback, which is called before each physics step at a constant
+frame rate (60 times per second by default). The `delta` parameter is a floating-point number equal to the time 
+passed in seconds since the last step.
+
+Directional inputs are handled with `Input.get_action_strength("move_direction")`, which allows for variable input from
+analog sticks.
+
+Player can currently jump off walls, but the jump is the same as a jump from ground, direct upward force. This will be 
+changed to take the force direction from user **Input**
+
+## Issues
 
 If you do not want the camera to be attached to the player, remove the Camera2D node from `player.tscn`.
