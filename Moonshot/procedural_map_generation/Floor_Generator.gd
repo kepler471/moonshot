@@ -4,9 +4,9 @@ extends Node2D
 const ROOM_TYPES : Array = ["Boss", "Reward", "Shop", "Challenge", "Path", "Start"]
 
 #--------------------TWEAK VARIABLES--------------------
-const min_Rooms : int = 5
+const min_Rooms : int = 20
 const room_Count_Depth_Multiplier : float = 3.0
-var max_Rooms = 20
+var max_Rooms = 100
 const room_Count_Variation = 0;
 
 #MAP ARRAY
@@ -50,13 +50,14 @@ func _init(depth : int):
 	var pos = Vector2(max_Rooms + 5, max_Rooms + 5)
 	resize_Map(max_Rooms*2 + 10, max_Rooms*2 + 10)
 	add_Room(Room.new("Start", reqs), pos)
+	update_Reqs_Around(pos, reqs)
 
 #grow until you can't add any more rooms
 func complete_Level():
-	var done:bool = false
+	var has_Opens:bool = true
 	
-	while !(done):
-		done = grow()
+	while (has_Opens):
+		has_Opens = grow()
 
 #grow the level by 1 room
 func grow() -> bool:
@@ -76,7 +77,7 @@ func grow() -> bool:
 		add_Room(get_Room_With_Requirement(reqs, true), pos)
 		
 	#update adjacent connections
-	update_Reqs_Around(pos, reqs)
+	update_Reqs_Around(pos, map[pos.x][pos.y].requirements)
 	return true
 
 #-------------------Does not check for out of bounds due to hack-------------------
@@ -166,9 +167,7 @@ func get_Room_With_Requirement (requires, end:bool = false) -> Room:
 	var return_Reqs = [0,0,0,0]
 	for i in range(4):
 		match requires[i]:
-			0:
-				continue
-			1:
+			0, 1:
 				return_Reqs[i] = 1
 	if end:
 		return Room.new("Reward", requires)
@@ -187,3 +186,23 @@ func resize_Map (width:int, height:int, offset:Vector2 = Vector2.ZERO):
 				newMap[i].append(map[i-offset.x][j-offset.y])
 	map = newMap
 	
+
+#removes hacky element and shrinks map back to minimal size
+func cleanup():
+	var null_Line:bool
+	var i:int = 0
+	var min_Start:int = map[0].size()
+	var max_End:int = 0
+	while i < map.size():
+		null_Line = true
+		for j in range(map[i].size()):
+			if map[i][j]:
+				null_Line = false
+				min_Start = min(min_Start, j)
+				max_End = max(max_End, j)
+		if null_Line:
+			map.remove(i)
+		else:
+			i += 1
+	for k in range(map.size()):
+		map[k] = map[k].slice(min_Start, max_End)
