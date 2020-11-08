@@ -9,7 +9,6 @@ const Animations:= {
 
 var velocity := Vector2();
 
-
 enum Directions {
 	LEFT = 0,
 	RIGHT = 1
@@ -22,4 +21,5 @@ func _process(delta) -> void:
 	velocity.x = SPEED;
 	$AnimatedSprite.play(Animations.GHOST);
 	velocity.y += GRAVITY;
+	velocity = move_and_slide(velocity, FLOOR);
 	pass;
