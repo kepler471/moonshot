@@ -1,7 +1,6 @@
 # Moonshot!
 ## Project structure
 
-* Tilemap.tscn - For storing all map tiles
 * Main.tscn - Main running scene, containing game menu, pause menu etc.
 * Assets - All enviroment sprites, backgrounds, tilesets
 * Audio - All audio files
