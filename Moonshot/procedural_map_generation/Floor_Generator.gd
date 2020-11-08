@@ -11,7 +11,7 @@ const room_Count_Variation = 0;
 
 #MAP ARRAY
 #initialised to null, will hold a room if there's one there (possibly will hold the index of the room in a list of rooms)
-var map = [[null]]
+var map = {}
 var open_Connections : Dictionary = {}
 var room_Count = 0
 
@@ -47,8 +47,7 @@ func _init(depth : int):
 	#add initial room and connections
 	#---------------PLACEHOLDER HACK FOR NOW---------------
 	var reqs = [0,1,0,0]
-	var pos = Vector2(max_Rooms + 5, max_Rooms + 5)
-	resize_Map(max_Rooms*2 + 10, max_Rooms*2 + 10)
+	var pos = Vector2(0, 0)
 	add_Room(Room.new("Start", reqs), pos)
 	update_Reqs_Around(pos, reqs)
 
@@ -80,10 +79,11 @@ func grow() -> bool:
 	update_Reqs_Around(pos, map[pos.x][pos.y].requirements)
 	return true
 
+
 #-------------------Does not check for out of bounds due to hack-------------------
 func update_Reqs_Around (pos:Vector2, reqs:Array):
 	#----------UP----------
-	if (reqs[0] == 1)&&!(map[pos.x][pos.y-1]):
+	if (reqs[0] == 1)&&!check_room_exists(pos.x,pos.y-1):
 		#already in our list
 		if (open_Connections.has(Vector2(pos.x,pos.y-1))):
 			open_Connections[Vector2(pos.x,pos.y-1)][2] = 1
@@ -91,16 +91,16 @@ func update_Reqs_Around (pos:Vector2, reqs:Array):
 		else:
 			open_Connections[Vector2(pos.x,pos.y-1)] = [0,0,1,0]
 			#check up
-			if (map[pos.x][pos.y-2]):
+			if check_room_exists(pos.x, pos.y-2):
 				open_Connections[Vector2(pos.x,pos.y-1)][0] = -1
 			#check left
-			if (map[pos.x+1][pos.y-1]):
+			if check_room_exists(pos.x+1, pos.y-1):
 				open_Connections[Vector2(pos.x,pos.y-1)][1] = -1
 			#check right
-			if (map[pos.x-1][pos.y-1]):
+			if check_room_exists(pos.x-1, pos.y-1):
 				open_Connections[Vector2(pos.x,pos.y-1)][3] = -1
 	#----------LEFT----------
-	if (reqs[1] == 1)&&!(map[pos.x+1][pos.y]):
+	if (reqs[1] == 1)&&!check_room_exists(pos.x+1, pos.y):
 		#already in our list
 		if (open_Connections.has(Vector2(pos.x+1,pos.y))):
 			open_Connections[Vector2(pos.x+1,pos.y)][3] = 1
@@ -108,16 +108,16 @@ func update_Reqs_Around (pos:Vector2, reqs:Array):
 		else:
 			open_Connections[Vector2(pos.x+1,pos.y)] = [0,0,0,1]
 			#check up
-			if (map[pos.x+1][pos.y-1]):
+			if check_room_exists(pos.x+1, pos.y-1):
 				open_Connections[Vector2(pos.x+1,pos.y)][0] = -1
 			#check left
-			if (map[pos.x+2][pos.y]):
+			if check_room_exists(pos.x+2, pos.y):
 				open_Connections[Vector2(pos.x+1,pos.y)][1] = -1
 			#check down
-			if (map[pos.x+1][pos.y+1]):
+			if check_room_exists(pos.x+1, pos.y+1):
 				open_Connections[Vector2(pos.x+1,pos.y)][2] = -1
 	#----------DOWN----------
-	if (reqs[2] == 1)&&!(map[pos.x][pos.y+1]):
+	if (reqs[2] == 1)&&!check_room_exists(pos.x, pos.y+1):
 		#already in our list
 		if (open_Connections.has(Vector2(pos.x,pos.y+1))):
 			open_Connections[Vector2(pos.x,pos.y+1)][0] = 1
@@ -125,16 +125,16 @@ func update_Reqs_Around (pos:Vector2, reqs:Array):
 		else:
 			open_Connections[Vector2(pos.x,pos.y+1)] = [1,0,0,0]
 			#check left
-			if (map[pos.x+1][pos.y+1]):
+			if check_room_exists(pos.x+1, pos.y+1):
 				open_Connections[Vector2(pos.x,pos.y+1)][1] = -1
 			#check up
-			if (map[pos.x][pos.y+2]):
+			if check_room_exists(pos.x, pos.y+2):
 				open_Connections[Vector2(pos.x,pos.y+1)][2] = -1
 			#check right
-			if (map[pos.x-1][pos.y+1]):
+			if check_room_exists(pos.x-1, pos.y+1):
 				open_Connections[Vector2(pos.x,pos.y+1)][3] = -1
 	#----------RIGHT----------
-	if (reqs[3] == 1)&&!(map[pos.x-1][pos.y]):
+	if (reqs[3] == 1)&&!check_room_exists(pos.x-1, pos.y):
 		#already in our list
 		if (open_Connections.has(Vector2(pos.x-1,pos.y))):
 			open_Connections[Vector2(pos.x-1,pos.y)][1] = 1
@@ -142,23 +142,26 @@ func update_Reqs_Around (pos:Vector2, reqs:Array):
 		else:
 			open_Connections[Vector2(pos.x-1,pos.y)] = [0,1,0,0]
 			#check up
-			if (map[pos.x-1][pos.y-1]):
+			if check_room_exists(pos.x-1, pos.y-1):
 				open_Connections[Vector2(pos.x-1,pos.y)][0] = -1
 			#check down
-			if (map[pos.x-1][pos.y+1]):
+			if check_room_exists(pos.x-1, pos.y+1):
 				open_Connections[Vector2(pos.x-1,pos.y)][2] = -1
 			#check right
-			if (map[pos.x-2][pos.y]):
+			if check_room_exists(pos.x-2, pos.y):
 				open_Connections[Vector2(pos.x-1,pos.y)][3] = -1
 
+# Checks if a room exists at (x, y) in the map array
+func check_room_exists(x, y):
+	if map.has(x):
+		if map[x].has(y):
+			return true
+	return false
+	
 #adds a room at the requested location and grows the map if needed
 func add_Room (room:Room, location:Vector2):
-	if (location.x < 0)||(location.y < 0)||(location.x >= map.size())||(location.y >= map[location.x].size()):
-		resize_Map(max(map.size()-location.x, location.x+1) as int, max(map.front().size()-location.y, location.y+1) as int, Vector2(max(0, 0-location.y), max(0, 0-location.y)))
-	if (location.x < 0):
-		location.x = 0
-	if (location.y < 0):
-		location.y = 0
+	if not map.has(location.x):
+		map[location.x] = {}
 	map[location.x][location.y] = room
 	room_Count += 1
 
@@ -173,36 +176,3 @@ func get_Room_With_Requirement (requires, end:bool = false) -> Room:
 		return Room.new("Reward", requires)
 	else:
 		return Room.new("Path", return_Reqs)
-
-#resize the map array
-func resize_Map (width:int, height:int, offset:Vector2 = Vector2.ZERO):
-	var newMap = []
-	for i in range(width):
-		newMap.append([])
-		for j in range(height):
-			if (i<offset.x)||(j<offset.y)||(i>=map.size()+offset.x)||(j>=map[i-offset.x].size()+offset.y):
-				newMap[i].append(null)
-			else:
-				newMap[i].append(map[i-offset.x][j-offset.y])
-	map = newMap
-	
-
-#removes hacky element and shrinks map back to minimal size
-func cleanup():
-	var null_Line:bool
-	var i:int = 0
-	var min_Start:int = map[0].size()
-	var max_End:int = 0
-	while i < map.size():
-		null_Line = true
-		for j in range(map[i].size()):
-			if map[i][j]:
-				null_Line = false
-				min_Start = min(min_Start, j)
-				max_End = max(max_End, j)
-		if null_Line:
-			map.remove(i)
-		else:
-			i += 1
-	for k in range(map.size()):
-		map[k] = map[k].slice(min_Start, max_End)
