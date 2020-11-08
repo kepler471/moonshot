@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/sealedbit_icon.png-e57917dc8a55463352b68410e120f5cc.stex"
+path="res://.import/img3.png-f47eddf713bbc4cf0fb0ba6b92428d6a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/sealedbit_icon.png"
-dest_files=[ "res://.import/sealedbit_icon.png-e57917dc8a55463352b68410e120f5cc.stex" ]
+source_file="res://player/32x32_Medic/img3.png"
+dest_files=[ "res://.import/img3.png-f47eddf713bbc4cf0fb0ba6b92428d6a.stex" ]
 
 [params]
 

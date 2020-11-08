@@ -14,27 +14,35 @@
 Files:
 
     ├── Moonshot
-    │   ├── assets
-    │   │   ├── tileset.png
-    │   │   └── tileset.png.import
-    │   ├── default_env.tres
-    │   ├── player
-    │   │   ├── player.gd
-    │   │   ├── PLAYER.md
-    │   │   ├── player.tscn
-    │   │   ├── sealedbit_icon.png
-    │   │   └── sealedbit_icon.png.import
-    │   ├── procedural_map_generation
-    │   │   ├── Camera2D.gd
-    │   │   ├── Floor_Generator.gd
-    │   │   └── LevelGen.gd
-    │   ├── project.godot
-    │   ├── README.md
-    │   ├── room_templates
-    │   │   ├── room_1.tscn
-    │   │   └── room_entrance.tscn
-    │   ├── TileMap.tscn
-    │   └── WorldMap.tscn
+    │   ├── assets
+    │   │   └── tile_maps
+    │   │       ├── SimpleTileMap.png
+    │   │       └── SimpleTileset.tres
+    │   ├── default_env.tres
+    │   ├── player
+    │   │   ├── 32x32_Medic
+    │   │   │   ├── img1.png
+    │   │   │   ├── img1.png.import
+    │   │   │   ├── img3.png
+    │   │   │   ├── img3.png.import
+    │   │   │   ├── img5.png
+    │   │   │   └── img5.png.import
+    │   │   ├── player.gd
+    │   │   ├── player.tscn
+    │   │   ├── README.md
+    │   │   └── test_idle.gif
+    │   ├── procedural_map_generation
+    │   │   ├── drag_camera.gd
+    │   │   ├── Floor_Generator.gd
+    │   │   ├── level_generation_test.tscn
+    │   │   └── level_gen.gd
+    │   ├── project.godot
+    │   ├── README.md
+    │   ├── room_templates
+    │   │   ├── LevelConcepts.png
+    │   │   ├── room_1.tscn
+    │   │   └── room_entrance.tscn
+    │   └── TileMap.tscn
     ├── README.md
     └── scripts
         └── saveMain.sh
