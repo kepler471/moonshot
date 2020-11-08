@@ -2,38 +2,64 @@ extends Node2D
 
 const floor_Generator = preload("res://procedural_map_generation/floor_generator.gd")
 
+var node_Types:Dictionary = {}
+
+onready var gen = floor_Generator.new(1)
+const distance = 100
+
 func _ready():
-	var gen = floor_Generator.new(1)
+	
+	node_Types["Boss"] = preload("res://procedural_map_generation/assets/BossNode.tscn")
+	node_Types["Challenge"] = preload("res://procedural_map_generation/assets/ChallengeNode.tscn")
+	node_Types["Path"] = preload("res://procedural_map_generation/assets/PathNode.tscn")
+	node_Types["Reward"] = preload("res://procedural_map_generation/assets/RewardNode.tscn")
+	node_Types["Shop"] = preload("res://procedural_map_generation/assets/ShopNode.tscn")
+	node_Types["Start"] = preload("res://procedural_map_generation/assets/StartNode.tscn")
+	node_Types["Connection"] = preload("res://procedural_map_generation/assets/Connection.tscn")
+	
+	
+	
 	gen.complete_Level()
-	var a = gen.map
-	print_map(gen.map.duplicate())
+	draw_map()
 	
-# Still having issues with this, for some reason its not reconising the 
-# dictionarykeys, although the dictionaryisbuilding ok 
-func print_map(map:Dictionary):
-	#print map
-	#(0,0) is in the top left
-	var lines = []
-	# Calculate the maximum x-dimension and y-dimension of the map dictionary
-	var size_x = map.keys().max() - map.keys().min()
-	var min_x = map.keys().min()
-	var potential_size_y = []
-	var potential_min_y = []
-	for key in map.keys():
-		potential_size_y.append(map[key].keys().max() - map[key].keys().min())
-		potential_min_y.append(map[key].keys().min())
-	var size_y = potential_size_y.max()
-	var min_y = potential_min_y.min()
+func draw_map():
+	#needs to be completely rewritten
+	var start_pos = Vector2.ZERO
 	
-	for x in range(size_x):
-		lines.append("")
-	for x in range(min_x, min_x + size_x, 1):
-		for y in range(min_y, min_y + size_y, 1):
-			var a = map.keys()
-			var b = map[0].keys()
-			if(map.has(float(x)) && map[x].has(float(y))):
-				lines[y] += map[float(x)][float(y)].room_Type
-			else:
-				lines[y] += "-"
-	for x in range(lines.size()):
-		print(lines[x])
+	var curr_pos
+	var opens = []
+	var done = []
+	opens.append(start_pos)
+	
+	while opens.size():
+		curr_pos = opens.pop_front()
+		add_node_at(curr_pos, gen.map[curr_pos].room_Type)
+		var connected = gen.get_Connected_Vectors(curr_pos)
+		for c in connected:
+			if !done.has(c):
+				add_connection_between(curr_pos, c)
+				opens.append(c)
+		done.append(curr_pos)
+	
+	
+
+func add_node_at (pos:Vector2, type:String):
+	var this_node = node_Types[type].instance()
+	this_node.set_position(pos * distance)
+	add_child(this_node)
+	
+func add_connection_between (pos1:Vector2, pos2:Vector2):
+	var avg:Vector2 = (pos1 + pos2)/2
+	var diff = pos2 - pos1
+	var angle
+	if(diff.y == 0):
+		angle = 0
+	elif(diff.x == 0):
+		angle = PI/2
+	else:
+		angle = atan(diff.x/diff.y)
+		
+	var this_conn = node_Types.Connection.instance()
+	this_conn.set_position(avg * distance)
+	this_conn.set_rotation(angle)
+	add_child(this_conn)
