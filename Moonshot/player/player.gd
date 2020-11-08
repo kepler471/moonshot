@@ -14,9 +14,24 @@ const gravity = 90 * scaling
 var velocity = Vector2()
 var facing = 1
 
+func _ready():
+	set_camera_limits()
+
+
 func flip_facing():
 	facing *= -1
 	$AnimatedSprite.flip_h = !$AnimatedSprite.flip_h
+	
+
+func set_camera_limits():
+	var map_limits = get_node("../BaseTiles").get_used_rect()
+	var map_cellsize = get_node("../BaseTiles").cell_size
+	print(map_limits.position)
+	print(map_cellsize)
+	$Camera2D.limit_left = map_limits.position.x * map_cellsize.x
+	$Camera2D.limit_right = map_limits.end.x * map_cellsize.x
+	$Camera2D.limit_top = map_limits.position.y * map_cellsize.y
+	$Camera2D.limit_bottom = map_limits.end.y * map_cellsize.y
 
 func _physics_process(delta):
 	
