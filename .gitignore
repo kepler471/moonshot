@@ -8,4 +8,5 @@ export_presets.cfg
 .mono/
 data_*/
 
+.idea
 .DS_Store
