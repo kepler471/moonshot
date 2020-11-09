@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/unknown.png-4d47755c8b2c6b43ebf7e52820eeca18.stex"
+path="res://.import/unknown.png-9a7b42d011997374c3a602bd0f731f31.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemies/sprites/unknown.png"
-dest_files=[ "res://.import/unknown.png-4d47755c8b2c6b43ebf7e52820eeca18.stex" ]
+source_file="res://baddies/sprites/unknown.png"
+dest_files=[ "res://.import/unknown.png-9a7b42d011997374c3a602bd0f731f31.stex" ]
 
 [params]
 

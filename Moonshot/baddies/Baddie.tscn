@@ -1,12 +1,13 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://enemies/sprites/unknown.png" type="Texture" id=1]
-[ext_resource path="res://enemies/Enemy.gd" type="Script" id=2]
+[ext_resource path="res://baddies/sprites/unknown.png" type="Texture" id=1]
+[ext_resource path="res://baddies/Baddie.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 23.5782, 41.8628 )
 
 [sub_resource type="SpriteFrames" id=2]
+resource_local_to_scene = true
 animations = [ {
 "frames": [ ExtResource( 1 ) ],
 "loop": true,
