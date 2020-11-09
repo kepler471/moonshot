@@ -4,7 +4,7 @@
 [ext_resource path="res://enemies/Enemy.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 133.156, 225.663 )
+extents = Vector2( 23.5782, 41.8628 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -20,9 +20,11 @@ animations = [ {
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
+position = Vector2( 0, -1 )
 shape = SubResource( 1 )
 one_way_collision = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Enemy"]
+scale = Vector2( 0.188082, 0.188082 )
 frames = SubResource( 2 )
 animation = "ghost"
