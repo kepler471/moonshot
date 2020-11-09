@@ -2,39 +2,35 @@ extends KinematicBody2D
 
 onready var orig = self.position
 
+var bullet = preload("res://player/bullet.tscn")
+var crosshair = load("res://player/assets/red_cross.png")
+
+
 # var scaling should be set close the the pixel height of a player.
 # var scaling = 100 feels ~OK~ for 90px player.
-const scaling : int = 100
-const WALK_FORCE = 2000 * scaling
-const WALK_MAX_SPEED = 6 * scaling
-const STOP_FORCE = 80 * scaling
-const JUMP_SPEED = 20 * scaling
-const gravity = 90 * scaling
+export(int) var scaling = 64
+export(int) var WALK_FORCE = 2000 * scaling
+export(int) var WALK_MAX_SPEED = 6 * scaling
+export(int) var STOP_FORCE = 80 * scaling
+export(int) var JUMP_SPEED = 20 * scaling
+export(int) var gravity = 90 * scaling
+
+var cooldown = false
+var refresh_rate = 0.2
 
 var velocity = Vector2()
 var facing = 1
 
-func _ready():
-	set_camera_limits()
-
-
 func flip_facing():
 	facing *= -1
 	$AnimatedSprite.flip_h = !$AnimatedSprite.flip_h
-	
 
-func set_camera_limits():
-	var map_limits = get_node("../BaseTiles").get_used_rect()
-	var map_cellsize = get_node("../BaseTiles").cell_size
-	print(map_limits.position)
-	print(map_cellsize)
-	$Camera2D.limit_left = map_limits.position.x * map_cellsize.x
-	$Camera2D.limit_right = map_limits.end.x * map_cellsize.x
-	$Camera2D.limit_top = map_limits.position.y * map_cellsize.y
-	$Camera2D.limit_bottom = map_limits.end.y * map_cellsize.y
+func _ready():
+	Input.set_custom_mouse_cursor(crosshair)
+	
 
 func _physics_process(delta):
-	
+		
 	# Player input. Can vary with analog input (joysticks)
 	var direction = (
 		Input.get_action_strength("move_right") 
@@ -75,3 +71,17 @@ func _physics_process(delta):
 	# Position resetting for *DEBUG*
 	if Input.is_action_just_released("reset"):
 		self.position = orig
+		
+	if Input.is_action_pressed("shoot") and !cooldown:
+		cooldown = true
+		var bull_i = bullet.instance()
+		get_node("TurnAxis").rotation = get_angle_to(get_global_mouse_position())
+		bull_i.position = get_node("TurnAxis/CastPoint").get_global_position()
+		bull_i.rotation = get_angle_to(get_global_mouse_position())
+		get_parent().add_child(bull_i)
+		yield(get_tree().create_timer(refresh_rate), "timeout")
+		cooldown = false
+		
+	if Input.is_action_just_pressed("zoomin"):
+		pass
+
