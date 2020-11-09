@@ -18,10 +18,13 @@ func _ready():
 	node_Types["Connection"] = preload("res://procedural_map_generation/assets/Connection.tscn")
 	
 	
-	
+	template_rooms = load_template_rooms()
 	gen.complete_Level()
 	draw_map()
-	load_template_rooms()
+
+	
+	
+	
 
 func load_template_rooms():
 	var rooms = []
