@@ -3,7 +3,6 @@ extends Node2D
 const floor_Generator = preload("res://procedural_map_generation/floor_generator.gd")
 
 var node_Types:Dictionary = {}
-var template_rooms = []
 onready var gen = floor_Generator.new(1)
 const distance = 100
 
@@ -21,10 +20,6 @@ func _ready():
 	gen.complete_Level()
 	draw_map()
 
-	
-	
-
-	
 	
 	
 	
