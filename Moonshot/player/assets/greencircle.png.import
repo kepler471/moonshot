@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/img3.png-f47eddf713bbc4cf0fb0ba6b92428d6a.stex"
+path="res://.import/greencircle.png-0ff17ae06a6866de65749587b938818c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/32x32_Medic/img3.png"
-dest_files=[ "res://.import/img3.png-f47eddf713bbc4cf0fb0ba6b92428d6a.stex" ]
+source_file="res://player/assets/greencircle.png"
+dest_files=[ "res://.import/greencircle.png-0ff17ae06a6866de65749587b938818c.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

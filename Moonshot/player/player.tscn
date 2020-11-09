@@ -1,27 +1,32 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=2]
-[ext_resource path="res://player/32x32_Medic/img5.png" type="Texture" id=3]
-[ext_resource path="res://player/32x32_Medic/img1.png" type="Texture" id=4]
-[ext_resource path="res://player/32x32_Medic/img3.png" type="Texture" id=5]
+[ext_resource path="res://player/assets/32x32_Medic/img5.png" type="Texture" id=3]
+[ext_resource path="res://player/assets/32x32_Medic/img1.png" type="Texture" id=4]
+[ext_resource path="res://player/assets/32x32_Medic/img3.png" type="Texture" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 7.39076e+06, 1.12796e+07 )
+extents = Vector2( 5.83813e+06, 9.59995e+06 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 5 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 4 ) ],
 "loop": true,
 "name": "idle",
-"speed": 6.0
+"speed": 5.0
 } ]
 
 [node name="Player" type="KinematicBody2D"]
-scale = Vector2( 1, 1 )
+position = Vector2( 1, -2 )
 script = ExtResource( 2 )
+WALK_FORCE = 128000
+WALK_MAX_SPEED = 384
+STOP_FORCE = 5120
+JUMP_SPEED = 1280
+gravity = 5760
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -3.25, -0.375 )
+position = Vector2( 0, 2.207 )
 scale = Vector2( 1.27147e-06, 1.41323e-06 )
 shape = SubResource( 1 )
 
@@ -32,8 +37,15 @@ drag_margin_v_enabled = true
 smoothing_enabled = true
 smoothing_speed = 10.0
 drag_margin_bottom = 0.0
+editor_draw_limits = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 3.443, 0 )
 frames = SubResource( 2 )
 animation = "idle"
 playing = true
+
+[node name="TurnAxis" type="Position2D" parent="."]
+
+[node name="CastPoint" type="Position2D" parent="TurnAxis"]
+position = Vector2( 35, 0 )
