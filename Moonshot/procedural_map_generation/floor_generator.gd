@@ -26,14 +26,40 @@ class Room:
 	#What connection requirements it has
 	var connections
 	var specific_Room
+	var room_template_name
+	var room_scene
 	
-	func _init(type, con):
+	func _init(type, con: Array, template_name=null):
 		if ROOM_TYPES.has(type):
 			room_Type = type
 		else:
 			room_Type = "Path"
 			push_warning("Room attempted to be created with illegal type")
 		connections = con
+		# Name of the room file to associate this room class with
+		if template_name:
+			room_template_name = template_name
+			# Load in the corresponding template
+			var room_scene = load("res://room_templates/"+ template_name).instance()
+			var room_child_nodes = []
+			for child in room_scene.get_children():
+				room_child_nodes.append(child.name)
+			
+			# Recreate the connections variable for the template
+			connections = []
+			for direction in ["down", "left", "up", "right"]:
+				# Check what doors there are and build connections appropriatly
+				if "room_entrance_" + direction in room_child_nodes:
+					connections.append(1)
+				else:
+					connections.append(0)
+			
+			
+				
+			
+			
+			
+			
 	
 	func set_Specific(specific):
 		specific_Room = specific
