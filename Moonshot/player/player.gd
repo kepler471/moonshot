@@ -17,6 +17,7 @@ export(int) var gravity = 90 * scaling
 
 var cooldown = false
 var refresh_rate = 0.2
+var laser_sound_refresh_rate = 0.4
 
 var velocity = Vector2()
 var facing = 1
@@ -73,6 +74,7 @@ func _physics_process(delta):
 		self.position = orig
 		
 	if Input.is_action_pressed("shoot") and !cooldown:
+		play_laser_sound()
 		cooldown = true
 		var bull_i = bullet.instance()
 		get_node("TurnAxis").rotation = get_angle_to(get_global_mouse_position())
@@ -85,3 +87,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("zoomin"):
 		pass
 
+func play_laser_sound():
+	$LaserSound.play()
+	yield(get_tree().create_timer(laser_sound_refresh_rate), "timeout")
+	$LaserSound.stop()
