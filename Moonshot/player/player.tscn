@@ -1,6 +1,5 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://player/assets/sounds/laser_pew.ogg" type="AudioStream" id=1]
 [ext_resource path="res://player/player.gd" type="Script" id=2]
 [ext_resource path="res://player/assets/32x32_Medic/img5.png" type="Texture" id=3]
 [ext_resource path="res://player/assets/32x32_Medic/img1.png" type="Texture" id=4]
@@ -44,12 +43,10 @@ editor_draw_limits = true
 position = Vector2( 3.443, 0 )
 frames = SubResource( 2 )
 animation = "idle"
+frame = 3
 playing = true
 
 [node name="TurnAxis" type="Position2D" parent="."]
 
 [node name="CastPoint" type="Position2D" parent="TurnAxis"]
 position = Vector2( 35, 0 )
-
-[node name="LaserSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 1 )
