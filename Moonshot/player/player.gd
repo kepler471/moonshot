@@ -16,8 +16,8 @@ export(int) var JUMP_SPEED = 20 * scaling
 export(int) var gravity = 90 * scaling
 
 var cooldown = false
-var refresh_rate = 0.2
-var laser_sound_refresh_rate = 0.4
+var refresh_rate = 0.25
+var laser_sound_refresh_rate = 0.25
 
 var velocity = Vector2()
 var facing = 1
