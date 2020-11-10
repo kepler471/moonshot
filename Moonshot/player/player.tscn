@@ -43,7 +43,6 @@ editor_draw_limits = true
 position = Vector2( 3.443, 0 )
 frames = SubResource( 2 )
 animation = "idle"
-frame = 3
 playing = true
 
 [node name="TurnAxis" type="Position2D" parent="."]
