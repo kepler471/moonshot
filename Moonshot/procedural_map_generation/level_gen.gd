@@ -3,7 +3,6 @@ extends Node2D
 const floor_Generator = preload("res://procedural_map_generation/floor_generator.gd")
 
 var node_Types:Dictionary = {}
-
 onready var gen = floor_Generator.new(1)
 const distance = 100
 
@@ -18,9 +17,11 @@ func _ready():
 	node_Types["Connection"] = preload("res://procedural_map_generation/assets/Connection.tscn")
 	
 	
-	
 	gen.complete_Level()
 	draw_map()
+
+	
+	
 	
 func draw_map():
 	#needs to be completely rewritten
