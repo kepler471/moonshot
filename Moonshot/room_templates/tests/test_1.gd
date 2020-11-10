@@ -26,3 +26,4 @@ func _ready():
 		$Player/Camera2D.limit_bottom = $camera_limit_SE.position.y
 
 
+	print("DEBUG: List all Baddies in this room", get_tree().get_nodes_in_group("Baddies"))
