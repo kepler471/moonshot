@@ -2,9 +2,8 @@ extends KinematicBody2D
 
 onready var orig = self.position
 
-var bullet = preload("res://player/bullet.tscn")
 var crosshair = load("res://player/assets/red_cross.png")
-
+var PlayerArsenal = load("res://player/PlayerArsenal.gd")
 
 # var scaling should be set close the the pixel height of a player.
 # var scaling = 100 feels ~OK~ for 90px player.
@@ -15,9 +14,8 @@ export(int) var STOP_FORCE = 80 * scaling
 export(int) var JUMP_SPEED = 20 * scaling
 export(int) var gravity = 90 * scaling
 
+var player_arsenal = PlayerArsenal.new()
 var cooldown = false
-var refresh_rate = 0.2
-
 var velocity = Vector2()
 var facing = 1
 
@@ -30,7 +28,6 @@ func _ready():
 	
 
 func _physics_process(delta):
-		
 	# Player input. Can vary with analog input (joysticks)
 	var direction = (
 		Input.get_action_strength("move_right") 
@@ -73,15 +70,20 @@ func _physics_process(delta):
 		self.position = orig
 		
 	if Input.is_action_pressed("shoot") and !cooldown:
+		var weapon = player_arsenal.get_weapon()
+		var shot = weapon.shoot().instance()
+		add_child(weapon.sound)
+
 		cooldown = true
-		var bull_i = bullet.instance()
 		get_node("TurnAxis").rotation = get_angle_to(get_global_mouse_position())
-		bull_i.position = get_node("TurnAxis/CastPoint").get_global_position()
-		bull_i.rotation = get_angle_to(get_global_mouse_position())
-		get_parent().add_child(bull_i)
-		yield(get_tree().create_timer(refresh_rate), "timeout")
+		
+		shot.position = get_node("TurnAxis/CastPoint").get_global_position()
+		shot.rotation = get_angle_to(get_global_mouse_position())
+		
+		get_parent().add_child(shot)
+
+		yield(get_tree().create_timer(weapon.fire_speed), "timeout")
 		cooldown = false
 		
 	if Input.is_action_just_pressed("zoomin"):
 		pass
-
