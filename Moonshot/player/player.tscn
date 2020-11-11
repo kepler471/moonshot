@@ -31,7 +31,6 @@ scale = Vector2( 1.27147e-06, 1.41323e-06 )
 shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-current = true
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 smoothing_enabled = true
@@ -43,6 +42,7 @@ editor_draw_limits = true
 position = Vector2( 3.443, 0 )
 frames = SubResource( 2 )
 animation = "idle"
+frame = 4
 playing = true
 
 [node name="TurnAxis" type="Position2D" parent="."]
