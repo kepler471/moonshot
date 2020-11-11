@@ -9,12 +9,6 @@ export_presets.cfg
 .mono/
 data_*/
 
-<<<<<<< HEAD
-.idea
-.DS_Store 
-=======
 
 .idea
 .DS_Store
-
->>>>>>> DEV
