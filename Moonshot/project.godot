@@ -9,12 +9,18 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "RigidBody2D",
+"class": "Bullet",
+"language": "GDScript",
+"path": "res://player/bullet.gd"
+}, {
 "base": "Node2D",
 "class": "floor_generator",
 "language": "GDScript",
 "path": "res://procedural_map_generation/floor_generator.gd"
 } ]
 _global_script_class_icons={
+"Bullet": "",
 "floor_generator": ""
 }
 

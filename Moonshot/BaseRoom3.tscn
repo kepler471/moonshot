@@ -1,18 +1,18 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://assets/tile_maps/SimpleTileset.tres" type="TileSet" id=1]
-[ext_resource path="res://BaseRoom.gd" type="Script" id=2]
+[ext_resource path="res://BaseRoom.gd" type="Script" id=1]
+[ext_resource path="res://room_templates/exit_vert.tscn" type="PackedScene" id=2]
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://room_templates/exit_vert.tscn" type="PackedScene" id=4]
-[ext_resource path="res://room_templates/exit_hori.tscn" type="PackedScene" id=5]
+[ext_resource path="res://room_templates/exit_hori.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/tile_maps/SimpleTileset.tres" type="TileSet" id=5]
 
 [node name="LEVEL1" type="Node2D" groups=[
 "Room",
 ]]
-script = ExtResource( 2 )
+script = ExtResource( 1 )
 
 [node name="BaseTiles" type="TileMap" parent="."]
-tile_set = ExtResource( 1 )
+tile_set = ExtResource( 5 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 format = 1
@@ -25,16 +25,16 @@ WALK_MAX_SPEED = 250
 JUMP_SPEED = 600
 gravity = 1550
 
-[node name="Exit_N" parent="." instance=ExtResource( 4 )]
+[node name="Exit_N" parent="." instance=ExtResource( 2 )]
 position = Vector2( 975.891, 5.1321 )
 
-[node name="Exit_S" parent="." instance=ExtResource( 4 )]
+[node name="Exit_S" parent="." instance=ExtResource( 2 )]
 position = Vector2( 975.827, 952.946 )
 
-[node name="Exit_W" parent="." instance=ExtResource( 5 )]
+[node name="Exit_W" parent="." instance=ExtResource( 4 )]
 position = Vector2( 5.12028, 495.114 )
 
-[node name="Exit_E" parent="." instance=ExtResource( 5 )]
+[node name="Exit_E" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1914.05, 495.597 )
 [connection signal="body_entered" from="Exit_N" to="." method="_on_Exit_N_body_entered"]
 [connection signal="body_entered" from="Exit_S" to="." method="_on_Exit_S_body_entered"]

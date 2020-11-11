@@ -18,7 +18,7 @@ export(int) var gravity = 90 * scaling
 var cooldown = false
 var refresh_rate = 0.2
 
-var velocity = Vector2()
+export var velocity = Vector2()
 var facing = 1
 
 func flip_facing():
