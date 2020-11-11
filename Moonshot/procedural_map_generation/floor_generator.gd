@@ -57,6 +57,8 @@ class Room:
 				connections.append(1)
 			else:
 				connections.append(0)
+		room_scene.clear()
+		room_child_nodes.clear()
 			
 	
 	func set_Specific(specific):
