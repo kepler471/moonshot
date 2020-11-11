@@ -16,6 +16,7 @@ const room_Count_Variation = 0;
 var map = {}
 var open_Connections : Dictionary = {}
 var room_Count = 0
+var template_rooms = []
 
 var rng = RandomNumberGenerator.new()
 
@@ -40,29 +41,34 @@ class Room:
 		if template_name:
 			room_template_name = template_name
 			# Load in the corresponding template
-			var room_scene = load("res://room_templates/"+ template_name).instance()
-			var room_child_nodes = []
-			for child in room_scene.get_children():
-				room_child_nodes.append(child.name)
-			
-			# Recreate the connections variable for the template
-			connections = []
-			for direction in ["down", "left", "up", "right"]:
-				# Check what doors there are and build connections appropriatly
-				if "room_entrance_" + direction in room_child_nodes:
-					connections.append(1)
-				else:
-					connections.append(0)
-			
-			
-				
-			
-			
-			
+			load_template(room_template_name)
+	
+	func load_template(template_name):
+		var room_scene = load("res://room_templates/"+ template_name).instance()
+		var room_child_nodes = []
+		for child in room_scene.get_children():
+			room_child_nodes.append(child.name)
+		
+		# Recreate the connections variable for the template
+		connections = []
+		for direction in ["down", "left", "up", "right"]:
+			# Check what doors there are and build connections appropriatly
+			if "room_entrance_" + direction in room_child_nodes:
+				connections.append(1)
+			else:
+				connections.append(0)
+		room_scene.clear()
+		room_child_nodes.clear()
 			
 	
 	func set_Specific(specific):
 		specific_Room = specific
+	
+	func set_room_type(type):
+		room_Type = type
+		
+	func get_template_name():
+		return room_template_name
 
 
 func _init(depth : int):
@@ -81,9 +87,28 @@ func _init(depth : int):
 #grow until you can't add any more rooms
 func complete_Level():
 	var has_Opens:bool = true
-	
+		
+	template_rooms = load_template_rooms()
 	while (has_Opens):
 		has_Opens = grow()
+	
+	
+	
+
+func load_template_rooms():
+	var room_list = []
+	var dir = Directory.new()
+	dir.open("res://room_templates")
+	dir.list_dir_begin()
+
+	while true:
+		var file = dir.get_next()
+		if file == "":
+			break
+		elif file.begins_with("room"):
+			room_list.append(Room.new("", [], file))
+	return room_list
+
 
 #grow the level by 1 room
 func grow() -> bool:
@@ -216,12 +241,24 @@ func get_Room_With_Requirement (requires:Array, end:bool = false) -> Room:
 						return_Reqs[a] = 1
 					else:
 						x -= 1
-			
-	if return_Reqs.count(1) == 1:
-		var type = ROOM_TYPES[rng.randi_range(0,3)]
-		return Room.new(type, return_Reqs)
-	else:
-		return Room.new("Path", return_Reqs)
+	# Keep fetching a random template room to see if it matches the connection requirements
+	# For now only look for fully connected rooms or end rooms
+	if return_Reqs.count(1) > 1:
+		return_Reqs = [1, 1, 1, 1]
+	var new_room = null
+	while true:
+		var rand_room = template_rooms[randi()%template_rooms.size()]
+		if rand_room.connections == return_Reqs:
+			# Copy the room_template
+			new_room = Room.new("", [], rand_room.get_template_name())
+			if return_Reqs.count(1) == 1:
+				var type = ROOM_TYPES[rng.randi_range(0,3)]
+				new_room.set_room_type(type)
+			else:
+				new_room.set_room_type("Path")
+			break
+	return new_room
+
 
 func get_Connected_Vectors (position:Vector2) -> Array:
 	var ret = []
