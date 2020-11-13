@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://BaseRoom.gd" type="Script" id=1]
 [ext_resource path="res://assets/tile_maps/SimpleTileset.tres" type="TileSet" id=2]
 [ext_resource path="res://room_templates/exit_vert.tscn" type="PackedScene" id=3]
 [ext_resource path="res://room_templates/exit_hori.tscn" type="PackedScene" id=4]
+[ext_resource path="res://baddies/BearBoi.tscn" type="PackedScene" id=5]
 
 [node name="LEVEL1" type="Node2D" groups=[
 "Room",
@@ -36,6 +37,12 @@ position = Vector2( 975.827, 336 )
 
 [node name="camera_limit_SE" type="Position2D" parent="."]
 position = Vector2( 1914.05, 952.946 )
+
+[node name="BearBoi" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1040, 208 )
+
+[node name="BearBoi2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 840, 264 )
 [connection signal="body_entered" from="Exit_UP" to="." method="_on_Exit_UP_body_entered"]
 [connection signal="body_entered" from="Exit_DOWN" to="." method="_on_Exit_DOWN_body_entered"]
 [connection signal="body_entered" from="Exit_LEFT" to="." method="_on_Exit_LEFT_body_entered"]

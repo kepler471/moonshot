@@ -125,7 +125,7 @@ func change_room():
 
 	# Update player position relative to the door to prevent instant collision
 	if new_entrance == 'UP':
-		Player.position = door_position + Vector2(0, 40)
+		Player.position = door_position + Vector2(0, 60)
 	elif new_entrance == 'DOWN':
 		Player.position = door_position + Vector2(0, -40)
 	elif new_entrance == 'RIGHT':

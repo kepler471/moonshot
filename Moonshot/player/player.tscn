@@ -43,7 +43,6 @@ position = Vector2( -0.297638, -27.3213 )
 shape = SubResource( 1 )
 
 [node name="LedgeWallDetector" parent="." instance=ExtResource( 5 )]
-is_active = true
 
 [node name="FloorDetector" parent="." instance=ExtResource( 3 )]
 
