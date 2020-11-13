@@ -34,13 +34,14 @@ func set_sprite(s: AnimatedSprite) -> void:
 func set_body(b: KinematicBody2D) -> void:
 	body = b
 
-func set_collision_node(n: CollisionPolygon2D):
+func set_collision_node(n: CollisionPolygon2D) -> void:
 	collision_node = n
 
 func move(delta) -> void:
 	velocity.x = speed * direction
 	sprite.play(animation)
 	velocity.y += gravity
+
 	velocity = body.move_and_slide(velocity, FLOOR)
 
 	if body.is_on_wall():
@@ -50,11 +51,11 @@ func move(delta) -> void:
 func change_direction() -> int:
 	return Direction.RIGHT if direction == Direction.LEFT else Direction.LEFT
 
-func on_hit(damage):
+func on_hit(damage) -> void:
 	hp -= damage
 	if hp <= 0:
 		on_death()
 
-func on_death():
+func on_death() -> void:
 	collision_node.set_deferred("disabled", true)
 	call_deferred("free")
