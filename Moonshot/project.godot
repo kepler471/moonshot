@@ -62,7 +62,11 @@ _global_script_class_icons={
 [application]
 
 config/name="Moonshot"
+<<<<<<< HEAD
 run/main_scene="res://SplashScreen.tscn"
+=======
+run/main_scene="res://room_templates/tests/test_1.tscn"
+>>>>>>> layering
 config/icon="res://icon.png"
 
 [autoload]
@@ -189,6 +193,12 @@ toggle_full_screen={
 2d_physics/layer_6="CameraAnchor"
 2d_physics/layer_11="DamageSource"
 2d_physics/layer_12="Hitbox"
+
+[layer_names]
+
+2d_physics/layer_1="walls"
+2d_physics/layer_2="player"
+2d_physics/layer_3="baddie"
 
 [rendering]
 
