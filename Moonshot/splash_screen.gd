@@ -6,12 +6,14 @@ extends Node2D
 # var a = 2
 # var b = "text"
 
+var player_scene = load("res://player/player.tscn")
+var Player = player_scene.instance()
+onready var Arena = $Arena
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
-
-
-
+	Arena.set_player(Player)
+	Arena.set_many_baddies(get_baddies())
 
 func _process(delta):
 
@@ -44,6 +46,12 @@ func _process(delta):
 			get_tree().change_scene("res://main_game.tscn")
 
 
+func get_baddies():
+	var arr = []
+	for c in get_children():
+		if (c.is_in_group("Baddies")):
+			arr.append(c)
+	return arr
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

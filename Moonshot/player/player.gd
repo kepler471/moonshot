@@ -86,6 +86,10 @@ func set_is_active(value: bool) -> void:
 func get_collider() -> CollisionShape2D:
 	return collider
 
-
 func _on_Player_health_depleted() -> void:
 	state_machine.transition_to("Die", {last_checkpoint = last_checkpoint})
+
+func q(arg):
+	print(arg)
+	pass
+		

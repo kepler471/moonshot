@@ -15,6 +15,7 @@ var velocity:= Vector2();
 var sprite: AnimatedSprite
 var body: KinematicBody2D
 var collision_node: CollisionPolygon2D
+var inflict_damage: int = 20
 
 func set_init_hp(init_hp: int) -> void:
 	hp = init_hp
@@ -36,6 +37,9 @@ func set_body(b: KinematicBody2D) -> void:
 
 func set_collision_node(n: CollisionPolygon2D) -> void:
 	collision_node = n
+	
+func set_damage(d: int) -> void:
+	inflict_damage = d
 
 func move(delta) -> void:
 	velocity.x = speed * direction
@@ -59,3 +63,8 @@ func on_hit(damage) -> void:
 func on_death() -> void:
 	collision_node.set_deferred("disabled", true)
 	call_deferred("free")
+	
+func damage_player(player) -> void:
+	if !player || !player.deal_damage:
+		return;
+	player.deal_damage(inflict_damage)
