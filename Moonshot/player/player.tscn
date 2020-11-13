@@ -105,12 +105,7 @@ script = ExtResource( 18 )
 position = Vector2( 6.12915, -29.8016 )
 scale = Vector2( 1.87447, 1.8545 )
 frames = SubResource( 2 )
-<<<<<<< HEAD
-frame = 4
-=======
 animation = "idle"
-frame = 2
->>>>>>> layers and masks fro player
 playing = true
 
 [node name="Stats" parent="." instance=ExtResource( 8 )]
