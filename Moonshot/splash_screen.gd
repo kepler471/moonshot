@@ -39,7 +39,7 @@ func _process(delta):
 		play_button.add_color_override("font_color", Color(0, 0, 0))
 		exit_button.add_color_override("font_color", Color(0, 0, 0))
 
-	if Input.is_action_pressed("ui_accept"):
+	if Input.is_action_pressed("enter"):
 		if button_pressed == 'play':
 			get_tree().change_scene("res://main_game.tscn")
 

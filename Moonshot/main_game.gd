@@ -125,13 +125,13 @@ func change_room():
 
 	# Update player position relative to the door to prevent instant collision
 	if new_entrance == 'UP':
-		Player.position = door_position + Vector2(0, 20)
+		Player.position = door_position + Vector2(0, 40)
 	elif new_entrance == 'DOWN':
-		Player.position = door_position + Vector2(0, -20)
+		Player.position = door_position + Vector2(0, -40)
 	elif new_entrance == 'RIGHT':
-		Player.position = door_position + Vector2(-20, 46)
+		Player.position = door_position + Vector2(-40, 46)
 	elif new_entrance == 'LEFT':
-		Player.position = door_position + Vector2(20, 46)
+		Player.position = door_position + Vector2(40, 46)
 	if debug:
 		print("Position of player:  " + str(Player.position.x) + ', ' + str(Player.position.y))
 		print('The new room door entrance ' + str(new_entrance) + ' is at ' + str(door_position))
