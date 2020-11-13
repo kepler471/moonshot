@@ -14,20 +14,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Combat/bullet.gd"
 }, {
-"base": "Area2D",
-"class": "DamageSource",
-"language": "GDScript",
-"path": "res://Combat/DamageSource.gd"
-}, {
 "base": "RayCast2D",
 "class": "FloorDetector",
 "language": "GDScript",
 "path": "res://player/FloorDetector.gd"
-}, {
-"base": "Reference",
-"class": "Hit",
-"language": "GDScript",
-"path": "res://Combat/Hit.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Player",
@@ -56,9 +46,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Bullet": "",
-"DamageSource": "",
 "FloorDetector": "",
-"Hit": "",
 "Player": "",
 "State": "",
 "StateMachine": "",
@@ -68,7 +56,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Moonshot"
+config/name="Hook!"
 run/main_scene="res://room_templates/tests/test_1.tscn"
 config/icon="res://icon.png"
 
