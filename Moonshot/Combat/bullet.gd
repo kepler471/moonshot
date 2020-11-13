@@ -8,7 +8,8 @@ func _ready():
 
 func _on_any_body_entered(body):
 	print("DEBUG: Colliding with body ->", body)
-	get_node("CollisionShape2D").set_deferred("disabled", true)
 	if body.is_in_group("Baddies"):
 		body.on_hit(damage)
-	call_deferred("free")
+	if !body.is_in_group("Player"):
+		get_node("CollisionShape2D").set_deferred("disabled", true)
+		call_deferred("free")
