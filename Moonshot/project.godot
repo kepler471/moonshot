@@ -62,11 +62,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Moonshot"
-<<<<<<< HEAD
 run/main_scene="res://SplashScreen.tscn"
-=======
-run/main_scene="res://room_templates/tests/test_1.tscn"
->>>>>>> layering
 config/icon="res://icon.png"
 
 [autoload]
