@@ -44,6 +44,7 @@ animations = [ {
 "Player",
 ]]
 collision_mask = 14
+collision_layer = 2147483650
 script = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -111,6 +112,7 @@ script = ExtResource( 16 )
 script = ExtResource( 18 )
 
 [node name="Camera2D" parent="." instance=ExtResource( 6 )]
+current = false
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 6.12915, -30.0516 )

@@ -14,10 +14,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://player/FloorDetector.gd"
 }, {
-"base": "KinematicBody2D",
-"class": "Player",
+"base": "Node",
+"class": "Room",
 "language": "GDScript",
-"path": "res://player/player.gd"
+"path": "res://procedural_map_generation/Room.gd"
 }, {
 "base": "Node",
 "class": "State",
@@ -41,7 +41,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "FloorDetector": "",
-"Player": "",
+"Room": "",
 "State": "",
 "StateMachine": "",
 "Stats": "",
@@ -51,7 +51,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Moonshot"
-run/main_scene="res://BaseRoom.tscn"
+run/main_scene="res://SplashScreen.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -60,14 +60,9 @@ Settings="*res://Autoload/InputSettings.gd"
 Events="*res://Autoload/Events.gd"
 Steering="*res://Autoload/Steering.gd"
 Utils="*res://Autoload/Utils.gd"
-LevelLoader="*res://Autoload/LevelLoader.gd"
 
 [display]
 
-window/size/width=1920
-window/size/height=1080
-window/size/test_width=1280
-window/size/test_height=720
 window/stretch/mode="2d"
 window/stretch/aspect="expand"
 
@@ -168,7 +163,12 @@ DEBUG_die={
 }
 toggle_full_screen={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":true,"meta":false,"command":true,"pressed":false,"scancode":16777244,"unicode":0,"echo":false,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":true,"meta":true,"command":true,"pressed":false,"scancode":16777244,"unicode":0,"echo":false,"script":null)
+ ]
+}
+enter={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777221,"unicode":0,"echo":false,"script":null)
  ]
 }
 shoot={
@@ -182,9 +182,9 @@ shoot={
 
 [layer_names]
 
-2d_physics/layer_1="Player"
-2d_physics/layer_2="World"
-2d_physics/layer_3="Hookable"
+2d_physics/layer_1="walls"
+2d_physics/layer_2="player"
+2d_physics/layer_3="baddie"
 2d_physics/layer_4="PassThrough"
 2d_physics/layer_5="Enemies"
 2d_physics/layer_6="CameraAnchor"
