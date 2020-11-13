@@ -9,24 +9,30 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "RigidBody2D",
+"class": "Bullet",
+"language": "GDScript",
+"path": "res://player/bullet.gd"
+}, {
 "base": "Node2D",
 "class": "floor_generator",
 "language": "GDScript",
 "path": "res://procedural_map_generation/floor_generator.gd"
 } ]
 _global_script_class_icons={
+"Bullet": "",
 "floor_generator": ""
 }
 
 [application]
 
 config/name="Moonshot"
-run/main_scene="res://procedural_map_generation/level_generation_test.tscn"
+run/main_scene="res://BaseRoom.tscn"
 config/icon="res://icon.png"
 
 [display]
 
-window/stretch/mode="viewport"
+window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
 [input]
@@ -77,5 +83,4 @@ DragCamera={
 
 [rendering]
 
-quality/2d/use_pixel_snap=true
 environment/default_environment="res://default_env.tres"
