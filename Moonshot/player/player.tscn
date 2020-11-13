@@ -32,9 +32,8 @@ animations = [ {
 } ]
 
 [node name="Player" type="KinematicBody2D"]
-collision_mask = 14
-script = ExtResource( 14 )
-
+collision_layer = 2147483650
+collision_mask = 5
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -0.297638, -27.3213 )
 shape = SubResource( 1 )
@@ -106,7 +105,7 @@ script = ExtResource( 18 )
 position = Vector2( 6.12915, -29.8016 )
 scale = Vector2( 1.87447, 1.8545 )
 frames = SubResource( 2 )
-frame = 4
+animation = "idle"
 playing = true
 
 [node name="Stats" parent="." instance=ExtResource( 8 )]
