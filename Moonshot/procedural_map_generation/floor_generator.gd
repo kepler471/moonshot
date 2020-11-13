@@ -2,99 +2,51 @@ extends Node2D
 
 class_name floor_generator
 
-#type of room that need to be considered
-const ROOM_TYPES : Array = ["Boss", "Reward", "Shop", "Challenge", "Path", "Start"]
-
+var Room = load("res://procedural_map_generation/Room.gd")
 #--------------------TWEAK VARIABLES--------------------
-const min_Rooms : int = 20
+const min_rooms : int = 20
 const room_Count_Depth_Multiplier : float = 3.0
-var max_Rooms = 100
+var max_rooms = 100
 const room_Count_Variation = 0;
+var starting_room = 'room_base.tscn'
 
-#MAP ARRAY
-#initialised to null, will hold a room if there's one there (possibly will hold the index of the room in a list of rooms)
+# 'map' will store the final dictionary of rooms, indexed by a vector
 var map = {}
+# 'open_Connections' will store locations where a new room can be placed
 var open_Connections : Dictionary = {}
-var room_Count = 0
+# 'template_rooms' will store all the room_templates in the 'room_templates' folder
 var template_rooms = []
+# 'room_locations' will store the places where rooms need to be placed in 'map'
+var room_locations = {}
 
+var directions = {"LEFT": Vector2.LEFT, "UP": Vector2.DOWN, "RIGHT": Vector2.RIGHT, "DOWN": Vector2.UP}
 var rng = RandomNumberGenerator.new()
-
-class Room:
-	
-	#What type of room it is
-	var room_Type
-	#What connection requirements it has
-	var connections
-	var specific_Room
-	var room_template_name
-	var room_scene
-	
-	func _init(type, con: Array, template_name=null):
-		if ROOM_TYPES.has(type):
-			room_Type = type
-		else:
-			room_Type = "Path"
-			push_warning("Room attempted to be created with illegal type")
-		connections = con
-		# Name of the room file to associate this room class with
-		if template_name:
-			room_template_name = template_name
-			# Load in the corresponding template
-			load_template(room_template_name)
-	
-	func load_template(template_name):
-		var room_scene = load("res://room_templates/"+ template_name).instance()
-		var room_child_nodes = []
-		for child in room_scene.get_children():
-			room_child_nodes.append(child.name)
-		
-		# Recreate the connections variable for the template
-		connections = []
-		for direction in ["down", "left", "up", "right"]:
-			# Check what doors there are and build connections appropriatly
-			if "room_entrance_" + direction in room_child_nodes:
-				connections.append(1)
-			else:
-				connections.append(0)
-		room_scene.clear()
-		room_child_nodes.clear()
-			
-	
-	func set_Specific(specific):
-		specific_Room = specific
-	
-	func set_room_type(type):
-		room_Type = type
-		
-	func get_template_name():
-		return room_template_name
 
 
 func _init(depth : int):
-	#randomize seed
+	# Randomize seed
 	rng.randomize()
 	
-	#decide on a number of rooms for the floor, can be at max the original value
-	max_Rooms = min(max_Rooms, room_Count_Depth_Multiplier * depth + min_Rooms + rng.randi_range(0,room_Count_Variation)) as int
+	# Decide on a number of rooms for the floor, can be at max the original value
+	max_rooms = min(max_rooms, room_Count_Depth_Multiplier * depth + min_rooms + rng.randi_range(0,room_Count_Variation)) as int
 	
-	#add initial room and connections
-	var reqs = [0,1,0,0]
+	# Add initial room & surround with rooms so that the start is always the same
 	var pos = Vector2.ZERO
-	add_Room(Room.new("Start", reqs), pos)
-	update_Reqs_Around(pos, map[pos].connections)
+	room_locations[pos] = true
+	for vec in [Vector2.UP, Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT]:
+		room_locations[pos+vec] = true
+		add_new_room_locations(pos+vec)
 
-#grow until you can't add any more rooms
-func complete_Level():
-	var has_Opens:bool = true
-		
+# Main algorithm function 
+func complete_Level():		
 	template_rooms = load_template_rooms()
-	while (has_Opens):
-		has_Opens = grow()
+	while len(room_locations.keys()) < max_rooms:
+		grow()
 	
-	
-	
+	fill_with_rooms()
 
+	
+# Load all room templates into a list of Rooms
 func load_template_rooms():
 	var room_list = []
 	var dir = Directory.new()
@@ -110,149 +62,79 @@ func load_template_rooms():
 	return room_list
 
 
-#grow the level by 1 room
-func grow() -> bool:
-	#check for open connections
-	if open_Connections.size() == 0:
-		return false
-	
-	#pick an open connection at random
+# Grow the room_locations list by placing one room next to an exsisting room
+func grow():
+	# Pick an open connection at random
 	var pos : Vector2 = open_Connections.keys()[rng.randi_range(0,open_Connections.size()-1)]
-	var reqs : Array = open_Connections[pos]
 	var _o = open_Connections.erase(pos)
 	
-	#add an appropriate room
-	if (room_Count+open_Connections.size() < max_Rooms):
-		add_Room(get_Room_With_Requirement(reqs), pos)
-	else:
-		add_Room(get_Room_With_Requirement(reqs, true), pos)
+	# Add a room at the open connection
+	room_locations[pos] = true
 		
-	#update adjacent connections
-	update_Reqs_Around(pos, map[pos].connections)
-	return true
+	# Identify new places where rooms can now be placed
+	add_new_room_locations(pos)
 
 
-func update_Reqs_Around (pos:Vector2, reqs:Array):
-	#----------UP----------
-	var check_pos = pos + Vector2.UP
-	if (reqs[0] == 1)&&!check_room_exists(check_pos):
-		#already in our list
-		if (open_Connections.has(check_pos)):
-			open_Connections[check_pos][2] = 1
-		#not already in our list
-		else:
-			open_Connections[check_pos] = [0,0,1,0]
-			#check up
-			if check_room_exists(check_pos + Vector2.UP):
-				open_Connections[check_pos][0] = -1
-			#check left
-			if check_room_exists(check_pos + Vector2.RIGHT):
-				open_Connections[check_pos][1] = -1
-			#check right
-			if check_room_exists(check_pos + Vector2.LEFT):
-				open_Connections[check_pos][3] = -1
-	#----------RIGHT----------
-	check_pos = pos + Vector2.RIGHT
-	if (reqs[1] == 1)&&!check_room_exists(check_pos):
-		#already in our list
-		if (open_Connections.has(check_pos)):
-			open_Connections[check_pos][3] = 1
-		#not already in our list
-		else:
-			open_Connections[check_pos] = [0,0,0,1]
-			#check up
-			if check_room_exists(check_pos + Vector2.UP):
-				open_Connections[check_pos][0] = -1
-			#check right
-			if check_room_exists(check_pos + Vector2.RIGHT):
-				open_Connections[check_pos][1] = -1
-			#check down
-			if check_room_exists(check_pos + Vector2.DOWN):
-				open_Connections[check_pos][2] = -1
-	#----------DOWN----------
-	check_pos = pos + Vector2.DOWN
-	if (reqs[2] == 1)&&!check_room_exists(check_pos):
-		#already in our list
-		if (open_Connections.has(check_pos)):
-			open_Connections[check_pos][0] = 1
-		#not already in our list
-		else:
-			open_Connections[check_pos] = [1,0,0,0]
-			#check left
-			if check_room_exists(check_pos + Vector2.RIGHT):
-				open_Connections[check_pos][1] = -1
-			#check down
-			if check_room_exists(check_pos + Vector2.DOWN):
-				open_Connections[check_pos][2] = -1
-			#check right
-			if check_room_exists(check_pos + Vector2.LEFT):
-				open_Connections[check_pos][3] = -1
-	#----------LEFT----------
-	check_pos = pos + Vector2.LEFT
-	if (reqs[3] == 1)&&!check_room_exists(check_pos):
-		#already in our list
-		if (open_Connections.has(check_pos)):
-			open_Connections[check_pos][1] = 1
-		#not already in our list
-		else:
-			open_Connections[check_pos] = [0,1,0,0]
-			#check up
-			if check_room_exists(check_pos + Vector2.UP):
-				open_Connections[check_pos][0] = -1
-			#check down
-			if check_room_exists(check_pos + Vector2.DOWN):
-				open_Connections[check_pos][2] = -1
-			#check left
-			if check_room_exists(check_pos + Vector2.LEFT):
-				open_Connections[check_pos][3] = -1
+# Given the 2-D grid of room locations, assign a room template and room type
+func fill_with_rooms():
+	# Ensure that the starting room is always the same
+	add_Room(Room.new("Path", [], starting_room), Vector2(0, 0))
+	
+	# For all other rooms, identify the adjacent rooms i.e. connection requirements
+	# Then find a tempalte room with those requirementsand add to the map dictionary
+	for pos in room_locations.keys():
+		# Already set the starting room
+		if pos == 	Vector2(0, 0):
+			continue
+		var reqs = get_room_requirements(pos)
+		add_Room(get_Room_With_Requirement(reqs), pos)
 
+# For a given room in the room_locations map, identify all the connecting rooms
+func get_room_requirements(pos):
+	var reqs = []
+	for key in directions.keys():
+		if room_locations.has(pos+directions[key]):
+			reqs.append(key)
+
+	return reqs
+			
+# Identifies any new potential locations to place rooms in the room_locations map
+func add_new_room_locations(pos:Vector2):
+	for vec in [Vector2.UP, Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT]:
+		if not room_locations.has(pos+vec):
+			open_Connections[pos+vec] = true
+			
 # Checks if a room exists at (x, y) in the map array
 func check_room_exists(pos:Vector2):
 	if map.has(pos):
 			return true
 	return false
 	
-#adds a room at the requested location and grows the map if needed
-func add_Room (room:Room, location:Vector2):
+# Adds a room at the requested location
+func add_Room (room, location:Vector2):
 	map[location] = room
-	room_Count += 1
 
-#placeholder function that either gives a 1x1 room with all connections open or a dead end
-func get_Room_With_Requirement (requires:Array, end:bool = false) -> Room:
-	var return_Reqs = [0,0,0,0]
-	#add required connections
-	for i in range(4):
-		match requires[i]:
-			1:
-				return_Reqs[i] = 1
-	
-	#add more connections if we're not near the end
-	if !end:
-		var extra_Connections
-		if open_Connections.size() == 0:
-			extra_Connections = rng.randi_range(1, min(max_Rooms-room_Count,4-requires.count(1)))
-		else:
-			extra_Connections = rng.randi_range(0, min(max_Rooms-room_Count,4-requires.count(1)))
-		for _i in range(extra_Connections):
-			var x = rng.randi_range(0,3-return_Reqs.count(1))
-			for a in range(4):
-				if return_Reqs[a] == 0:
-					if x == 0:
-						return_Reqs[a] = 1
-					else:
-						x -= 1
-	# Keep fetching a random template room to see if it matches the connection requirements
-	# For now only look for fully connected rooms or end rooms
-	if return_Reqs.count(1) > 1:
-		return_Reqs = [1, 1, 1, 1]
+# Keep fetching a random template room to see if it matches the connection requirements
+# For now only look for fully connected rooms or end rooms
+func get_Room_With_Requirement (requires:Array, end:bool = false):	
 	var new_room = null
+	# Flip up and down requirements
+	for i in len(requires):
+		if requires[i] == "UP":
+			requires[i] = "DOWN"
+		elif requires[i] == "DOWN":
+			requires[i] = "UP"
+
+	
 	while true:
 		var rand_room = template_rooms[randi()%template_rooms.size()]
-		if rand_room.connections == return_Reqs:
+		if arrays_match(rand_room.connections, requires):
 			# Copy the room_template
 			new_room = Room.new("", [], rand_room.get_template_name())
-			if return_Reqs.count(1) == 1:
-				var type = ROOM_TYPES[rng.randi_range(0,3)]
+			# If a room with only one connection then select either BOSS, 
+			# REWARD or SHOP
+			if len(requires) == 1:
+				var type = Room.ROOM_TYPES[rng.randi_range(0,3)]
 				new_room.set_room_type(type)
 			else:
 				new_room.set_room_type("Path")
@@ -262,15 +144,15 @@ func get_Room_With_Requirement (requires:Array, end:bool = false) -> Room:
 
 func get_Connected_Vectors (position:Vector2) -> Array:
 	var ret = []
-	if map.has(position):
-		var cons = map[position].connections
-		#---UP---
-		if cons[0]:
-			ret.append(position+Vector2.UP)
-		if cons[1]:
-			ret.append(position+Vector2.RIGHT)
-		if cons[2]:
-			ret.append(position+Vector2.DOWN)
-		if cons[3]:
-			ret.append(position+Vector2.LEFT)
+	for key in directions.keys():
+		if map.has(position + directions[key]):
+			ret.append(position + directions[key])
 	return ret
+
+# Checks if two arrays have the same items, irrespective of order
+func arrays_match(array1, array2):
+	if array1.size() != array2.size(): return false
+	for item in array1:
+		if !array2.has(item): return false
+		if array1.count(item) != array2.count(item): return false
+	return true

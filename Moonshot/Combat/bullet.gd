@@ -1,14 +1,13 @@
 extends RigidBody2D
 
-var f_mag = 500
-var damage = 20
+class_name Bullet
 
-func _ready():
-	apply_impulse(Vector2(100,100).rotated(rotation), Vector2(f_mag, 0).rotated(rotation))
+var bullet = load("res://player/bullet.tscn")
+var f_mag = 500
+
+func _ready(): 
+	apply_impulse(Vector2(100,100).rotated(rotation), Vector2(f_mag, 0).rotated(rotation))# + get_parent().get_node("Player").velocity)
 
 func _on_any_body_entered(body):
-	print("DEBUG: Colliding with body ->", body)
-	get_node("CollisionShape2D").set_deferred("disabled", true)
-	if body.is_in_group("Baddies"):
-		body.on_hit(damage)
-	call_deferred("free")
+	print(body)
+	queue_free()
