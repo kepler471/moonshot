@@ -1,48 +1,32 @@
-extends KinematicBody2D
+extends Node2D
 
-const GRAVITY:= 10
-const SPEED:= 75
-const FLOOR:= Vector2(0, -1)
-const Animations:= {
-	"GHOST": "ghost"
-}
+signal indicate_room_change(exit_key, entrance)
 
-enum Directions {
-	LEFT = -1,
-	RIGHT = 1
-}
-
-export(int) var hp_max = 100
-var hp
-
-var direction: int = Directions.RIGHT
-var velocity:= Vector2();
-
+#Camera Limits
 func _ready():
-	hp = hp_max
+	pass
 
-func _process(delta) -> void:
-	velocity.x = SPEED * direction
-	$AnimatedSprite.play(Animations.GHOST)
-	velocity.y += GRAVITY
-	velocity = move_and_slide(velocity, FLOOR)
 
-	if is_on_wall():
-		$AnimatedSprite.flip_h = !$AnimatedSprite.flip_h
-		direction = change_direction(direction)
+#Level Change Signalling - Likely a far better way to write this code.
+func _on_Exit_UP_body_entered(body):
+	if body.is_in_group("Player"):
+		print("Exit UP")
+		emit_signal("indicate_room_change", Vector2.UP, 'DOWN')
 
-	pass;
 
-func change_direction(direction: int) -> int:
-	if direction == Directions.LEFT:
-		return Directions.RIGHT
-	return Directions.LEFT
+func _on_Exit_DOWN_body_entered(body):
+	if body.is_in_group("Player"):
+		print("Exit DOWN")
+		emit_signal("indicate_room_change", Vector2.DOWN, 'UP')
 
-func on_hit(damage):
-	hp -= damage
-	if hp <= 0:
-		on_death()
 
-func on_death():
-	get_node("CollisionShape2D").set_deferred("disabled", true)
-	call_deferred("free")
+func _on_Exit_LEFT_body_entered(body):
+	if body.is_in_group("Player"):
+		print("Exit LEFT")
+		emit_signal("indicate_room_change", Vector2.LEFT, 'RIGHT')
+
+
+func _on_Exit_RIGHT_body_entered(body):
+	if body.is_in_group("Player"):
+		print("Exit RIGHT")
+		emit_signal("indicate_room_change", Vector2.RIGHT,'LEFT')
