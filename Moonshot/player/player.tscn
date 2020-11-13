@@ -1,51 +1,116 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=23 format=2]
 
-[ext_resource path="res://player/player.gd" type="Script" id=2]
-[ext_resource path="res://player/assets/32x32_Medic/img5.png" type="Texture" id=3]
-[ext_resource path="res://player/assets/32x32_Medic/img1.png" type="Texture" id=4]
-[ext_resource path="res://player/assets/32x32_Medic/img3.png" type="Texture" id=5]
+[ext_resource path="res://player/32x32_Medic/img1.png" type="Texture" id=1]
+[ext_resource path="res://player/32x32_Medic/img5.png" type="Texture" id=2]
+[ext_resource path="res://player/FloorDetector.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Combat/HitBox/HitBox.tscn" type="PackedScene" id=4]
+[ext_resource path="res://player/LedgeWallDetector.tscn" type="PackedScene" id=5]
+[ext_resource path="res://player/Camera.tscn" type="PackedScene" id=6]
+[ext_resource path="res://player/PassThrough.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Combat/Stats.tscn" type="PackedScene" id=8]
+[ext_resource path="res://player/States/idle.gd" type="Script" id=9]
+[ext_resource path="res://player/States/ledge.gd" type="Script" id=10]
+[ext_resource path="res://player/States/move.gd" type="Script" id=11]
+[ext_resource path="res://player/States/wall.gd" type="Script" id=12]
+[ext_resource path="res://player/States/debug.gd" type="Script" id=13]
+[ext_resource path="res://player/player.gd" type="Script" id=14]
+[ext_resource path="res://player/States/run.gd" type="Script" id=15]
+[ext_resource path="res://player/States/spawn.gd" type="Script" id=16]
+[ext_resource path="res://StateMachine/StateMachine.gd" type="Script" id=17]
+[ext_resource path="res://player/States/die.gd" type="Script" id=18]
+[ext_resource path="res://player/States/air.gd" type="Script" id=19]
+[ext_resource path="res://player/32x32_Medic/img3.png" type="Texture" id=20]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 5.83813e+06, 9.59995e+06 )
+extents = Vector2( 30, 30 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 4 ) ],
+"frames": [ ExtResource( 1 ), ExtResource( 20 ), ExtResource( 2 ), ExtResource( 20 ), ExtResource( 1 ) ],
 "loop": true,
-"name": "idle",
+"name": "default",
 "speed": 5.0
 } ]
 
 [node name="Player" type="KinematicBody2D"]
-position = Vector2( 1, -2 )
-script = ExtResource( 2 )
-WALK_FORCE = 128000
-WALK_MAX_SPEED = 384
-STOP_FORCE = 5120
-JUMP_SPEED = 1280
-gravity = 5760
+collision_mask = 14
+script = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 2.207 )
-scale = Vector2( 1.27147e-06, 1.41323e-06 )
+position = Vector2( 0, -30 )
 shape = SubResource( 1 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
-drag_margin_h_enabled = true
-drag_margin_v_enabled = true
-smoothing_enabled = true
-smoothing_speed = 10.0
-drag_margin_bottom = 0.0
-editor_draw_limits = true
+[node name="LedgeWallDetector" parent="." instance=ExtResource( 5 )]
+is_active = true
+
+[node name="FloorDetector" parent="." instance=ExtResource( 3 )]
+
+[node name="PassThrough" parent="." instance=ExtResource( 7 )]
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 17 )
+initial_state = NodePath("Move/Idle")
+
+[node name="Move" type="Node" parent="StateMachine"]
+script = ExtResource( 11 )
+
+[node name="Idle" type="Node" parent="StateMachine/Move"]
+script = ExtResource( 9 )
+
+[node name="JumpDelay" type="Timer" parent="StateMachine/Move/Idle"]
+wait_time = 0.1
+one_shot = true
+
+[node name="Run" type="Node" parent="StateMachine/Move"]
+script = ExtResource( 15 )
+
+[node name="SlowStarter" type="Timer" parent="StateMachine/Move/Run"]
+wait_time = 0.7
+one_shot = true
+
+[node name="Tween" type="Tween" parent="StateMachine/Move/Run"]
+
+[node name="Air" type="Node" parent="StateMachine/Move"]
+script = ExtResource( 19 )
+acceleration_x = 5000.0
+
+[node name="JumpDelay" type="Timer" parent="StateMachine/Move/Air"]
+wait_time = 0.1
+one_shot = true
+
+[node name="ControlsFreeze" type="Timer" parent="StateMachine/Move/Air"]
+wait_time = 0.16
+one_shot = true
+
+[node name="Wall" type="Node" parent="StateMachine/Move"]
+script = ExtResource( 12 )
+slide_acceleration = 1600.0
+max_slide_speed = 400.0
+friction_factor = 0.15
+jump_strength = Vector2( 500, 400 )
+
+[node name="Ledge" type="Node" parent="StateMachine"]
+script = ExtResource( 10 )
+
+[node name="Debug" type="Node" parent="StateMachine"]
+script = ExtResource( 13 )
+
+[node name="Spawn" type="Node" parent="StateMachine"]
+script = ExtResource( 16 )
+
+[node name="Die" type="Node" parent="StateMachine"]
+script = ExtResource( 18 )
+
+[node name="HitBox" parent="." instance=ExtResource( 4 )]
+position = Vector2( 0, -30 )
+
+[node name="Camera2D" parent="." instance=ExtResource( 6 )]
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 3.443, 0 )
+position = Vector2( -0.468211, -29.9661 )
+scale = Vector2( 1.88377, 1.8545 )
 frames = SubResource( 2 )
-animation = "idle"
 frame = 4
 playing = true
 
-[node name="TurnAxis" type="Position2D" parent="."]
-
-[node name="CastPoint" type="Position2D" parent="TurnAxis"]
-position = Vector2( 35, 0 )
+[node name="Stats" parent="." instance=ExtResource( 8 )]
