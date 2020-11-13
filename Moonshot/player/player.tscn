@@ -31,15 +31,18 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" groups=[
+"Player",
+]]
 collision_layer = 2147483650
 collision_mask = 5
+script = ExtResource( 14 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -0.297638, -27.3213 )
 shape = SubResource( 1 )
 
 [node name="LedgeWallDetector" parent="." instance=ExtResource( 5 )]
-is_active = true
 
 [node name="FloorDetector" parent="." instance=ExtResource( 3 )]
 
@@ -100,12 +103,13 @@ script = ExtResource( 16 )
 script = ExtResource( 18 )
 
 [node name="Camera2D" parent="." instance=ExtResource( 6 )]
+current = false
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 6.12915, -29.8016 )
 scale = Vector2( 1.87447, 1.8545 )
 frames = SubResource( 2 )
-animation = "idle"
+frame = 2
 playing = true
 
 [node name="Stats" parent="." instance=ExtResource( 8 )]

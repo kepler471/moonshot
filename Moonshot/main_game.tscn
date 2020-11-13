@@ -7,8 +7,3 @@
 script = ExtResource( 1 )
 
 [node name="GUI" parent="." instance=ExtResource( 2 )]
-anchor_bottom = 0.0
-margin_left = 776.0
-margin_top = 376.0
-margin_right = 1024.0
-margin_bottom = 600.0
