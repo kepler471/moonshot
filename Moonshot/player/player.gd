@@ -36,10 +36,6 @@ func _ready() -> void:
 	Events.connect("checkpoint_visited", self, "_on_Events_checkpoint_visited")
 
 
-func take_damage(source: Hit) -> void:
-	stats.take_damage(source)
-
-
 func set_is_active(value: bool) -> void:
 	is_active = value
 	if not collider:
@@ -56,7 +52,3 @@ func get_collider() -> CollisionShape2D:
 
 func _on_Player_health_depleted() -> void:
 	state_machine.transition_to("Die", {last_checkpoint = last_checkpoint})
-
-
-#func _on_Events_checkpoint_visited(checkpoint_name: String) -> void:
-#	last_checkpoint = LevelLoader._level.get_node("Checkpoints/%s" % checkpoint_name)

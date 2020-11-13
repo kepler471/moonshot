@@ -32,4 +32,3 @@ __meta__ = {
 [node name="Enemy" parent="." instance=ExtResource( 4 )]
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 2688.45, 88.2045 )

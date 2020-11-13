@@ -23,23 +23,6 @@ func _ready() -> void:
 	health = max_health
 
 
-func take_damage(hit: Hit) -> void:
-	if invulnerable:
-		return
-	
-	if hit.is_instakill:
-		emit_signal("health_depleted")
-		return
-
-	var old_health = health
-	health -= hit.damage
-	emit_signal("damage_taken")
-	health = max(0, health)
-	emit_signal("health_changed", health, old_health)
-	if health == 0:
-		emit_signal("health_depleted")
-
-
 func heal(amount: float) -> void:
 	var old_health = health
 	health = min(health + amount, max_health)
