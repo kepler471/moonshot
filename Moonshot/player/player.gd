@@ -7,14 +7,14 @@ signal hopped_off_entity
 
 onready var state_machine: StateMachine = $StateMachine
 
-onready var skin: Position2D = $Skin
+#onready var skin: Position2D = $Skin
 onready var collider: CollisionShape2D = $CollisionShape2D setget ,get_collider
 
 onready var stats: Stats = $Stats
-onready var hitbox: Area2D = $HitBox
+#onready var hitbox: Area2D = $HitBox
 
-onready var camera_rig: Position2D = $CameraRig
-onready var shaking_camera: Camera2D = $CameraRig/ShakingCamera
+#onready var camera_rig: Position2D = $CameraRig
+#onready var shaking_camera: Camera2D = $CameraRig/ShakingCamera
 
 onready var ledge_wall_detector: Position2D = $LedgeWallDetector
 onready var floor_detector: RayCast2D = $FloorDetector
