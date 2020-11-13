@@ -2,7 +2,7 @@ extends Node
 
 class LaserBlaster:
 	var sound = AudioStreamPlayer2D.new()
-	var bullet = load("res://player/bullet.tscn")
+	var bullet = load("res://Combat/bullet.tscn")
 	var sfx = load("res://player/assets/sounds/laser_pew.ogg") 
 	var fire_speed = 0.25
 	
