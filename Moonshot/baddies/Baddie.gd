@@ -6,7 +6,7 @@ enum Direction {
 	RIGHT = 1
 }
 
-export(int)var hp: int
+export(int)var hp: float
 export(int)var gravity: int
 export(int)var speed: int
 export(int)var direction: int = Direction.RIGHT
@@ -15,6 +15,7 @@ var velocity:= Vector2();
 var sprite: AnimatedSprite
 var body: KinematicBody2D
 var collision_node: CollisionPolygon2D
+var inflict_damage: float = 0.2
 
 func set_init_hp(init_hp: int) -> void:
 	hp = init_hp
@@ -36,6 +37,9 @@ func set_body(b: KinematicBody2D) -> void:
 
 func set_collision_node(n: CollisionPolygon2D) -> void:
 	collision_node = n
+	
+func set_damage(d: float) -> void:
+	inflict_damage = d
 
 func move(delta) -> void:
 	velocity.x = speed * direction
@@ -44,14 +48,11 @@ func move(delta) -> void:
 
 	velocity = body.move_and_slide(velocity, FLOOR)
 
-	if body.is_on_wall():
-		sprite.flip_h = !sprite.flip_h
-		direction = change_direction()
 
 func change_direction() -> int:
 	return Direction.RIGHT if direction == Direction.LEFT else Direction.LEFT
 
-func on_hit(damage) -> void:
+func on_hit(damage: float) -> void:
 	hp -= damage
 	if hp <= 0:
 		on_death()

@@ -1,19 +1,12 @@
 extends Node2D
 
-
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass
-
-
-
+var player_scene = load("res://player/player.tscn")
+var Player = player_scene.instance()
 
 func _process(delta):
+	# Player has died	
+	if $Player == null:
+		return
 
 	var play_button = get_node('PlayButton')
 	var exit_button = get_node('ExitButton')
@@ -22,7 +15,7 @@ func _process(delta):
 	var play_button_min_y = play_button_location.y 
 	var play_button_max_y = play_button_location.y + 96
 	var exit_button_max_y = exit_button_location.y + 96
-	var player_position = get_node('Player').get_position()
+	var player_position = $Player.get_position()
 	var button_pressed = ''
 
 	# Check where the player is in relation to each label 
@@ -42,9 +35,3 @@ func _process(delta):
 	if Input.is_action_pressed("enter"):
 		if button_pressed == 'play':
 			get_tree().change_scene("res://main_game.tscn")
-
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass

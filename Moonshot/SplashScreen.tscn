@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://splash_screen.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/basic_font.tres" type="DynamicFont" id=2]
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/tile_maps/SimpleTileset.tres" type="TileSet" id=4]
 [ext_resource path="res://assets/fonts/basic_font_size_64.tres" type="DynamicFont" id=5]
+[ext_resource path="res://baddies/BearBoi.tscn" type="PackedScene" id=7]
 
 [node name="SplashScreen" type="Node2D"]
 script = ExtResource( 1 )
@@ -65,3 +66,6 @@ text = "MOONSHOT"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="BearBoi" parent="." instance=ExtResource( 7 )]
+position = Vector2( 344.848, 213.179 )
