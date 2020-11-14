@@ -60,8 +60,13 @@ func _physics_process(_delta) -> void:
 		pass
 	elif sign(direction) != sign(facing):
 		flip_facing()
+		
+	# set animation
+	var animation_name = state_machine.get_animation()
+	if animation_name != null:
+		$AnimatedSprite.play(animation_name)
 
-	# begin Shooting
+	# begin shooting
 	get_node("TurnAxis").rotation = PI + (position + get_node("TurnAxis").position).angle_to_point(get_global_mouse_position())
 
 	if Input.is_action_pressed("shoot") and !cooldown:
