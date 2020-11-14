@@ -99,4 +99,5 @@ func take_damage(damage) -> void:
 		on_death()
 
 func on_death() -> void:
+	CombatSignalController.emit_signal("player_kill")
 	call_deferred("free")
