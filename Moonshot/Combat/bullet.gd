@@ -8,7 +8,7 @@ func _ready():
 
 func _on_any_body_entered(body):
 	if body.is_in_group("Baddies"):
-		CombatSignalController.emit_signal("damage_baddie", damage)
+		CombatSignalController.emit_signal("damage_baddie",body.get_instance_id(), damage)
 
 	if !body.is_in_group("Player"):
 		get_node("CollisionShape2D").set_deferred("disabled", true)
