@@ -42,6 +42,6 @@ func check_player_colision() -> bool:
 			return true
 	return false
 
-func on_hit(instance_id, damage):
+func on_hit(instance_id, damage) -> void:
 	if instance_id == self.get_instance_id():
 		Baddie.on_hit(damage)

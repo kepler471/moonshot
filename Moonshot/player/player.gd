@@ -94,11 +94,11 @@ func get_collider() -> CollisionShape2D:
 func _on_Player_health_depleted() -> void:
 	state_machine.transition_to("Die", {last_checkpoint = last_checkpoint})
 
-func take_damage(damage):
+func take_damage(damage) -> void:
 	stats.health -= damage
 	if stats.health <= 0:
 		on_death()
 
-func on_death():
+func on_death() -> void:
 	CombatSignalController.emit_signal("player_kill")
 	call_deferred("free")
