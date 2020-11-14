@@ -117,6 +117,7 @@ current = false
 position = Vector2( 6.12915, -30.0516 )
 scale = Vector2( 1.87447, 1.8545 )
 frames = SubResource( 2 )
+frame = 2
 playing = true
 
 [node name="Stats" parent="." instance=ExtResource( 8 )]

@@ -23,14 +23,24 @@ func _ready() -> void:
 	Baddie.set_damage(10)
 
 func _process(delta) -> void:
-	check_player_colision()
-	call_deferred("free") if Baddie == null else Baddie.move(delta)
+	if Baddie == null:
+		call_deferred("free") 
+		return
+		
+	Baddie.move(delta)
+	var collided_with_player = check_player_colision()
+
+	if is_on_wall() && !collided_with_player:
+		Baddie.sprite.flip_h = !Baddie.sprite.flip_h
+		Baddie.direction = Baddie.change_direction()
 	
 func on_hit(damage) -> void:
 	Baddie.on_hit(damage)
 
-func check_player_colision() -> void:
+func check_player_colision() -> bool:
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
 		if collision.collider.name == "Player":
 			emit_signal("damage_player", Baddie.inflict_damage)
+			return true
+	return false

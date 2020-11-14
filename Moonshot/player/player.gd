@@ -89,7 +89,6 @@ func get_collider() -> CollisionShape2D:
 func _on_Player_health_depleted() -> void:
 	state_machine.transition_to("Die", {last_checkpoint = last_checkpoint})
 
-func q(arg):
-	print(arg)
+func receive_damage(damage):
 	pass
 		

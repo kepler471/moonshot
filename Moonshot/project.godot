@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://player/FloorDetector.gd"
 }, {
+"base": "KinematicBody2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://player/player.gd"
+}, {
 "base": "Node",
 "class": "Room",
 "language": "GDScript",
@@ -41,6 +46,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "FloorDetector": "",
+"Player": "",
 "Room": "",
 "State": "",
 "StateMachine": "",

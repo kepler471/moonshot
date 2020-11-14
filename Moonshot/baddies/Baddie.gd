@@ -48,9 +48,6 @@ func move(delta) -> void:
 
 	velocity = body.move_and_slide(velocity, FLOOR)
 
-	if body.is_on_wall():
-		sprite.flip_h = !sprite.flip_h
-		direction = change_direction()
 
 func change_direction() -> int:
 	return Direction.RIGHT if direction == Direction.LEFT else Direction.LEFT
@@ -63,8 +60,3 @@ func on_hit(damage) -> void:
 func on_death() -> void:
 	collision_node.set_deferred("disabled", true)
 	call_deferred("free")
-	
-func damage_player(player) -> void:
-	if !player || !player.deal_damage:
-		return;
-	player.deal_damage(inflict_damage)
