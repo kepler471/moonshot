@@ -8,7 +8,7 @@ export var initial_state := NodePath()
 
 onready var state: State = get_node(initial_state) setget set_state
 onready var _state_name := state.name
-onready var _animation_state
+var _animation_name
 
 
 func _init() -> void:
@@ -39,10 +39,10 @@ func transition_to(target_state_path: String, msg: Dictionary = {}) -> void:
 	state.enter(msg)
 
 func set_animation_name(value: State) -> void:
-	_animation_state = value.name.to_lower()
+	_animation_name = value.name.to_lower()
 
 func get_animation_name() -> String:
-	return _animation_state
+	return _animation_name
 
 func set_state(value: State) -> void:
 	state = value
