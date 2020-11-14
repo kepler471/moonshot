@@ -163,6 +163,7 @@ script = ExtResource( 18 )
 position = Vector2( -0.0327721, -30.8946 )
 frames = SubResource( 2 )
 animation = "run"
+frame = 7
 playing = true
 
 [node name="Camera2D" parent="." instance=ExtResource( 6 )]
