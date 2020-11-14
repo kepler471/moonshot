@@ -42,6 +42,7 @@ func flip_facing():
 
 func _ready() -> void:
 	add_child(player_arsenal)
+	player_arsenal.set_weapon()
 
 	CombatSignalController.connect("damage_player", self, "take_damage")
 
