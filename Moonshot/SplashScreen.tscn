@@ -27,7 +27,6 @@ margin_left = 168.259
 margin_top = 367.757
 margin_right = 623.259
 margin_bottom = 604.757
-
 custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "PLAY!!!
