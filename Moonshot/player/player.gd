@@ -44,7 +44,6 @@ func _ready() -> void:
 	add_child(player_arsenal)
 
 	CombatSignalController.connect("damage_player", self, "take_damage")
-	CombatSignalController.connect("player_kill", self, "on_death")
 
 	var crosshair_centre = Vector2(16,16)
 	Input.set_custom_mouse_cursor(crosshair, 0, crosshair_centre)
@@ -100,5 +99,4 @@ func take_damage(damage) -> void:
 		on_death()
 
 func on_death() -> void:
-	CombatSignalController.emit_signal("player_kill")
 	call_deferred("free")
