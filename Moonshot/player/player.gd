@@ -35,6 +35,7 @@ var player_arsenal = PlayerArsenal.new()
 var cooldown = false
 var velocity = Vector2()
 var facing = 1
+var animation_name
 
 func flip_facing():
 	facing *= -1
@@ -60,8 +61,14 @@ func _physics_process(_delta) -> void:
 		pass
 	elif sign(direction) != sign(facing):
 		flip_facing()
+		
+	# set animation
+	var new_state = state_machine.get_animation_name()
+	if new_state != null and new_state != animation_name:
+		animation_name = new_state
+		$AnimatedSprite.play(animation_name)
 
-	# begin Shooting
+	# begin shooting
 	get_node("TurnAxis").rotation = PI + (position + get_node("TurnAxis").position).angle_to_point(get_global_mouse_position())
 
 	if Input.is_action_pressed("shoot") and !cooldown:
@@ -100,4 +107,4 @@ func take_damage(damage) -> void:
 
 func on_death() -> void:
 	CombatSignalController.emit_signal("player_kill")
-	call_deferred("free")
+	_on_Player_health_depleted()

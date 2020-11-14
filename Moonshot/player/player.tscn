@@ -1,7 +1,7 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=38 format=2]
 
-[ext_resource path="res://player/assets/32x32_Medic/img1.png" type="Texture" id=1]
-[ext_resource path="res://player/assets/32x32_Medic/img5.png" type="Texture" id=2]
+[ext_resource path="res://player/assets/idle/Medic1TALL2.png" type="Texture" id=1]
+[ext_resource path="res://player/assets/idle/Medic1TALL1.png" type="Texture" id=2]
 [ext_resource path="res://player/FloorDetector.tscn" type="PackedScene" id=3]
 [ext_resource path="res://player/assets/baseArm.png" type="Texture" id=4]
 [ext_resource path="res://player/LedgeWallDetector.tscn" type="PackedScene" id=5]
@@ -19,16 +19,65 @@
 [ext_resource path="res://StateMachine/StateMachine.gd" type="Script" id=17]
 [ext_resource path="res://player/States/die.gd" type="Script" id=18]
 [ext_resource path="res://player/States/air.gd" type="Script" id=19]
-[ext_resource path="res://player/assets/32x32_Medic/img3.png" type="Texture" id=20]
+[ext_resource path="res://player/assets/idle/Medic1TALL0.png" type="Texture" id=20]
+[ext_resource path="res://player/assets/run/MEDICrun5.png" type="Texture" id=21]
+[ext_resource path="res://player/assets/run/MEDICrun4.png" type="Texture" id=22]
+[ext_resource path="res://player/assets/run/MEDICrun2.png" type="Texture" id=23]
+[ext_resource path="res://player/assets/run/MEDICrun6.png" type="Texture" id=24]
+[ext_resource path="res://player/assets/run/MEDICrun7.png" type="Texture" id=25]
+[ext_resource path="res://player/assets/run/MEDICrun3.png" type="Texture" id=26]
+[ext_resource path="res://player/assets/run/MEDICrun0.png" type="Texture" id=27]
+[ext_resource path="res://player/assets/run/MEDICrun1.png" type="Texture" id=28]
+[ext_resource path="res://player/assets/run/MEDICrun8.png" type="Texture" id=29]
+[ext_resource path="res://player/assets/run/MEDICrun9.png" type="Texture" id=30]
+[ext_resource path="res://player/assets/die/small0.png" type="Texture" id=31]
+[ext_resource path="res://player/assets/die/small3.png" type="Texture" id=32]
+[ext_resource path="res://player/assets/die/small2.png" type="Texture" id=33]
+[ext_resource path="res://player/assets/die/small1.png" type="Texture" id=34]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 14.8798, 27.3737 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 1 ), ExtResource( 20 ), ExtResource( 2 ), ExtResource( 20 ), ExtResource( 1 ) ],
+"frames": [ ExtResource( 20 ), ExtResource( 2 ), ExtResource( 1 ), ExtResource( 1 ), ExtResource( 2 ), ExtResource( 20 ), ExtResource( 20 ) ],
 "loop": true,
-"name": "default",
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 27 ), ExtResource( 28 ), ExtResource( 23 ), ExtResource( 26 ), ExtResource( 22 ), ExtResource( 21 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 29 ), ExtResource( 30 ) ],
+"loop": true,
+"name": "run",
+"speed": 20.0
+}, {
+"frames": [ ExtResource( 27 ), ExtResource( 28 ), ExtResource( 23 ), ExtResource( 26 ), ExtResource( 22 ), ExtResource( 21 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 29 ), ExtResource( 30 ) ],
+"loop": true,
+"name": "air",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 27 ), ExtResource( 28 ), ExtResource( 23 ), ExtResource( 26 ), ExtResource( 22 ), ExtResource( 21 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 29 ), ExtResource( 30 ) ],
+"loop": true,
+"name": "spawn",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 30 ) ],
+"loop": false,
+"name": "wall",
+"speed": 0.0
+}, {
+"frames": [ ExtResource( 31 ), ExtResource( 34 ), ExtResource( 33 ), ExtResource( 32 ) ],
+"loop": true,
+"name": "die",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 27 ), ExtResource( 28 ), ExtResource( 23 ), ExtResource( 26 ), ExtResource( 22 ), ExtResource( 21 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 29 ), ExtResource( 30 ) ],
+"loop": true,
+"name": "ledge",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 27 ), ExtResource( 28 ), ExtResource( 23 ), ExtResource( 26 ), ExtResource( 22 ), ExtResource( 21 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 29 ), ExtResource( 30 ) ],
+"loop": true,
+"name": "debug",
 "speed": 5.0
 } ]
 
@@ -110,15 +159,15 @@ script = ExtResource( 16 )
 [node name="Die" type="Node" parent="StateMachine"]
 script = ExtResource( 18 )
 
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -0.0327721, -30.8946 )
+frames = SubResource( 2 )
+animation = "run"
+frame = 4
+playing = true
+
 [node name="Camera2D" parent="." instance=ExtResource( 6 )]
 current = false
-
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 6.12915, -30.0516 )
-scale = Vector2( 1.87447, 1.8545 )
-frames = SubResource( 2 )
-frame = 2
-playing = true
 
 [node name="Stats" parent="." instance=ExtResource( 8 )]
 
@@ -130,6 +179,6 @@ position = Vector2( 28, 0 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="TurnAxis/CastPoint"]
 position = Vector2( 6.53168, 4.35445 )
-scale = Vector2( 1.27215, 1.27215 )
+z_index = -1
 frames = SubResource( 3 )
 offset = Vector2( -16, -4 )
