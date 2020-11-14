@@ -49,7 +49,7 @@ func set_type_graphic(type):
 			type_scene = preload("res://procedural_map_generation/assets/Connection.tscn")
 
 func load_template(template_name):
-	room_scene = load("res://room_templates/"+ template_name)
+	room_scene = load("res://room_templates/room_scenes/"+ template_name)
 	room_instance = room_scene.instance()
 	var room_child_nodes = []
 	for child in room_instance.get_children():
