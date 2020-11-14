@@ -23,10 +23,10 @@ tile_data = PoolIntArray( 0, 0, 8, 1, 0, 10, 2, 0, 10, 3, 0, 10, 4, 0, 10, 5, 0,
 position = Vector2( 91.8059, 347.463 )
 
 [node name="PlayButton" type="Label" parent="."]
-margin_left = 167.492
-margin_top = 365.076
-margin_right = 622.492
-margin_bottom = 658.076
+margin_left = 168.259
+margin_top = 367.757
+margin_right = 623.259
+margin_bottom = 604.757
 custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "PLAY!!!
