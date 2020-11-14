@@ -9,12 +9,10 @@ const DAMAGE_TO_PLAYER := 0.02
 const Animations := {
 	"RUSH": "rush"
 }
-onready var colider = $CollisionPolygon2D
 
 func _ready() -> void:
 	CombatSignalController.connect("damage_baddie", self, "on_hit")
 	Baddie.set_sprite($AnimatedSprite)
-	Baddie.set_collision_node($CollisionPolygon2D)
 	Baddie.set_body(self)
 	Baddie.set_gravity(GRAVITY)
 	Baddie.set_speed(SPEED)
@@ -28,19 +26,11 @@ func _process(delta) -> void:
 		return
 		
 	Baddie.move(delta)
-	var collided_with_player = check_player_colision()
+	var collided_with_player = Baddie.check_player_colision(true)
 
 	if is_on_wall() && !collided_with_player:
 		Baddie.sprite.flip_h = !Baddie.sprite.flip_h
 		Baddie.direction = Baddie.change_direction()
-
-func check_player_colision() -> bool:
-	for i in get_slide_count():
-		var collision = get_slide_collision(i)
-		if collision.collider.name == "Player":
-			CombatSignalController.emit_signal("damage_player", Baddie.inflict_damage)
-			return true
-	return false
 
 func on_hit(instance_id, damage) -> void:
 	if instance_id == self.get_instance_id():

@@ -14,10 +14,9 @@ var animation: String
 var velocity:= Vector2();
 var sprite: AnimatedSprite
 var body: KinematicBody2D
-var collision_node: CollisionPolygon2D
 var inflict_damage: float = 0.2
 
-func set_init_hp(init_hp: int) -> void:
+func set_init_hp(init_hp: float) -> void:
 	hp = init_hp
 	
 func set_move_animation(move_animation: String) -> void:
@@ -34,9 +33,6 @@ func set_sprite(s: AnimatedSprite) -> void:
 
 func set_body(b: KinematicBody2D) -> void:
 	body = b
-
-func set_collision_node(n: CollisionPolygon2D) -> void:
-	collision_node = n
 	
 func set_damage(d: float) -> void:
 	inflict_damage = d
@@ -48,6 +44,14 @@ func move(delta) -> void:
 
 	velocity = body.move_and_slide(velocity, FLOOR)
 
+func check_player_colision(should_damage_player = false) -> bool:
+	for i in body.get_slide_count():
+		var collision = body.get_slide_collision(i)
+		if collision.collider.name == "Player":
+			if should_damage_player:
+				CombatSignalController.emit_signal("damage_player", self.inflict_damage)
+			return true
+	return false
 
 func change_direction() -> int:
 	return Direction.RIGHT if direction == Direction.LEFT else Direction.LEFT
@@ -58,5 +62,4 @@ func on_hit(damage: float) -> void:
 		on_death()
 
 func on_death() -> void:
-	collision_node.set_deferred("disabled", true)
 	call_deferred("free")
