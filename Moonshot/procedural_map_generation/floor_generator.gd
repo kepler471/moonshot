@@ -50,7 +50,7 @@ func complete_Level():
 func load_template_rooms():
 	var room_list = []
 	var dir = Directory.new()
-	dir.open("res://room_templates")
+	dir.open("res://room_templates/room_scenes")
 	dir.list_dir_begin()
 
 	while true:
