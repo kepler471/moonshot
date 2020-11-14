@@ -25,6 +25,7 @@ onready var pass_through: Area2D = $PassThrough
 
 
 const FLOOR_NORMAL := Vector2.UP
+const MAX_HEALTH := 100
 
 var is_active := true setget set_is_active
 var has_teleported := false
@@ -40,6 +41,11 @@ func flip_facing():
 	$AnimatedSprite.flip_h = !$AnimatedSprite.flip_h
 
 func _ready() -> void:
+	add_child(player_arsenal)
+
+	CombatSignalController.connect("damage_player", self, "take_damage")
+	CombatSignalController.connect("player_kill", self, "on_death")
+
 	var crosshair_centre = Vector2(16,16)
 	Input.set_custom_mouse_cursor(crosshair, 0, crosshair_centre)
 
@@ -62,7 +68,6 @@ func _physics_process(_delta) -> void:
 	if Input.is_action_pressed("shoot") and !cooldown:
 		var weapon = player_arsenal.get_weapon()
 		var shot = weapon.shoot().instance()
-		add_child(weapon.sound)
 
 		cooldown = true
 
@@ -89,6 +94,11 @@ func get_collider() -> CollisionShape2D:
 func _on_Player_health_depleted() -> void:
 	state_machine.transition_to("Die", {last_checkpoint = last_checkpoint})
 
-func receive_damage(damage):
-	pass
-		
+func take_damage(damage):
+	stats.health -= damage
+	if stats.health <= 0:
+		on_death()
+
+func on_death():
+	CombatSignalController.emit_signal("player_kill")
+	call_deferred("free")
