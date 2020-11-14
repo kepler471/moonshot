@@ -38,10 +38,10 @@ __meta__ = {
 }
 
 [node name="ExitButton" type="Label" parent="."]
-margin_left = 167.492
-margin_top = 467.402
-margin_right = 815.492
-margin_bottom = 704.402
+margin_left = 168.259
+margin_top = 367.757
+margin_right = 623.259
+margin_bottom = 604.757
 custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "EXIT :(
@@ -84,4 +84,4 @@ __meta__ = {
 }
 
 [node name="BearBoi" parent="." instance=ExtResource( 7 )]
-position = Vector2( 564.86, 190.098 )
+position = Vector2( 344.848, 213.179 )
