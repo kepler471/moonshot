@@ -33,12 +33,15 @@ func transition_to(target_state_path: String, msg: Dictionary = {}) -> void:
 		return
 
 	var target_state := get_node(target_state_path)
-	_animation_state = target_state.name.to_lower()
+	set_animation_name(target_state)
 	state.exit()
 	self.state = target_state
 	state.enter(msg)
 
-func get_animation():
+func set_animation_name(value: State) -> void:
+	_animation_state = value.name.to_lower()
+
+func get_animation_name() -> String:
 	return _animation_state
 
 func set_state(value: State) -> void:

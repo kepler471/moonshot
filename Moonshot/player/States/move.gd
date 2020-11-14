@@ -15,14 +15,6 @@ var snap_distance := 32.0
 var snap_vector := Vector2(0, 32)
 
 
-func _on_Hook_hooked_onto_target(target_global_position: Vector2) -> void:
-	var to_target: Vector2 = target_global_position - owner.global_position
-	if owner.is_on_floor() and to_target.y > 0.0:
-		return
-
-	_state_machine.transition_to("Hook", {target_global_position = target_global_position, velocity = velocity})
-
-
 func _on_Stats_damage_taken():
 	_state_machine.transition_to("Stagger")
 
@@ -52,16 +44,12 @@ func physics_process(delta: float) -> void:
 
 
 func enter(_msg: Dictionary = {}) -> void:
-#	owner.hook.connect("hooked_onto_target", self, "_on_Hook_hooked_onto_target")
-#	owner.stats.connect("damage_taken", self, "_on_Stats_damage_taken")
 	owner.pass_through.connect("body_exited", self, "_on_PassThrough_body_exited")
 # warning-ignore:return_value_discarded
 	$Air.connect("jumped", $Idle.jump_delay, "start")
 
 
 func exit() -> void:
-#	owner.hook.disconnect("hooked_onto_target", self, "_on_Hook_hooked_onto_target")
-#	owner.stats.disconnect("damage_taken", self, "_on_Stats_damage_taken")
 	owner.pass_through.disconnect("body_exited", self, "_on_PassThrough_body_exited")
 	$Air.disconnect("jumped", $Idle.jump_delay, "start")
 

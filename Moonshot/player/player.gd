@@ -35,6 +35,7 @@ var player_arsenal = PlayerArsenal.new()
 var cooldown = false
 var velocity = Vector2()
 var facing = 1
+var animation_name
 
 func flip_facing():
 	facing *= -1
@@ -62,8 +63,9 @@ func _physics_process(_delta) -> void:
 		flip_facing()
 		
 	# set animation
-	var animation_name = state_machine.get_animation()
-	if animation_name != null:
+	var new_state = state_machine.get_animation_name()
+	if new_state != null and new_state != animation_name:
+		animation_name = new_state
 		$AnimatedSprite.play(animation_name)
 
 	# begin shooting
