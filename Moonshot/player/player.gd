@@ -25,7 +25,6 @@ onready var pass_through: Area2D = $PassThrough
 
 
 const FLOOR_NORMAL := Vector2.UP
-const MAX_HEALTH := 100
 
 var is_active := true setget set_is_active
 var has_teleported := false

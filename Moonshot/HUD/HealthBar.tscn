@@ -1,0 +1,12 @@
+[gd_scene format=2]
+
+[node name="ColorRect" type="ColorRect"]
+margin_left = 900.0
+margin_top = 400.0
+margin_right = 915.0
+margin_bottom = 500.0
+rect_rotation = 180.0
+color = Color( 1, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

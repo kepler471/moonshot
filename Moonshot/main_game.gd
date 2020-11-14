@@ -29,6 +29,7 @@ func build_hud():
 	$GUI.add_child(minimap.minimap_node)
 	minimap.minimap_node.position = Vector2(900, 500)
 
+
 	
 func start_level(level_num):
 	# Run the procedural map generation andreturn the map ofthe rooms and the minimap obejcts
@@ -71,7 +72,6 @@ func get_and_instance():
 # Runs all the time
 func _process(delta):
 	# When there has been a room change indicated then change room
-
 	var this_time = OS.get_ticks_msec()
 	if (this_time - last_time > 100) && room_changed:
 		last_time = OS.get_ticks_msec()
@@ -80,6 +80,14 @@ func _process(delta):
 		change_room()
 		# Update minimap
 		minimap.change_current_node(room_index, previous_room_idx)
+	
+	# Change HUD for health
+	var new_health_bar_size = (Player.stats.health*100) / Player.stats.max_health
+	if new_health_bar_size > 0:
+		get_node("GUI/ColorRect").rect_size.y = new_health_bar_size
+	else:
+		get_node("GUI/ColorRect").rect_size.y = 0
+
 
 # Signal called by the room script on player collision with the exits
 func indicate_room_change(room_change : Vector2, room_door_entrance):

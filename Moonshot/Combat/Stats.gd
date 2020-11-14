@@ -12,7 +12,7 @@ var modifiers = {}
 
 var invulnerable := false
 
-export var max_health := 1.0 setget set_max_health
+export var max_health := 1.0 setget set_max_health, get_max_health
 var health := max_health
 
 export var attack: int = 1
@@ -33,6 +33,9 @@ func set_max_health(value: float) -> void:
 	if value == null:
 		return
 	max_health = max(1, value)
+	
+func get_max_health() -> float:
+	return max_health
 
 
 func add_modifier(id: int, modifier) -> void:
