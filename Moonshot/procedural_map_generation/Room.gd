@@ -114,10 +114,10 @@ func select_level_setup():
 	
 # Spawns a number of enemies based on the level and size of the room
 func spawn_enemies():
-	room_size_x = (room_instance.camera_limit_SE.position.x - room_instance.camera_limit_NW.position.x)
-	room_size_y = (room_instance.camera_limit_SE.position.y - room_instance.camera_limit_NW.position.y)
-	var difficulty_rating = room_size_x*room_size_y*(level_no^scaling_factor)
-
+	#room_size_x = (room_instance.camera_limit_SE.position.x - room_instance.camera_limit_NW.position.x)
+	#room_size_y = (room_instance.camera_limit_SE.position.y - room_instance.camera_limit_NW.position.y)
+	#var difficulty_rating = room_size_x*room_size_y*(level_no^scaling_factor)
+	pass
 	
 	# Retrieve list of enemies and attributes of enemies (spawn on ground/air/wall + size + difficulty)
 	
