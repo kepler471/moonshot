@@ -15,7 +15,7 @@ signal jumped
 onready var jump_delay: Timer = $JumpDelay
 onready var controls_freeze: Timer = $ControlsFreeze
 
-export var acceleration_x := 5000.0
+export var acceleration_x := 2500.0
 
 
 func unhandled_input(event: InputEvent) -> void:

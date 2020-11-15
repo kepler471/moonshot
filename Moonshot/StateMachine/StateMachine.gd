@@ -34,6 +34,10 @@ func transition_to(target_state_path: String, msg: Dictionary = {}) -> void:
 
 	var target_state := get_node(target_state_path)
 	set_animation_name(target_state)
+
+	if OS.is_debug_build():
+		print("State Transition: ", _state_name, " --> ", target_state.name)
+
 	state.exit()
 	self.state = target_state
 	state.enter(msg)

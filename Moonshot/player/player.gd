@@ -32,7 +32,7 @@ var last_checkpoint: Area2D = null
 
 var player_arsenal = PlayerArsenal.new()
 var cooldown = false
-var velocity = Vector2()
+
 var facing = 1
 var animation_name
 
