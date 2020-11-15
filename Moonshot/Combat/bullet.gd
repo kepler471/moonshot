@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-var f_mag = 500
+var f_mag = 800
 var damage = 0.4
 
 func _ready():
