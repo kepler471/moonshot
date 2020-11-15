@@ -5,8 +5,8 @@ extends State
 const PASS_THROUGH_LAYER = 3
 
 export var max_speed_default := Vector2(500.0, 1500.0)
-export var acceleration_default := Vector2(100000, 3000.0)
-export var jump_impulse := 900.0
+export var acceleration_default := Vector2(10000, 3000.0)
+export var jump_impulse := 1050.0
 
 var acceleration := acceleration_default
 var max_speed := max_speed_default

@@ -4,7 +4,7 @@ extends State
 
 
 export var slide_acceleration := 1600.0
-export var max_slide_speed := 400.0
+export var max_slide_speed := 200.0
 export (float, 0.0, 1.0) var friction_factor := 0.15
 
 export var jump_strength := Vector2(500.0, 400.0)
