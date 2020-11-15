@@ -23,14 +23,12 @@ var arsenal: Dictionary = {
 	"laser_blaster": LaserBlaster.new()
 }
 
-func _ready():
-	add_child(get_weapon().sound)
-
 func get_weapon():
 	if !arsenal.has(current_weapon_type):
 		return null
 	return arsenal.get(current_weapon_type)
 
-func set_weapon(new_weapon) -> void:
+func set_weapon(new_weapon: String = "laser_blaster") -> void:
 	current_weapon_type = new_weapon
-	add_child(get_weapon().sound)
+	get_parent().add_child(get_weapon().sound)
+
