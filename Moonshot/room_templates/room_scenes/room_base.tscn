@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://room_templates/BaseRoom.gd" type="Script" id=1]
 [ext_resource path="res://assets/tile_maps/SimpleTileset.tres" type="TileSet" id=2]
 [ext_resource path="res://room_templates/exit_vert.tscn" type="PackedScene" id=3]
 [ext_resource path="res://room_templates/exit_hori.tscn" type="PackedScene" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 24, 24 )
 
 [node name="LEVEL1" type="Node2D" groups=[
 "Room",
@@ -37,11 +40,34 @@ position = Vector2( 975.827, 336 )
 [node name="camera_limit_SE" type="Position2D" parent="."]
 position = Vector2( 1914.05, 952.946 )
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
+[node name="level_setups" type="Node" parent="."]
+
+[node name="level_setup_1" type="Node" parent="level_setups"]
+
+[node name="enemy_spawn_zone" type="Polygon2D" parent="level_setups/level_setup_1"]
 visible = false
 position = Vector2( 100, 0 )
 color = Color( 0.498039, 0.0509804, 0.0509804, 1 )
-polygon = PoolVector2Array( 148, 560, 284, 376, 540, 480, 484, 536 )
+polygon = PoolVector2Array( -36, 544, -36, 384, 692, 392, 692, 536 )
+
+[node name="item_spawn_point" type="Position2D" parent="level_setups/level_setup_1"]
+position = Vector2( 832, 256 )
+
+[node name="loot_destroyable" type="Area2D" parent="level_setups/level_setup_1"]
+position = Vector2( 768, 520 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="level_setups/level_setup_1/loot_destroyable"]
+shape = SubResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="level_setups/level_setup_1/loot_destroyable/CollisionShape2D"]
+margin_left = -24.0
+margin_top = -24.0
+margin_right = 24.0
+margin_bottom = 24.0
+color = Color( 0.168627, 0.0705882, 0.0705882, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="body_entered" from="Exit_UP" to="." method="_on_Exit_UP_body_entered"]
 [connection signal="body_entered" from="Exit_DOWN" to="." method="_on_Exit_DOWN_body_entered"]
 [connection signal="body_entered" from="Exit_LEFT" to="." method="_on_Exit_LEFT_body_entered"]
