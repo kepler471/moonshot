@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ShopNode.png-1fc346f11f075c5944e4cea103d22ddf.stex"
+path="res://.import/Medic1TALL1.png-6b8eb951f6491bbeab14e8a295e9bc24.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://procedural_map_generation/assets/sprites/ShopNode.png"
-dest_files=[ "res://.import/ShopNode.png-1fc346f11f075c5944e4cea103d22ddf.stex" ]
+source_file="res://player/assets/idle/Medic1TALL1.png"
+dest_files=[ "res://.import/Medic1TALL1.png-6b8eb951f6491bbeab14e8a295e9bc24.stex" ]
 
 [params]
 

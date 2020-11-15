@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ShopNode.png-1fc346f11f075c5944e4cea103d22ddf.stex"
+path="res://.import/flighty3.png-7a0297bd8f08c8c3a21fef9306e7d3e5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://procedural_map_generation/assets/sprites/ShopNode.png"
-dest_files=[ "res://.import/ShopNode.png-1fc346f11f075c5944e4cea103d22ddf.stex" ]
+source_file="res://baddies/sprites/flighty3.png"
+dest_files=[ "res://.import/flighty3.png-7a0297bd8f08c8c3a21fef9306e7d3e5.stex" ]
 
 [params]
 

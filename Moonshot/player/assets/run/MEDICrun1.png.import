@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ShopNode.png-1fc346f11f075c5944e4cea103d22ddf.stex"
+path="res://.import/MEDICrun1.png-c3b38e7099c4364d44a208943ae5196d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://procedural_map_generation/assets/sprites/ShopNode.png"
-dest_files=[ "res://.import/ShopNode.png-1fc346f11f075c5944e4cea103d22ddf.stex" ]
+source_file="res://player/assets/run/MEDICrun1.png"
+dest_files=[ "res://.import/MEDICrun1.png-c3b38e7099c4364d44a208943ae5196d.stex" ]
 
 [params]
 
