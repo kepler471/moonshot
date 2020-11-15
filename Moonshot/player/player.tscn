@@ -48,12 +48,7 @@ animations = [ {
 "frames": [ ExtResource( 27 ), ExtResource( 28 ), ExtResource( 23 ), ExtResource( 26 ), ExtResource( 22 ), ExtResource( 21 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 29 ), ExtResource( 30 ) ],
 "loop": true,
 "name": "run",
-"speed": 20.0
-}, {
-"frames": [ ExtResource( 27 ), ExtResource( 28 ), ExtResource( 23 ), ExtResource( 26 ), ExtResource( 22 ), ExtResource( 21 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 29 ), ExtResource( 30 ) ],
-"loop": true,
-"name": "air",
-"speed": 5.0
+"speed": 15.0
 }, {
 "frames": [ ExtResource( 27 ), ExtResource( 28 ), ExtResource( 23 ), ExtResource( 26 ), ExtResource( 22 ), ExtResource( 21 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 29 ), ExtResource( 30 ) ],
 "loop": true,
@@ -65,20 +60,25 @@ animations = [ {
 "name": "wall",
 "speed": 0.0
 }, {
-"frames": [ ExtResource( 31 ), ExtResource( 34 ), ExtResource( 33 ), ExtResource( 32 ) ],
-"loop": true,
-"name": "die",
-"speed": 8.0
-}, {
-"frames": [ ExtResource( 27 ), ExtResource( 28 ), ExtResource( 23 ), ExtResource( 26 ), ExtResource( 22 ), ExtResource( 21 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 29 ), ExtResource( 30 ) ],
-"loop": true,
-"name": "ledge",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 27 ), ExtResource( 28 ), ExtResource( 23 ), ExtResource( 26 ), ExtResource( 22 ), ExtResource( 21 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 29 ), ExtResource( 30 ) ],
 "loop": true,
 "name": "debug",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 27 ), ExtResource( 28 ), ExtResource( 23 ), ExtResource( 26 ), ExtResource( 22 ), ExtResource( 21 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 29 ), ExtResource( 30 ) ],
+"loop": true,
+"name": "air",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 27 ), ExtResource( 28 ), ExtResource( 23 ), ExtResource( 26 ), ExtResource( 22 ), ExtResource( 21 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 29 ), ExtResource( 30 ) ],
+"loop": true,
+"name": "ledge",
+"speed": 100.0
+}, {
+"frames": [ ExtResource( 31 ), ExtResource( 34 ), ExtResource( 33 ), ExtResource( 32 ) ],
+"loop": true,
+"name": "die",
+"speed": 8.0
 } ]
 
 [sub_resource type="SpriteFrames" id=3]
@@ -142,10 +142,6 @@ one_shot = true
 
 [node name="Wall" type="Node" parent="StateMachine/Move"]
 script = ExtResource( 12 )
-slide_acceleration = 1600.0
-max_slide_speed = 400.0
-friction_factor = 0.15
-jump_strength = Vector2( 500, 400 )
 
 [node name="Ledge" type="Node" parent="StateMachine"]
 script = ExtResource( 10 )
@@ -162,8 +158,8 @@ script = ExtResource( 18 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( -0.0327721, -30.8946 )
 frames = SubResource( 2 )
-animation = "run"
-frame = 4
+animation = "idle"
+frame = 1
 playing = true
 
 [node name="Camera2D" parent="." instance=ExtResource( 6 )]
