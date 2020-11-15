@@ -10,18 +10,23 @@ var room_template_name
 var room_scene
 var room_instance
 var room_instanced = null
-
-
+var level_no
+var room_size_x
+var room_size_y
+var difficulty_rating 
+# Controls how quickly the levels get harder as the levels go up. set between 0.5 - 1
+var scaling_factor = 0.75
 # Type of room that need to be considered
 const ROOM_TYPES : Array = ["Boss", "Reward", "Shop", "Challenge", "Path", "CurrentLocation"]
 
-func _init(type, con: Array, template_name=null):
+func _init(type, con: Array, level_no: int, template_name=null):
 	if ROOM_TYPES.has(type):
 		room_type = type
 	else:
 		room_type = "Path"
 		push_warning("Room attempted to be created with illegal type")
-		
+	
+	level_no = level_no
 	set_type_graphic(type)
 	connections = con
 	# Name of the room file to associate this room class with
@@ -93,5 +98,42 @@ func is_instanced():
 	
 func instance():
 	room_instance = room_scene.instance()
+	select_level_setup()
+	spawn_enemies()
+	spawn_items()
 	room_instanced = true
+	
+# Function to select a random level setup and remove the others from the room
+func select_level_setup():
+	# Retrieve the different level setups
+	
+	# Selecet a random one
+	
+	# Delete other level setups
+	pass
+	
+# Spawns a number of enemies based on the level and size of the room
+func spawn_enemies():
+	room_size_x = (room_instance.camera_limit_SE.position.x - room_instance.camera_limit_NW.position.x)
+	room_size_y = (room_instance.camera_limit_SE.position.y - room_instance.camera_limit_NW.position.y)
+	var difficulty_rating = room_size_x*room_size_y*(level_no^scaling_factor)
+
+	
+	# Retrieve list of enemies and attributes of enemies (spawn on ground/air/wall + size + difficulty)
+	
+	# Select some types of enemies to include in the map
+	
+	# Function to calculate the no. enemies of each type depending on their individual 
+	# difficulty rating and the level difficulty rating
+	
+	# Spawn the enemies, initally randomly and then later on walls/floor etc.
+	
+# Spawnsmitems at the item locations
+func spawn_items():
+	# Retrieve the list of items
+	
+	# Select ones at random
+	
+	# Spawn them
+	pass
 	
