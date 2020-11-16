@@ -34,6 +34,7 @@ func physics_process(delta: float) -> void:
 	elif is_moving_away_from_wall:
 		_state_machine.transition_to("Move/Air", {"velocity": _velocity})
 
+	# Drop player if they are hanging by top portion of body only
 	elif ld.is_hanging():
 		_state_machine.transition_to("Move/Air", {"velocity": _velocity})
 
