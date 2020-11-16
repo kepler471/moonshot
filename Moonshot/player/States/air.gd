@@ -17,6 +17,7 @@ onready var controls_freeze: Timer = $ControlsFreeze
 
 export var acceleration_x := 2500.0
 export var jump_deceleration := 5000.0
+export var air_resistance := 1250.0
 
 func unhandled_input(event: InputEvent) -> void:
 	# Jump after falling off a ledge
@@ -32,8 +33,11 @@ func physics_process(delta: float) -> void:
 	_parent.physics_process(delta)
 
 	# Variable jump height.
-	if !Input.is_action_pressed("jump") and sign(_parent.velocity.y) == sign(Vector2.UP.y):
+	if not Input.is_action_pressed("jump") and sign(_parent.velocity.y) == sign(Vector2.UP.y):
 		_parent.velocity.y += jump_deceleration * delta
+
+	if not Input.is_action_pressed("move_left") or not Input.is_action_pressed("move_left"):
+		_parent.velocity.x -= sign(_parent.velocity.x) * air_resistance * delta
 
 	Events.emit_signal("player_moved", owner)
 
