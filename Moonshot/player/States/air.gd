@@ -32,15 +32,14 @@ func physics_process(delta: float) -> void:
 	_parent.physics_process(delta)
 	Events.emit_signal("player_moved", owner)
 
+	var ld = owner.ledge_wall_detector
+
 	# Landing
 	if owner.is_on_floor():
 		var target_state := "Move/Idle" if _parent.get_move_direction().x == 0 else "Move/Run"
 		_state_machine.transition_to(target_state)
 
-	elif owner.ledge_wall_detector.is_against_ledge():
-		_state_machine.transition_to("Ledge", {move_state = _parent})
-
-	if owner.is_on_wall():
+	elif owner.is_on_wall() and ld.is_against_wall() and not ld.is_hanging():
 		var wall_normal: float = owner.get_slide_collision(0).normal.x
 		_state_machine.transition_to("Move/Wall", {"normal": wall_normal, "velocity": _parent.velocity})
 
