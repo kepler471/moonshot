@@ -104,22 +104,26 @@ func is_instanced():
 	
 func instance():
 	room_instance = room_scene.instance()
-	select_level_setup()
-	get_spawn_nodes()
-	spawn_enemies()
-	spawn_items()
+	var setup_room_bool = select_level_setup()
+	if setup_room_bool:
+		get_spawn_nodes()
+		spawn_enemies()
+		spawn_items()
 	room_instanced = true
 	
 # Function to select a random level setup and remove the others from the room
 func select_level_setup():
 	# Retrieve the different level setups
 	var level_setups_node = room_instance.get_node('level_setups')
+	if level_setups_node == null:
+		return false
 	var level_setups = level_setups_node.get_children()
 	selected_level_setup = level_setups[randi()%level_setups.size()]
 	# Delete all the level setups not nee
 	for level_setup in level_setups:
 		if not level_setup.name == selected_level_setup.name:
 			level_setup.queue_free()
+	return true
 
 # Fetches all the spawn nodes and stores them in the class for easier access
 func get_spawn_nodes():
