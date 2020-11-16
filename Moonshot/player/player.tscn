@@ -45,25 +45,25 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 27 ), ExtResource( 28 ), ExtResource( 23 ), ExtResource( 26 ), ExtResource( 22 ), ExtResource( 21 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 29 ), ExtResource( 30 ) ],
+"frames": [ ExtResource( 23 ), ExtResource( 26 ), ExtResource( 22 ), ExtResource( 21 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 27 ), ExtResource( 28 ) ],
 "loop": true,
 "name": "run",
 "speed": 15.0
-}, {
-"frames": [ ExtResource( 27 ), ExtResource( 28 ), ExtResource( 23 ), ExtResource( 26 ), ExtResource( 22 ), ExtResource( 21 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 29 ), ExtResource( 30 ) ],
-"loop": true,
-"name": "spawn",
-"speed": 5.0
 }, {
 "frames": [ ExtResource( 30 ) ],
 "loop": false,
 "name": "wall",
 "speed": 0.0
 }, {
+"frames": [ ExtResource( 31 ), ExtResource( 34 ), ExtResource( 33 ), ExtResource( 32 ) ],
+"loop": true,
+"name": "die",
+"speed": 8.0
+}, {
 "frames": [ ExtResource( 27 ), ExtResource( 28 ), ExtResource( 23 ), ExtResource( 26 ), ExtResource( 22 ), ExtResource( 21 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 29 ), ExtResource( 30 ) ],
 "loop": true,
-"name": "debug",
-"speed": 5.0
+"name": "ledge",
+"speed": 100.0
 }, {
 "frames": [ ExtResource( 27 ), ExtResource( 28 ), ExtResource( 23 ), ExtResource( 26 ), ExtResource( 22 ), ExtResource( 21 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 29 ), ExtResource( 30 ) ],
 "loop": true,
@@ -72,13 +72,13 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 27 ), ExtResource( 28 ), ExtResource( 23 ), ExtResource( 26 ), ExtResource( 22 ), ExtResource( 21 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 29 ), ExtResource( 30 ) ],
 "loop": true,
-"name": "ledge",
-"speed": 100.0
+"name": "spawn",
+"speed": 5.0
 }, {
-"frames": [ ExtResource( 31 ), ExtResource( 34 ), ExtResource( 33 ), ExtResource( 32 ) ],
+"frames": [ ExtResource( 27 ), ExtResource( 28 ), ExtResource( 23 ), ExtResource( 26 ), ExtResource( 22 ), ExtResource( 21 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 29 ), ExtResource( 30 ) ],
 "loop": true,
-"name": "die",
-"speed": 8.0
+"name": "debug",
+"speed": 5.0
 } ]
 
 [sub_resource type="SpriteFrames" id=3]
@@ -92,7 +92,8 @@ animations = [ {
 [node name="Player" type="KinematicBody2D" groups=[
 "Player",
 ]]
-collision_mask = 14
+collision_layer = 2
+collision_mask = 13
 script = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -102,6 +103,7 @@ shape = SubResource( 1 )
 [node name="LedgeWallDetector" parent="." instance=ExtResource( 5 )]
 
 [node name="FloorDetector" parent="." instance=ExtResource( 3 )]
+collision_mask = 9
 
 [node name="PassThrough" parent="." instance=ExtResource( 7 )]
 
@@ -130,7 +132,6 @@ one_shot = true
 
 [node name="Air" type="Node" parent="StateMachine/Move"]
 script = ExtResource( 19 )
-acceleration_x = 5000.0
 
 [node name="JumpDelay" type="Timer" parent="StateMachine/Move/Air"]
 wait_time = 0.1
