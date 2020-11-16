@@ -39,6 +39,7 @@ func physics_process(delta: float) -> void:
 		var target_state := "Move/Idle" if _parent.get_move_direction().x == 0 else "Move/Run"
 		_state_machine.transition_to(target_state)
 
+	# Wall hanging dropoff
 	elif owner.is_on_wall() and ld.is_against_wall() and not ld.is_hanging():
 		var wall_normal: float = owner.get_slide_collision(0).normal.x
 		_state_machine.transition_to("Move/Wall", {"normal": wall_normal, "velocity": _parent.velocity})
