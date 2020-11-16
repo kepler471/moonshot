@@ -44,11 +44,11 @@ position = Vector2( 1914.05, 952.946 )
 
 [node name="level_setup_1" type="Node" parent="level_setups"]
 
-[node name="enemy_spawn_zone" type="Polygon2D" parent="level_setups/level_setup_1"]
+[node name="baddie_spawn_zone" type="Polygon2D" parent="level_setups/level_setup_1"]
 visible = false
 position = Vector2( 100, 0 )
 color = Color( 0.498039, 0.0509804, 0.0509804, 1 )
-polygon = PoolVector2Array( -36, 544, -36, 384, 692, 392, 692, 536 )
+polygon = PoolVector2Array( -12, 528, -12, 400, 644, 400, 636, 528 )
 
 [node name="item_spawn_point" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( 832, 256 )
