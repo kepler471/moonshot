@@ -5,9 +5,6 @@
 [ext_resource path="res://room_templates/exit_vert.tscn" type="PackedScene" id=3]
 [ext_resource path="res://room_templates/exit_hori.tscn" type="PackedScene" id=4]
 
-
-
-
 [node name="LEVEL1" type="Node2D" groups=[
 "Room",
 ]]
