@@ -25,14 +25,20 @@ func physics_process(delta: float) -> void:
 	_velocity.y = clamp(_velocity.y, -max_slide_speed, max_slide_speed)
 	_velocity = owner.move_and_slide_with_snap(_velocity, Vector2(-_wall_normal, 0), owner.FLOOR_NORMAL)
 
+	var ld = owner.ledge_wall_detector
+	var is_moving_away_from_wall := sign(_parent.get_move_direction().x) == sign(_wall_normal)
+
 	if owner.is_on_floor():
 		_state_machine.transition_to("Move/Idle")
 
-	var is_moving_away_from_wall := sign(_parent.get_move_direction().x) == sign(_wall_normal)
-	if is_moving_away_from_wall:
-		_state_machine.transition_to("Move/Air", {"velocity":_velocity})
+	elif is_moving_away_from_wall:
+		_state_machine.transition_to("Move/Air", {"velocity": _velocity})
 
-	if owner.ledge_wall_detector.is_against_ledge():
+	# Drop player if they are hanging by top portion of body only
+	elif ld.is_hanging():
+		_state_machine.transition_to("Move/Air", {"velocity": _velocity})
+
+	elif ld.is_against_ledge():
 		_state_machine.transition_to("Ledge", {move_state = _parent})
 
 
