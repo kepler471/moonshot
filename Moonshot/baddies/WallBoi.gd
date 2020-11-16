@@ -1,6 +1,8 @@
 extends KinematicBody2D
 
 var Baddie = load("res://baddies/Baddie.gd").new()
+
+onready var Laser = $BaddieLaserController
 const GRAVITY := 10
 const SPEED := 230
 const HP_MAX := 0.4
@@ -16,12 +18,15 @@ func _ready() -> void:
 	Baddie.set_body(self)
 	Baddie.set_init_hp(HP_MAX)
 	Baddie.set_damage(DAMAGE_TO_PLAYER)
+	
+	Laser.set_upper_shot_frequency(1)
+	Laser.shoot_randomly()
 
 func _process(delta) -> void:
 	if Baddie == null:
 		call_deferred("free")
 		return
-		
+
 	Baddie.check_player_colision(true)
 	velocity.x = SPEED * Baddie.direction
 	$AnimatedSprite.play()
@@ -36,45 +41,37 @@ func detect_ray_cast_collision() -> void:
 	var no_collision: bool = !left_collision && !right_collision && !bottom_collision && !top_collision
 
 	if no_collision:
-		print("none")
 		set_animated_sprite_rotation(0)
 		velocity.y += 10
-	
+
 	if top_collision && left_collision:
-		print("top left")
 		velocity.y += 80
-		
+
 	if top_collision && right_collision:
-		print("top right")
 		set_animated_sprite_rotation(180)
 		change_direction()
 		velocity.x *= Baddie.direction
 
 	if bottom_collision && left_collision:
-		print("bottom left")
 		set_animated_sprite_rotation(0)
 		velocity.x *= Baddie.direction
 		change_direction()
 		
 	if bottom_collision && right_collision:
-		print("bottom right")
 		set_animated_sprite_rotation(180)
 		velocity.y -= 10
 
 	if top_collision:
-		print("top")
 		set_animated_sprite_rotation(180)
 		
 	if bottom_collision:
 		set_animated_sprite_rotation(0)
 
 	if right_collision:
-		print("right")
 		set_animated_sprite_rotation(270)
 		velocity.y -= 15
-		
+
 	if left_collision:
-		print("left")
 		set_animated_sprite_rotation(90)
 		velocity.y += 15
 
