@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/DeepPurpleTiles.png-095b31320110859ca5547a404977abb4.stex"
+path="res://.import/DeepPurpleTiles_2.png-d700c9635d4d24d80d009d5c628b55ef.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tile_maps/DeepPurpleTiles.png"
-dest_files=[ "res://.import/DeepPurpleTiles.png-095b31320110859ca5547a404977abb4.stex" ]
+source_file="res://assets/tile_maps/DeepPurpleTiles_2.png"
+dest_files=[ "res://.import/DeepPurpleTiles_2.png-d700c9635d4d24d80d009d5c628b55ef.stex" ]
 
 [params]
 
