@@ -9,14 +9,9 @@ signal hopped_off_entity
 
 onready var state_machine: StateMachine = $StateMachine
 
-#onready var skin: Position2D = $Skin
 onready var collider: CollisionShape2D = $CollisionShape2D setget ,get_collider
 
 onready var stats: Stats = $Stats
-#onready var hitbox: Area2D = $HitBox
-
-#onready var camera_rig: Position2D = $CameraRig
-#onready var shaking_camera: Camera2D = $CameraRig/ShakingCamera
 
 onready var ledge_wall_detector: Position2D = $LedgeWallDetector
 onready var floor_detector: RayCast2D = $FloorDetector
@@ -35,10 +30,8 @@ var cooldown = false
 
 var facing = 1
 var animation_name
+var playing_reverse
 
-func flip_facing():
-	facing *= -1
-	$AnimatedSprite.flip_h = !$AnimatedSprite.flip_h
 
 func _ready() -> void:
 	add_child(player_arsenal)
@@ -51,23 +44,20 @@ func _ready() -> void:
 
 	stats.connect("health_depleted", self, "_on_Player_health_depleted")
 
+
 func _physics_process(_delta) -> void:
 	var direction = (
 		Input.get_action_strength("move_right")
 		- Input.get_action_strength("move_left")
 		)
 
-	if sign(direction) == 0:
-		pass
-	elif sign(direction) != sign(facing):
-		flip_facing()
+	set_facing(direction)
 		
-	# set animation
-	var new_state = state_machine.get_animation_name()
-	if new_state != null and new_state != animation_name:
-		animation_name = new_state
-		$AnimatedSprite.play(animation_name)
+	set_animation()
 
+	face_mouse()
+
+	print($AnimatedSprite.frame)
 	# begin shooting
 	get_node("TurnAxis").rotation = PI + (position + get_node("TurnAxis").position).angle_to_point(get_global_mouse_position())
 
@@ -86,6 +76,39 @@ func _physics_process(_delta) -> void:
 
 		cooldown = false
 
+
+func flip_facing():
+	facing *= -1
+	$AnimatedSprite.flip_h = !$AnimatedSprite.flip_h
+	
+	
+func set_facing(dir):
+	if sign(dir) == 0:
+		pass
+	elif sign(dir) != sign(facing):
+		flip_facing()
+
+
+func set_animation():
+	var new_state = state_machine.get_animation_name()
+	if new_state != null and new_state != animation_name:
+		animation_name = new_state
+		$AnimatedSprite.play(animation_name)
+
+
+func face_mouse():
+	var mouse_side := get_global_mouse_position().x - get_global_position().x
+	if is_zero_approx(mouse_side):
+		return
+	elif sign(mouse_side) == sign(facing) and playing_reverse:
+		$AnimatedSprite.play($AnimatedSprite.name, false)
+		playing_reverse = false
+	elif sign(mouse_side) == -1 * sign(facing):
+		flip_facing()
+		$AnimatedSprite.play($AnimatedSprite.name, true)
+		playing_reverse = true
+
+
 func set_is_active(value: bool) -> void:
 	is_active = value
 	if not collider:
@@ -97,13 +120,16 @@ func set_is_active(value: bool) -> void:
 func get_collider() -> CollisionShape2D:
 	return collider
 
+
 func _on_Player_health_depleted() -> void:
 	state_machine.transition_to("Die", {last_checkpoint = last_checkpoint})
+
 
 func take_damage(damage) -> void:
 	stats.health -= damage
 	if stats.health <= 0:
 		on_death()
+
 
 func on_death() -> void:
 	CombatSignalController.emit_signal("player_kill")
