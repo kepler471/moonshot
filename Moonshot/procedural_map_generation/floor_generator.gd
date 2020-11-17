@@ -10,6 +10,8 @@ var max_rooms = 100
 const room_Count_Variation = 0;
 var starting_room = 'room_base.tscn'
 
+
+
 # 'map' will store the final dictionary of rooms, indexed by a vector
 var map = {}
 # 'open_Connections' will store locations where a new room can be placed
@@ -18,7 +20,8 @@ var open_Connections : Dictionary = {}
 var template_rooms = []
 # 'room_locations' will store the places where rooms need to be placed in 'map'
 var room_locations = {}
-
+# Will store if there is a boss room that has been created or not to ensure there is only one
+var boss_room_created = false
 var directions = {"LEFT": Vector2.LEFT, "UP": Vector2.DOWN, "RIGHT": Vector2.RIGHT, "DOWN": Vector2.UP}
 var rng = RandomNumberGenerator.new()
 
@@ -78,7 +81,7 @@ func grow():
 # Given the 2-D grid of room locations, assign a room template and room type
 func fill_with_rooms():
 	# Ensure that the starting room is always the same
-	add_Room(Room.new("Path", [], starting_room), Vector2(0, 0))
+	add_Room(Room.new("Route", [], starting_room), Vector2(0, 0))
 	
 	# For all other rooms, identify the adjacent rooms i.e. connection requirements
 	# Then find a tempalte room with those requirementsand add to the map dictionary
@@ -88,7 +91,20 @@ func fill_with_rooms():
 			continue
 		var reqs = get_room_requirements(pos)
 		add_Room(get_Room_With_Requirement(reqs), pos)
+	
+	if not boss_room_created:
+		add_boss_room()
 
+# Searches for a place where a single connected room can be added
+func add_boss_room():
+	var pos : Vector2 = open_Connections.keys()[rng.randi_range(0,open_Connections.size()-1)]
+	var room_reqs = get_room_requirements(pos)
+	while len(room_reqs) != 1:
+		pos = open_Connections.keys()[rng.randi_range(0,open_Connections.size()-1)]
+		room_reqs = get_room_requirements(pos)
+	add_Room(get_Room_With_Requirement(room_reqs), pos)
+	boss_room_created = true
+		
 # For a given room in the room_locations map, identify all the connecting rooms
 func get_room_requirements(pos):
 	var reqs = []
@@ -131,13 +147,18 @@ func get_Room_With_Requirement (requires:Array, end:bool = false):
 		if arrays_match(rand_room.connections, requires):
 			# Copy the room_template
 			new_room = Room.new("", [], rand_room.get_template_name())
-			# If a room with only one connection then select either BOSS, 
-			# REWARD or SHOP
+			# If a room with only one connection then select either reward or boss
+			var type
 			if len(requires) == 1:
-				var type = Room.ROOM_TYPES[rng.randi_range(0,3)]
+				if not boss_room_created:
+					type = "Boss"
+					boss_room_created = true
+				else:
+					type = "Reward"
+				
 				new_room.set_room_type(type)
 			else:
-				new_room.set_room_type("Path")
+				new_room.set_room_type("Route")
 			break
 	return new_room
 

@@ -13,13 +13,13 @@ var room_instanced = null
 
 
 # Type of room that need to be considered
-const ROOM_TYPES : Array = ["Boss", "Reward", "Shop", "Challenge", "Path", "CurrentLocation"]
+const ROOM_TYPES : Array = ["Boss", "Reward", "Route", "CurrentLocation"]
 
 func _init(type, con: Array, template_name=null):
 	if ROOM_TYPES.has(type):
 		room_type = type
 	else:
-		room_type = "Path"
+		room_type = "Route"
 		push_warning("Room attempted to be created with illegal type")
 		
 	set_type_graphic(type)
@@ -37,7 +37,7 @@ func set_type_graphic(type):
 			type_scene = preload("res://procedural_map_generation/assets/BossNode.tscn")
 		"Challenge":
 			type_scene = preload("res://procedural_map_generation/assets/ChallengeNode.tscn")
-		"Path":
+		"Route":
 			type_scene = preload("res://procedural_map_generation/assets/PathNode.tscn")
 		"Reward":
 			type_scene = preload("res://procedural_map_generation/assets/RewardNode.tscn")
