@@ -75,26 +75,26 @@ func _physics_process(_delta) -> void:
 		cooldown = false
 
 
-func flip_facing():
+func flip_facing() -> void:
 	facing *= -1
 	$AnimatedSprite.flip_h = !$AnimatedSprite.flip_h
 	
 	
-func set_facing(dir):
+func set_facing(dir) -> void:
 	if sign(dir) == 0:
 		pass
 	elif sign(dir) != sign(facing):
 		flip_facing()
 
 
-func set_animation():
+func set_animation() -> void:
 	var new_state = state_machine.get_animation_name()
 	if new_state != null and new_state != animation_name:
 		animation_name = new_state
 		$AnimatedSprite.play(animation_name)
 
 
-func face_mouse():
+func face_mouse() -> void:
 	var mouse_side := get_global_mouse_position().x - get_global_position().x
 	if is_zero_approx(mouse_side):
 		return
