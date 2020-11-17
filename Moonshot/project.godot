@@ -14,6 +14,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://player/FloorDetector.gd"
 }, {
+"base": "RigidBody2D",
+"class": "MSTDungeonRoom",
+"language": "GDScript",
+"path": "res://MSTDungeon/Room.gd"
+}, {
+"base": "Reference",
+"class": "MSTDungeonUtils",
+"language": "GDScript",
+"path": "res://MSTDungeon/Utils.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
@@ -46,6 +56,8 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "FloorDetector": "",
+"MSTDungeonRoom": "",
+"MSTDungeonUtils": "",
 "Player": "",
 "Room": "",
 "State": "",
@@ -70,7 +82,6 @@ CombatSignalController="*res://Autoload/CombatSignalController.gd"
 
 [display]
 
-window/size/width=1024
 window/size/height=576
 window/stretch/mode="2d"
 window/stretch/aspect="expand"
@@ -207,4 +218,5 @@ shoot={
 [rendering]
 
 quality/2d/use_pixel_snap=true
+environment/default_clear_color=Color( 1, 1, 0.921569, 1 )
 environment/default_environment="res://default_env.tres"
