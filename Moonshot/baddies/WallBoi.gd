@@ -2,8 +2,8 @@ extends KinematicBody2D
 
 var Baddie = load("res://baddies/Baddie.gd").new()
 
-onready var Laser = $BaddieLaserController
-const GRAVITY := 10
+onready var Laser = $BaddieLaserPointer
+const GRAVITY := 0
 const SPEED := 230
 const HP_MAX := 0.4
 const FLOOR := Vector2(0, -1)
@@ -20,6 +20,7 @@ func _ready() -> void:
 	Baddie.set_damage(DAMAGE_TO_PLAYER)
 	
 	Laser.set_upper_shot_frequency(1)
+	Laser.set_shot_speed(500)
 	Laser.shoot_randomly()
 
 func _physics_process(delta) -> void:
@@ -31,7 +32,7 @@ func _physics_process(delta) -> void:
 	velocity.x = SPEED * Baddie.direction
 	$AnimatedSprite.play()
 	detect_ray_cast_collision()
-	velocity = move_and_slide(velocity, FLOOR)
+	velocity = move_and_slide_with_snap(velocity, FLOOR) 
 
 func detect_ray_cast_collision() -> void:
 	var left_collision: bool = $RayCastLeft.is_colliding()

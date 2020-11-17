@@ -4,7 +4,7 @@
 [ext_resource path="res://baddies/sprites/tardi2.png" type="Texture" id=2]
 [ext_resource path="res://baddies/sprites/tardi1.png" type="Texture" id=3]
 [ext_resource path="res://baddies/sprites/tardi5.png" type="Texture" id=4]
-[ext_resource path="res://baddies/BaddieLaser/BaddieLaserController.gd" type="Script" id=5]
+[ext_resource path="res://baddies/BaddieLaser/BaddieLaserPointer.tscn" type="PackedScene" id=5]
 [ext_resource path="res://baddies/sprites/tardi4.png" type="Texture" id=6]
 [ext_resource path="res://baddies/WallBoi.gd" type="Script" id=7]
 
@@ -57,7 +57,4 @@ rotation = 1.5708
 enabled = true
 cast_to = Vector2( 0, 30 )
 
-[node name="BaddieLaserController" type="Node" parent="."]
-script = ExtResource( 5 )
-
-[node name="BaddieLaserPointer" type="Position2D" parent="."]
+[node name="BaddieLaserPointer" parent="." instance=ExtResource( 5 )]
