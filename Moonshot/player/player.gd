@@ -111,4 +111,4 @@ func on_death() -> void:
 	_on_Player_health_depleted()
 
 func _emit_position() -> void:
-	CombatSignalController.emit_signal("emit_player_global_position", global_position)
+	CombatSignalController.emit_signal("emit_player_global_position", $TurnAxis.global_position)

@@ -32,13 +32,7 @@ func shoot_player(player_global_position: Vector2) -> void:
 
 	shot.position = get_parent().get_node("BaddieLaserPointer").global_position
 
-	print("player_global_position", player_global_position)
-	print("baddie", get_parent().global_position)
-	print("nomalised", (player_global_position - get_parent().global_position).normalized())
-	
 	var shot_direction: Vector2 = (player_global_position - get_parent().global_position).normalized()
 	shot.apply_central_impulse(shot_direction * 500)
 	
 	shot.rotation = PI + get_parent().get_node("BaddieLaserPointer").position.angle_to_point(player_global_position)
-
-
