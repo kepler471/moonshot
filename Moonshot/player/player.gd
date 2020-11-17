@@ -57,8 +57,6 @@ func _physics_process(_delta) -> void:
 
 	face_mouse()
 
-	print($AnimatedSprite.frame)
-	# begin shooting
 	get_node("TurnAxis").rotation = PI + (position + get_node("TurnAxis").position).angle_to_point(get_global_mouse_position())
 
 	if Input.is_action_pressed("shoot") and !cooldown:
