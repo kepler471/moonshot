@@ -58,12 +58,12 @@ func _on_Camera2D_zoom_changed(zoom: Vector2) -> void:
 
 
 func _on_Tween_tween_all_completed() -> void:
-	_player.get_node("RemoteTransform2D").remote_path = camera.get_path()
-	camera.limit_left = _camera_limits.min.x
-	camera.limit_top = _camera_limits.min.y
-	camera.limit_right = _camera_limits.max.x
-	camera.limit_bottom = _camera_limits.max.y
-
+#	_player.get_node("RemoteTransform2D").remote_path = camera.get_path()
+#	camera.limit_left = _camera_limits.min.x
+#	camera.limit_top = _camera_limits.min.y
+#	camera.limit_right = _camera_limits.max.x
+#	camera.limit_bottom = _camera_limits.max.y
+	pass
 
 # Generates a new level.
 func generate_level() -> void:
@@ -207,7 +207,7 @@ func _copy_room(offset: Vector2, type: int, start: bool) -> void:
 	var data: Dictionary = _rooms.get_room_data(type)
 	
 	for object in data.objects:
-		if (not start and object.is_in_group("Player")) or (start and object.is_in_group("enemy")):
+		if (not start and object.is_in_group("Player")) or (start and object.is_in_group("Baddies")):
 			continue
 		
 		var new_object: Node2D = object.duplicate()

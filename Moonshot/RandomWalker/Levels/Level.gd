@@ -10,7 +10,7 @@ func _ready() -> void:
 	for n in extra.get_children():
 		if n.is_in_group("Player"):
 			_player = n
-		elif n.is_in_group("enemy"):
+		elif n.is_in_group("Baddies"):
 			n.visibility_enabler.connect("screen_entered", self, "_on_Enemy_screen_enetered", [n])
 
 

@@ -2,7 +2,7 @@
 
 [ext_resource path="res://RandomWalker/Levels/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://RandomWalker/Actors/Enemy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://baddies/BearBoi.tscn" type="PackedScene" id=3]
 
 [node name="Level" instance=ExtResource( 1 )]
 
