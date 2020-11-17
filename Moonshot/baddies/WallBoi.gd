@@ -22,7 +22,7 @@ func _ready() -> void:
 	Laser.set_upper_shot_frequency(1)
 	Laser.shoot_randomly()
 
-func _process(delta) -> void:
+func _physics_process(delta) -> void:
 	if Baddie == null:
 		call_deferred("free")
 		return

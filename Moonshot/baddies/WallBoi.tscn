@@ -59,3 +59,5 @@ cast_to = Vector2( 0, 30 )
 
 [node name="BaddieLaserController" type="Node" parent="."]
 script = ExtResource( 5 )
+
+[node name="BaddieLaserPointer" type="Position2D" parent="."]
