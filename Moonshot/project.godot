@@ -70,6 +70,7 @@ CombatSignalController="*res://Autoload/CombatSignalController.gd"
 
 [display]
 
+window/size/width=1024
 window/size/height=576
 window/stretch/mode="2d"
 window/stretch/aspect="expand"
