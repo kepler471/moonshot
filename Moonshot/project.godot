@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "BaddieLaserController",
+"language": "GDScript",
+"path": "res://baddies/BaddieLaser/BaddieLaserController.gd"
+}, {
 "base": "RayCast2D",
 "class": "FloorDetector",
 "language": "GDScript",
@@ -45,6 +50,7 @@ _global_script_classes=[ {
 "path": "res://procedural_map_generation/floor_generator.gd"
 } ]
 _global_script_class_icons={
+"BaddieLaserController": "",
 "FloorDetector": "",
 "Player": "",
 "Room": "",

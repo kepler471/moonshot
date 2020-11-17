@@ -38,6 +38,7 @@ func _ready() -> void:
 	player_arsenal.set_weapon()
 
 	CombatSignalController.connect("damage_player", self, "take_damage")
+	CombatSignalController.connect("get_player_global_position", self, "_emit_position")
 
 	var crosshair_centre = Vector2(16,16)
 	Input.set_custom_mouse_cursor(crosshair, 0, crosshair_centre)
@@ -132,3 +133,6 @@ func take_damage(damage) -> void:
 func on_death() -> void:
 	CombatSignalController.emit_signal("player_kill")
 	_on_Player_health_depleted()
+
+func _emit_position() -> void:
+	CombatSignalController.emit_signal("emit_player_global_position", $TurnAxis.global_position)
