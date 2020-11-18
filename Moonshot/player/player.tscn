@@ -176,5 +176,6 @@ position = Vector2( 28, 0 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="TurnAxis/CastPoint"]
 position = Vector2( 6.53168, 4.35445 )
+z_index = -1
 frames = SubResource( 3 )
 offset = Vector2( -16, -4 )
