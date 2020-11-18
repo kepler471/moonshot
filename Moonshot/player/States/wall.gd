@@ -10,7 +10,7 @@ export (float, 0.0, 1.0) var friction_factor := 0.15
 export var jump_strength := Vector2(500.0, 800.0)
 var _wall_normal := -1
 var _velocity := Vector2.ZERO
-
+var wall_grace_counter = 0
 
 func unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
@@ -32,7 +32,10 @@ func physics_process(delta: float) -> void:
 		_state_machine.transition_to("Move/Idle")
 
 	elif is_moving_away_from_wall:
-		_state_machine.transition_to("Move/Air", {"velocity": _velocity})
+		wall_grace_counter += 1
+		#Gives the player time to wall jump as they move away from the wall
+		if wall_grace_counter > 10:
+			_state_machine.transition_to("Move/Air", {"velocity": _velocity})
 
 	# Drop player if they are hanging by top portion of body only
 	elif ld.is_hanging():
@@ -43,6 +46,8 @@ func physics_process(delta: float) -> void:
 
 
 func enter(msg: Dictionary = {}) -> void:
+	wall_grace_counter = 0
+	
 	_parent.enter(msg)
 
 	_wall_normal = msg.normal
