@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "BaddieLaserController",
 "language": "GDScript",
-"path": "res://baddies/BaddieLaser/BaddieLaserController.gd"
+"path": "res://baddies/BaddieLaser/BaddieLaserPointer.gd"
 }, {
 "base": "RayCast2D",
 "class": "FloorDetector",
