@@ -159,6 +159,7 @@ script = ExtResource( 18 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( -0.0327721, -30.8946 )
 frames = SubResource( 2 )
+z_index = 2
 animation = "idle"
 frame = 1
 playing = true
@@ -176,6 +177,5 @@ position = Vector2( 28, 0 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="TurnAxis/CastPoint"]
 position = Vector2( 6.53168, 4.35445 )
-z_index = -1
 frames = SubResource( 3 )
 offset = Vector2( -16, -4 )

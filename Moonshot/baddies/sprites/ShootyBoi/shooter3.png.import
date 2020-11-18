@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/MEDICrunstart.png-40f4fe82a789871f5e506e6b508867c7.stex"
+path="res://.import/shooter3.png-4afa765be3095012bc4146db849f4967.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/assets/32x32_Medic/MEDICrunstart.png"
-dest_files=[ "res://.import/MEDICrunstart.png-40f4fe82a789871f5e506e6b508867c7.stex" ]
+source_file="res://baddies/sprites/ShootyBoi/shooter3.png"
+dest_files=[ "res://.import/shooter3.png-4afa765be3095012bc4146db849f4967.stex" ]
 
 [params]
 
