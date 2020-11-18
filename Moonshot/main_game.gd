@@ -17,7 +17,13 @@ func build_hud():
 	$GUI.add_child(minimap.minimap_node)
 	minimap.minimap_node.position = Vector2(900, 500)
 
-	
+func _process(delta):
+	var new_health_bar_size = (Player.stats.health*100) / Player.stats.max_health
+	if new_health_bar_size > 0:
+		get_node("GUI/ColorRect").rect_size.y = new_health_bar_size
+	else:
+		get_node("GUI/ColorRect").rect_size.y = 0
+		
 func start_level(level_num):
 	
 	# Generate level and minimap
