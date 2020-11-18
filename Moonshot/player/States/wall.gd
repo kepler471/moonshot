@@ -34,11 +34,8 @@ func physics_process(delta: float) -> void:
 	elif is_moving_away_from_wall:
 		wall_grace_counter += 1
 		#Gives the player time to wall jump as they move away from the wall
-		if wall_grace_counter > 5:
+		if wall_grace_counter > 10:
 			_state_machine.transition_to("Move/Air", {"velocity": _velocity})
-	
-	elif !is_moving_away_from_wall and wall_grace_counter > 0:
-		wall_grace_counter = 0
 
 	# Drop player if they are hanging by top portion of body only
 	elif ld.is_hanging():
@@ -49,6 +46,8 @@ func physics_process(delta: float) -> void:
 
 
 func enter(msg: Dictionary = {}) -> void:
+	wall_grace_counter = 0
+	
 	_parent.enter(msg)
 
 	_wall_normal = msg.normal
