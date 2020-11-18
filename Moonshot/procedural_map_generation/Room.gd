@@ -16,10 +16,14 @@ var room_size_y
 var difficulty_rating 
 # Controls how quickly the levels get harder as the levels go up. set between 0.5 - 1
 var scaling_factor = 0.75
+# Distance between enemy spawns on a line
+var min_baddie_spawn_distance = 16
 
 var selected_level_setup
 var item_spawn_nodes = []
-var baddie_spawn_areas = []
+var baddie_spawn_lines = []
+var baddie_spawn_points = []
+var combined_baddie_spawns = []
 var loot_destroyable_objects =[]
 
 # Type of room that need to be considered
@@ -129,11 +133,15 @@ func select_level_setup():
 func get_spawn_nodes():
 	var spawn_nodes = selected_level_setup.get_children()
 	for node in spawn_nodes:
-		if node.name.begins_with('baddie_spawn_zone'):
-			baddie_spawn_areas.append(node)
+		if node.name.begins_with('baddie_spawn_line'):
+			baddie_spawn_lines.append(node)
+			combined_baddie_spawns.append(node)
+		if node.name.begins_with('baddie_spawn_point'):
+			baddie_spawn_points.append(node)
+			combined_baddie_spawns.append(node)
 		elif node.name.begins_with('item_spawn_point'):
 			item_spawn_nodes.append(node)
-		elif node.name.begins_with('loot_destroyable'):
+		elif node.name.begins_with('destroyable'):
 			loot_destroyable_objects.append(node)
 			
 			
@@ -141,47 +149,79 @@ func get_spawn_nodes():
 func spawn_enemies():
 	room_size_x = (room_instance.get_node('camera_limit_SE').position.x - room_instance.get_node('camera_limit_NW').position.x)
 	room_size_y = (room_instance.get_node('camera_limit_SE').position.y - room_instance.get_node('camera_limit_NW').position.y)
-	var difficulty_rating = room_size_x*room_size_y*(pow(level_no, scaling_factor))
-	var no_enemies = rand_range(0.3, 1) * difficulty_rating / 60000
+	# Minimum no of enemies must be less than 3
+	var min_no_baddies = min(len(baddie_spawn_lines) + len(baddie_spawn_points), 3)
+	var max_no_baddies = len(baddie_spawn_points)
+	
+	var distance
+	for line in baddie_spawn_lines:
+		var line_points = line.points
+		distance = line_points[0].distance_to(line_points[1])
+		max_no_baddies += distance / min_baddie_spawn_distance
+	max_no_baddies = round(max_no_baddies)
+	
+	var max_difficult_rating = room_size_x*room_size_y*pow(5, scaling_factor)
+	var difficulty_rating = rand_range(0.3, 1)*room_size_x*room_size_y*pow(level_no, scaling_factor)
+	var scaled_difficulty_rating = difficulty_rating / max_difficult_rating
+	var no_baddies =  round(scaled_difficulty_rating*max_no_baddies)
+	print("The number of baddies is: " + str(no_baddies))
+	print("The scaled_difficulty_rating is: " + str(scaled_difficulty_rating))
 	# Retrieve list of enemies and attributes of enemies (spawn on ground/air/wall + size + difficulty)
 	var baddie_list = get_baddie_list()
-	
-	# Select one type of enemie to include in the map
-	var selected_baddie = baddie_list[randi()%baddie_list.size()]
-	var baddie_scene = load("res://baddies/" + selected_baddie)
-	
-	# Spawn the enemies, initally randomly and then later on walls/floor etc.
-	var level_setup_nodes = selected_level_setup.get_children()
-	
-	# Split the enemies across all the spawn areas
-	for i in range(no_enemies):
-		# Select a spawn area at random
-		var spawn_area = baddie_spawn_areas[randi()%baddie_spawn_areas.size()].polygon
-		var max_x = -100000
-		var min_x = 100000
-		var max_y = -100000
-		var min_y = 100000
-		# Get the limits of the spawn area (max & min x, y across all points)
-		for point in spawn_area:
-			if point.x > max_x:
-				max_x = point.x
-			elif point.x < min_x:
-				min_x = point.x
-			if point.y > max_y:
-				max_y = point.y
-			elif point.y < min_y:
-				min_y = point.y
-				
-		# Select a random position within the spawn area 
-		var rand_x = rand_range(min_x,max_x)
-		var rand_y = rand_range(min_y, max_y)
+	var no_baddies_per_spawn = {}
+	for i in range(no_baddies):
+		# Select a random spawn point/line
+		var spawn_place = combined_baddie_spawns[randi()%combined_baddie_spawns.size()]
 		
-		# Spawn baddie
-		var new_baddie = baddie_scene.instance()
-		new_baddie.position.x = rand_x
-		new_baddie.position.y = rand_y
-		room_instance.add_child(new_baddie)
+		# Set number of enemies in that spawn area to be 0 if not set
+		if not no_baddies_per_spawn.has(spawn_place.name):
+			no_baddies_per_spawn[spawn_place.name] = 0
+			
+		# If there is a child baddie in the node already then use this type of baddie
+		# Otherwise select a random one
+		# Instance the type of baddie
+		var selected_baddie
+		var baddie_instance
+		var new_baddie_instance 
 		
+	
+		if len(spawn_place.get_children()) == 0:
+			selected_baddie = "res://baddies/" + baddie_list[randi()%baddie_list.size()]
+		else:
+			baddie_instance = spawn_place.get_children()[0]
+			# If this is the first enemy inthe spawn area then delete the existing instance
+			if no_baddies_per_spawn[spawn_place.name] == 0:
+				baddie_instance.queue_free()
+			
+			# Retrieve the location of the enemy scene
+			selected_baddie = baddie_instance.script.resource_path
+			selected_baddie = selected_baddie.replace('.gd', '.tscn')
+		
+		# Load the baddie scene
+		var baddie_scene = load(selected_baddie)
+
+		# If it is a spawn point then remove the node from the
+		# combined_spawn areas
+		# If it is a line then duplicate instance and spawn randomly on the line
+		if spawn_place.get_class() == 'Position2D':
+			spawn_place.add_child(baddie_scene.instance())
+			combined_baddie_spawns.erase(spawn_place)
+		else:
+			var line_start = spawn_place.points[0]
+			var line_end = spawn_place.points[1]
+			var point_difference_vector = line_end - line_start
+			var random_point = line_start + rand_range(0, 1)*point_difference_vector
+			print("The line_start is: "+ str(line_start))
+			print("The line_end is: " + str(line_end))
+			print("The point_difference_vector is: " + str(point_difference_vector))
+			print("The random_point is: " + str(random_point))
+			new_baddie_instance = baddie_scene.instance()
+			spawn_place.add_child(new_baddie_instance)
+			new_baddie_instance.position = random_point
+			
+		no_baddies_per_spawn[spawn_place.name] += 1
+
+
 # Spawnsmitems at the item locations
 func spawn_items():
 	# Retrieve the list of items

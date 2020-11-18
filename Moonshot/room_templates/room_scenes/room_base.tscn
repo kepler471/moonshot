@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://room_templates/BaseRoom.gd" type="Script" id=1]
 [ext_resource path="res://assets/tile_maps/SimpleTileset.tres" type="TileSet" id=2]
 [ext_resource path="res://room_templates/exit_vert.tscn" type="PackedScene" id=3]
 [ext_resource path="res://room_templates/exit_hori.tscn" type="PackedScene" id=4]
+[ext_resource path="res://baddies/BearBoi.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 24, 24 )
@@ -27,7 +28,7 @@ position = Vector2( 975.891, 5.1321 )
 position = Vector2( 975.827, 952.946 )
 
 [node name="Exit_LEFT" parent="." instance=ExtResource( 4 )]
-position = Vector2( 5.12028, 495.114 )
+position = Vector2( -6.60727, 496.18 )
 
 [node name="Exit_RIGHT" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1914.05, 495.597 )
@@ -44,22 +45,16 @@ position = Vector2( 1914.05, 952.946 )
 
 [node name="level_setup_1" type="Node" parent="level_setups"]
 
-[node name="baddie_spawn_zone" type="Polygon2D" parent="level_setups/level_setup_1"]
-visible = false
-position = Vector2( 100, 0 )
-color = Color( 0.498039, 0.0509804, 0.0509804, 1 )
-polygon = PoolVector2Array( -12, 528, -12, 400, 644, 400, 636, 528 )
-
 [node name="item_spawn_point" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( 832, 256 )
 
-[node name="loot_destroyable" type="Area2D" parent="level_setups/level_setup_1"]
+[node name="destroyable" type="Area2D" parent="level_setups/level_setup_1"]
 position = Vector2( 768, 520 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="level_setups/level_setup_1/loot_destroyable"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="level_setups/level_setup_1/destroyable"]
 shape = SubResource( 1 )
 
-[node name="ColorRect" type="ColorRect" parent="level_setups/level_setup_1/loot_destroyable/CollisionShape2D"]
+[node name="ColorRect" type="ColorRect" parent="level_setups/level_setup_1/destroyable/CollisionShape2D"]
 margin_left = -24.0
 margin_top = -24.0
 margin_right = 24.0
@@ -68,6 +63,26 @@ color = Color( 0.168627, 0.0705882, 0.0705882, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="baddie_spawn_line" type="Line2D" parent="level_setups/level_setup_1"]
+position = Vector2( 1226.06, 520.277 )
+points = PoolVector2Array( 3.47284, -0.450439, 142.071, 0.615692, 288.133, 0.615692 )
+default_color = Color( 0.4, 0.501961, 1, 0 )
+
+[node name="baddie_spawn_line2" type="Line2D" parent="level_setups/level_setup_1"]
+position = Vector2( 31.9842, 521.343 )
+points = PoolVector2Array( 3.47284, -0.450439, 142.071, 0.615692, 288.133, 0.615692 )
+default_color = Color( 0.4, 0.501961, 1, 0 )
+
+[node name="BearBoi" parent="level_setups/level_setup_1/baddie_spawn_line2" instance=ExtResource( 5 )]
+
+[node name="baddie_spawn_point" type="Position2D" parent="level_setups/level_setup_1"]
+position = Vector2( 1010.7, 203.633 )
+
+[node name="baddie_spawn_point2" type="Position2D" parent="level_setups/level_setup_1"]
+position = Vector2( 545.864, 522.409 )
+
+[node name="BearBoi" parent="level_setups/level_setup_1/baddie_spawn_point2" instance=ExtResource( 5 )]
 [connection signal="body_entered" from="Exit_UP" to="." method="_on_Exit_UP_body_entered"]
 [connection signal="body_entered" from="Exit_DOWN" to="." method="_on_Exit_DOWN_body_entered"]
 [connection signal="body_entered" from="Exit_LEFT" to="." method="_on_Exit_LEFT_body_entered"]
