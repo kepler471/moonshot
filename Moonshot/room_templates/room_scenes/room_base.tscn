@@ -75,9 +75,10 @@ points = PoolVector2Array( 3.47284, -0.450439, 142.071, 0.615692, 288.133, 0.615
 default_color = Color( 0.4, 0.501961, 1, 0 )
 
 [node name="BearBoi" parent="level_setups/level_setup_1/baddie_spawn_line2" instance=ExtResource( 5 )]
+position = Vector2( 11.7276, -6.39685 )
 
 [node name="baddie_spawn_point" type="Position2D" parent="level_setups/level_setup_1"]
-position = Vector2( 1010.7, 203.633 )
+position = Vector2( 1049.08, 194.038 )
 
 [node name="baddie_spawn_point2" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( 545.864, 522.409 )

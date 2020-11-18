@@ -17,7 +17,7 @@ var difficulty_rating
 # Controls how quickly the levels get harder as the levels go up. set between 0.5 - 1
 var scaling_factor = 0.75
 # Distance between enemy spawns on a line
-var min_baddie_spawn_distance = 16
+var min_baddie_spawn_distance = 32
 
 var selected_level_setup
 var item_spawn_nodes = []
@@ -107,6 +107,7 @@ func is_instanced():
 	return room_instanced
 	
 func instance():
+	randomize()
 	room_instance = room_scene.instance()
 	var setup_room_bool = select_level_setup()
 	if setup_room_bool:
@@ -167,38 +168,20 @@ func spawn_enemies():
 	print("The number of baddies is: " + str(no_baddies))
 	print("The scaled_difficulty_rating is: " + str(scaled_difficulty_rating))
 	# Retrieve list of enemies and attributes of enemies (spawn on ground/air/wall + size + difficulty)
-	var baddie_list = get_baddie_list()
-	var no_baddies_per_spawn = {}
+	# Keeps track of the location of baddies on the spawn line so that they don't overlap and trigger spawn issues
+	var baddie_location_per_spawn_line = {}
+	# Decide on the baddie types for each spawn location
+	var baddie_type_per_spawn = set_spawn_baddie_type()
+	
+	# Spawn each baddie
 	for i in range(no_baddies):
 		# Select a random spawn point/line
 		var spawn_place = combined_baddie_spawns[randi()%combined_baddie_spawns.size()]
-		
-		# Set number of enemies in that spawn area to be 0 if not set
-		if not no_baddies_per_spawn.has(spawn_place.name):
-			no_baddies_per_spawn[spawn_place.name] = 0
-			
-		# If there is a child baddie in the node already then use this type of baddie
-		# Otherwise select a random one
-		# Instance the type of baddie
-		var selected_baddie
-		var baddie_instance
-		var new_baddie_instance 
-		
-	
-		if len(spawn_place.get_children()) == 0:
-			selected_baddie = "res://baddies/" + baddie_list[randi()%baddie_list.size()]
-		else:
-			baddie_instance = spawn_place.get_children()[0]
-			# If this is the first enemy inthe spawn area then delete the existing instance
-			if no_baddies_per_spawn[spawn_place.name] == 0:
-				baddie_instance.queue_free()
-			
-			# Retrieve the location of the enemy scene
-			selected_baddie = baddie_instance.script.resource_path
-			selected_baddie = selected_baddie.replace('.gd', '.tscn')
-		
-		# Load the baddie scene
-		var baddie_scene = load(selected_baddie)
+		var baddie_scene = baddie_type_per_spawn[spawn_place.name]
+
+		# Create an empty dictionary to keep trackof where baddies have been placed
+		if not baddie_location_per_spawn_line.has(spawn_place.name):
+			baddie_location_per_spawn_line[spawn_place.name] = {}
 
 		# If it is a spawn point then remove the node from the
 		# combined_spawn areas
@@ -210,18 +193,51 @@ func spawn_enemies():
 			var line_start = spawn_place.points[0]
 			var line_end = spawn_place.points[1]
 			var point_difference_vector = line_end - line_start
-			var random_point = line_start + rand_range(0, 1)*point_difference_vector
+			var rand_step_options = shuffle_list(range(0, round(point_difference_vector.length() / min_baddie_spawn_distance)))
+			var chosen_step
+			for step in rand_step_options:
+				if not baddie_location_per_spawn_line[spawn_place.name].has(step):
+					baddie_location_per_spawn_line[spawn_place.name][step] = true
+					chosen_step = step
+					break
+					
+			if chosen_step == null:
+				continue
+					
+			var random_point = line_start + chosen_step*(point_difference_vector / min_baddie_spawn_distance)
+			
 			print("The line_start is: "+ str(line_start))
 			print("The line_end is: " + str(line_end))
 			print("The point_difference_vector is: " + str(point_difference_vector))
 			print("The random_point is: " + str(random_point))
-			new_baddie_instance = baddie_scene.instance()
+			var new_baddie_instance = baddie_scene.instance()
 			spawn_place.add_child(new_baddie_instance)
 			new_baddie_instance.position = random_point
+
+func set_spawn_baddie_type():
+	var spawn_baddie_type = {}
+	var selected_baddie
+	var baddie_instance
+	var new_baddie_instance 
+	var baddie_list = get_baddie_list()
+	# Decide on the baddies that are allocated for each spawn poinmt
+	for spawn_place in combined_baddie_spawns:
+		if len(spawn_place.get_children()) == 0:
+			selected_baddie = "res://baddies/" + baddie_list[randi()%baddie_list.size()]
+		else:
+			baddie_instance = spawn_place.get_children()[0]
+			# Remove the existing instances
+			spawn_place.remove_child(baddie_instance)
+			baddie_instance.queue_free()
 			
-		no_baddies_per_spawn[spawn_place.name] += 1
-
-
+			# Retrieve the location of the enemy scene
+			selected_baddie = baddie_instance.script.resource_path
+			selected_baddie = selected_baddie.replace('.gd', '.tscn')
+		
+		# Load the baddie scene
+		spawn_baddie_type[spawn_place.name] = load(selected_baddie)
+	return spawn_baddie_type
+	
 # Spawnsmitems at the item locations
 func spawn_items():
 	# Retrieve the list of items
@@ -243,3 +259,14 @@ func get_baddie_list():
 		elif file.ends_with(".tscn"):
 			baddie_filenames.append(file)	
 	return baddie_filenames
+	
+func shuffle_list(list):
+	var shuffled_list = []
+	var index_list = range(list.size())
+	for i in range(list.size()):
+		randomize()
+		var x = randi()%index_list.size()
+		shuffled_list.append(list[x])
+		index_list.remove(x)
+		list.remove(x)
+	return shuffled_list
