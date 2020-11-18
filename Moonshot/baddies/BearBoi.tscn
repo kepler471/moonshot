@@ -41,7 +41,6 @@ shape = SubResource( 2 )
 position = Vector2( -15.7133, 1.21345 )
 enabled = true
 cast_to = Vector2( 0, 20 )
-collide_with_areas = true
 
 [node name="FrontRayCast" type="RayCast2D" parent="."]
 position = Vector2( 14.7403, 9.79412 )
