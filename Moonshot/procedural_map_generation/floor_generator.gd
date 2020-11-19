@@ -9,6 +9,7 @@ const room_Count_Depth_Multiplier : float = 3.0
 var max_rooms = 100
 const room_Count_Variation = 0;
 var starting_room = 'room_base.tscn'
+var floor_level
 
 
 
@@ -26,12 +27,12 @@ var directions = {"LEFT": Vector2.LEFT, "UP": Vector2.DOWN, "RIGHT": Vector2.RIG
 var rng = RandomNumberGenerator.new()
 
 
-func _init(depth : int):
+func _init(level : int):
 	# Randomize seed
 	rng.randomize()
-	
+	floor_level = level
 	# Decide on a number of rooms for the floor, can be at max the original value
-	max_rooms = min(max_rooms, room_Count_Depth_Multiplier * depth + min_rooms + rng.randi_range(0,room_Count_Variation)) as int
+	max_rooms = min(max_rooms, room_Count_Depth_Multiplier * floor_level + min_rooms + rng.randi_range(0,room_Count_Variation)) as int
 	
 	# Add initial room & surround with rooms so that the start is always the same
 	var pos = Vector2.ZERO
@@ -53,7 +54,7 @@ func complete_Level():
 func load_template_rooms():
 	var room_list = []
 	var dir = Directory.new()
-	dir.open("res://room_templates")
+	dir.open("res://room_templates/room_scenes")
 	dir.list_dir_begin()
 
 	while true:
@@ -61,7 +62,7 @@ func load_template_rooms():
 		if file == "":
 			break
 		elif file.begins_with("room"):
-			room_list.append(Room.new("", [], file))
+			room_list.append(Room.new("Route", [], 0, file))
 	return room_list
 
 
@@ -81,7 +82,9 @@ func grow():
 # Given the 2-D grid of room locations, assign a room template and room type
 func fill_with_rooms():
 	# Ensure that the starting room is always the same
-	add_Room(Room.new("Route", [], starting_room), Vector2(0, 0))
+
+	add_Room(Room.new("Route", [], floor_level, starting_room), Vector2(0, 0))
+
 	
 	# For all other rooms, identify the adjacent rooms i.e. connection requirements
 	# Then find a tempalte room with those requirementsand add to the map dictionary
@@ -146,8 +149,9 @@ func get_Room_With_Requirement (requires:Array, end:bool = false):
 		var rand_room = template_rooms[randi()%template_rooms.size()]
 		if arrays_match(rand_room.connections, requires):
 			# Copy the room_template
-			new_room = Room.new("", [], rand_room.get_template_name())
-			# If a room with only one connection then select either reward or boss
+			new_room = Room.new("Route", [], floor_level, rand_room.get_template_name())
+			# If a room with only one connection then select either BOSS, 
+			# REWARD or SHOP
 			var type
 			if len(requires) == 1:
 				if not boss_room_created:
@@ -155,7 +159,6 @@ func get_Room_With_Requirement (requires:Array, end:bool = false):
 					boss_room_created = true
 				else:
 					type = "Reward"
-				
 				new_room.set_room_type(type)
 			else:
 				new_room.set_room_type("Route")
