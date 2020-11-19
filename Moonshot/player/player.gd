@@ -129,6 +129,8 @@ func take_damage(damage) -> void:
 	if stats.health <= 0:
 		on_death()
 
+func add_health(health):
+	stats.health += health
 
 func on_death() -> void:
 	CombatSignalController.emit_signal("player_kill")
