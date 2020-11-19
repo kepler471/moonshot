@@ -41,10 +41,8 @@ func _ready() -> void:
 
 	stats.connect("health_depleted", self, "_on_Player_health_depleted")
 
-	if  OS.is_debug_build():
-		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-		
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+
 
 func _physics_process(_delta) -> void:
 	var direction = (
