@@ -4,8 +4,8 @@ extends RigidBody2D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-var max_hp = 5
-var hp = 5
+var max_hp = 1
+var hp = 1
 
 var block_tex1 = preload("res://items_objects/assets/TealBreakableTile1.png")
 var block_tex2  = preload("res://items_objects/assets/TealBreakableTile2.png")
@@ -28,11 +28,11 @@ func on_struck(damage: float) -> void:
 	hp -= damage
 	if hp <= 0:
 		on_death()
-	elif hp < (max_hp / 4):
+	elif hp < (max_hp / 0.4):
 		switch_texture(3)
-	elif hp < (max_hp / 2):
+	elif hp < (max_hp / 0.2):
 		switch_texture(2)
-	elif hp < ((3*max_hp) / 4):
+	elif hp < ((0.3*max_hp) / 0.4):
 		switch_texture(1)
 
 func on_death() -> void:
