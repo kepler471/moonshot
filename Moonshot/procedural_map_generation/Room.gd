@@ -49,19 +49,19 @@ func set_type_graphic(type):
 	# Add the minimap graphics
 	match type:
 		"Boss":
-			type_scene = preload("res://procedural_map_generation/assets/BossNode.tscn")
+			type_scene = load("res://procedural_map_generation/assets/BossNode.tscn")
 		"Challenge":
-			type_scene = preload("res://procedural_map_generation/assets/ChallengeNode.tscn")
+			type_scene = load("res://procedural_map_generation/assets/ChallengeNode.tscn")
 		"Route":
-			type_scene = preload("res://procedural_map_generation/assets/PathNode.tscn")
+			type_scene = load("res://procedural_map_generation/assets/PathNode.tscn")
 		"Reward":
-			type_scene = preload("res://procedural_map_generation/assets/RewardNode.tscn")
+			type_scene = load("res://procedural_map_generation/assets/RewardNode.tscn")
 		"Shop":
-			type_scene = preload("res://procedural_map_generation/assets/ShopNode.tscn")
+			type_scene = load("res://procedural_map_generation/assets/ShopNode.tscn")
 		"CurrentLocation":
-			type_scene = preload("res://procedural_map_generation/assets/CurrentLocation.tscn")
+			type_scene = load("res://procedural_map_generation/assets/CurrentLocation.tscn")
 		"Connection":
-			type_scene = preload("res://procedural_map_generation/assets/Connection.tscn")
+			type_scene = load("res://procedural_map_generation/assets/Connection.tscn")
 
 func load_template(template_name):
 	room_scene = load("res://room_templates/room_scenes/"+ template_name)

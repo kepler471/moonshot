@@ -62,7 +62,7 @@ func load_template_rooms():
 		if file == "":
 			break
 		elif file.begins_with("room"):
-			room_list.append(Room.new("", [], 0, file))
+			room_list.append(Room.new("Route", [], 0, file))
 	return room_list
 
 
@@ -83,7 +83,7 @@ func grow():
 func fill_with_rooms():
 	# Ensure that the starting room is always the same
 
-	add_Room(Room.new("Path", [], floor_level, starting_room), Vector2(0, 0))
+	add_Room(Room.new("Route", [], floor_level, starting_room), Vector2(0, 0))
 
 	
 	# For all other rooms, identify the adjacent rooms i.e. connection requirements
@@ -149,17 +149,16 @@ func get_Room_With_Requirement (requires:Array, end:bool = false):
 		var rand_room = template_rooms[randi()%template_rooms.size()]
 		if arrays_match(rand_room.connections, requires):
 			# Copy the room_template
-			new_room = Room.new("", [], floor_level, rand_room.get_template_name())
+			new_room = Room.new("Route", [], floor_level, rand_room.get_template_name())
 			# If a room with only one connection then select either BOSS, 
 			# REWARD or SHOP
-
+			var type
 			if len(requires) == 1:
 				if not boss_room_created:
 					type = "Boss"
 					boss_room_created = true
 				else:
 					type = "Reward"
-				
 				new_room.set_room_type(type)
 			else:
 				new_room.set_room_type("Route")
