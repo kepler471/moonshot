@@ -34,8 +34,9 @@ func _physics_process(delta) -> void:
 		return
 
 	var collided_with_player: bool = Baddie.check_player_colision(true)
-	var falling_off_ledge: bool = $FrontRayCast.is_colliding() == false || $RearRayCast.is_colliding() == false
+	var falling_off_ledge: bool = ($FrontRayCast.is_colliding() == false || $RearRayCast.is_colliding() == false) && !$FrontRayCast.is_turning
 	var collided_with_wall: bool = is_on_wall() && !collided_with_player
+
 
 	if (is_on_floor() || is_on_ceiling()) && (falling_off_ledge || collided_with_wall) || collided_with_player:
 		if not in_air:
@@ -66,4 +67,5 @@ func change_direction() -> void:
 	var cast = $JumpCast.get_cast_to()
 	$JumpCast.set_cast_to(Vector2(-1*cast.x, cast.y))
 	Baddie.direction = Baddie.change_direction()
+	$FrontRayCast.async_change_direction()
 		
