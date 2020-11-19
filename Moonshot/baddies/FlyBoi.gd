@@ -1,6 +1,8 @@
 extends KinematicBody2D
 
 var Baddie = load("res://baddies/Baddie.gd").new()
+onready var FadeOut: FadeOut = $FadeOut
+
 const GRAVITY := 0
 const ACCELERATION := 25
 const HP_MAX := 0.5
@@ -23,9 +25,16 @@ func _ready() -> void:
 	Baddie.set_move_animation(Animations.FLY)
 	Baddie.set_damage(DAMAGE_TO_PLAYER)
 
+	FadeOut.set_fade_speed(0.05)
+	FadeOut.set_fade_decrementer(0.3)
+	FadeOut.set_sprite($AnimatedSprite)
+	FadeOut.set_tree(get_tree())
+	FadeOut.set_on_end(on_end_ref)
+
 func _process(delta) -> void:
 	if Baddie == null:
-		call_deferred("free")
+		if !FadeOut.is_fading:
+			FadeOut.fade()
 		return
 		
 	velocity.x = speed * Baddie.direction
@@ -48,11 +57,20 @@ func _process(delta) -> void:
 	if is_on_wall():
 		change_direction()
 
+func change_direction():
+	if has_baddie():
+		$AnimatedSprite.flip_h = !$AnimatedSprite.flip_h
+		Baddie.direction = Baddie.change_direction()
+
 func on_hit(instance_id, damage) -> void:
-	if instance_id == self.get_instance_id():
+	if instance_id == self.get_instance_id() && has_baddie():
 		change_direction()
 		Baddie.on_hit(damage)
 
-func change_direction():
-	$AnimatedSprite.flip_h = !$AnimatedSprite.flip_h
-	Baddie.direction = Baddie.change_direction()
+var on_end_ref = funcref(self, "on_end")
+
+func on_end() -> void:
+	call_deferred("free")
+
+func has_baddie() -> bool:
+	return Baddie != null
