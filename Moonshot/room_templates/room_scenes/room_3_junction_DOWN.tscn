@@ -4,7 +4,6 @@
 [ext_resource path="res://assets/tile_maps/SimpleTileset.tres" type="TileSet" id=2]
 [ext_resource path="res://room_templates/exit_hori.tscn" type="PackedScene" id=3]
 [ext_resource path="res://room_templates/exit_vert.tscn" type="PackedScene" id=4]
-[ext_resource path="res://room_templates/room_scenes/baddie_spawn_zone.tscn" type="PackedScene" id=5]
 
 [node name="LEVEL1" type="Node2D" groups=[
 "Room",
@@ -39,8 +38,7 @@ position = Vector2( 1914.05, 952.946 )
 
 [node name="level_setup_1" type="Node2D" parent="level_setups"]
 
-[node name="baddie_spawn_zone" parent="level_setups/level_setup_1" instance=ExtResource( 5 )]
-polygon = PoolVector2Array( 236, 624, 332, 624, 332, 880, 228, 880 )
+
 [connection signal="body_entered" from="Exit_DOWN" to="." method="_on_Exit_DOWN_body_entered"]
 [connection signal="body_entered" from="Exit_LEFT" to="." method="_on_Exit_LEFT_body_entered"]
 [connection signal="body_entered" from="Exit_RIGHT" to="." method="_on_Exit_RIGHT_body_entered"]
