@@ -29,14 +29,14 @@ func _ready() -> void:
 	FadeOut.set_fade_decrementer(0.3)
 	FadeOut.set_sprite($AnimatedSprite)
 	FadeOut.set_tree(get_tree())
-	FadeOut.set_on_end(on_end_ref)
+	FadeOut.set_on_end(funcref(self, "on_end"))
 
 func _process(delta) -> void:
 	if Baddie == null:
 		if !FadeOut.is_fading:
 			FadeOut.fade()
 		return
-		
+
 	velocity.x = speed * Baddie.direction
 	$AnimatedSprite.play()
 	velocity.y += bounce
@@ -66,8 +66,6 @@ func on_hit(instance_id, damage) -> void:
 	if instance_id == self.get_instance_id() && has_baddie():
 		change_direction()
 		Baddie.on_hit(damage)
-
-var on_end_ref = funcref(self, "on_end")
 
 func on_end() -> void:
 	call_deferred("free")

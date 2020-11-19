@@ -26,7 +26,7 @@ func _ready() -> void:
 	FadeOut.set_fade_decrementer(0.3)
 	FadeOut.set_sprite($AnimatedSprite)
 	FadeOut.set_tree(get_tree())
-	FadeOut.set_on_end(on_end_ref)
+	FadeOut.set_on_end(funcref(self, "on_end"))
 
 func _process(delta) -> void:
 	if Baddie == null:
