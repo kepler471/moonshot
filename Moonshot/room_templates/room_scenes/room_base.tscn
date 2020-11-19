@@ -5,10 +5,7 @@
 [ext_resource path="res://room_templates/exit_vert.tscn" type="PackedScene" id=3]
 [ext_resource path="res://room_templates/exit_hori.tscn" type="PackedScene" id=4]
 [ext_resource path="res://baddies/BearBoi.tscn" type="PackedScene" id=5]
-[ext_resource path="res://items_objects/health_pickup.tscn" type="PackedScene" id=6]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 24, 24 )
+[ext_resource path="res://items_objects/breakable_tile_purple.tscn" type="PackedScene" id=6]
 
 [node name="LEVEL1" type="Node2D" groups=[
 "Room",
@@ -46,24 +43,11 @@ position = Vector2( 1914.05, 952.946 )
 
 [node name="level_setup_1" type="Node" parent="level_setups"]
 
+[node name="Node2D" parent="level_setups/level_setup_1" instance=ExtResource( 6 )]
+position = Vector2( 334.96, 561.382 )
+
 [node name="item_spawn_point" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( 832, 256 )
-
-[node name="destroyable" type="Area2D" parent="level_setups/level_setup_1"]
-position = Vector2( 768, 520 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="level_setups/level_setup_1/destroyable"]
-shape = SubResource( 1 )
-
-[node name="ColorRect" type="ColorRect" parent="level_setups/level_setup_1/destroyable/CollisionShape2D"]
-margin_left = -24.0
-margin_top = -24.0
-margin_right = 24.0
-margin_bottom = 24.0
-color = Color( 0.168627, 0.0705882, 0.0705882, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="baddie_spawn_line" type="Line2D" parent="level_setups/level_setup_1"]
 position = Vector2( 1226.06, 520.277 )
