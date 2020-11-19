@@ -47,6 +47,9 @@ func move(delta) -> void:
 func check_player_colision(should_damage_player = false) -> bool:
 	for i in body.get_slide_count():
 		var collision = body.get_slide_collision(i)
+		if !collision || !collision.collider:
+			break
+
 		if collision.collider.name == "Player":
 			if should_damage_player:
 				CombatSignalController.emit_signal("damage_player", self.inflict_damage)
