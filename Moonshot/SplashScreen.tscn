@@ -1,6 +1,5 @@
 [gd_scene load_steps=10 format=2]
 
-
 [ext_resource path="res://splash_screen.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/basic_font.tres" type="DynamicFont" id=2]
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=3]
