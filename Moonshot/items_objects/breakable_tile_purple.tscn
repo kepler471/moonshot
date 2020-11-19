@@ -9,7 +9,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 16 )
 
-[node name="Node2D" type="RigidBody2D" groups=[
+[node name="BreakableTilePurple" type="RigidBody2D" groups=[
 "Baddies",
 ]]
 collision_layer = 4
