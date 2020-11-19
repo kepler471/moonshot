@@ -10,8 +10,6 @@ const Animations := {
 	"RUSH": "rush"
 }
 
-var is_turning = false
-
 func _ready() -> void:
 	CombatSignalController.connect("damage_baddie", self, "on_hit")
 	Baddie.set_sprite($AnimatedSprite)
