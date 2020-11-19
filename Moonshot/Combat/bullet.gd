@@ -13,3 +13,4 @@ func _on_any_body_entered(body):
 	if !body.is_in_group("Player"):
 		get_node("CollisionShape2D").set_deferred("disabled", true)
 		call_deferred("free")
+
