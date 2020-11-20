@@ -51,7 +51,7 @@ func check_player_colision(should_damage_player = false) -> bool:
 			break
 		if collision.collider.name == "Player":
 			if should_damage_player:
-				if OS.is_debug_build(): print("hit by melee with x := ", body.position)
+				Utils.IS_DEBUG: print("hit by melee with x := ", body.position)
 				CombatSignalController.emit_signal("damage_player", self.inflict_damage, body.position)
 			return true
 	return false

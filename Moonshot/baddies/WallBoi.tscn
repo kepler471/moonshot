@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://baddies/sprites/ShootyBoi/shooter2.png" type="Texture" id=1]
 [ext_resource path="res://baddies/sprites/ShootyBoi/shooter4.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://baddies/sprites/ShootyBoi/shooter1.png" type="Texture" id=6]
 [ext_resource path="res://baddies/WallBoi.gd" type="Script" id=7]
 [ext_resource path="res://baddies/BaddieLaser/BaddieLaserPointer.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Animations/Fade.gd" type="Script" id=9]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -20,8 +21,12 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 13.6271, 9.07494 )
 
-[node name="WallBoi" type="KinematicBody2D"]
+[node name="WallBoi" type="KinematicBody2D" groups=[
+"Baddies",
+]]
 rotation = 1.5708
+collision_layer = 2147483652
+collision_mask = 3
 script = ExtResource( 7 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
@@ -41,10 +46,13 @@ cast_to = Vector2( 0, 20 )
 script = ExtResource( 3 )
 
 [node name="BaddieLaserPointer" parent="." instance=ExtResource( 8 )]
-position = Vector2( -4.04785e-07, -9.2604 )
+position = Vector2( -0.0812235, -7.31084 )
 
 [node name="RearRayCast" type="RayCast2D" parent="."]
 position = Vector2( 10.311, -0.081 )
 enabled = true
 cast_to = Vector2( 0, 20 )
 script = ExtResource( 3 )
+
+[node name="Fade" type="Node" parent="."]
+script = ExtResource( 9 )
