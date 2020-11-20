@@ -42,6 +42,8 @@ func _ready() -> void:
 	stats.connect("health_depleted", self, "_on_Player_health_depleted")
 
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+	
+	animation_name = state_machine.get_animation_name()
 
 
 func _physics_process(_delta) -> void:
@@ -98,11 +100,11 @@ func face_mouse() -> void:
 	if is_zero_approx(mouse_side):
 		return
 	elif sign(mouse_side) == sign(facing) and playing_reverse:
-		$AnimatedSprite.play(state_machine.get_animation_name(), false)
+		$AnimatedSprite.play(animation_name, false)
 		playing_reverse = false
 	elif sign(mouse_side) == -1 * sign(facing):
 		flip_facing()
-		$AnimatedSprite.play(state_machine.get_animation_name(), true)
+		$AnimatedSprite.play(animation_name, true)
 		playing_reverse = true
 
 
