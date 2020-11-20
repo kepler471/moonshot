@@ -3,6 +3,8 @@ extends Node2D
 var player_scene = load("res://player/player.tscn")
 var Player = player_scene.instance()
 
+	
+	
 func _process(delta):
 	# Player has died	
 	if $Player == null:

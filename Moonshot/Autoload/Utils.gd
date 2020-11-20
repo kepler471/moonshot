@@ -1,6 +1,8 @@
 extends Node
 # Globally accessible utils functionality
+var player_stats = load('res://Combat/Stats.tscn').instance()
 
+	
 # Returns the direction in which the player is aiming with the stick
 static func get_aim_joystick_direction() -> Vector2:
 	return get_aim_joystick_strength().normalized()
