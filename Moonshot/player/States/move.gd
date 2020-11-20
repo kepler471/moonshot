@@ -36,6 +36,9 @@ func unhandled_input(event: InputEvent) -> void:
 		_state_machine.transition_to("Move/Air")
 	elif event.is_action_released("move_down") and not owner.get_collision_mask_bit(PASS_THROUGH_LAYER):
 		owner.set_collision_mask_bit(PASS_THROUGH_LAYER, true)
+		
+	if owner.is_on_floor() and event.is_action_pressed("dodge"):
+		_state_machine.transition_to("Move/Dodge")
 
 
 func physics_process(delta: float) -> void:
