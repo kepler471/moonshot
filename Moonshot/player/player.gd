@@ -43,6 +43,7 @@ func _ready() -> void:
 	stats.connect("health_depleted", self, "_on_Player_health_depleted")
 
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+	animation_name = "idle"
 
 
 func _physics_process(_delta) -> void:
@@ -129,23 +130,19 @@ func _on_Player_health_depleted() -> void:
 
 func set_invulnerable(time : float) -> void:
 	invulnerable = true
+	animation_name = "stagger"
 	$AnimatedSprite.play(animation_name)
 	var timer := get_tree().create_timer(time)
 	yield(timer, "timeout")
 	invulnerable = false
-	animation_name = "stagger"
 	
 
 func take_damage(damage, attack_dir) -> void:
-	print("HIT")
 	if not invulnerable:
 		stats.health -= damage
+		if OS.is_debug_build(): print("Attack Dir : ", attack_dir)
 		set_invulnerable(1)
-		if is_zero_approx(attack_dir.x):
-			attack_dir = 0
-		else:
-			attack_dir = sign(attack_dir.x)
-		print(attack_dir)
+		attack_dir = sign(get_global_position().x - attack_dir.x)
 		state_machine.transition_to("Move/Stagger", {"previous" : state_machine.state, "direction" : attack_dir})
 	if stats.health <= 0:
 		on_death()

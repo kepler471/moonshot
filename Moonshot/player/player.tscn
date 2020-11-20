@@ -178,7 +178,7 @@ script = ExtResource( 18 )
 position = Vector2( -0.0327721, -30.8946 )
 z_index = 2
 frames = SubResource( 2 )
-animation = "stagger"
+animation = "idle"
 playing = true
 
 [node name="Camera2D" parent="." instance=ExtResource( 6 )]
