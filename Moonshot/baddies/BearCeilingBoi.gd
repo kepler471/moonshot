@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 var Baddie = load("res://baddies/Baddie.gd").new()
 onready var Laser = $BaddieLaserPointer
-onready var FadeOut: FadeOut = $FadeOut
+onready var Fade: Fade = $Fade
 
 const GRAVITY := -10
 const SPEED := 230
@@ -28,16 +28,17 @@ func _ready() -> void:
 	Laser.shoot_randomly()
 	Laser.set_damage(0.4)
 
-	FadeOut.set_fade_speed(0.05)
-	FadeOut.set_fade_decrementer(0.3)
-	FadeOut.set_sprite($AnimatedSprite)
-	FadeOut.set_tree(get_tree())
-	FadeOut.set_on_end(funcref(self, "on_end"))
+	Fade.set_fade_speed(0.05)
+	Fade.set_fade_factor(0.3)
+	Fade.set_sprite($AnimatedSprite)
+	Fade.set_tree(get_tree())
+	Fade.set_on_fade_out_finish(funcref(self, "on_end"))
 
 func _process(delta) -> void:
 	if Baddie == null:
-		if !FadeOut.is_fading:
-			FadeOut.fade()
+		if !Fade.is_fading:
+			Fade.fade_out()
+			$AnimatedSprite.stop()
 			return
 		return
 

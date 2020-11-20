@@ -15,9 +15,9 @@ _global_script_classes=[ {
 "path": "res://baddies/BaddieLaser/BaddieLaserPointer.gd"
 }, {
 "base": "Node",
-"class": "FadeOut",
+"class": "Fade",
 "language": "GDScript",
-"path": "res://Animations/FadeOut.gd"
+"path": "res://Animations/Fade.gd"
 }, {
 "base": "RayCast2D",
 "class": "FloorDetector",
@@ -61,7 +61,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "BaddieLaserController": "",
-"FadeOut": "",
+"Fade": "",
 "FloorDetector": "",
 "Player": "",
 "Room": "",
