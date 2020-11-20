@@ -98,11 +98,11 @@ func face_mouse() -> void:
 	if is_zero_approx(mouse_side):
 		return
 	elif sign(mouse_side) == sign(facing) and playing_reverse:
-		$AnimatedSprite.play(animation_name, false)
+		$AnimatedSprite.play(state_machine.get_animation_name(), false)
 		playing_reverse = false
 	elif sign(mouse_side) == -1 * sign(facing):
 		flip_facing()
-		$AnimatedSprite.play(animation_name, true)
+		$AnimatedSprite.play(state_machine.get_animation_name(), true)
 		playing_reverse = true
 
 
