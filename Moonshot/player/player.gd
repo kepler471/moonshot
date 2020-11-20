@@ -42,6 +42,10 @@ func _ready() -> void:
 	stats.connect("health_depleted", self, "_on_Player_health_depleted")
 
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+	
+	animation_name = state_machine.get_animation_name()
+	if animation_name == null:
+		animation_name = "idle"
 
 
 func _physics_process(_delta) -> void:
