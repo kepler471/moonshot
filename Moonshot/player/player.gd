@@ -10,7 +10,6 @@ onready var state_machine: StateMachine = $StateMachine
 
 onready var collider: CollisionShape2D = $CollisionShape2D setget ,get_collider
 
-onready var stats: Stats = $Stats
 
 onready var ledge_wall_detector: Position2D = $LedgeWallDetector
 onready var floor_detector: RayCast2D = $FloorDetector
@@ -34,13 +33,14 @@ var invulnerable = false
 
 
 func _ready() -> void:
+
 	add_child(player_arsenal)
 	player_arsenal.set_weapon()
 
 	CombatSignalController.connect("damage_player", self, "take_damage")
 	CombatSignalController.connect("get_player_global_position", self, "_emit_position")
 
-	stats.connect("health_depleted", self, "_on_Player_health_depleted")
+
 
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 	
@@ -142,16 +142,16 @@ func set_invulnerable(time : float) -> void:
 
 func take_damage(damage, attack_dir) -> void:
 	if not invulnerable:
-		stats.health -= damage
+		Utils.player_stats.health -= damage
 		if OS.is_debug_build(): print("Attack Dir : ", attack_dir)
 		set_invulnerable(1)
 		attack_dir = sign(get_global_position().x - attack_dir.x)
 		state_machine.transition_to("Move/Stagger", {"previous" : state_machine.state, "direction" : attack_dir})
-	if stats.health <= 0:
+	if Utils.player_stats.health <= 0:
 		on_death()
 
 func add_health(health):
-	stats.health += health
+	Utils.player_stats.health += health
 
 
 func on_death() -> void:

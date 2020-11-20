@@ -18,7 +18,7 @@ func build_hud():
 	minimap.minimap_node.position = Vector2(900, 500)
 
 func _process(delta):
-	var new_health_bar_size = (Player.stats.health*100) / Player.stats.max_health
+	var new_health_bar_size = (Utils.player_stats.health*100) / Utils.player_stats.max_health
 	if new_health_bar_size > 0:
 		get_node("GUI/ColorRect").rect_size.y = new_health_bar_size
 	else:
@@ -68,6 +68,7 @@ func change_room(room_change : Vector2, new_entrance):
 	get_room_instance(room_index)
 	
 	Player = player_scene.instance()
+	
 #----- I think player pos change should be moved to Baseroom.gd ------
 	#Move player to door entrance.
 	var door_position = current_room_node.get_node('Exit_' + new_entrance).position

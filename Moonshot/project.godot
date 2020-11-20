@@ -44,6 +44,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Combat/Stats.gd"
 }, {
+"base": "RayCast2D",
+"class": "TurningHack",
+"language": "GDScript",
+"path": "res://baddies/TurningHack.gd"
+}, {
 "base": "Node2D",
 "class": "floor_generator",
 "language": "GDScript",
@@ -57,6 +62,7 @@ _global_script_class_icons={
 "State": "",
 "StateMachine": "",
 "Stats": "",
+"TurningHack": "",
 "floor_generator": ""
 }
 
@@ -78,7 +84,7 @@ CombatSignalController="*res://Autoload/CombatSignalController.gd"
 
 window/size/height=576
 window/stretch/mode="2d"
-window/stretch/aspect="keep"
+window/stretch/aspect="expand"
 
 [input]
 
@@ -206,9 +212,11 @@ shoot={
 2d_physics/layer_4="PassThrough"
 2d_physics/layer_5="Enemies"
 2d_physics/layer_6="CameraAnchor"
+2d_physics/layer_7="Pickups"
 2d_physics/layer_11="DamageSource"
 2d_physics/layer_12="Hitbox"
 
 [rendering]
 
+quality/2d/use_pixel_snap=true
 environment/default_environment="res://default_env.tres"
