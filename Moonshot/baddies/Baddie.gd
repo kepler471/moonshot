@@ -52,7 +52,7 @@ func check_player_colision(should_damage_player = false) -> bool:
 
 		if collision.collider.name == "Player":
 			if should_damage_player:
-				CombatSignalController.emit_signal("damage_player", self.inflict_damage)
+				CombatSignalController.emit_signal("damage_player", self.inflict_damage, velocity)
 			return true
 	return false
 
