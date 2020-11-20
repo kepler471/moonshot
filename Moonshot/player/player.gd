@@ -30,6 +30,7 @@ var cooldown = false
 var facing = 1
 var animation_name
 var playing_reverse
+var invulnerable = false
 
 
 func _ready() -> void:
@@ -91,6 +92,10 @@ func set_facing(dir) -> void:
 
 
 func set_animation() -> void:
+	if invulnerable:
+		if not $AnimatedSprite.playing:
+			$AnimatedSprite.play(animation_name)
+		return
 	var new_state = state_machine.get_animation_name()
 	if new_state != null and new_state != animation_name:
 		animation_name = new_state
@@ -126,17 +131,33 @@ func _on_Player_health_depleted() -> void:
 	state_machine.transition_to("Die", {last_checkpoint = last_checkpoint})
 
 
-func take_damage(damage) -> void:
-	stats.health -= damage
+func set_invulnerable(time : float) -> void:
+	invulnerable = true
+	animation_name = "stagger"
+	$AnimatedSprite.play(animation_name)
+	var timer := get_tree().create_timer(time)
+	yield(timer, "timeout")
+	invulnerable = false
+	
+
+func take_damage(damage, attack_dir) -> void:
+	if not invulnerable:
+		stats.health -= damage
+		if OS.is_debug_build(): print("Attack Dir : ", attack_dir)
+		set_invulnerable(1)
+		attack_dir = sign(get_global_position().x - attack_dir.x)
+		state_machine.transition_to("Move/Stagger", {"previous" : state_machine.state, "direction" : attack_dir})
 	if stats.health <= 0:
 		on_death()
 
 func add_health(health):
 	stats.health += health
 
+
 func on_death() -> void:
 	CombatSignalController.emit_signal("player_kill")
 	_on_Player_health_depleted()
+
 
 func _emit_position() -> void:
 	CombatSignalController.emit_signal("emit_player_global_position", $TurnAxis.global_position)

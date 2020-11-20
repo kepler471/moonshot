@@ -82,6 +82,8 @@ func enter(msg: Dictionary = {}) -> void:
 		_parent.max_speed.x = max(abs(msg.velocity.x), _parent.max_speed.x)
 	if "impulse" in msg:
 		_parent.velocity += calculate_jump_velocity(msg.impulse)
+	if "stagger" in msg:
+		_parent.velocity += msg.stagger
 	if "wall_jump" in msg:
 		controls_freeze.start()
 		_parent.acceleration = Vector2(acceleration_x, _parent.acceleration_default.y)
