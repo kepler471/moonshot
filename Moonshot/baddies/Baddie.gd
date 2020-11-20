@@ -49,7 +49,6 @@ func check_player_colision(should_damage_player = false) -> bool:
 		var collision = body.get_slide_collision(i)
 		if !collision || !collision.collider:
 			break
-
 		if collision.collider.name == "Player":
 			if should_damage_player:
 				if OS.is_debug_build(): print("hit by melee with x := ", body.position)

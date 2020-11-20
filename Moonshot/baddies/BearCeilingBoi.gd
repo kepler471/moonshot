@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 var Baddie = load("res://baddies/Baddie.gd").new()
 onready var Laser = $BaddieLaserPointer
+onready var Fade: Fade = $Fade
 
 const GRAVITY := -10
 const SPEED := 230
@@ -21,32 +22,47 @@ func _ready() -> void:
 	Baddie.set_init_hp(HP_MAX)
 	Baddie.set_move_animation(Animations.RUSH)
 	Baddie.set_damage(DAMAGE_TO_PLAYER)
-	
+
 	Laser.set_upper_shot_frequency(1)
 	Laser.set_shot_speed(500)
 	Laser.shoot_randomly()
 	Laser.set_damage(0.4)
 
+	Fade.set_fade_speed(0.05)
+	Fade.set_fade_factor(0.3)
+	Fade.set_sprite($AnimatedSprite)
+	Fade.set_tree(get_tree())
+	Fade.set_on_fade_out_finish(funcref(self, "on_end"))
+
 func _process(delta) -> void:
 	if Baddie == null:
-		call_deferred("free")
+		if !Fade.is_fading:
+			Fade.fade_out()
+			$AnimatedSprite.stop()
+			return
 		return
 
 	var collided_with_player: bool = Baddie.check_player_colision(true)
 	var falling_off_ledge: bool = $FrontRayCast.is_colliding() == false || $RearRayCast.is_colliding() == false
 	var collided_with_wall: bool = is_on_wall() && !collided_with_player
-	
+
 	if (falling_off_ledge || collided_with_wall) && !$FrontRayCast.is_turning:
 		change_direction()
-		
+
 	Baddie.move(delta)
 
+func change_direction() -> void:
+	if has_baddie():
+		$AnimatedSprite.flip_h = !$AnimatedSprite.flip_h
+		Baddie.direction = Baddie.change_direction()
+		$FrontRayCast.async_change_direction()
+
 func on_hit(instance_id, damage) -> void:
-	if instance_id == self.get_instance_id():
+	if instance_id == self.get_instance_id() && has_baddie():
 		Baddie.on_hit(damage)
 
-func change_direction() -> void:
-	$AnimatedSprite.flip_h = !$AnimatedSprite.flip_h
-	Baddie.direction = Baddie.change_direction()
-	$FrontRayCast.async_change_direction()
+func on_end() -> void:
+	call_deferred("free")
 
+func has_baddie() -> bool:
+	return Baddie != null

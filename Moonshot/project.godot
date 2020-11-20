@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://baddies/BaddieLaser/BaddieLaserPointer.gd"
 }, {
+"base": "Node",
+"class": "Fade",
+"language": "GDScript",
+"path": "res://Animations/Fade.gd"
+}, {
 "base": "RayCast2D",
 "class": "FloorDetector",
 "language": "GDScript",
@@ -44,6 +49,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Combat/Stats.gd"
 }, {
+"base": "RayCast2D",
+"class": "TurningHack",
+"language": "GDScript",
+"path": "res://baddies/TurningHack.gd"
+}, {
 "base": "Node2D",
 "class": "floor_generator",
 "language": "GDScript",
@@ -51,12 +61,14 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "BaddieLaserController": "",
+"Fade": "",
 "FloorDetector": "",
 "Player": "",
 "Room": "",
 "State": "",
 "StateMachine": "",
 "Stats": "",
+"TurningHack": "",
 "floor_generator": ""
 }
 
