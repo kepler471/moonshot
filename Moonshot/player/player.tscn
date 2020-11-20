@@ -162,6 +162,12 @@ script = ExtResource( 12 )
 [node name="Stagger" type="Node" parent="StateMachine/Move"]
 script = ExtResource( 36 )
 
+[node name="Dodge" type="Node" parent="StateMachine/Move"]
+script = ExtResource( 38 )
+
+[node name="ControlsFreeze" type="Timer" parent="StateMachine/Move/Dodge"]
+wait_time = 0.1
+
 [node name="Ledge" type="Node" parent="StateMachine"]
 script = ExtResource( 10 )
 

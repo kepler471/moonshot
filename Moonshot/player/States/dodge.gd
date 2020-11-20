@@ -2,8 +2,15 @@ tool
 extends State
 
 onready var controls_freeze: Timer = $ControlsFreeze
+
+
 export var dodge_speed := 1250.0
 var dodge_dir
+
+
+func _get_configuration_warning() -> String:
+	return "" if $ControlsFreeze else "%s requires a Timer child named JumpDelay" % name
+
 
 func physics_process(delta) -> void:
 	if owner.is_on_floor() and not controls_freeze.is_stopped():
