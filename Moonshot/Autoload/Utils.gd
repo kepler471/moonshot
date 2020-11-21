@@ -27,3 +27,29 @@ static func is_equal_approx(a: float, b: float, cmp_epsilon: float = 1e-5) -> bo
 	if tolerance < cmp_epsilon:
 		tolerance = cmp_epsilon
 	return abs(a - b) < tolerance
+
+# returns a new Dictionary, immutable.
+static func merge_dictionary(target = {}, patch: Dictionary = {}) -> Dictionary:
+	var new_dictionary: Dictionary = {}
+
+	for key in target:
+		new_dictionary[key] = target[key]
+
+	for key in patch:
+		new_dictionary[key] = patch[key]
+
+	return new_dictionary;
+
+static func is_nil(argv) -> bool:
+	return argv == null
+
+# allows deeply nested updating, mutates
+static func set_in_dictionary(keys: Array, value, dictionary = {}, counter = 0) -> void:
+	if keys.size() - 1 > counter:
+		var key: String = keys[counter]
+		if !Utils.is_nil(key):
+			var current = dictionary[key]
+			counter += 1
+			Utils.set_in_dictionary(keys, value, current, counter)
+	else:
+		dictionary[keys[counter]] = value

@@ -1,15 +1,13 @@
 extends KinematicBody2D
 
-var Baddie = load("res://baddies/Baddie.gd").new()
+onready var baddie: Baddie = load("res://baddies/Baddie.gd").new()
 onready var Laser = $BaddieLaserPointer
 onready var Fade: Fade = $Fade
 
-const GRAVITY := -10
-const SPEED := 20
 const HP_MAX := 1.0
 const ARMOR := 5.0
-const FLOOR := Vector2(0, -1)
-const DAMAGE_TO_PLAYER := 0.02
+const DAMAGE_TO_PLAYER := 0.2
+const DAMAGE_MULTIPLIER := 5.0
 const Animations := {
 	"RUSH": "rush"
 }
@@ -20,13 +18,18 @@ var in_air = false
 
 func _ready() -> void:
 	CombatSignalController.connect("damage_baddie", self, "on_hit")
-	Baddie.set_sprite($AnimatedSprite)
-	Baddie.set_body(self)
-	Baddie.set_gravity(GRAVITY)
-	Baddie.set_speed(SPEED)
-	Baddie.set_init_hp(HP_MAX * ARMOR)
-	Baddie.set_move_animation(Animations.RUSH)
-	Baddie.set_damage(DAMAGE_TO_PLAYER*5)
+
+	baddie.set_properties({
+		"sprite": $AnimatedSprite,
+		"body": self,
+		"animation": Animations.RUSH,
+		"speed": 230,
+		"inital_hp": HP_MAX * ARMOR,
+		"gravity": -10,
+		"damage_to_player": DAMAGE_TO_PLAYER * DAMAGE_MULTIPLIER,
+		"floor_vector": Vector2(0, -1),
+		"should_damge_on_collision": true
+	})
 
 	Fade.set_fade_speed(0.05)
 	Fade.set_fade_factor(0.3)
@@ -35,14 +38,14 @@ func _ready() -> void:
 	Fade.set_on_fade_out_finish(funcref(self, "on_end"))
 
 func _physics_process(delta) -> void:
-	if Baddie == null:
+	if baddie.has_died():
 		if !Fade.is_fading:
 			Fade.fade_out()
 			$AnimatedSprite.stop()
 			return
 		return
 
-	var collided_with_player: bool = Baddie.check_player_colision(true)
+	var collided_with_player: bool = baddie.check_player_colision()
 	var falling_off_ledge: bool = ($FrontRayCast.is_colliding() == false || $RearRayCast.is_colliding() == false) && !$FrontRayCast.is_turning
 	var collided_with_wall: bool = is_on_wall() && !collided_with_player
 
@@ -58,29 +61,31 @@ func _physics_process(delta) -> void:
 	if $JumpCast.is_colliding() and not has_fallen:
 		has_fallen = true
 		in_air = true
-		Baddie.set_gravity(-GRAVITY * 20)
+
+		baddie.patch({
+			"gravity": -baddie.gravity * 20,
+			"speed": 600,
+			"hp": HP_MAX / ARMOR
+		})
 		self.rotate(PI)
 		$AnimatedSprite.flip_h = !$AnimatedSprite.flip_h
-		Baddie.set_speed(600)
-		Baddie.set_init_hp(HP_MAX / ARMOR)
 
-	Baddie.move(delta)
+
+	baddie.move(delta)
 
 func change_direction() -> void:
-	if has_baddie():
+	if !baddie.has_died():
 		facing *= -1
-		$AnimatedSprite.flip_h = !$AnimatedSprite.flip_h
+		baddie.flip_sprite_horizontal()
 		var cast = $JumpCast.get_cast_to()
 		$JumpCast.set_cast_to(Vector2(-1*cast.x, cast.y))
-		Baddie.direction = Baddie.change_direction()
+		baddie.set("direction", baddie.change_direction())
 		$FrontRayCast.async_change_direction()
 
 func on_hit(instance_id, damage) -> void:
-	if instance_id == self.get_instance_id() && has_baddie():
-		Baddie.on_hit(damage)
+	if instance_id == self.get_instance_id() && !baddie.has_died():
+		baddie.on_hit(damage)
 
 func on_end() -> void:
 	call_deferred("free")
 
-func has_baddie() -> bool:
-	return Baddie != null

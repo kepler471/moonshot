@@ -14,7 +14,7 @@
 animations = [ {
 "frames": [ ExtResource( 4 ), ExtResource( 6 ), ExtResource( 1 ), ExtResource( 5 ), ExtResource( 2 ) ],
 "loop": true,
-"name": "crawl",
+"name": "rush",
 "speed": 7.0
 } ]
 
@@ -32,7 +32,6 @@ script = ExtResource( 7 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( -0.16246, -16.7337 )
 frames = SubResource( 1 )
-animation = "crawl"
 frame = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
