@@ -1,8 +1,6 @@
 extends Node2D
 
 var level_gen = preload("res://procedural_map_generation/level_gen.gd")
-var player_scene = load("res://player/player.tscn")
-var Player = player_scene.instance()
 var room_index = Vector2(0, 0)
 var current_room_node = null
 var level_map 
@@ -33,8 +31,8 @@ func start_level(level_num):
 	
 	get_room_instance(room_index)
 	
-	current_room_node.add_child(Player)
-	Player.position = current_room_node.get_node('player_spawn').position
+	current_room_node.add_child(Utils.Player)
+	Utils.Player.position = current_room_node.get_node('player_spawn').position
 	current_room_node.setup_player_camera()
 	
 	add_child(current_room_node)
@@ -65,24 +63,24 @@ func change_room(room_change : Vector2, new_entrance):
 	get_tree().paused = true
 	current_room_node.get_node("Player").queue_free()
 	remove_child(current_room_node)
+	current_room_node.remove_child(Utils.Player)
 	get_room_instance(room_index)
-	
-	Player = player_scene.instance()
+
 	
 #----- I think player pos change should be moved to Baseroom.gd ------
 	#Move player to door entrance.
 	var door_position = current_room_node.get_node('Exit_' + new_entrance).position
 	
 	if new_entrance == 'UP':
-		Player.position = door_position + Vector2(0, 60)
+		Utils.Player.position = door_position + Vector2(0, 60)
 	elif new_entrance == 'DOWN':
-		Player.position = door_position + Vector2(0, -40)
+		Utils.Player.position = door_position + Vector2(0, -40)
 	elif new_entrance == 'RIGHT':
-		Player.position = door_position + Vector2(-40, 46)
+		Utils.Player.position = door_position + Vector2(-40, 46)
 	elif new_entrance == 'LEFT':
-		Player.position = door_position + Vector2(40, 46)
+		Utils.Player.position = door_position + Vector2(40, 46)
 	
-	current_room_node.add_child(Player)
+	current_room_node.add_child(Utils.Player)
 	call_deferred("add_child",current_room_node)
 
 	current_room_node.setup_player_camera()

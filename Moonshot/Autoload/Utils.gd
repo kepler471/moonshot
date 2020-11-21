@@ -1,7 +1,10 @@
 extends Node
 # Globally accessible utils functionality
 var player_stats = load('res://Combat/Stats.tscn').instance()
-
+var Player = load("res://player/player.tscn").instance()
+	
+func reset_player():
+	Player = load("res://player/player.tscn").instance()
 	
 # Returns the direction in which the player is aiming with the stick
 static func get_aim_joystick_direction() -> Vector2:
