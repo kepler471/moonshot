@@ -7,12 +7,17 @@ class_name Stats
 signal health_changed(old_value, new_value)
 signal health_depleted()
 signal damage_taken()
+signal firerate_changed(new_firerate, firerate_level)
 
-var modifiers = {}
+var modifiers = {"firerate_pickups": 0, "firerate": 1}
+var no_firerate_pickups_to_increase_firerate = 2
+var firerate_scaling_factor = 1.2
+var max_firerate_level = 5
+var current_firerate_level = 0
 
 var invulnerable := false
 
-export var max_health := 1.0 setget set_max_health, get_max_health
+export var max_health := 0.2 setget set_max_health, get_max_health
 var health := max_health
 
 export var attack: int = 1
@@ -32,7 +37,7 @@ func heal(amount: float) -> void:
 func set_max_health(value: float) -> void:
 	if value == null:
 		return
-	max_health = max(1, value)
+	max_health = max(max_health, value)
 	
 func get_max_health() -> float:
 	return max_health
@@ -53,3 +58,17 @@ func set_invulnerable_for_seconds(time: float) -> void:
 	yield(timer, "timeout")
 
 	invulnerable = false
+	
+func pickup_firerate(increase):
+	modifiers['firerate_pickups'] += increase 
+	modifiers['firerate_pickups'] = min(modifiers['firerate_pickups'], no_firerate_pickups_to_increase_firerate*max_firerate_level)
+	current_firerate_level = floor(modifiers['firerate_pickups'] / no_firerate_pickups_to_increase_firerate) + 1
+	modifiers['firerate'] = pow(firerate_scaling_factor, current_firerate_level)
+	emit_signal("firerate_changed", modifiers['firerate_pickups'], current_firerate_level)
+		
+func take_damage(level_of_decrease):
+	if modifiers['firerate_pickups'] > 0:
+		modifiers['firerate_pickups'] -= no_firerate_pickups_to_increase_firerate*level_of_decrease
+		current_firerate_level = floor(modifiers['firerate_pickups'] / no_firerate_pickups_to_increase_firerate) + 1
+		modifiers['firerate'] = pow(firerate_scaling_factor, current_firerate_level)
+		emit_signal("firerate_changed", modifiers['firerate_pickups'], current_firerate_level)
