@@ -10,6 +10,7 @@ export (float, 0.0, 1.0) var friction_factor := 0.15
 export var jump_strength := Vector2(500.0, 800.0)
 var _wall_normal := -1
 var _velocity := Vector2.ZERO
+var velocity := Vector2.ZERO
 var wall_grace_counter = 0
 
 func unhandled_input(event: InputEvent) -> void:
@@ -52,6 +53,7 @@ func enter(msg: Dictionary = {}) -> void:
 
 	_wall_normal = msg.normal
 	_velocity.y = clamp(msg.velocity.y, -max_slide_speed, max_slide_speed)
+	velocity = _velocity
 
 
 func exit() -> void:

@@ -51,3 +51,6 @@ func get_animation_name() -> String:
 func set_state(value: State) -> void:
 	state = value
 	_state_name = state.name
+
+func get_velocity():
+	return state.velocity

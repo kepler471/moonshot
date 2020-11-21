@@ -20,7 +20,7 @@ export var jump_deceleration := 5000.0
 export var air_resistance := 1250.0
 
 var enabled_air_resistance := true
-
+var velocity
 
 func unhandled_input(event: InputEvent) -> void:
 	# Jump after falling off a ledge
@@ -78,8 +78,10 @@ func enter(msg: Dictionary = {}) -> void:
 	_parent.acceleration.x = acceleration_x
 	_parent.snap_vector.y = 0
 	if "velocity" in msg:
-		_parent.velocity = msg.velocity 
-		_parent.max_speed.x = max(abs(msg.velocity.x), _parent.max_speed.x)
+		if msg.velocity != null:
+			_parent.velocity = msg.velocity 
+			velocity = msg.velocity
+			_parent.max_speed.x = max(abs(msg.velocity.x), _parent.max_speed.x)
 	if "impulse" in msg:
 		_parent.velocity += calculate_jump_velocity(msg.impulse)
 	if "stagger" in msg:
