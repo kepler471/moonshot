@@ -85,13 +85,12 @@ Events="*res://Autoload/Events.gd"
 Steering="*res://Autoload/Steering.gd"
 Utils="*res://Autoload/Utils.gd"
 CombatSignalController="*res://Autoload/CombatSignalController.gd"
-LevelController="*res://Autoload/LevelController.gd"
 
 [display]
 
 window/size/height=576
 window/stretch/mode="2d"
-window/stretch/aspect="expand"
+window/stretch/aspect="keep"
 
 [input]
 
@@ -219,11 +218,9 @@ shoot={
 2d_physics/layer_4="PassThrough"
 2d_physics/layer_5="Enemies"
 2d_physics/layer_6="CameraAnchor"
-2d_physics/layer_7="Pickups"
 2d_physics/layer_11="DamageSource"
 2d_physics/layer_12="Hitbox"
 
 [rendering]
 
-quality/2d/use_pixel_snap=true
 environment/default_environment="res://default_env.tres"

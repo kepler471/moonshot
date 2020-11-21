@@ -7,7 +7,7 @@ onready var slow_starter: Timer = $SlowStarter
 onready var tween: Tween = $Tween
 
 export var slow_duration_seconds := 0.4
-var velocity
+
 
 func _ready() -> void:
 # warning-ignore:return_value_discarded
@@ -44,7 +44,6 @@ func physics_process(delta: float) -> void:
 
 func enter(msg: Dictionary = {}) -> void:
 	_parent.enter(msg)
-	velocity = _parent.velocity
 	if not Utils.is_equal_approx(_parent.max_speed.x, _parent.max_speed_default.x):
 		slow_starter.start()
 
