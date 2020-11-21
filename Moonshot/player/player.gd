@@ -140,7 +140,7 @@ func set_invulnerable(time : float) -> void:
 	invulnerable = true
 	animation_name = "stagger"
 	$AnimatedSprite.play(animation_name)
-	var timer := get_tree().create_timer(time)
+	var timer = Utils.Player.get_tree().create_timer(time)
 	yield(timer, "timeout")
 	invulnerable = false
 	
