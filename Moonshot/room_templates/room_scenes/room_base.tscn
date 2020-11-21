@@ -7,7 +7,6 @@
 [ext_resource path="res://baddies/characters/BearBoi.tscn" type="PackedScene" id=5]
 [ext_resource path="res://items_objects/breakable_tile_purple.tscn" type="PackedScene" id=6]
 
-
 [node name="LEVEL1" type="Node2D" groups=[
 "Room",
 ]]
