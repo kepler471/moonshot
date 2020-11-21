@@ -24,6 +24,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://player/FloorDetector.gd"
 }, {
+"base": "RigidBody2D",
+"class": "MSTDungeonRoom",
+"language": "GDScript",
+"path": "res://MSTDungeon/Room.gd"
+}, {
+"base": "Reference",
+"class": "MSTDungeonUtils",
+"language": "GDScript",
+"path": "res://MSTDungeon/Utils.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
@@ -63,6 +73,8 @@ _global_script_class_icons={
 "BaddieLaserController": "",
 "Fade": "",
 "FloorDetector": "",
+"MSTDungeonRoom": "",
+"MSTDungeonUtils": "",
 "Player": "",
 "Room": "",
 "State": "",
