@@ -32,6 +32,11 @@ var playing_reverse
 var invulnerable = false
 
 
+func _input(event):
+	if event.is_action_pressed("mouse_capture"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+
+
 func _ready() -> void:
 
 	add_child(player_arsenal)
@@ -41,9 +46,9 @@ func _ready() -> void:
 	CombatSignalController.connect("get_player_global_position", self, "_emit_position")
 
 
+	if not OS.is_debug_build():
+		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 
-	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
-	
 	animation_name = state_machine.get_animation_name()
 	if animation_name == null:
 		animation_name = "idle"
@@ -143,7 +148,7 @@ func set_invulnerable(time : float) -> void:
 func take_damage(damage, attack_dir) -> void:
 	if not invulnerable:
 		Utils.player_stats.health -= damage
-		if OS.is_debug_build(): print("Attack Dir : ", attack_dir)
+		if Utils.IS_DEBUG: print("Attack Dir : ", attack_dir)
 		set_invulnerable(1)
 		attack_dir = sign(get_global_position().x - attack_dir.x)
 		state_machine.transition_to("Move/Stagger", {"previous" : state_machine.state, "direction" : attack_dir})
