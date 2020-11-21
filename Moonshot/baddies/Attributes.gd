@@ -89,9 +89,6 @@ func get(key: String, fallback = null):
 func set(key: String, value) -> void:
 	self[key] = value
 
-func get_in(keys: Array) -> void:
-	Utils.get_in_dictionary(self, keys)
-	
 func flip_sprite_horizontal() -> void:
 	sprite.flip_h = !sprite.flip_h
 
