@@ -15,8 +15,9 @@ func _ready():
 	assert(ray_middle.cast_to.x >= 0)
 	assert(ray_bottom.cast_to.x >= 0)
 
-
 func _unhandled_input(event: InputEvent) -> void:
+	if is_against_wall():
+		return
 	if event.is_action_pressed("move_left"):
 		scale.x = -1
 	elif event.is_action_pressed("move_right"):
