@@ -1,4 +1,5 @@
 extends KinematicBody2D
+class_name BearDroppyBoi
 
 onready var attributes: Attributes = $Attributes
 onready var Laser = $BaddieLaserPointer

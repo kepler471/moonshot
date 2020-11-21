@@ -223,7 +223,7 @@ func set_spawn_baddie_type():
 	# Decide on the baddies that are allocated for each spawn poinmt
 	for spawn_place in combined_baddie_spawns:
 		if len(spawn_place.get_children()) == 0:
-			selected_baddie = "res://baddies/" + baddie_list[randi()%baddie_list.size()]
+			selected_baddie = "res://baddies/characters/" + baddie_list[randi()%baddie_list.size()]
 		else:
 			baddie_instance = spawn_place.get_children()[0]
 			# Remove the existing instances
@@ -249,7 +249,7 @@ func spawn_items():
 	
 func get_baddie_list():
 	var dir = Directory.new()
-	dir.open("res://baddies/")
+	dir.open("res://baddies/characters/")
 	dir.list_dir_begin()
 	var baddie_filenames = []
 	while true:

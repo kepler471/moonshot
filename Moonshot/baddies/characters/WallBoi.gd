@@ -1,4 +1,5 @@
 extends KinematicBody2D
+class_name WallBoi
 
 onready var attributes: Attributes = $Attributes
 onready var Laser = $BaddieLaserPointer
@@ -27,11 +28,11 @@ func _ready() -> void:
 	})
 
 	Laser.set_upper_shot_frequency(1)
-    Laser.set_shot_speed(attributes.shot_speed)
-    Laser.set_damage(attributes.shot_damage)
+	Laser.set_shot_speed(attributes.shot_speed)
+	Laser.set_damage(attributes.shot_damage)
 	Laser.shoot_randomly()
 
-func _process(delta) -> void:
+func _physics_process(delta) -> void:
 	if attributes._has_died():
 		return
 

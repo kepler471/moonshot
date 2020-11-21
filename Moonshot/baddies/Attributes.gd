@@ -45,7 +45,7 @@ func get_current_state() -> Dictionary:
 		"damage_to_player": damage_to_player,
 		"should_damge_on_collision": should_damge_on_collision,
 		"shot_speed": shot_speed,
-		"shot_damage": laser_damage,
+		"shot_damage": shot_damage,
 		"item_drop": item_drop,
 		"on_death": on_death
 	}

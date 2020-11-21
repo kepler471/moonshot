@@ -1,4 +1,5 @@
 extends KinematicBody2D
+class_name FlyBoi
 
 onready var attributes: Attributes = $Attributes
 
@@ -27,7 +28,7 @@ func _ready() -> void:
 		"should_damge_on_collision": true
 	})
 
-func _process(delta) -> void:
+func _physics_process(delta) -> void:
 	if attributes._has_died():
 		return
 

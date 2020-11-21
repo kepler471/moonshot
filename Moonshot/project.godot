@@ -24,6 +24,21 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://baddies/BaddieLaser/BaddieLaserPointer.gd"
 }, {
+"base": "KinematicBody2D",
+"class": "BearBoi",
+"language": "GDScript",
+"path": "res://baddies/characters/BearBoi.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "BearCeilingBoi",
+"language": "GDScript",
+"path": "res://baddies/characters/BearCeilingBoi.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "BearDroppyBoi",
+"language": "GDScript",
+"path": "res://baddies/characters/BearDroppyBoi.gd"
+}, {
 "base": "Node",
 "class": "Fade",
 "language": "GDScript",
@@ -33,6 +48,11 @@ _global_script_classes=[ {
 "class": "FloorDetector",
 "language": "GDScript",
 "path": "res://player/FloorDetector.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "FlyBoi",
+"language": "GDScript",
+"path": "res://baddies/characters/FlyBoi.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Player",
@@ -64,6 +84,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://baddies/TurningHack.gd"
 }, {
+"base": "KinematicBody2D",
+"class": "WallBoi",
+"language": "GDScript",
+"path": "res://baddies/characters/WallBoi.gd"
+}, {
 "base": "Node2D",
 "class": "floor_generator",
 "language": "GDScript",
@@ -73,14 +98,19 @@ _global_script_class_icons={
 "Attributes": "",
 "BaddieInterface": "",
 "BaddieLaserController": "",
+"BearBoi": "",
+"BearCeilingBoi": "",
+"BearDroppyBoi": "",
 "Fade": "",
 "FloorDetector": "",
+"FlyBoi": "",
 "Player": "",
 "Room": "",
 "State": "",
 "StateMachine": "",
 "Stats": "",
 "TurningHack": "",
+"WallBoi": "",
 "floor_generator": ""
 }
 
