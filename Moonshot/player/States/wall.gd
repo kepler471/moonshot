@@ -55,6 +55,7 @@ func enter(msg: Dictionary = {}) -> void:
 
 
 func exit() -> void:
+	owner.ledge_wall_detector.scale.x *= -1
 	_parent.exit()
 
 
