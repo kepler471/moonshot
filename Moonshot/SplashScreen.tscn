@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://splash_screen.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/basic_font.tres" type="DynamicFont" id=2]
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://baddies/BearBoi.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/fonts/basic_font_size_64.tres" type="DynamicFont" id=5]
 [ext_resource path="res://items_objects/breakable_tile_purple.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/tile_maps/TileSet_v1.tres" type="TileSet" id=8]
@@ -102,6 +103,9 @@ __meta__ = {
 position = Vector2( 564.86, 331.332 )
 current = true
 zoom = Vector2( 1.1, 1.1 )
+
+[node name="BearBoi" parent="." instance=ExtResource( 4 )]
+position = Vector2( 685.415, 222.738 )
 
 [node name="Node2D" parent="." instance=ExtResource( 7 )]
 position = Vector2( 688, 368 )
