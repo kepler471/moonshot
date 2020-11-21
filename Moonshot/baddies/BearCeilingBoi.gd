@@ -23,9 +23,10 @@ func _ready() -> void:
 	})
 
 	Laser.set_upper_shot_frequency(1)
-	Laser.set_shot_speed(500)
+	Laser.set_shot_speed(attributes.shot_speed)
+    Laser.set_damage(attributes.shot_damage)
 	Laser.shoot_randomly()
-	Laser.set_damage(0.4)
+
 
 func _process(delta) -> void:
 	if attributes._has_died():

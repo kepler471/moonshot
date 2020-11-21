@@ -22,7 +22,7 @@ var body: KinematicBody2D
 var damage_to_player: float = 0.2
 var should_damge_on_collision = false
 var shot_speed = 500
-var laser_damage = 0.5
+var shot_damage = 0.5
 var item_drop = null
 var on_death: FuncRef
 
@@ -45,7 +45,7 @@ func get_current_state() -> Dictionary:
 		"damage_to_player": damage_to_player,
 		"should_damge_on_collision": should_damge_on_collision,
 		"shot_speed": shot_speed,
-		"laser_damage": laser_damage,
+		"shot_damage": laser_damage,
 		"item_drop": item_drop,
 		"on_death": on_death
 	}
@@ -64,7 +64,7 @@ func _get_default_baddie_attributes():
 		"damage_to_player": 0.02,
 		"should_damge_on_collision": false,
 		"shot_speed": 500,
-		"laser_damage": 0.4,
+		"shot_damage": 0.4,
 		"item_drop": null
 	}
 
