@@ -32,6 +32,11 @@ var playing_reverse
 var invulnerable = false
 
 
+func _input(event):
+	if event.is_action_pressed("mouse_capture"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+
+
 func _ready() -> void:
 
 	add_child(player_arsenal)
@@ -41,9 +46,9 @@ func _ready() -> void:
 	CombatSignalController.connect("get_player_global_position", self, "_emit_position")
 
 
+	if Utils.IS_DEBUG:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 
-	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
-	
 	animation_name = state_machine.get_animation_name()
 	if animation_name == null:
 		animation_name = "idle"
