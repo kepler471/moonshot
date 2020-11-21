@@ -49,7 +49,6 @@ func _physics_process(delta) -> void:
 	var falling_off_ledge: bool = ($FrontRayCast.is_colliding() == false || $RearRayCast.is_colliding() == false) && !$FrontRayCast.is_turning
 	var collided_with_wall: bool = is_on_wall() && !collided_with_player
 
-
 	if (is_on_floor() || is_on_ceiling()) && (falling_off_ledge || collided_with_wall) || collided_with_player:
 		if not in_air:
 			change_direction()
@@ -69,7 +68,6 @@ func _physics_process(delta) -> void:
 		})
 		self.rotate(PI)
 		$AnimatedSprite.flip_h = !$AnimatedSprite.flip_h
-
 
 	baddie.move(delta)
 

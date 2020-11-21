@@ -39,7 +39,7 @@ func _ready() -> void:
 	Fade.set_on_fade_out_finish(funcref(self, "on_end"))
 
 func _process(delta) -> void:
-	if Utils.is_nil(baddie):
+	if baddie.has_died():
 		if !Fade.is_fading:
 			Fade.fade_out()
 			$AnimatedSprite.stop()
@@ -53,10 +53,9 @@ func _process(delta) -> void:
 		change_direction()
 
 	baddie.velocity.y = baddie.speed * baddie.direction
-	baddie.get("sprite").play()
 	baddie.velocity.x += baddie.velocity.x + baddie.gravity
 
-	move_and_slide(baddie.get("velocity"), baddie.get("floor_vector"))
+	baddie.velocity = move_and_slide(baddie.velocity, baddie.floor_vector)
 
 func change_direction() -> void:
 	baddie.flip_sprite_horizontal()

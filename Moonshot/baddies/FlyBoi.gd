@@ -8,18 +8,6 @@ const ACCELERATION := 25
 const HP_MAX := 0.5
 const BOUNCE_FACTOR := 0.7
 
-var _properties: Dictionary = {
-	"body": self,
-	"inital_hp": HP_MAX,
-	"gravity": 0,
-	"speed": 300,
-	"floor_vector": Vector2(0, -1),
-	"sprite": $AnimatedSprite,
-	"velocity": Vector2(),
-	"damage_to_player": 0.33,
-	"should_damge_on_collision": true
-}
-
 var bounce := 0.7;
 const Animations := {
 	"RUSH": "rush"
@@ -28,7 +16,17 @@ const Animations := {
 func _ready() -> void:
 	CombatSignalController.connect("damage_baddie", self, "on_hit")
 	
-	baddie.set_properties(_properties)
+	baddie.set_properties({
+		"body": self,
+		"inital_hp": HP_MAX,
+		"gravity": 0,
+		"speed": 300,
+		"floor_vector": Vector2(0, -1),
+		"sprite": $AnimatedSprite,
+		"velocity": Vector2(),
+		"damage_to_player": 0.33,
+		"should_damge_on_collision": true
+	})
 
 	Fade.set_fade_speed(0.05)
 	Fade.set_fade_factor(0.3)
@@ -45,19 +43,19 @@ func _process(delta) -> void:
 
 	baddie.velocity.x = baddie.speed * baddie.direction
 	$AnimatedSprite.play()
-	baddie.velocity.y = bounce
+	baddie.velocity.y += bounce
 
-	move_and_slide(baddie.velocity, baddie.get("floor_vector"))
+	baddie.velocity = move_and_slide(baddie.velocity, baddie.floor_vector)
 	baddie.check_player_colision()
 
 	if is_on_ceiling():
 		bounce = BOUNCE_FACTOR
-		baddie.set("speed", baddie.speed + ACCELERATION)
+		baddie.speed += ACCELERATION
 		baddie.velocity.y += 100
 
 	if is_on_floor():
 		bounce -= BOUNCE_FACTOR
-		baddie.set("speed", baddie.speed + ACCELERATION)
+		baddie.speed +=ACCELERATION
 		baddie.velocity.y -= 100
 
 	if is_on_wall():

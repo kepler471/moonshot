@@ -32,7 +32,7 @@ script = ExtResource( 3 )
 position = Vector2( -0.0448229, 0.579722 )
 frames = SubResource( 1 )
 animation = "rush"
-frame = 2
+frame = 1
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
