@@ -1,3 +1,4 @@
+tool
 class_name MSTDungeonRoom
 extends RigidBody2D
 

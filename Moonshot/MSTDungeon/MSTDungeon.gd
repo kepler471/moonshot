@@ -7,6 +7,7 @@
 # 3. Selects some main rooms for the level based on the average room size.
 # 4. Creates a Minimum Spanning Tree graph that connects the rooms.
 # 5. Adds back some connections after calculating the MST so the player doesn't need to backtrack.
+tool
 extends Node2D
 
 # Emitted when all the rooms stabilized.
@@ -15,13 +16,15 @@ signal rooms_placed
 const Room := preload("Room.tscn")
 const exit_hori = preload("res://room_templates/exit_hori.tscn")
 const exit_vert = preload("res://room_templates/exit_vert.tscn")
-const paint = preload("res://assets/tile_maps/TileSet_v1.tres")
+var baddy = preload("res://baddies/BearBoi.tscn")
 
 # Maximum number of generated rooms.
 export var max_rooms := 60
 # Controls the number of paths we add to the dungeon after generating it,
 # limiting player backtracking.
 export var reconnection_factor := 0.025
+# This allows running code in the editor
+export(bool) var redraw setget redraw
 
 var _rng := RandomNumberGenerator.new()
 var _data := {}
@@ -30,12 +33,52 @@ var _sleeping_rooms := 0
 var _mean_room_size := Vector2.ZERO
 var _draw_extra := []
 
-onready var rooms: Node2D = $Rooms
+#onready var rooms: Node2D = $Rooms
 onready var level: TileMap = $Level
+var rooms
+var camera
+var player
+
+
+
+func redraw(value = null):
+#	if !Engine.is_editor_hint(): return
+#	rooms.queue_free()
+#	rooms = Node2D.new()
+#	rooms.name = "Rooms"
+#	add_child(rooms)
+#	level.clear()
+	print("redraw scene")
+	set_process(true)
+	_rng = RandomNumberGenerator.new()
+	_data = {}
+	_path = null
+	_sleeping_rooms = 0
+	_mean_room_size = Vector2.ZERO
+	_draw_extra = []
+	_rng.randomize()
+	_generate()
+
+
+
+func _input(event):
+	if event.is_action_pressed("ui_accept"):
+		print(get_children())
+
+	if event.is_action_pressed("ui_home"):
+		player.queue_free()
+		redraw()
+
+	if event.is_action_pressed("ui_page_up"):
+		camera.zoom += Vector2(1,1)
+	if event.is_action_pressed("ui_page_down"):
+		camera.zoom = Vector2(1,1)
+
 
 
 
 func _ready() -> void:
+	if Engine.is_editor_hint(): return
 	_rng.randomize()
 	_generate()
 
@@ -115,6 +158,11 @@ func _draw() -> void:
 # Places the rooms and starts the physics simulation. Once the simulation is done
 # ("rooms_placed" gets emitted), it continues by assigning tiles in the Level node.
 func _generate() -> void:
+	if rooms != null: rooms.queue_free()
+	rooms = Node2D.new()
+	rooms.name = "Rooms"
+	add_child(rooms)
+
 	for _i in range(max_rooms):
 		# Generate `max_rooms` rooms and set them up
 		var room := Room.instance()
@@ -128,6 +176,7 @@ func _generate() -> void:
 	# Wait for all rooms to be positioned in the game world.
 	yield(self, "rooms_placed")
 
+	rooms.hide()
 	rooms.queue_free()
 	# Draws the tiles on the `level` tilemap.
 #	yield(get_tree().create_timer(10), "timeout")
@@ -147,14 +196,10 @@ func _generate() -> void:
 	var south = _path.get_point_position(_path.get_closest_point(Vector2(0, 5000)))
 	var west  = _path.get_point_position(_path.get_closest_point(Vector2(5000, 0)))
 
-#	exit_hori.instance().position = north
-	Utils.reset_player()
-	var player = Utils.Player
-	add_child(player)
-	Utils.Player.position = north
 	print(exit_hori.instance().position.x)
-	exit_vert.instance().position = east
-	exit_vert.instance().position = west
+#	exit_hori.instance().position = north
+#	exit_vert.instance().position = east
+#	exit_vert.instance().position = west
 
 	print("world north::: ", level.world_to_map(north))
 	print("world south::: ", level.world_to_map(south))
@@ -169,8 +214,10 @@ func _generate() -> void:
 	var rect = level.get_used_rect()
 	print(level.get_used_rect())
 
-	for i in range(rect.size.x):
-		for j in range(rect.size.y):
+	for i in range(100):
+#	for i in range(rect.size.x):
+		for j in range(100):
+#		for j in range(rect.size.y):
 #			i += rect.position.x
 #			j += rect.position.y
 #			print(i+rect.position.x, j+rect.position.y)
@@ -179,14 +226,22 @@ func _generate() -> void:
 #				print(Vector2(i+rect.position.x,j+rect.position.y), " is in data.")
 #				level.set_cell(i+rect.position.x,j+rect.position.x, -1)
 #			else:
-			var X = i+rect.position.x
-			var Y = j+rect.position.y
+			var X = i+rect.position.x - 50
+			var Y = j+rect.position.y - 50
 			level.set_cell(X, Y, 4, false, false, false, level.get_cell_autotile_coord(X, Y))
-
-#	yield(get_tree().create_timer(1), "timeout")
 
 	for i in _data:
 		level.set_cell(i.x, i.y, 18, false, false, false, level.get_cell_autotile_coord(i.x, i.y))
+
+	Utils.reset_player()
+	player = Utils.Player
+	add_child(player)
+	Utils.Player.position = north
+	camera = Utils.Player.get_node("Camera2D")
+	camera.current = true
+
+#
+
 
 # Adds room tile positions to `_data`.
 func _add_room(room: MSTDungeonRoom) -> void:
