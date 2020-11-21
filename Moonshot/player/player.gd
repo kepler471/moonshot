@@ -143,7 +143,7 @@ func set_invulnerable(time : float) -> void:
 func take_damage(damage, attack_dir) -> void:
 	if not invulnerable:
 		Utils.player_stats.health -= damage
-		if OS.is_debug_build(): print("Attack Dir : ", attack_dir)
+		if Utils.IS_DEBUG: print("Attack Dir : ", attack_dir)
 		set_invulnerable(1)
 		attack_dir = sign(get_global_position().x - attack_dir.x)
 		state_machine.transition_to("Move/Stagger", {"previous" : state_machine.state, "direction" : attack_dir})

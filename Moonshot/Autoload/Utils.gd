@@ -1,6 +1,7 @@
 extends Node
 # Globally accessible utils functionality
 var player_stats = load('res://Combat/Stats.tscn').instance()
+const IS_DEBUG: bool = false
 
 	
 # Returns the direction in which the player is aiming with the stick
