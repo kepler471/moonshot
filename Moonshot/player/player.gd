@@ -46,7 +46,7 @@ func _ready() -> void:
 	CombatSignalController.connect("get_player_global_position", self, "_emit_position")
 
 
-	if Utils.IS_DEBUG:
+	if not OS.is_debug_build():
 		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 
 	animation_name = state_machine.get_animation_name()
