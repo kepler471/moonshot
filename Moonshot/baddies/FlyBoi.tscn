@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://baddies/FlyBoi.gd" type="Script" id=1]
 [ext_resource path="res://baddies/sprites/flighty4.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://baddies/sprites/flighty0.png" type="Texture" id=4]
 [ext_resource path="res://baddies/sprites/flighty3.png" type="Texture" id=5]
 [ext_resource path="res://Animations/Fade.gd" type="Script" id=6]
+[ext_resource path="res://baddies/Attributes.gd" type="Script" id=7]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 9.7336
@@ -28,12 +29,15 @@ script = ExtResource( 1 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="Fade" type="Node" parent="."]
-script = ExtResource( 6 )
-
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( -3.72079, 0.218872 )
 frames = SubResource( 2 )
 frame = 1
 playing = true
 flip_h = true
+
+[node name="Attributes" type="Node" parent="."]
+script = ExtResource( 7 )
+
+[node name="Fade" type="Node" parent="Attributes"]
+script = ExtResource( 6 )

@@ -1,8 +1,7 @@
 extends KinematicBody2D
 
-onready var baddie: Baddie = load("res://baddies/Baddie.gd").new()
+onready var attributes: Attributes = $Attributes
 onready var Laser = $BaddieLaserPointer
-onready var Fade: Fade = $Fade
 
 const HP_MAX := 1.0
 const ARMOR := 5.0
@@ -19,7 +18,7 @@ var in_air = false
 func _ready() -> void:
 	CombatSignalController.connect("damage_baddie", self, "on_hit")
 
-	baddie.set_properties({
+	attributes.set_properties({
 		"sprite": $AnimatedSprite,
 		"body": self,
 		"animation": Animations.RUSH,
@@ -31,21 +30,11 @@ func _ready() -> void:
 		"should_damge_on_collision": true
 	})
 
-	Fade.set_fade_speed(0.05)
-	Fade.set_fade_factor(0.3)
-	Fade.set_sprite($AnimatedSprite)
-	Fade.set_tree(get_tree())
-	Fade.set_on_fade_out_finish(funcref(self, "on_end"))
-
 func _physics_process(delta) -> void:
-	if baddie.has_died():
-		if !Fade.is_fading:
-			Fade.fade_out()
-			$AnimatedSprite.stop()
-			return
+	if attributes._has_died():
 		return
 
-	var collided_with_player: bool = baddie.check_player_colision()
+	var collided_with_player: bool = attributes._check_player_colision()
 	var falling_off_ledge: bool = ($FrontRayCast.is_colliding() == false || $RearRayCast.is_colliding() == false) && !$FrontRayCast.is_turning
 	var collided_with_wall: bool = is_on_wall() && !collided_with_player
 
@@ -61,28 +50,28 @@ func _physics_process(delta) -> void:
 		has_fallen = true
 		in_air = true
 
-		baddie.patch({
-			"gravity": -baddie.gravity * 20,
+		attributes.patch({
+			"gravity": -attributes.gravity * 20,
 			"speed": 600,
 			"hp": HP_MAX / ARMOR
 		})
 		self.rotate(PI)
 		$AnimatedSprite.flip_h = !$AnimatedSprite.flip_h
 
-	baddie.move(delta)
+	attributes._move(delta)
 
 func change_direction() -> void:
-	if !baddie.has_died():
+	if !attributes._has_died():
 		facing *= -1
-		baddie.flip_sprite_horizontal()
+		attributes.flip_sprite_horizontal()
 		var cast = $JumpCast.get_cast_to()
 		$JumpCast.set_cast_to(Vector2(-1*cast.x, cast.y))
-		baddie.set("direction", baddie.change_direction())
+		attributes.set("direction", attributes._change_direction())
 		$FrontRayCast.async_change_direction()
 
 func on_hit(instance_id, damage) -> void:
-	if instance_id == self.get_instance_id() && !baddie.has_died():
-		baddie.on_hit(damage)
+	if instance_id == self.get_instance_id() && !attributes._has_died():
+		attributes._on_hit(damage)
 
 func on_end() -> void:
 	call_deferred("free")

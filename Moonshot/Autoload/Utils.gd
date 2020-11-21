@@ -42,14 +42,3 @@ static func merge_dictionary(target = {}, patch: Dictionary = {}) -> Dictionary:
 
 static func is_nil(argv) -> bool:
 	return argv == null
-
-# allows deeply nested updating, mutates
-static func set_in_dictionary(keys: Array, value, dictionary = {}, counter = 0) -> void:
-	if keys.size() - 1 > counter:
-		var key: String = keys[counter]
-		if !Utils.is_nil(key):
-			var current = dictionary[key]
-			counter += 1
-			Utils.set_in_dictionary(keys, value, current, counter)
-	else:
-		dictionary[keys[counter]] = value

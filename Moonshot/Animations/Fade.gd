@@ -41,6 +41,7 @@ func fade_out(counter: float = 1.0) -> void:
 
 	else:
 		has_faded = true
+		print(on_fade_out_finish)
 		on_fade_out_finish.call_func()
 
 func set_tree(t: SceneTree) -> void:
