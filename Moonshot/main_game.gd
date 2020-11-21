@@ -1,8 +1,6 @@
 extends Node2D
 
 var level_gen = preload("res://procedural_map_generation/level_gen.gd")
-var player_scene = load("res://player/player.tscn")
-var Player = player_scene.instance()
 var room_index = Vector2(0, 0)
 var current_room_node = null
 var level_map 
@@ -33,8 +31,8 @@ func start_level(level_num):
 	
 	get_room_instance(room_index)
 	
-	current_room_node.add_child(Player)
-	Player.position = current_room_node.get_node('player_spawn').position
+	current_room_node.add_child(Utils.Player)
+	Utils.Player.position = current_room_node.get_node('player_spawn').position
 	current_room_node.setup_player_camera()
 	
 	add_child(current_room_node)
@@ -61,32 +59,52 @@ func change_room(room_change : Vector2, new_entrance):
 	room_index = room_index + room_change
 	
 	minimap.change_current_node(room_index, previous_room_idx)
-
+	var old_entrance
+	if new_entrance == "LEFT":
+		old_entrance = "RIGHT"
+	elif new_entrance == "RIGHT":
+		old_entrance = "LEFT"
+	elif new_entrance == "UP":
+		old_entrance = "DOWN"
+	elif new_entrance == "DOWN":
+		old_entrance = "UP"
+		
+	var old_door_position = current_room_node.get_node('Exit_' + old_entrance).position
+	var player_door_diff = Utils.Player.position - old_door_position
+	
+	if (new_entrance == "LEFT") or (new_entrance == "RIGHT"):
+		player_door_diff.x = -player_door_diff.x
+		
 	get_tree().paused = true
 	current_room_node.get_node("Player").queue_free()
 	remove_child(current_room_node)
 	get_room_instance(room_index)
-	
-	Player = player_scene.instance()
+
 	
 #----- I think player pos change should be moved to Baseroom.gd ------
 	#Move player to door entrance.
 	var door_position = current_room_node.get_node('Exit_' + new_entrance).position
-	
-	if new_entrance == 'UP':
-		Player.position = door_position + Vector2(0, 60)
-	elif new_entrance == 'DOWN':
-		Player.position = door_position + Vector2(0, -40)
-	elif new_entrance == 'RIGHT':
-		Player.position = door_position + Vector2(-40, 46)
-	elif new_entrance == 'LEFT':
-		Player.position = door_position + Vector2(40, 46)
-	
-	current_room_node.add_child(Player)
-	call_deferred("add_child",current_room_node)
 
+	
+	Utils.reset_player()
+		
+	if new_entrance == 'UP':
+		Utils.Player.position = door_position + player_door_diff + Vector2(0, 70)
+	elif new_entrance == 'DOWN':
+		Utils.Player.position = door_position + player_door_diff + Vector2(0, -60)
+	elif new_entrance == 'RIGHT':
+		Utils.Player.position = door_position + player_door_diff + Vector2(-40, 0)
+	elif new_entrance == 'LEFT':
+		Utils.Player.position = door_position + player_door_diff + Vector2(40, 0)
+		
+	current_room_node.add_child(Utils.Player)
+	call_deferred("add_child",current_room_node)
+	call_deferred("set_player_velocity", new_entrance)
 	current_room_node.setup_player_camera()
 	
 	get_tree().paused = false
 
+func set_player_velocity(new_entrance):
+	if new_entrance == 'DOWN':
+		Utils.Player.state_machine.transition_to("Move/Air", {"impulse": 1010.0})
 
