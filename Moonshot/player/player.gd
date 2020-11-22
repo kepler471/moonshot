@@ -164,20 +164,19 @@ func damagetile_check():
 				take_damage(0.1,Vector2(wall_normal,0) , true)
 
 
-func take_damage(damage, attack_dir, damagetile: bool = false) -> void:
+func take_damage(damage, attack_dir, is_damage_tile: bool = false) -> void:
 	if not invulnerable:
 		Utils.player_stats.health -= damage
 		if Utils.IS_DEBUG: print("Attack Dir : ", attack_dir)
 		
-		if damagetile:
-			set_invulnerable(0.2) #BALANCING
-			state_machine.transition_to("Move/Stagger", {"previous" : state_machine.state, "direction" : attack_dir, "damagetile" : damagetile})
+		if is_damage_tile:
+			set_invulnerable(0.5) #BALANCING
+			stagger_player(attack_dir,is_damage_tile)
 		else:
 			set_invulnerable(0.8) #BALANCING
 			attack_dir = sign(get_global_position().x - attack_dir.x)
-			state_machine.transition_to("Move/Stagger", {"previous" : state_machine.state, "direction" : attack_dir, "damagetile" : damagetile})
-	
-	
+			stagger_player(attack_dir,is_damage_tile)
+
 	if Utils.player_stats.health <= 0:
 		on_death()
 		
@@ -195,4 +194,6 @@ func on_death() -> void:
 
 func _emit_position() -> void:
 	CombatSignalController.emit_signal("emit_player_global_position", $TurnAxis.global_position)
-	
+
+func stagger_player(attack_dir, is_damage_tile):
+	state_machine.transition_to("Move/Stagger", {"previous" : state_machine.state, "direction" : attack_dir, "is_damage_tile" : is_damage_tile})
