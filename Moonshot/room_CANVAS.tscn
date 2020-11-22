@@ -20,11 +20,20 @@ cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 format = 1
 
+[node name="DamageTiles" type="TileMap" parent="."]
+tile_set = ExtResource( 4 )
+cell_size = Vector2( 32, 32 )
+cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
+collision_layer = 64
+collision_mask = 5
+format = 1
+
 [node name="OneWayPlatforms" type="TileMap" parent="."]
 tile_set = ExtResource( 4 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 collision_layer = 8
+collision_mask = 5
 format = 1
 
 [node name="BaseTiles" type="TileMap" parent="."]
@@ -60,6 +69,7 @@ position = Vector2( 242.814, 157.103 )
 [node name="baddie_spawn_line1" type="Line2D" parent="level_setups/level_setup_1"]
 
 [node name="baddie_spawn_line2" type="Line2D" parent="level_setups/level_setup_1"]
+points = PoolVector2Array( -116.718, 73.888 )
 
 [node name="BearBoi" parent="level_setups/level_setup_1/baddie_spawn_line2" instance=ExtResource( 5 )]
 

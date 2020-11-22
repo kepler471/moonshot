@@ -39,7 +39,6 @@ func _input(event):
 
 
 func _ready() -> void:
-
 	add_child(player_arsenal)
 	player_arsenal.set_weapon()
 
@@ -84,6 +83,8 @@ func _physics_process(_delta) -> void:
 		yield(get_tree().create_timer(timer_delay), "timeout")
 
 		cooldown = false
+		
+	damagetile_check()
 
 
 func flip_facing() -> void:
@@ -148,13 +149,34 @@ func set_invulnerable(time : float, animation_name = "stagger") -> void:
 	safety = false
 	
 
-func take_damage(damage, attack_dir) -> void:
+func damagetile_check():
+	for i in self.get_slide_count():
+		var collision = self.get_slide_collision(i)
+		if !collision || !collision.collider:
+			break
+			
+		if collision.collider.name == "DamageTiles":
+			if is_on_floor():
+				take_damage(0.1,Vector2.UP, true)
+				
+			elif is_on_wall():
+				var wall_normal = $LedgeWallDetector.scale.x * - 1
+				take_damage(0.1,Vector2(wall_normal,0) , true)
+
+
+func take_damage(damage, attack_dir, is_damage_tile: bool = false) -> void:
 	if not invulnerable:
 		Utils.player_stats.health -= damage
 		if Utils.IS_DEBUG: print("Attack Dir : ", attack_dir)
-		set_invulnerable(1)
-		attack_dir = sign(get_global_position().x - attack_dir.x)
-		state_machine.transition_to("Move/Stagger", {"previous" : state_machine.state, "direction" : attack_dir})
+		
+		if is_damage_tile:
+			set_invulnerable(0.5) #BALANCING
+			stagger_player(attack_dir,is_damage_tile)
+		else:
+			set_invulnerable(0.8) #BALANCING
+			attack_dir = sign(get_global_position().x - attack_dir.x)
+			stagger_player(attack_dir,is_damage_tile)
+
 	if Utils.player_stats.health <= 0:
 		on_death()
 		
@@ -172,4 +194,6 @@ func on_death() -> void:
 
 func _emit_position() -> void:
 	CombatSignalController.emit_signal("emit_player_global_position", $TurnAxis.global_position)
-	
+
+func stagger_player(attack_dir, is_damage_tile):
+	state_machine.transition_to("Move/Stagger", {"previous" : state_machine.state, "direction" : attack_dir, "is_damage_tile" : is_damage_tile})
