@@ -137,9 +137,8 @@ func _on_Player_health_depleted() -> void:
 	state_machine.transition_to("Die", {last_checkpoint = last_checkpoint})
 
 
-func set_invulnerable(time : float) -> void:
+func set_invulnerable(time : float, animation_name = "stagger") -> void:
 	invulnerable = true
-	animation_name = "stagger"
 	$AnimatedSprite.play(animation_name)
 	var timer = Utils.Player.get_tree().create_timer(time)
 	yield(timer, "timeout")
