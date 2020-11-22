@@ -32,7 +32,7 @@ func _init(gen):
 	# Set the minimap index (0, 0) to be thecurrent location node
 	minimap_index[start_pos].queue_free()
 	minimap_index[start_pos] = current_location_type_scene.instance()
-	turn_on_visibility(start_pos)
+	minimap_index[start_pos].visible = true
 	
 	minimap_node.add_child(minimap_index[start_pos])
 	return [minimap_node, minimap_index]
@@ -67,7 +67,7 @@ func change_current_node(new_pos: Vector2, old_pos:Vector2):
 	minimap_index[new_pos].set_position(Vector2(new_pos.x*distance[0], new_pos.y*distance[1]))
 	minimap_node.add_child(minimap_index[new_pos])
 	
-	turn_on_visibility(new_pos)
+	turn_on_visibility(new_pos, old_pos)
 
 	
 func add_connection_between (pos1:Vector2, pos2:Vector2):
@@ -89,17 +89,16 @@ func add_connection_between (pos1:Vector2, pos2:Vector2):
 	this_conn.visible = false
 	# Add to position indexed list, create the list first if there isn't one at the index
 	if not indexed_connections.has(pos1):
-		indexed_connections[pos1] = []
+		indexed_connections[pos1] = {}
 	if not indexed_connections.has(pos2):
-		indexed_connections[pos2] = []
+		indexed_connections[pos2] = {}
 		
 	# Index the connections
-	indexed_connections[pos1].append(this_conn)
-	indexed_connections[pos2].append(this_conn)
+	indexed_connections[pos1][pos2] = this_conn
+	indexed_connections[pos2][pos1] = this_conn
 
 # Set the visibility for the node and the surrounding connections to be true
-func turn_on_visibility(pos: Vector2):
-	minimap_index[pos].visible = true
-	for conn in indexed_connections[pos]:
-		conn.visible =  true
+func turn_on_visibility(new_pos: Vector2, old_pos: Vector2):
+	minimap_index[new_pos].visible = true
+	indexed_connections[new_pos][old_pos].visible = true
 

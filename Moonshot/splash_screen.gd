@@ -1,8 +1,9 @@
 extends Node2D
 
-var player_scene = load("res://player/player.tscn")
-var Player = player_scene.instance()
 
+func _ready():
+	add_child(Utils.Player)
+	
 func _process(delta):
 	# Player has died	
 	if $Player == null:
@@ -34,4 +35,6 @@ func _process(delta):
 
 	if Input.is_action_pressed("enter"):
 		if button_pressed == 'play':
+			remove_child(Utils.Player)
+			Utils.reset_player()
 			get_tree().change_scene("res://main_game.tscn")

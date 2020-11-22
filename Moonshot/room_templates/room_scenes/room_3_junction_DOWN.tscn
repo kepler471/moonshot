@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://room_templates/BaseRoom.gd" type="Script" id=1]
 [ext_resource path="res://assets/tile_maps/SimpleTileset.tres" type="TileSet" id=2]
@@ -37,8 +37,6 @@ position = Vector2( 1914.05, 952.946 )
 [node name="level_setups" type="Node2D" parent="."]
 
 [node name="level_setup_1" type="Node2D" parent="level_setups"]
-
-
 [connection signal="body_entered" from="Exit_DOWN" to="." method="_on_Exit_DOWN_body_entered"]
 [connection signal="body_entered" from="Exit_LEFT" to="." method="_on_Exit_LEFT_body_entered"]
 [connection signal="body_entered" from="Exit_RIGHT" to="." method="_on_Exit_RIGHT_body_entered"]

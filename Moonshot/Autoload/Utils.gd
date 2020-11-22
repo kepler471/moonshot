@@ -1,6 +1,17 @@
 extends Node
 # Globally accessible utils functionality
+var player_stats = load('res://Combat/Stats.tscn').instance()
+var Player = load("res://player/player.tscn").instance()
+const IS_DEBUG: bool = false
 
+
+func reset_player():
+	Player = load("res://player/player.tscn").instance()
+
+
+
+
+	
 # Returns the direction in which the player is aiming with the stick
 static func get_aim_joystick_direction() -> Vector2:
 	return get_aim_joystick_strength().normalized()
@@ -24,3 +35,18 @@ static func is_equal_approx(a: float, b: float, cmp_epsilon: float = 1e-5) -> bo
 	if tolerance < cmp_epsilon:
 		tolerance = cmp_epsilon
 	return abs(a - b) < tolerance
+
+# returns a new Dictionary, immutable.
+static func merge_dictionary(target = {}, patch: Dictionary = {}) -> Dictionary:
+	var new_dictionary: Dictionary = {}
+
+	for key in target:
+		new_dictionary[key] = target[key]
+
+	for key in patch:
+		new_dictionary[key] = patch[key]
+
+	return new_dictionary;
+
+static func is_nil(argv) -> bool:
+	return argv == null

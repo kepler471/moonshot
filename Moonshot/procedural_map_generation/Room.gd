@@ -1,6 +1,8 @@
 extends Node
 class_name Room
 
+var baddie_builder = load("res://procedural_map_generation/BaddieBuilder.gd")
+
 #What type of room it is
 var room_type
 var type_scene
@@ -179,6 +181,13 @@ func spawn_enemies():
 		var spawn_place = combined_baddie_spawns[randi()%combined_baddie_spawns.size()]
 		var baddie_scene = baddie_type_per_spawn[spawn_place.name]
 
+		# This is here for demonstrative purposes and does nothing 
+		var builder: BaddieBuilder = baddie_builder.new(baddie_scene)
+		var baddie_instance = builder.patch_attributes({
+			builder.attr.GRAVITY: builder.get_attribute(builder.attr.GRAVITY),
+			builder.attr.SPEED: builder.get_attribute(builder.attr.SPEED),
+		}).build()
+
 		# Create an empty dictionary to keep trackof where baddies have been placed
 		if not baddie_location_per_spawn_line.has(spawn_place.name):
 			baddie_location_per_spawn_line[spawn_place.name] = {}
@@ -187,7 +196,7 @@ func spawn_enemies():
 		# combined_spawn areas
 		# If it is a line then duplicate instance and spawn randomly on the line
 		if spawn_place.get_class() == 'Position2D':
-			spawn_place.add_child(baddie_scene.instance())
+			spawn_place.add_child(baddie_instance)
 			combined_baddie_spawns.erase(spawn_place)
 		else:
 			var line_start = spawn_place.points[0]
@@ -205,14 +214,14 @@ func spawn_enemies():
 				continue
 					
 			var random_point = line_start + chosen_step*(point_difference_vector / min_baddie_spawn_distance)
-			
+
 			print("The line_start is: "+ str(line_start))
 			print("The line_end is: " + str(line_end))
 			print("The point_difference_vector is: " + str(point_difference_vector))
 			print("The random_point is: " + str(random_point))
-			var new_baddie_instance = baddie_scene.instance()
-			spawn_place.add_child(new_baddie_instance)
-			new_baddie_instance.position = random_point
+
+			spawn_place.add_child(baddie_instance)
+			baddie_instance.position = random_point
 
 func set_spawn_baddie_type():
 	var spawn_baddie_type = {}
@@ -223,7 +232,7 @@ func set_spawn_baddie_type():
 	# Decide on the baddies that are allocated for each spawn poinmt
 	for spawn_place in combined_baddie_spawns:
 		if len(spawn_place.get_children()) == 0:
-			selected_baddie = "res://baddies/" + baddie_list[randi()%baddie_list.size()]
+			selected_baddie = "res://baddies/characters/" + baddie_list[randi()%baddie_list.size()]
 		else:
 			baddie_instance = spawn_place.get_children()[0]
 			# Remove the existing instances
@@ -249,7 +258,7 @@ func spawn_items():
 	
 func get_baddie_list():
 	var dir = Directory.new()
-	dir.open("res://baddies/")
+	dir.open("res://baddies/characters/")
 	dir.list_dir_begin()
 	var baddie_filenames = []
 	while true:

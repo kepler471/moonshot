@@ -10,14 +10,54 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node",
+"class": "Attributes",
+"language": "GDScript",
+"path": "res://baddies/Attributes.gd"
+}, {
+"base": "Node",
+"class": "BaddieBuilder",
+"language": "GDScript",
+"path": "res://procedural_map_generation/BaddieBuilder.gd"
+}, {
+"base": "Node",
+"class": "BaddieInterface",
+"language": "GDScript",
+"path": "res://baddies/BaddieInterface.gd"
+}, {
+"base": "Node",
 "class": "BaddieLaserController",
 "language": "GDScript",
 "path": "res://baddies/BaddieLaser/BaddieLaserPointer.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "BearBoi",
+"language": "GDScript",
+"path": "res://baddies/characters/BearBoi.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "BearCeilingBoi",
+"language": "GDScript",
+"path": "res://baddies/characters/BearCeilingBoi.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "BearDroppyBoi",
+"language": "GDScript",
+"path": "res://baddies/characters/BearDroppyBoi.gd"
+}, {
+"base": "Node",
+"class": "Fade",
+"language": "GDScript",
+"path": "res://Animations/Fade.gd"
 }, {
 "base": "RayCast2D",
 "class": "FloorDetector",
 "language": "GDScript",
 "path": "res://player/FloorDetector.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "FlyBoi",
+"language": "GDScript",
+"path": "res://baddies/characters/FlyBoi.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Player",
@@ -49,20 +89,34 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://baddies/TurningHack.gd"
 }, {
+"base": "KinematicBody2D",
+"class": "WallBoi",
+"language": "GDScript",
+"path": "res://baddies/characters/WallBoi.gd"
+}, {
 "base": "Node2D",
 "class": "floor_generator",
 "language": "GDScript",
 "path": "res://procedural_map_generation/floor_generator.gd"
 } ]
 _global_script_class_icons={
+"Attributes": "",
+"BaddieBuilder": "",
+"BaddieInterface": "",
 "BaddieLaserController": "",
+"BearBoi": "",
+"BearCeilingBoi": "",
+"BearDroppyBoi": "",
+"Fade": "",
 "FloorDetector": "",
+"FlyBoi": "",
 "Player": "",
 "Room": "",
 "State": "",
 "StateMachine": "",
 "Stats": "",
 "TurningHack": "",
+"WallBoi": "",
 "floor_generator": ""
 }
 
@@ -79,6 +133,7 @@ Events="*res://Autoload/Events.gd"
 Steering="*res://Autoload/Steering.gd"
 Utils="*res://Autoload/Utils.gd"
 CombatSignalController="*res://Autoload/CombatSignalController.gd"
+BaddieSpawner="*res://Autoload/BaddieSpawner.gd"
 
 [display]
 
@@ -209,6 +264,11 @@ dodge={
 "events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":1,"pressure":0.0,"pressed":false,"script":null)
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777237,"unicode":0,"echo":false,"script":null)
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":90,"unicode":0,"echo":false,"script":null)
+ ]
+}
+mouse_capture={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":77,"unicode":0,"echo":false,"script":null)
  ]
 }
 
