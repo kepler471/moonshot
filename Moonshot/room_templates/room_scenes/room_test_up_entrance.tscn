@@ -21,4 +21,17 @@ position = Vector2( -128, -8 )
 
 [node name="camera_limit_SE" type="Position2D" parent="."]
 position = Vector2( 808, 488 )
+
+[node name="level_setups" type="Node2D" parent="."]
+
+[node name="level_setup_1" type="Node" parent="level_setups"]
+
+[node name="baddie_spawn_point1" type="Position2D" parent="level_setups/level_setup_1"]
+position = Vector2( 399.282, 375.325 )
+
+[node name="baddie_spawn_point2" type="Position2D" parent="level_setups/level_setup_1"]
+position = Vector2( 139.749, 238.239 )
+
+[node name="baddie_spawn_point3" type="Position2D" parent="level_setups/level_setup_1"]
+position = Vector2( 578.959, 181.008 )
 [connection signal="body_entered" from="Exit_UP" to="." method="_on_Exit_UP_body_entered"]

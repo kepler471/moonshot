@@ -171,7 +171,7 @@ func spawn_enemies(difficulty_controller: DifficultyController):
 	
 	# If the room_difficulty wasn't setin the _init then get a random one
 	if not room_difficulty:
-		room_difficulty = difficulty_controller.random_room_difficulty()
+		room_difficulty = difficulty_controller.random_room_difficulty(room_type)
 		
 	var no_baddies = difficulty_controller.get_no_baddies_in_room(room_difficulty, room_size_x, room_size_y, max_no_baddies, min_no_baddies)
 	
