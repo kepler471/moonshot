@@ -26,7 +26,7 @@ for f in pgen.iterdir():
                     tile_data = line
 
         canvas_data[write_at] = tile_data
-        file_name = pgen / (f.name.split(".")[0] + "_CANVAS.tscn")
+        file_name = pgen / ("room_seed_" + f.name.split("_")[1])
         print(file_name)
         with open(file_name.name, "w") as new_file:
             new_file.writelines(canvas_data)
