@@ -30,6 +30,7 @@ var facing = 1
 var animation_name
 var playing_reverse
 var invulnerable = false
+var safety = false
 
 
 func _input(event):
@@ -69,7 +70,7 @@ func _physics_process(_delta) -> void:
 
 	get_node("TurnAxis").rotation = PI + (position + get_node("TurnAxis").position).angle_to_point(get_global_mouse_position())
 
-	if Input.is_action_pressed("shoot") and !cooldown:
+	if Input.is_action_pressed("shoot") and !cooldown and !safety:
 		var weapon = player_arsenal.get_weapon()
 		var shot = weapon.shoot().instance()
 
@@ -139,10 +140,12 @@ func _on_Player_health_depleted() -> void:
 
 func set_invulnerable(time : float, animation_name = "stagger") -> void:
 	invulnerable = true
+	safety = true
 	$AnimatedSprite.play(animation_name)
 	var timer = Utils.Player.get_tree().create_timer(time)
 	yield(timer, "timeout")
 	invulnerable = false
+	safety = false
 	
 
 func take_damage(damage, attack_dir) -> void:
