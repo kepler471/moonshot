@@ -39,9 +39,6 @@ func _input(event):
 
 
 func _ready() -> void:
-	
-	
-	
 	add_child(player_arsenal)
 	player_arsenal.set_weapon()
 
@@ -59,7 +56,6 @@ func _ready() -> void:
 
 
 func _physics_process(_delta) -> void:
-
 	var direction = (
 		Input.get_action_strength("move_right")
 		- Input.get_action_strength("move_left")
@@ -88,7 +84,7 @@ func _physics_process(_delta) -> void:
 
 		cooldown = false
 		
-	call_deferred("damagetile_check")
+	damagetile_check()
 
 
 func flip_facing() -> void:
