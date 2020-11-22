@@ -2,6 +2,8 @@ extends State
 # Parent state that abstracts and handles basic movement
 # Move-related children states can delegate movement to it, or use its utility functions
 
+onready var dodge_cooldown = $DodgeCooldown
+
 const PASS_THROUGH_LAYER = 3
 
 # These values allow for 5 block jump.
@@ -36,6 +38,10 @@ func unhandled_input(event: InputEvent) -> void:
 		_state_machine.transition_to("Move/Air")
 	elif event.is_action_released("move_down") and not owner.get_collision_mask_bit(PASS_THROUGH_LAYER):
 		owner.set_collision_mask_bit(PASS_THROUGH_LAYER, true)
+		
+	if event.is_action_pressed("dodge") and owner.is_on_floor() and dodge_cooldown.is_stopped():
+		dodge_cooldown.start()
+		_state_machine.transition_to("Move/Dodge")
 
 
 func physics_process(delta: float) -> void:
