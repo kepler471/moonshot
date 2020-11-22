@@ -18,7 +18,7 @@ func _init() -> void:
 		"speed": 230,
 		"inital_hp": 1.0,
 		"gravity": -10,
-		"damage_to_player": 0.2,
+		"damage_to_player": 0.02,
 		"floor_vector": Vector2(0, -1),
 		"should_damge_on_collision": true
 	})
