@@ -45,6 +45,11 @@ _global_script_classes=[ {
 "path": "res://baddies/characters/BearDroppyBoi.gd"
 }, {
 "base": "Node",
+"class": "DifficultyController",
+"language": "GDScript",
+"path": "res://procedural_map_generation/DifficultyController.gd"
+}, {
+"base": "Node",
 "class": "Fade",
 "language": "GDScript",
 "path": "res://Animations/Fade.gd"
@@ -107,6 +112,7 @@ _global_script_class_icons={
 "BearBoi": "",
 "BearCeilingBoi": "",
 "BearDroppyBoi": "",
+"DifficultyController": "",
 "Fade": "",
 "FloorDetector": "",
 "FlyBoi": "",
