@@ -45,12 +45,6 @@ var file = File.new()
 
 
 func redraw(value = null):
-#	if !Engine.is_editor_hint(): return
-#	rooms.queue_free()
-#	rooms = Node2D.new()
-#	rooms.name = "Rooms"
-#	add_child(rooms)
-#	level.clear()
 	print("redraw scene")
 	set_process(true)
 	_rng = RandomNumberGenerator.new()
@@ -66,16 +60,13 @@ func redraw(value = null):
 
 func _input(event):
 	if event.is_action_pressed("ui_accept"):
-		print(get_children())
+		for i in range(100):
+			player.queue_free()
+			redraw()
+			_save_data()
 
 	if event.is_action_pressed("ui_end"):
-#		file.open("./log.txt", File.WRITE)
-#		print(level.get_tileset().get_tiles_ids())
-#		print(level.get_used_cells_by_id(4))
-		print("saving")
-		var packed_scene = PackedScene.new()
-		packed_scene.pack(get_tree().get_current_scene())
-		ResourceSaver.save("res://MSTDungeon/test.tscn", packed_scene)
+		_save_data()
 
 	if event.is_action_pressed("ui_home"):
 		player.queue_free()
@@ -87,6 +78,12 @@ func _input(event):
 		camera.zoom = Vector2(1,1)
 
 
+func _save_data():
+	var filename = "res://MSTDungeon/room_"+String(_rng.get_seed())+".tscn"
+	print("saving ::: ", filename)
+	var packed_scene = PackedScene.new()
+	packed_scene.pack(get_tree().get_current_scene())
+	ResourceSaver.save(filename, packed_scene)
 
 
 func _ready() -> void:
@@ -176,12 +173,6 @@ func _generate() -> void:
 
 	rooms.hide()
 	rooms.queue_free()
-	# Draws the tiles on the `level` tilemap.
-#	yield(get_tree().create_timer(10), "timeout")
-
-#	for point in _data:
-#		level.set_cellv(point, 4)
-#	yield(get_tree().create_timer(2), "timeout")
 
 	print(len(_path.get_points()), " points total.")
 	print("East  ::: ", _path.get_closest_point(Vector2(-5000,0)), " ::: ", _path.get_point_position(_path.get_closest_point(Vector2(-5000,0))))
@@ -209,18 +200,16 @@ func _generate() -> void:
 	print("box end check ::: ", rect.end)
 	print("box pos check ::: ", rect.position)
 	print("box siz check ::: ", rect.size)
-#	print(level.get_used_cells_by_id())
 	level.clear()
 
 	for i in range(rect.size.x):
 		for j in range(rect.size.y):
 			var X = i+rect.position.x - 1
 			var Y = j+rect.position.y
-			level.set_cell(X, Y, 4)#, false, false, false, level.get_cell_autotile_coord(X, Y))
-#			print(level.get_cell_autotile_coord(X, Y))
+			level.set_cell(X, Y, 4)
 
 	for i in _data:
-		level.set_cell(i.x, i.y, -1)#, false, false, false, level.get_cell_autotile_coord(i.x, i.y))
+		level.set_cell(i.x, i.y, -1)
 
 	level.update_bitmask_region()
 	print(level.get_used_cells())
