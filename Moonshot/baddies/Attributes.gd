@@ -31,7 +31,7 @@ func _init():
 	fade = load("res://Animations/Fade.gd").new()
 	
 func _ready():
-	get_parent().add_child(fade)
+	get_parent().call_deferred("add_child", fade)
 	fade.set_tree(get_tree())
 
 func get_current_state() -> Dictionary:
@@ -83,9 +83,6 @@ func set_properties(attributes: Dictionary = {}):
 		set(key, new_properties[key])
 		
 	hp = new_properties.inital_hp
-	fade.set_on_fade_out_finish(funcref(body, "on_end"))
-	fade.set_fade_speed(0.05)
-	fade.set_fade_factor(0.3)
 	body.add_child(self)
 
 
@@ -129,20 +126,32 @@ func _change_direction() -> int:
 
 func _on_hit(damage: float, global_position: Vector2) -> void:
 	hp -= damage
+	_flash()
 	if hp <= 0:
 		_is_dying(global_position)
 
 func _is_dying(global_position) -> bool:
 	var new_firerate_boost = firerate_boost_drop.instance()
-
 	var room_scene = Utils.Player.get_parent()
+
 	room_scene.call_deferred('add_child', new_firerate_boost)
 	new_firerate_boost.global_position = global_position
+
+	fade.set_on_fade_out_finish(funcref(body, "on_end"))
+	fade.set_fade_speed(0.05)
+	fade.set_fade_factor(0.3)
 	dead = true
 	sprite.stop()
 	fade.fade_out()
 	return true
 
+func _flash() -> void:
+	if dead:
+		return
+
+	fade.set_fade_speed(0.02)
+	fade.set_fade_factor(0.2)
+	fade.occilate([fade.G], 0.2, 4)
 
 func _has_died() -> bool:
 	return dead == true
