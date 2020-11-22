@@ -1,7 +1,7 @@
 extends KinematicBody2D
 class_name BearDroppyBoi
 
-onready var attributes: Attributes = $Attributes
+var attributes: Attributes = preload("res://baddies/Attributes.gd").new()
 
 onready var Laser = $BaddieLaserPointer
 
@@ -17,7 +17,7 @@ var facing = 1
 var has_fallen = false
 var in_air = false
 
-func _ready() -> void:
+func _init() -> void:
 	CombatSignalController.connect("damage_baddie", self, "on_hit")
 
 	attributes.set_properties({
@@ -31,6 +31,9 @@ func _ready() -> void:
 		"floor_vector": Vector2(0, -1),
 		"should_damge_on_collision": true
 	})
+
+func _ready():
+	attributes.set_sprite($AnimatedSprite)
 
 func _physics_process(delta) -> void:
 	if attributes._has_died():

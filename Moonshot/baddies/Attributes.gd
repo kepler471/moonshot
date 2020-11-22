@@ -1,7 +1,7 @@
 extends Node
 class_name Attributes
 
-onready var fade: Fade = $Fade
+onready var fade: Fade
 
 var firerate_boost_drop = load("res://items_objects/FireRatePickup.tscn")
 enum Direction {
@@ -27,10 +27,11 @@ var shot_damage = 0.5
 var item_drop = null
 var on_death: FuncRef
 
+func _init():
+	fade = load("res://Animations/Fade.gd").new()
+	
 func _ready():
-	fade.set_fade_speed(0.04)
-	fade.set_fade_factor(0.03)
-	fade.set_tree(get_tree())
+	get_parent().add_child(fade)
 
 func get_current_state() -> Dictionary:
 	return {
@@ -69,26 +70,32 @@ func _get_default_baddie_attributes():
 		"item_drop": null
 	}
 
-func patch(patch = {}) -> void:
+func patch(patch = {}):
 	var new_properties = Utils.merge_dictionary(get_current_state(), patch)
 	for key in new_properties:
 		set(key, new_properties[key])
-	
 
-func set_properties(attributes: Dictionary = {}) -> void:
+	
+func set_properties(attributes: Dictionary = {}):
 	var new_properties = Utils.merge_dictionary(_get_default_baddie_attributes(), attributes)
 	for key in new_properties:
 		set(key, new_properties[key])
 		
 	hp = new_properties.inital_hp
-	fade.set_sprite(sprite)
 	fade.set_on_fade_out_finish(funcref(body, "on_end"))
+	fade.set_fade_speed(0.001)
+	fade.set_fade_factor(0.01)
+	fade.set_tree(get_tree())
 
 func get(key: String, fallback = null):
-	return self[key] || fallback
+	return self[key] if self[key] != null else fallback
 
-func set(key: String, value) -> void:
+func set(key: String, value):
 	self[key] = value
+
+func set_sprite(s: AnimatedSprite) -> void:
+	sprite = s
+	fade.set_sprite(sprite)
 
 func flip_sprite_horizontal() -> void:
 	sprite.flip_h = !sprite.flip_h
