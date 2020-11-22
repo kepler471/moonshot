@@ -7,7 +7,7 @@ onready var Laser = $BaddieLaserPointer
 
 const HP_MAX := 1.0
 const ARMOR := 5.0
-const DAMAGE_TO_PLAYER := 0.2
+const DAMAGE_TO_PLAYER := 0.02
 const DAMAGE_MULTIPLIER := 5.0
 const Animations := {
 	"RUSH": "rush"

@@ -3,9 +3,6 @@ class_name FlyBoi
 
 var attributes: Attributes = preload("res://baddies/Attributes.gd").new()
 
-const GRAVITY := 0
-const ACCELERATION := 25
-const HP_MAX := 0.5
 const BOUNCE_FACTOR := 0.7
 
 var bounce := 0.7;
@@ -18,7 +15,7 @@ func _init() -> void:
 	
 	attributes.set_properties({
 		"body": self,
-		"inital_hp": HP_MAX,
+		"inital_hp": 0.5,
 		"gravity": 0,
 		"speed": 300,
 		"floor_vector": Vector2(0, -1),
@@ -44,12 +41,10 @@ func _physics_process(delta) -> void:
 
 	if is_on_ceiling():
 		bounce = BOUNCE_FACTOR
-		attributes.speed += ACCELERATION
 		attributes.velocity.y += 100
 
 	if is_on_floor():
 		bounce -= BOUNCE_FACTOR
-		attributes.speed +=ACCELERATION
 		attributes.velocity.y -= 100
 
 	if is_on_wall():
