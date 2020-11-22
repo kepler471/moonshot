@@ -1,7 +1,7 @@
 extends KinematicBody2D
 class_name WallBoi
 
-onready var attributes: Attributes = $Attributes
+var attributes: Attributes = preload("res://baddies/Attributes.gd").new()
 onready var Laser = $BaddieLaserPointer
 
 const GRAVITY := -0
@@ -13,7 +13,7 @@ const Animations := {
 	"RUSH": "rush"
 }
 
-func _ready() -> void:
+func _init() -> void:
 	CombatSignalController.connect("damage_baddie", self, "on_hit")
 	attributes.set_properties({
 		"inital_hp": HP_MAX,
@@ -27,6 +27,8 @@ func _ready() -> void:
 		"damage_to_player": DAMAGE_TO_PLAYER
 	})
 
+func _ready():
+	attributes.set_sprite($AnimatedSprite)
 	Laser.set_upper_shot_frequency(1)
 	Laser.set_shot_speed(attributes.shot_speed)
 	Laser.set_damage(attributes.shot_damage)

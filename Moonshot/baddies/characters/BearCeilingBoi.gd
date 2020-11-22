@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-onready var attributes: Attributes = $Attributes
+var attributes: Attributes = preload("res://baddies/Attributes.gd").new()
 onready var Laser = $BaddieLaserPointer
 class_name BearCeilingBoi
 
@@ -8,7 +8,7 @@ const Animations := {
 	"RUSH": "rush"
 }
 
-func _ready() -> void:
+func _init() -> void:
 	CombatSignalController.connect("damage_baddie", self, "on_hit")
 	
 	attributes.set_properties({
@@ -23,6 +23,8 @@ func _ready() -> void:
 		"should_damge_on_collision": true
 	})
 
+func _ready():
+	attributes.set_sprite($AnimatedSprite)
 	Laser.set_upper_shot_frequency(1)
 	Laser.set_shot_speed(attributes.shot_speed)
 	Laser.set_damage(attributes.shot_damage)
