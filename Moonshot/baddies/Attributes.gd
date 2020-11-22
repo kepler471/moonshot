@@ -125,21 +125,22 @@ func _check_player_colision() -> bool:
 func _change_direction() -> int:
 	return Direction.RIGHT if direction == Direction.LEFT else Direction.LEFT
 
-func _on_hit(damage: float) -> void:
+func _on_hit(damage: float, global_position: Vector2) -> void:
 	hp -= damage
 	if hp <= 0:
-		_is_dying()
+		_is_dying(global_position)
 
-func _is_dying() -> bool:
-	dead = true
+func _is_dying(global_position) -> bool:
 	var new_firerate_boost = firerate_boost_drop.instance()
-	var main_scene = get_tree().get_root().get_children()[0]
-	main_scene.call_deferred('add_child', new_firerate_boost)
-	new_firerate_boost.global_position = self.get_parent().global_position
+
+	var room_scene = Utils.Player.get_parent()
+	room_scene.call_deferred('add_child', new_firerate_boost)
+	new_firerate_boost.global_position = global_position
+	dead = true
 	sprite.stop()
 	fade.fade_out()
-
 	return true
+
 
 func _has_died() -> bool:
 	return dead == true
