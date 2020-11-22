@@ -8,16 +8,6 @@ var max_level = 5
 var chance_to_change_room_difficulty = 0.4
 # Multiplier of the individually controlled scaling factors
 var global_difficulty_scaling = 1
-var no_baddies_scaling_factor = 1.2
-# Each attribute has a scaling factor that controls how quickly it scales with level
-# Each attribute also has a max and min value for the first level
-var baddie_attributes_scaled = {
-		"inital_hp": {"min_lvl_1": 1.0, "max_lvl_1": 1.0, "scaling_factor": 1.1},
-		"speed": {"min_lvl_1": 230, "max_lvl_1": 230, "scaling_factor": 1.1},
-		"damage_to_player": {"min_lvl_1": 0.02, "max_lvl_1": 0.02, "scaling_factor": 1.1},
-		"shot_speed": {"min_lvl_1": 500, "max_lvl_1": 500, "scaling_factor": 1.1},
-		"shot_damage": {"min_lvl_1": 0.4, "max_lvl_1": 0.4, "scaling_factor": 1.1}
-	}
 
 var other_attributes = {"item_drop": null}
 
@@ -47,6 +37,7 @@ func random_room_difficulty():
 # Room.gd
 func get_no_baddies_in_room(room_difficulty, room_size_x, room_size_y, max_baddies, min_baddies):
 	var max_difficulty_rating = room_size_x*room_size_y
+	var no_baddies_scaling_factor = 1.2
 	for i in range(max_level):
 		max_difficulty_rating = pow(max_difficulty_rating, global_difficulty_scaling*no_baddies_scaling_factor)
 
@@ -59,21 +50,23 @@ func get_no_baddies_in_room(room_difficulty, room_size_x, room_size_y, max_baddi
 	return no_baddies
 	
 # For a specific baddie type and room difficulty, return the baddie_instance
-func get_baddie_instance(baddie_scene, room_difficulty):
-	
-	var attributes = get_random_attributes(room_difficulty)
-		# This is here for demonstrative purposes and does nothing 
+func get_baddie_instance(baddie_name, room_difficulty):
+	var baddie_scene = load(baddie_name)
 	var builder: BaddieBuilder = baddie_builder.new(baddie_scene)
+	var attributes = get_random_attributes(room_difficulty, builder, baddie_name)
+
+
 	var baddie_instance = builder.patch_attributes(attributes).build()
 	return baddie_instance
 	
 # Average attributes should be at level no, but can be distributed randomly
-func get_random_attributes(room_difficulty):
+func get_random_attributes(room_difficulty: int, baddie_builder: BaddieBuilder, baddie_name: String):
 	# In the first step assign 'points' to attributes, the points determine
 	# the level of that attribute
+	var baddie_attributes = get_baddie_specific_attributes(baddie_name)
 	var attribute_levels = {}
 	var attributes = {}
-	var baddie_attribute_names = baddie_attributes_scaled.keys()
+	var baddie_attribute_names = baddie_attributes.keys()
 	for attr in baddie_attribute_names:
 		attribute_levels[attr] = 1
 		
@@ -84,14 +77,14 @@ func get_random_attributes(room_difficulty):
 	
 	# In the second step set the attribute values randomly based on the level
 	for attr in baddie_attribute_names:
-		var min_attr_val = baddie_attributes_scaled[attr]['min_lvl_1']
-		var max_attr_val = baddie_attributes_scaled[attr]['max_lvl_1']
-		var scale_factor = baddie_attributes_scaled[attr]['scaling_factor']
-		var rand_attr_value = rand_range(min_attr_val, max_attr_val)
-		var scaled_attr_val = rand_attr_value
-		# Keep increasing it up to the
-		for i in range(room_difficulty):
-			scaled_attr_val = pow(scaled_attr_val, scale_factor*global_difficulty_scaling)
+		# Fetch the default for this attribute
+		var default_attr = baddie_builder.get_attribute(attr)
+		var min_attr_factor = baddie_attributes[attr]['min_lvl_1_factor']
+		var max_attr_factor = baddie_attributes[attr]['max_lvl_1_factor']
+		var scale_factor = baddie_attributes[attr]['scaling_factor']
+		var rand_attr_factor = rand_range(min_attr_factor, max_attr_factor)
+		# Scale based on the attribute level and scale factor
+		var scaled_attr_val = rand_attr_factor*default_attr*pow(scale_factor*global_difficulty_scaling, attribute_levels[attr])
 		
 		attributes[attr] = scaled_attr_val
 
@@ -101,4 +94,45 @@ func get_random_attributes(room_difficulty):
 	for key in other_attributes:
 		attributes[key] = other_attributes[key]
 	
+	return attributes
+
+# Fine grained control over the attributes
+# Each attribute has a scaling factor that controls how quickly it scales with level
+# Each attribute also has a max and min fctor for the first level
+func get_baddie_specific_attributes(baddie_name: String):
+	var attributes 
+	if baddie_name.ends_with("BearBoi.tscn"):
+		attributes = {
+			"inital_hp": {"min_lvl_1_factor": 0.8, "max_lvl_1_factor": 1.2, "scaling_factor": 1.1},
+			"speed": {"min_lvl_1_factor": 0.8, "max_lvl_1_factor": 1.2, "scaling_factor": 1.1},
+			"damage_to_player": {"min_lvl_1_factor": 0.8, "max_lvl_1_factor": 1.2, "scaling_factor": 1.1}
+		}
+	elif baddie_name.ends_with("BearCeilingBoi.tscn"):
+			attributes = {
+				"inital_hp": {"min_lvl_1_factor": 0.8, "max_lvl_1_factor": 1.2, "scaling_factor": 1.1},
+				"speed": {"min_lvl_1_factor": 0.8, "max_lvl_1_factor": 1.2, "scaling_factor": 1.1},
+				"damage_to_player": {"min_lvl_1_factor": 0.8, "max_lvl_1_factor": 1.2, "scaling_factor": 1.1},
+				"shot_speed": {"min_lvl_1_factor": 0.8, "max_lvl_1_factor": 1.2, "scaling_factor": 1.1},
+				"shot_damage": {"min_lvl_1_factor": 0.8, "max_lvl_1_factor": 1.2, "scaling_factor": 1.1}
+			}
+	elif baddie_name.ends_with("BearDroppyBoi.tscn"):
+			attributes = {
+				"inital_hp": {"min_lvl_1_factor": 0.8, "max_lvl_1_factor": 1.2, "scaling_factor": 1.1},
+				"speed": {"min_lvl_1_factor": 0.8, "max_lvl_1_factor": 1.2, "scaling_factor": 1.1},
+				"damage_to_player": {"min_lvl_1_factor": 0.8, "max_lvl_1_factor": 1.2, "scaling_factor": 1.1},
+			}
+	elif baddie_name.ends_with("FlyBoi.tscn"):
+			attributes = {
+				"inital_hp": {"min_lvl_1_factor": 0.8, "max_lvl_1_factor": 1.2, "scaling_factor": 1.1},
+				"speed": {"min_lvl_1_factor": 0.8, "max_lvl_1_factor": 1.2, "scaling_factor": 1.1},
+				"damage_to_player": {"min_lvl_1_factor": 0.8, "max_lvl_1_factor": 1.2, "scaling_factor": 1.1},
+			}
+	elif baddie_name.ends_with("WallBoi.tscn"):
+			attributes = {
+				"inital_hp": {"min_lvl_1_factor": 0.8, "max_lvl_1_factor": 1.2, "scaling_factor": 1.1},
+				"speed": {"min_lvl_1_factor": 0.8, "max_lvl_1_factor": 1.2, "scaling_factor": 1.1},
+				"damage_to_player": {"min_lvl_1_factor": 0.8, "max_lvl_1_factor": 1.2, "scaling_factor": 1.1},
+				"shot_speed": {"min_lvl_1_factor": 0.8, "max_lvl_1_factor": 1.2, "scaling_factor": 1.1},
+				"shot_damage": {"min_lvl_1_factor": 0.8, "max_lvl_1_factor": 1.2, "scaling_factor": 1.1}
+			}
 	return attributes

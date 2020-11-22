@@ -155,7 +155,7 @@ func get_spawn_nodes():
 			
 			
 # Spawns a number of enemies based on the level and size of the room
-func spawn_enemies(difficulty_controller):
+func spawn_enemies(difficulty_controller: DifficultyController):
 	room_size_x = (room_instance.get_node('camera_limit_SE').position.x - room_instance.get_node('camera_limit_NW').position.x)
 	room_size_y = (room_instance.get_node('camera_limit_SE').position.y - room_instance.get_node('camera_limit_NW').position.y)
 	# Minimum no of enemies must be less than 3
@@ -185,10 +185,10 @@ func spawn_enemies(difficulty_controller):
 	for i in range(no_baddies):
 		# Select a random spawn point/line
 		var spawn_place = combined_baddie_spawns[randi()%combined_baddie_spawns.size()]
-		var baddie_scene = baddie_type_per_spawn[spawn_place.name]
+		var baddie_name = baddie_type_per_spawn[spawn_place.name]
 
 		# This is here for demonstrative purposes and does nothing 
-		var baddie_instance = difficulty_controller.get_baddie_instance(baddie_scene, room_difficulty)
+		var baddie_instance = difficulty_controller.get_baddie_instance(baddie_name, room_difficulty)
 
 		# Create an empty dictionary to keep trackof where baddies have been placed
 		if not baddie_location_per_spawn_line.has(spawn_place.name):
@@ -225,7 +225,7 @@ func spawn_enemies(difficulty_controller):
 			spawn_place.add_child(baddie_instance)
 			baddie_instance.position = random_point
 
-func set_spawn_baddie_type():
+func set_spawn_baddie_type() -> String:
 	var spawn_baddie_type = {}
 	var selected_baddie
 	var baddie_instance
@@ -246,7 +246,7 @@ func set_spawn_baddie_type():
 			selected_baddie = selected_baddie.replace('.gd', '.tscn')
 		
 		# Load the baddie scene
-		spawn_baddie_type[spawn_place.name] = load(selected_baddie)
+		spawn_baddie_type[spawn_place.name] = selected_baddie
 	return spawn_baddie_type
 	
 # Spawnsmitems at the item locations
