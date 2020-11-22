@@ -39,6 +39,9 @@ var rooms
 var camera
 var player
 
+var file = File.new()
+
+
 
 
 func redraw(value = null):
@@ -65,6 +68,15 @@ func _input(event):
 	if event.is_action_pressed("ui_accept"):
 		print(get_children())
 
+	if event.is_action_pressed("ui_end"):
+#		file.open("./log.txt", File.WRITE)
+#		print(level.get_tileset().get_tiles_ids())
+#		print(level.get_used_cells_by_id(4))
+		print("saving")
+		var packed_scene = PackedScene.new()
+		packed_scene.pack(get_tree().get_current_scene())
+		ResourceSaver.save("res://MSTDungeon/test.tscn", packed_scene)
+
 	if event.is_action_pressed("ui_home"):
 		player.queue_free()
 		redraw()
@@ -79,6 +91,8 @@ func _input(event):
 
 func _ready() -> void:
 	if Engine.is_editor_hint(): return
+	# TODO: run a loop of redraws, save the _data, save the scene or tilemap node if possible, without player and with all exits, or from base canvas
+	set_process(true)
 	_rng.randomize()
 	_generate()
 
@@ -139,22 +153,6 @@ func _process(delta: float) -> void:
 			level.set_cellv(offset, 0)
 
 
-# This is for visual feedback. We draw red lines for the MST path, and green lines for
-# the extra edges we re-add.
-func _draw() -> void:
-	if _path == null:
-		return
-
-	for point1_id in _path.get_points():
-		var point1_position := _path.get_point_position(point1_id)
-		for point2_id in _path.get_point_connections(point1_id):
-			var point2_position := _path.get_point_position(point2_id)
-			draw_line(point1_position, point2_position, Color.red, 20)
-
-	if not _draw_extra.empty():
-		for pair in _draw_extra:
-			draw_line(pair[0], pair[1], Color.green, 20)
-
 # Places the rooms and starts the physics simulation. Once the simulation is done
 # ("rooms_placed" gets emitted), it continues by assigning tiles in the Level node.
 func _generate() -> void:
@@ -180,7 +178,7 @@ func _generate() -> void:
 	rooms.queue_free()
 	# Draws the tiles on the `level` tilemap.
 #	yield(get_tree().create_timer(10), "timeout")
-	level.clear()
+
 #	for point in _data:
 #		level.set_cellv(point, 4)
 #	yield(get_tree().create_timer(2), "timeout")
@@ -207,32 +205,25 @@ func _generate() -> void:
 	print("world west ::: ", level.world_to_map(west))
 
 	print(level.get_used_cells())
-	print("box end check ::: ", level.get_used_rect().end)
-	print("box pos check ::: ", level.get_used_rect().position)
-	print("box siz check ::: ", level.get_used_rect().size)
-#	print(level.get_used_cells_by_id())
 	var rect = level.get_used_rect()
-	print(level.get_used_rect())
+	print("box end check ::: ", rect.end)
+	print("box pos check ::: ", rect.position)
+	print("box siz check ::: ", rect.size)
+#	print(level.get_used_cells_by_id())
+	level.clear()
 
-	for i in range(100):
-#	for i in range(rect.size.x):
-		for j in range(100):
-#		for j in range(rect.size.y):
-#			i += rect.position.x
-#			j += rect.position.y
-#			print(i+rect.position.x, j+rect.position.y)
-
-#			if Vector2(i+rect.position.x,j+rect.position.y) in _data:
-#				print(Vector2(i+rect.position.x,j+rect.position.y), " is in data.")
-#				level.set_cell(i+rect.position.x,j+rect.position.x, -1)
-#			else:
-			var X = i+rect.position.x - 50
-			var Y = j+rect.position.y - 50
-			level.set_cell(X, Y, 4, false, false, false, level.get_cell_autotile_coord(X, Y))
+	for i in range(rect.size.x):
+		for j in range(rect.size.y):
+			var X = i+rect.position.x - 1
+			var Y = j+rect.position.y
+			level.set_cell(X, Y, 4)#, false, false, false, level.get_cell_autotile_coord(X, Y))
+#			print(level.get_cell_autotile_coord(X, Y))
 
 	for i in _data:
-		level.set_cell(i.x, i.y, 18, false, false, false, level.get_cell_autotile_coord(i.x, i.y))
+		level.set_cell(i.x, i.y, -1)#, false, false, false, level.get_cell_autotile_coord(i.x, i.y))
 
+	level.update_bitmask_region()
+	print(level.get_used_cells())
 	Utils.reset_player()
 	player = Utils.Player
 	add_child(player)
@@ -240,7 +231,6 @@ func _generate() -> void:
 	camera = Utils.Player.get_node("Camera2D")
 	camera.current = true
 
-#
 
 
 # Adds room tile positions to `_data`.
