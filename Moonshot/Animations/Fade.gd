@@ -22,8 +22,9 @@ func fade_in(counter: float = 0.0) -> void:
 		if sceneTree != null:
 			yield(sceneTree.create_timer(fade_speed), "timeout")
 
-		sprite.modulate.a = counter
-		fade_in(counter + fade_factor)
+		if sprite != null:	
+			sprite.modulate.a = counter
+			fade_in(counter + fade_factor)
 
 	else:
 		has_faded_in = true
@@ -35,9 +36,10 @@ func fade_out(counter: float = 1.0) -> void:
 
 		if sceneTree != null:
 			yield(sceneTree.create_timer(fade_speed), "timeout")
-
-		sprite.modulate.a = counter
-		fade_out(counter - fade_factor)
+	
+		if sprite != null:
+			sprite.modulate.a = counter
+			fade_out(counter - fade_factor)
 
 	else:
 		has_faded = true
