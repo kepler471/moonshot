@@ -21,8 +21,10 @@ func _init(level):
 # Generates a room difficulty score, from 1 - 7. Level 1 rooms should 
 # mainly have a room difficulty score of 1, but some level 2 etc. End level rooms
 # will have a significantly higher difficulty.
-func random_room_difficulty():
+func random_room_difficulty(room_type):
 	var room_difficulty = current_level
+	if room_type == 'Boss':
+		return room_difficulty + 2
 	if rand_range(0, 1) < chance_to_change_room_difficulty:
 		if rand_range(0, 1) < 0.5:
 			room_difficulty += 1
