@@ -2,7 +2,7 @@ extends Node
 class_name Room
 
 var baddie_builder = load("res://procedural_map_generation/BaddieBuilder.gd")
-
+var DifficultyController = load("res://procedural_map_generation/DifficultyController.gd")
 #What type of room it is
 var room_type
 var type_scene
@@ -16,6 +16,7 @@ var level_no
 var room_size_x
 var room_size_y
 var difficulty_rating 
+var room_difficulty
 # Controls how quickly the levels get harder as the levels go up. set between 0.5 - 1
 var scaling_factor = 0.75
 # Distance between enemy spawns on a line
@@ -31,7 +32,7 @@ var loot_destroyable_objects =[]
 # Type of room that need to be considered
 const ROOM_TYPES : Array = ["Boss", "Reward", "Route", "CurrentLocation"]
 
-func _init(type, con: Array, level: int, template_name=null):
+func _init(type, con: Array, level: int, template_name=null, difficulty=null):
 	if ROOM_TYPES.has(type):
 		room_type = type
 	else:
@@ -46,6 +47,10 @@ func _init(type, con: Array, level: int, template_name=null):
 		room_template_name = template_name
 		# Load in the corresponding template
 		load_template(room_template_name)
+	
+	if difficulty:
+		room_difficulty = difficulty
+		
 
 func set_type_graphic(type):
 	# Add the minimap graphics
@@ -112,9 +117,10 @@ func instance():
 	randomize()
 	room_instance = room_scene.instance()
 	var setup_room_bool = select_level_setup()
+	var difficulty_controller : DifficultyController = DifficultyController.new(level_no)
 	if setup_room_bool:
 		get_spawn_nodes()
-		spawn_enemies()
+		spawn_enemies(difficulty_controller)
 		spawn_items()
 	room_instanced = true
 	
@@ -149,7 +155,7 @@ func get_spawn_nodes():
 			
 			
 # Spawns a number of enemies based on the level and size of the room
-func spawn_enemies():
+func spawn_enemies(difficulty_controller):
 	room_size_x = (room_instance.get_node('camera_limit_SE').position.x - room_instance.get_node('camera_limit_NW').position.x)
 	room_size_y = (room_instance.get_node('camera_limit_SE').position.y - room_instance.get_node('camera_limit_NW').position.y)
 	# Minimum no of enemies must be less than 3
@@ -163,12 +169,12 @@ func spawn_enemies():
 		max_no_baddies += distance / min_baddie_spawn_distance
 	max_no_baddies = round(max_no_baddies)
 	
-	var max_difficult_rating = room_size_x*room_size_y*pow(5, scaling_factor)
-	var difficulty_rating = rand_range(0.3, 1)*room_size_x*room_size_y*pow(level_no, scaling_factor)
-	var scaled_difficulty_rating = difficulty_rating / max_difficult_rating
-	var no_baddies =  round(scaled_difficulty_rating*max_no_baddies)
-	print("The number of baddies is: " + str(no_baddies))
-	print("The scaled_difficulty_rating is: " + str(scaled_difficulty_rating))
+	# If the room_difficulty wasn't setin the _init then get a random one
+	if not room_difficulty:
+		room_difficulty = difficulty_controller.random_room_difficulty()
+		
+	var no_baddies = difficulty_controller.get_no_baddies_in_room(room_difficulty, room_size_x, room_size_y, max_no_baddies, min_no_baddies)
+	
 	# Retrieve list of enemies and attributes of enemies (spawn on ground/air/wall + size + difficulty)
 	# Keeps track of the location of baddies on the spawn line so that they don't overlap and trigger spawn issues
 	var baddie_location_per_spawn_line = {}
@@ -182,11 +188,7 @@ func spawn_enemies():
 		var baddie_scene = baddie_type_per_spawn[spawn_place.name]
 
 		# This is here for demonstrative purposes and does nothing 
-		var builder: BaddieBuilder = baddie_builder.new(baddie_scene)
-		var baddie_instance = builder.patch_attributes({
-			builder.attr.GRAVITY: builder.get_attribute(builder.attr.GRAVITY),
-			builder.attr.SPEED: builder.get_attribute(builder.attr.SPEED),
-		}).build()
+		var baddie_instance = difficulty_controller.get_baddie_instance(baddie_scene, room_difficulty)
 
 		# Create an empty dictionary to keep trackof where baddies have been placed
 		if not baddie_location_per_spawn_line.has(spawn_place.name):

@@ -52,7 +52,7 @@ func get_current_state() -> Dictionary:
 		"on_death": on_death
 	}
 
-func _get_default_baddie_attributes():
+static func _get_default_baddie_attributes():
 	return {
 		"inital_hp": 1.0,
 		"gravity": 10,
