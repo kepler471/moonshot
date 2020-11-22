@@ -2,6 +2,7 @@ extends KinematicBody2D
 class_name BearDroppyBoi
 
 var attributes: Attributes = preload("res://baddies/Attributes.gd").new()
+
 onready var Laser = $BaddieLaserPointer
 
 const HP_MAX := 1.0
@@ -36,6 +37,7 @@ func _ready():
 
 func _physics_process(delta) -> void:
 	if attributes._has_died():
+
 		return
 
 	var collided_with_player: bool = attributes._check_player_colision()

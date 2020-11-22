@@ -44,6 +44,7 @@ func _ready() -> void:
 
 	CombatSignalController.connect("damage_player", self, "take_damage")
 	CombatSignalController.connect("get_player_global_position", self, "_emit_position")
+	CombatSignalController.connect("get_player_global_position_drop", self, "_emit_position_drop")
 
 
 	if not OS.is_debug_build():
@@ -59,7 +60,7 @@ func _physics_process(_delta) -> void:
 		Input.get_action_strength("move_right")
 		- Input.get_action_strength("move_left")
 		)
-
+	CombatSignalController.emit_signal("emit_player_global_position_drop", $TurnAxis.global_position)
 	set_facing(direction)
 		
 	set_animation()
@@ -78,8 +79,8 @@ func _physics_process(_delta) -> void:
 		shot.rotation = get_node("TurnAxis").rotation
 
 		get_parent().add_child(shot)
-
-		yield(get_tree().create_timer(weapon.fire_speed), "timeout")
+		var timer_delay = weapon.fire_speed/Utils.player_stats.modifiers['firerate']
+		yield(get_tree().create_timer(timer_delay), "timeout")
 
 		cooldown = false
 
@@ -154,9 +155,12 @@ func take_damage(damage, attack_dir) -> void:
 		state_machine.transition_to("Move/Stagger", {"previous" : state_machine.state, "direction" : attack_dir})
 	if Utils.player_stats.health <= 0:
 		on_death()
+		
+	Utils.player_stats.take_damage(1)
 
 func add_health(health):
-	Utils.player_stats.health += health
+	var new_health = Utils.player_stats.health + health
+	Utils.player_stats.health = min(Utils.player_stats.max_health, new_health)
 
 
 func on_death() -> void:
@@ -166,3 +170,4 @@ func on_death() -> void:
 
 func _emit_position() -> void:
 	CombatSignalController.emit_signal("emit_player_global_position", $TurnAxis.global_position)
+	

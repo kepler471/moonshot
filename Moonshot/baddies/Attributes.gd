@@ -3,6 +3,7 @@ class_name Attributes
 
 onready var fade: Fade
 
+var firerate_boost_drop = load("res://items_objects/FireRatePickup.tscn")
 enum Direction {
 	LEFT = -1,
 	RIGHT = 1
@@ -131,8 +132,13 @@ func _on_hit(damage: float) -> void:
 
 func _is_dying() -> bool:
 	dead = true
+	var new_firerate_boost = firerate_boost_drop.instance()
+	var main_scene = get_tree().get_root().get_children()[0]
+	main_scene.call_deferred('add_child', new_firerate_boost)
+	new_firerate_boost.global_position = self.get_parent().global_position
 	sprite.stop()
 	fade.fade_out()
+
 	return true
 
 func _has_died() -> bool:

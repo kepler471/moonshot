@@ -14,13 +14,35 @@ func _ready():
 func build_hud():
 	$GUI.add_child(minimap.minimap_node)
 	minimap.minimap_node.position = Vector2(900, 500)
+	Utils.player_stats.connect("firerate_changed",self,"update_firerate_hud") #signal from BaseRoom.gd
+	update_firerate_hud(Utils.player_stats.modifiers['firerate_pickups'], Utils.player_stats.current_firerate_level)
 
 func _process(delta):
-	var new_health_bar_size = (Utils.player_stats.health*100) / Utils.player_stats.max_health
+	var new_health_bar_size = (Utils.player_stats.health*154) / Utils.player_stats.max_health
+	var health_bar = get_node("GUI/MarginContainer/VBoxContainer/VBoxContainer3/VBoxContainer2/HBoxContainer2/HealthBar")
 	if new_health_bar_size > 0:
-		get_node("GUI/ColorRect").rect_size.y = new_health_bar_size
+		health_bar.rect_min_size.x = new_health_bar_size
 	else:
-		get_node("GUI/ColorRect").rect_size.y = 0
+		health_bar.rect_min_size.x = 0
+	update_firerate_hud(Utils.player_stats.modifiers['firerate_pickups'], Utils.player_stats.current_firerate_level)
+
+func update_firerate_hud(new_firerate, firerate_level):
+	var firerate_level_path = "/root/GUI/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/ColorRect/Level"
+	for level in range(1, Utils.player_stats.max_firerate_level):
+		var level_box = find_node('Level' + str(level))
+		if level < firerate_level:
+			level_box.color = Color8(21, 184, 39)
+		else:
+			level_box.color = Color8(27, 66, 147)
+			
+	# Now scale the power par to leveling up the firerate
+	var remainder_firerate_pickups = Utils.player_stats.modifiers['firerate_pickups'] % Utils.player_stats.no_firerate_pickups_to_increase_firerate
+	var new_firerate_bar_size = remainder_firerate_pickups*104 / Utils.player_stats.no_firerate_pickups_to_increase_firerate
+	var firerate_bar = find_node("FirerateIncBar")
+	if new_firerate_bar_size  > 0:
+		firerate_bar.rect_size.y = new_firerate_bar_size
+	else:
+		firerate_bar.rect_size.y = 0
 		
 func start_level(level_num):
 	
@@ -46,7 +68,7 @@ func get_room_instance(index):
 		room.instance()
 		
 	current_room_node = room.get_instance()
-	connect_exit_signal()
+
 	
 	
 func connect_exit_signal():
