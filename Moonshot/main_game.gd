@@ -68,7 +68,7 @@ func get_room_instance(index):
 		room.instance()
 		
 	current_room_node = room.get_instance()
-
+	connect_exit_signal()
 	
 	
 func connect_exit_signal():
