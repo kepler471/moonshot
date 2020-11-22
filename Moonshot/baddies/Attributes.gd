@@ -32,7 +32,6 @@ func _init():
 	
 func _ready():
 	get_parent().add_child(fade)
-	fade.set_tree(get_tree())
 
 func get_current_state() -> Dictionary:
 	return {
@@ -84,10 +83,9 @@ func set_properties(attributes: Dictionary = {}):
 		
 	hp = new_properties.inital_hp
 	fade.set_on_fade_out_finish(funcref(body, "on_end"))
-	fade.set_fade_speed(0.05)
-	fade.set_fade_factor(0.3)
-	body.add_child(self)
-
+	fade.set_fade_speed(0.001)
+	fade.set_fade_factor(0.01)
+	fade.set_tree(get_tree())
 
 func get(key: String, fallback = null):
 	return self[key] if self[key] != null else fallback
