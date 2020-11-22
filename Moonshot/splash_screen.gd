@@ -3,6 +3,9 @@ extends Node2D
 
 func _ready():
 	add_child(Utils.Player)
+	Utils.Player.position = Vector2(80, 350)
+	Utils.Player.get_node('Camera2D').current = false
+	$Camera2D.current = true
 	
 func _process(delta):
 	# Player has died	
