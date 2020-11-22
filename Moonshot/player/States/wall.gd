@@ -7,7 +7,7 @@ export var slide_acceleration := 1600.0
 export var max_slide_speed := 200.0
 export (float, 0.0, 1.0) var friction_factor := 0.15
 
-export var jump_strength := Vector2(500.0, 800.0)
+export var jump_strength := Vector2(500.0, 900.0)
 var _wall_normal := -1
 var _velocity := Vector2.ZERO
 var wall_grace_counter = 0
@@ -55,7 +55,6 @@ func enter(msg: Dictionary = {}) -> void:
 
 
 func exit() -> void:
-	owner.ledge_wall_detector.scale.x *= -1
 	_parent.exit()
 
 
@@ -67,3 +66,4 @@ func jump() -> void:
 		wall_jump = true
 	}
 	_state_machine.transition_to("Move/Air", msg)
+
