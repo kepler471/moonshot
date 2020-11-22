@@ -32,6 +32,7 @@ tile_set = ExtResource( 4 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 format = 1
+tile_data = PoolIntArray( 327681, 4, 196608, 327682, 4, 196609, 327683, 4, 196610 )
 
 [node name="Exit_UP" parent="." instance=ExtResource( 1 )]
 position = Vector2( 244.743, 71.6002 )
