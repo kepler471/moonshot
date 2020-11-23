@@ -139,7 +139,7 @@ Events="*res://Autoload/Events.gd"
 Steering="*res://Autoload/Steering.gd"
 Utils="*res://Autoload/Utils.gd"
 CombatSignalController="*res://Autoload/CombatSignalController.gd"
-BaddieSpawner="*res://Autoload/BaddieSpawner.gd"
+TileSheetLoader="*res://Autoload/TileSheetLoader.gd"
 
 [display]
 
