@@ -8,10 +8,12 @@ var theta : float # global rotation
 var turn_max := PI
 var max_speed := 2.0
 var acceleration := 6.0
+var dir : float
 var coll
 var damage := 0.02
 var cooldown := false
 var cooldown_timer :=  0.1
+var facing = 1
 
 
 func _get_configuration_warning() -> String:
@@ -39,7 +41,7 @@ func _ready():
 
 func _physics_process(delta) -> void:
 	theta = get_global_rotation()
-	phi = get_global_position().angle_to_point(Utils.Player.get_node("TurnAxis").get_global_position() - $RayCast2D.get_cast_to()) - theta
+	phi = get_global_position().angle_to_point(Utils.Player.get_node("TurnAxis").get_global_position() - 0.75 * $RayCast2D.get_cast_to()) - theta
 
 	attributes.velocity += Vector2.LEFT.rotated(theta + phi).normalized() * acceleration * delta
 	attributes.velocity = attributes.velocity.clamped(max_speed)
@@ -48,10 +50,22 @@ func _physics_process(delta) -> void:
 	if $RayCast2D.is_colliding() and not cooldown:
 		drop_blob()
 
+	dir = Utils.Player.get_global_position().x - get_global_position().x
+	
+	if sign(dir) == 0:
+		pass
+	elif sign(dir) != sign(facing):
+		flip_body()
 
-func on_hit(instance_id, damage) -> void:
-	if instance_id == self.get_instance_id() && !attributes._has_died():
-		attributes._on_hit(damage, global_position)
+
+func flip_body() -> void:
+	facing *= -1
+	attributes._change_direction()
+	$RayCast2D.set_rotation(-$RayCast2D.get_rotation())
+	$AnimatedSprite.flip_h = !$AnimatedSprite.flip_h
+	$AnimatedSprite.set_offset($AnimatedSprite.get_offset() * Vector2(-1,1))
+	$CollisionShape2D.set_position($CollisionShape2D.get_position() * Vector2(-1,1))
+
 
 func drop_blob() -> void:
 	var shot = beam.instance()
@@ -61,6 +75,12 @@ func drop_blob() -> void:
 	cooldown = true
 	yield(get_tree().create_timer(cooldown_timer), "timeout")
 	cooldown = false
+
+
+func on_hit(instance_id, damage) -> void:
+	if instance_id == self.get_instance_id() && !attributes._has_died():
+		attributes._on_hit(damage, global_position)
+
 
 func on_end() -> void:
 	call_deferred("free")
