@@ -81,7 +81,7 @@ func _physics_process(_delta) -> void:
 			shot.position = get_node("TurnAxis/CastPoint").get_global_position()
 			shot.rotation = get_node("TurnAxis").rotation 
 			var random_spread
-			if weapon.shot_spread:
+			if "shot_spread" in weapon:
 				random_spread = rand_range(-weapon.shot_spread, weapon.shot_spread)
 			else:
 				random_spread = 0
