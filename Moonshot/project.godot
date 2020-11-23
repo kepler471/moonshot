@@ -286,6 +286,8 @@ mouse_capture={
 2d_physics/layer_5="Enemies"
 2d_physics/layer_6="CameraAnchor"
 2d_physics/layer_7="DamageTiles"
+2d_physics/layer_8="PlayerBullets"
+2d_physics/layer_9="BaddieBullets"
 2d_physics/layer_11="DamageSource"
 2d_physics/layer_12="Hitbox"
 

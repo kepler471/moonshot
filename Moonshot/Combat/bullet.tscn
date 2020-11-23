@@ -18,6 +18,8 @@ animations = [ {
 } ]
 
 [node name="RigidBody2D" type="RigidBody2D"]
+collision_layer = 2147483776
+collision_mask = 261
 mass = 0.01
 gravity_scale = 0.0
 contacts_reported = 100
