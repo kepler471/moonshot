@@ -1,5 +1,5 @@
 extends KinematicBody2D
-class_name FlyBoi
+class_name GhostyBoi
 
 var attributes: Attributes = preload("res://baddies/Attributes.gd").new()
 var phi : float		# angle between self and target
