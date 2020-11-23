@@ -65,6 +65,7 @@ func get_baddie_instance(baddie_name, room_difficulty):
 func get_random_attributes(room_difficulty: int, baddie_builder: BaddieBuilder, baddie_name: String):
 	# In the first step assign 'points' to attributes, the points determine
 	# the level of that attribute
+
 	var baddie_attributes = get_baddie_specific_attributes(baddie_name)
 	var attribute_levels = {}
 	var attributes = {}
@@ -101,40 +102,49 @@ func get_random_attributes(room_difficulty: int, baddie_builder: BaddieBuilder, 
 # Fine grained control over the attributes
 # Each attribute has a scaling factor that controls how quickly it scales with level
 # Each attribute also has a max and min fctor for the first level
-func get_baddie_specific_attributes(baddie_name: String):
-	var attributes 
-	if baddie_name.ends_with("BearBoi.tscn"):
-		attributes = {
-			"inital_hp": {"min_lvl_1_factor": 0.8, "max_lvl_1_factor": 1.2, "scaling_factor": 1.1},
-			"speed": {"min_lvl_1_factor": 0.8, "max_lvl_1_factor": 1.2, "scaling_factor": 1.1},
-			"damage_to_player": {"min_lvl_1_factor": 0.8, "max_lvl_1_factor": 1.2, "scaling_factor": 1.1}
-		}
-	elif baddie_name.ends_with("BearCeilingBoi.tscn"):
-			attributes = {
+func get_baddie_specific_attributes(baddie_scene_path: String) -> Dictionary:
+	var baddie_name: String = get_baddie_name(baddie_scene_path)
+
+	match baddie_name:
+		"BearBoi":
+			return {
+				"inital_hp": {"min_lvl_1_factor": 0.8, "max_lvl_1_factor": 1.2, "scaling_factor": 1.1},
+				"speed": {"min_lvl_1_factor": 0.8, "max_lvl_1_factor": 1.2, "scaling_factor": 1.1},
+				"damage_to_player": {"min_lvl_1_factor": 0.8, "max_lvl_1_factor": 1.2, "scaling_factor": 1.1}
+			}
+		"BearCeilingBoi":
+			return {
 				"inital_hp": {"min_lvl_1_factor": 0.8, "max_lvl_1_factor": 1.2, "scaling_factor": 1.1},
 				"speed": {"min_lvl_1_factor": 0.8, "max_lvl_1_factor": 1.2, "scaling_factor": 1.1},
 				"damage_to_player": {"min_lvl_1_factor": 0.8, "max_lvl_1_factor": 1.2, "scaling_factor": 1.1},
 				"shot_speed": {"min_lvl_1_factor": 0.8, "max_lvl_1_factor": 1.2, "scaling_factor": 1.1},
 				"shot_damage": {"min_lvl_1_factor": 0.8, "max_lvl_1_factor": 1.2, "scaling_factor": 1.1}
 			}
-	elif baddie_name.ends_with("BearDroppyBoi.tscn"):
-			attributes = {
+		"BearDroppyBoi":
+			return {
 				"inital_hp": {"min_lvl_1_factor": 0.8, "max_lvl_1_factor": 1.2, "scaling_factor": 1.1},
 				"speed": {"min_lvl_1_factor": 0.8, "max_lvl_1_factor": 1.2, "scaling_factor": 1.1},
 				"damage_to_player": {"min_lvl_1_factor": 0.8, "max_lvl_1_factor": 1.2, "scaling_factor": 1.1},
 			}
-	elif baddie_name.ends_with("FlyBoi.tscn"):
-			attributes = {
+		"FlyBoi":
+			return {
 				"inital_hp": {"min_lvl_1_factor": 0.8, "max_lvl_1_factor": 1.2, "scaling_factor": 1.1},
 				"speed": {"min_lvl_1_factor": 0.8, "max_lvl_1_factor": 1.2, "scaling_factor": 1.1},
 				"damage_to_player": {"min_lvl_1_factor": 0.8, "max_lvl_1_factor": 1.2, "scaling_factor": 1.1},
 			}
-	elif baddie_name.ends_with("WallBoi.tscn"):
-			attributes = {
+		"WallBoi":
+			return {
 				"inital_hp": {"min_lvl_1_factor": 0.8, "max_lvl_1_factor": 1.2, "scaling_factor": 1.1},
 				"speed": {"min_lvl_1_factor": 0.8, "max_lvl_1_factor": 1.2, "scaling_factor": 1.1},
 				"damage_to_player": {"min_lvl_1_factor": 0.8, "max_lvl_1_factor": 1.2, "scaling_factor": 1.1},
 				"shot_speed": {"min_lvl_1_factor": 0.8, "max_lvl_1_factor": 1.2, "scaling_factor": 1.1},
 				"shot_damage": {"min_lvl_1_factor": 0.8, "max_lvl_1_factor": 1.2, "scaling_factor": 1.1}
 			}
-	return attributes
+		"TankyBoi":
+			return {}
+		_:
+			return {}
+
+func get_baddie_name(baddie_scene_path: String) -> String:
+	return baddie_scene_path.replace("res://baddies/characters/", "").replace(".tscn", "")
+
