@@ -2,7 +2,7 @@
 
 [ext_resource path="res://splash_screen.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/basic_font.tres" type="DynamicFont" id=2]
-[ext_resource path="res://baddies/characters/BearCeilingBoi.tscn" type="PackedScene" id=4]
+[ext_resource path="res://baddies/characters/GhostyBoi.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/fonts/basic_font_size_64.tres" type="DynamicFont" id=5]
 [ext_resource path="res://baddies/characters/BearBoi.tscn" type="PackedScene" id=6]
 [ext_resource path="res://items_objects/breakable_tile_purple.tscn" type="PackedScene" id=7]
@@ -112,5 +112,5 @@ position = Vector2( 656, 368 )
 [node name="BearBoi" parent="." instance=ExtResource( 6 )]
 position = Vector2( 799.304, 336.613 )
 
-[node name="BearCeilingBoi" parent="." instance=ExtResource( 4 )]
+[node name="GhostyBoi" parent="." instance=ExtResource( 3 )]
 position = Vector2( 407.147, 81.1955 )

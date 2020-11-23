@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/HealthPickup.png-56cda3a7d4a8faa18625d4c7ee826271.stex"
+path="res://.import/blob.png-4b96c8c8f1c12c85ea93f15b84c904a6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://items_objects/assets/HealthPickup.png"
-dest_files=[ "res://.import/HealthPickup.png-56cda3a7d4a8faa18625d4c7ee826271.stex" ]
+source_file="res://assets/projectiles/blob.png"
+dest_files=[ "res://.import/blob.png-4b96c8c8f1c12c85ea93f15b84c904a6.stex" ]
 
 [params]
 

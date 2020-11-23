@@ -65,14 +65,9 @@ _global_script_classes=[ {
 "path": "res://baddies/characters/FlyBoi.gd"
 }, {
 "base": "KinematicBody2D",
-"class": "FlyBoi",
+"class": "GhostyBoi",
 "language": "GDScript",
 "path": "res://baddies/characters/GhostyBoi.gd"
-}, {
-"base": "KinematicBody2D",
-"class": "Player",
-"language": "GDScript",
-"path": "res://player/player.gd"
 }, {
 "base": "Node",
 "class": "Room",
@@ -121,7 +116,7 @@ _global_script_class_icons={
 "Fade": "",
 "FloorDetector": "",
 "FlyBoi": "",
-"Player": "",
+"GhostyBoi": "",
 "Room": "",
 "State": "",
 "StateMachine": "",
@@ -144,7 +139,6 @@ Events="*res://Autoload/Events.gd"
 Steering="*res://Autoload/Steering.gd"
 Utils="*res://Autoload/Utils.gd"
 CombatSignalController="*res://Autoload/CombatSignalController.gd"
-BaddieSpawner="*res://Autoload/BaddieSpawner.gd"
 
 [display]
 
