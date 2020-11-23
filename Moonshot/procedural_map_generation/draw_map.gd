@@ -13,7 +13,7 @@ var indexed_connections = {}
 var world_map
 var current_location_type_scene = preload("res://procedural_map_generation/assets/CurrentLocation.tscn")
 var connection_type_scene = preload("res://procedural_map_generation/assets/Connection.tscn")
-var debug = true
+var debug = false
 
 func _init(gen):
 	world_map = gen.map

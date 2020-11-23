@@ -217,10 +217,11 @@ func spawn_enemies(difficulty_controller: DifficultyController):
 					
 			var random_point = line_start + chosen_step*(point_difference_vector / min_baddie_spawn_distance)
 
-			print("The line_start is: "+ str(line_start))
-			print("The line_end is: " + str(line_end))
-			print("The point_difference_vector is: " + str(point_difference_vector))
-			print("The random_point is: " + str(random_point))
+#  ---- print cleanup ----
+#			print("The line_start is: "+ str(line_start))
+#			print("The line_end is: " + str(line_end))
+#			print("The point_difference_vector is: " + str(point_difference_vector))
+#			print("The random_point is: " + str(random_point))
 
 			spawn_place.add_child(baddie_instance)
 			baddie_instance.position = random_point

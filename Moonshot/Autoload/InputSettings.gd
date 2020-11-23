@@ -80,7 +80,6 @@ func set_aim_stick(value: int) -> void:
 		InputMap.action_erase_events(action_name)
 		var event := get_joypad_motion_event(action_name, aim_stick)
 		InputMap.action_add_event(action_name, event)
-		print(action_name)
 
 
 # Returns a new InputEventJoypadMotion event for aim_* input events,
