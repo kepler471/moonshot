@@ -3,11 +3,13 @@
 [ext_resource path="res://splash_screen.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/basic_font.tres" type="DynamicFont" id=2]
 [ext_resource path="res://baddies/characters/GhostyBoi.tscn" type="PackedScene" id=3]
+[ext_resource path="res://baddies/characters/FlyBoi.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/fonts/basic_font_size_64.tres" type="DynamicFont" id=5]
 [ext_resource path="res://baddies/characters/BearBoi.tscn" type="PackedScene" id=6]
 [ext_resource path="res://items_objects/breakable_tile_purple.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/tile_maps/TileSet_v1.tres" type="TileSet" id=8]
 [ext_resource path="res://items_objects/health_pickup.tscn" type="PackedScene" id=9]
+[ext_resource path="res://baddies/characters/BearDroppyBoi.tscn" type="PackedScene" id=10]
 
 [node name="SplashScreen" type="Node2D"]
 script = ExtResource( 1 )
@@ -109,8 +111,14 @@ position = Vector2( 624, 368 )
 [node name="Node2D3" parent="." instance=ExtResource( 7 )]
 position = Vector2( 656, 368 )
 
+[node name="FlyBoi" parent="." instance=ExtResource( 4 )]
+position = Vector2( 859.243, 483.705 )
+
 [node name="BearBoi" parent="." instance=ExtResource( 6 )]
-position = Vector2( 799.304, 336.613 )
+position = Vector2( 101.4, 554.891 )
+
+[node name="BearDroppyBoi" parent="." instance=ExtResource( 10 )]
+position = Vector2( 842.234, 84.94 )
 
 [node name="GhostyBoi" parent="." instance=ExtResource( 3 )]
-position = Vector2( 407.147, 81.1955 )
+position = Vector2( 766.94, -139.995 )
