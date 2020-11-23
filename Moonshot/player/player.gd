@@ -141,7 +141,8 @@ func _on_Player_health_depleted() -> void:
 
 func set_invulnerable(time : float, animation_name = "stagger") -> void:
 	invulnerable = true
-	safety = true
+	if animation_name != "stagger":
+		safety = true
 	$AnimatedSprite.play(animation_name)
 	var timer = Utils.Player.get_tree().create_timer(time)
 	yield(timer, "timeout")
