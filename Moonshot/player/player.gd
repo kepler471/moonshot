@@ -71,14 +71,23 @@ func _physics_process(_delta) -> void:
 
 	if Input.is_action_pressed("shoot") and !cooldown and !safety:
 		var weapon = player_arsenal.get_weapon()
-		var shot = weapon.shoot().instance()
+		var shots = weapon.shoot()
 
 		cooldown = true
-
-		shot.position = get_node("TurnAxis/CastPoint").get_global_position()
-		shot.rotation = get_node("TurnAxis").rotation
-
-		get_parent().add_child(shot)
+		
+		for i in range(len(shots)):
+			var shot = shots[i]
+			var shot_rotation_modifier = weapon.shot_rotation_modifiers[i]
+			shot.position = get_node("TurnAxis/CastPoint").get_global_position()
+			shot.rotation = get_node("TurnAxis").rotation 
+			var random_spread
+			if weapon.shot_spread:
+				random_spread = rand_range(-weapon.shot_spread, weapon.shot_spread)
+			else:
+				random_spread = 0
+			shot.rotation += ((shot_rotation_modifier + random_spread)*2*PI) / 360 
+			get_parent().add_child(shot)
+			
 		var timer_delay = weapon.fire_speed/Utils.player_stats.modifiers['firerate']
 		yield(get_tree().create_timer(timer_delay), "timeout")
 
