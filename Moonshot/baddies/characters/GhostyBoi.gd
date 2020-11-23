@@ -3,15 +3,15 @@ class_name GhostyBoi
 
 var attributes: Attributes = preload("res://baddies/Attributes.gd").new()
 var beam = load("res://baddies/BaddieLaser/Blob.tscn")
-var phi : float		# angle between self and target
-var theta : float	# global rotation
+var phi : float # angle between self and target
+var theta : float # global rotation
 var turn_max := PI
 var max_speed := 2.0
 var acceleration := 6.0
 var coll
 var damage := 0.02
 var cooldown := false
-var cooldown_timer :=  0.2
+var cooldown_timer :=  0.1
 
 
 func _get_configuration_warning() -> String:
@@ -24,13 +24,10 @@ func _init() -> void:
 	attributes.set_properties({
 		"body": self,
 		"direction": attributes.Direction.RIGHT,
-		"inital_hp": 5,
+		"inital_hp": 10,
 		"gravity": 0,
 		"speed": max_speed,
-		"sprite": $AnimatedSprite,
 		"velocity": Vector2(),
-		"damage_to_player": 0.2,
-		"should_damge_on_collision": false
 	})
 
 
@@ -52,10 +49,9 @@ func _physics_process(delta) -> void:
 		drop_blob()
 
 
-#func on_hit(instance_id, damage) -> void:
-#	if instance_id == self.get_instance_id() && !attributes._has_died():
-#		change_direction()
-#		attributes._on_hit(damage, global_position)
+func on_hit(instance_id, damage) -> void:
+	if instance_id == self.get_instance_id() && !attributes._has_died():
+		attributes._on_hit(damage, global_position)
 
 func drop_blob() -> void:
 	var shot = beam.instance()
@@ -65,3 +61,6 @@ func drop_blob() -> void:
 	cooldown = true
 	yield(get_tree().create_timer(cooldown_timer), "timeout")
 	cooldown = false
+
+func on_end() -> void:
+	call_deferred("free")
