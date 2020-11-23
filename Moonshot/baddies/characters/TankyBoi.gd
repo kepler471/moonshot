@@ -34,7 +34,8 @@ func _ready():
 	attributes.set_sprite($AnimatedSprite)
 
 func _physics_process(delta) -> void:
-	if attributes._has_died():
+	var tree: SceneTree = get_tree()
+	if attributes._has_died() || Utils.is_nil(tree):
 		return
 
 	var collided_with_player: bool = attributes._check_player_colision()
@@ -47,7 +48,7 @@ func _physics_process(delta) -> void:
 	if !cool_down:
 		cool_down = true
 		is_rushing = true
-		yield(get_tree().create_timer(COOL_DOWN_PERIOD), "timeout")
+		yield(tree.create_timer(COOL_DOWN_PERIOD), "timeout")
 		$AnimatedSprite.modulate = RUSH_COLOR
 		$AnimatedSprite.play(Animations.SPRINT)
 
@@ -56,7 +57,7 @@ func _physics_process(delta) -> void:
 		attributes.speed = RUSH_SPEED
 		attributes.fade.occilate([attributes.fade.R], 0.3, 4)
 
-		yield(get_tree().create_timer(COOL_DOWN_PERIOD), "timeout")
+		yield(tree.create_timer(COOL_DOWN_PERIOD), "timeout")
 		$AnimatedSprite.modulate = COOL_DOWN_COLOR
 		$AnimatedSprite.play(Animations.RUSH)
 		attributes.speed = COOL_DOWN_SPEED
