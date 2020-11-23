@@ -18,16 +18,17 @@ var Yellow2 = load(tile_path + "Yellow2.png")
 var tilesheet_array = [Blue1,Blue2,Grey,Ice,Pink,Purple,Red1,Red2,Teal1,Teal2,Yellow1,Yellow2]
 var tilesheet_count = tilesheet_array.size()
 
-var level_no = 1
+var level_no = 0
 
 func _ready():
 	randomize()
 	tilesheet_array.shuffle()
 	
-func get_tilesheet(index):
-	if index > tilesheet_count:
-		index = tilesheet_count%index
-	return tilesheet_array[index]
+func get_tilesheet():
+	if level_no >= tilesheet_count:
+		tilesheet_array.shuffle()
+		level_no = 0
+	return tilesheet_array[level_no]
 
 func update_level_no():
 	level_no += 1
