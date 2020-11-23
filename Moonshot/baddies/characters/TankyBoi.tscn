@@ -9,7 +9,7 @@
 [ext_resource path="res://baddies/characters/TankyBoi.gd" type="Script" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 25.7772, 13.3663 )
+extents = Vector2( 22.1607, 11.4071 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -33,7 +33,7 @@ collision_mask = 3
 script = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -1.27115, 4.17655 )
+position = Vector2( 0.0589383, 4.07423 )
 shape = SubResource( 1 )
 
 [node name="FrontRayCast" parent="." instance=ExtResource( 6 )]
@@ -49,6 +49,6 @@ cast_to = Vector2( 0, 20 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
 animation = "rush"
-frame = 1
+frame = 4
 playing = true
 flip_h = true

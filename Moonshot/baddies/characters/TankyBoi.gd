@@ -1,15 +1,16 @@
 extends KinematicBody2D
 class_name TankyBoi
 
-const RUSH_COLOR = Color(1, 0.701961, 0, 1)
-const COOL_DOWN_COLOR = Color(1, 1, 1, 1)
-const COOL_DOWN_PERIOD = 2
-const DEFAULT_SPEED = 100
+
+const COOL_DOWN_COLOR: Color = Color(1, 1, 1, 1)
+const COOL_DOWN_SPEED: int = 100
+const COOL_DOWN_PERIOD: int = 2
+const RUSH_COLOR: Color = Color(1, 0.701961, 0, 1)
+const RUSH_SPEED: int = COOL_DOWN_SPEED * 9
 
 var attributes: Attributes = preload("res://baddies/Attributes.gd").new()
 var cool_down = false
 var is_rushing = false
-var cool_off_period = [0.5, 2.5]
 
 const Animations := {
 	"RUSH": "rush",
@@ -21,7 +22,7 @@ func _init() -> void:
 	attributes.set_properties({
 		"body": self,
 		"animation": Animations.RUSH,
-		"speed": DEFAULT_SPEED,
+		"speed": COOL_DOWN_SPEED,
 		"inital_hp": 20.0,
 		"gravity": 10,
 		"damage_to_player": 0.2,
@@ -47,24 +48,24 @@ func _physics_process(delta) -> void:
 		cool_down = true
 		is_rushing = true
 		yield(get_tree().create_timer(COOL_DOWN_PERIOD), "timeout")
-		attributes.fade.set_fade_speed(0.02)
-		attributes.fade.set_fade_factor(0.2)
 		$AnimatedSprite.modulate = RUSH_COLOR
 		$AnimatedSprite.play(Animations.SPRINT)
 
+		attributes.fade.set_fade_speed(0.02)
+		attributes.fade.set_fade_factor(0.2)
+		attributes.speed = RUSH_SPEED
 		attributes.fade.occilate([attributes.fade.R], 0.3, 4)
-		attributes.speed *= 9
 
 		yield(get_tree().create_timer(COOL_DOWN_PERIOD), "timeout")
 		$AnimatedSprite.modulate = COOL_DOWN_COLOR
 		$AnimatedSprite.play(Animations.RUSH)
-		attributes.speed = DEFAULT_SPEED
+		attributes.speed = COOL_DOWN_SPEED
 		is_rushing = false
 		cool_down = false
 
-	attributes.velocity.x = attributes.speed * attributes.direction
 	if !is_rushing:
 		$AnimatedSprite.play(Animations.RUSH)
+	attributes.velocity.x = attributes.speed * attributes.direction
 	attributes.velocity.y += attributes.gravity
 	attributes.velocity = move_and_slide(attributes.velocity, attributes.floor_vector)
 
@@ -72,7 +73,6 @@ func change_direction() -> void:
 	if !attributes._has_died():
 		attributes.set("direction", attributes._change_direction())
 		attributes.flip_sprite_horizontal()
-
 		$FrontRayCast.async_change_direction()
 
 func on_hit(instance_id, damage) -> void:
