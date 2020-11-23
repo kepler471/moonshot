@@ -30,10 +30,18 @@ func update_firerate_hud(new_firerate, firerate_level):
 	var firerate_level_path = "/root/GUI/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/ColorRect/Level"
 	for level in range(1, Utils.player_stats.max_firerate_level):
 		var level_box = find_node('Level' + str(level))
-		if level < firerate_level:
-			level_box.color = Color8(21, 184, 39)
+		# If the level is below the current unlocked level then set it to the
+		# unlocked colour
+		if level <= Utils.player_stats.unlocked_firerate_level:
+			if level < firerate_level:
+				# Active firerate buff colour
+				level_box.color = Color8(21, 184, 39)
+			else:
+				# Unactive firerate buff colour
+				level_box.color = Color8(27, 66, 147)
 		else:
-			level_box.color = Color8(27, 66, 147)
+			# Locked firerate buff colour
+			level_box.color = Color8(123, 3, 0)
 			
 	# Now scale the power par to leveling up the firerate
 	var remainder_firerate_pickups = Utils.player_stats.modifiers['firerate_pickups'] % Utils.player_stats.no_firerate_pickups_to_increase_firerate
@@ -43,6 +51,7 @@ func update_firerate_hud(new_firerate, firerate_level):
 		firerate_bar.rect_size.y = new_firerate_bar_size
 	else:
 		firerate_bar.rect_size.y = 0
+
 		
 func start_level(level_num):
 	
