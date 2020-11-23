@@ -33,7 +33,7 @@ func shoot_player(player_global_position: Vector2) -> void:
 	var shot = BaddieBullet.instance()
 	shot.set_damage(damage)
 	
-	get_tree().get_root().add_child(shot)
+	Utils.Player.get_tree().get_root().add_child(shot)
 
 	var shot_direction: Vector2 = (player_global_position - get_parent().global_position).normalized()
 

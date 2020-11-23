@@ -5,10 +5,19 @@ var room_index = Vector2(0, 0)
 var current_room_node = null
 var level_map 
 var minimap
+var level_no = 1
 
 func _ready():
-	start_level(1)
+	start_level(level_no)
 	build_hud()
+	
+func go_up_level():
+	level_no += 1
+	current_room_node.get_node("Player").queue_free()
+	current_room_node.queue_free()
+	level_map.clear()
+	Utils.reset_player()
+	start_level(level_no)
 	
 	
 func build_hud():
@@ -47,7 +56,7 @@ func update_firerate_hud(new_firerate, firerate_level):
 func start_level(level_num):
 	
 	# Generate level and minimap
-	var returns = level_gen.new(1)
+	var returns = level_gen.new(level_num)
 	level_map =  returns.gen.map
 	minimap = returns.minimap
 	
