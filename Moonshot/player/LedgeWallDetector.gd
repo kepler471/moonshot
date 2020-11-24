@@ -15,7 +15,7 @@ func _ready():
 	assert(ray_middle.cast_to.x >= 0)
 	assert(ray_bottom.cast_to.x >= 0)
 
-func _physics_process(delta):
+func _process(delta) -> void:
 	var move_direction = sign(get_parent().get_node("StateMachine/Move").velocity.x)
 	if move_direction < 0:
 		scale.x = -1

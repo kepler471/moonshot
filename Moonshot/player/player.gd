@@ -1,5 +1,6 @@
 extends KinematicBody2D
-class_name Player
+
+class_name Player 
 
 var PlayerArsenal = load("res://player/PlayerArsenal.gd")
 
@@ -56,6 +57,8 @@ func _ready() -> void:
 
 
 func _physics_process(_delta) -> void:
+	damagetile_check()
+	
 	var direction = (
 		Input.get_action_strength("move_right")
 		- Input.get_action_strength("move_left")
@@ -84,9 +87,7 @@ func _physics_process(_delta) -> void:
 
 		cooldown = false
 		
-	damagetile_check()
-
-
+	
 func flip_facing() -> void:
 	facing *= -1
 	$AnimatedSprite.flip_h = !$AnimatedSprite.flip_h
@@ -152,7 +153,7 @@ func damagetile_check() -> void:
 		if !collision || !collision.collider:
 			break
 			
-		if collision.collider.name == "DamageTiles":
+		if collision.collider.name == "DamagePools" or collision.collider.name == "DamageWalls":
 			if is_on_floor():
 				take_damage(0.1,Vector2.UP, true)
 				
@@ -178,7 +179,9 @@ func take_damage(damage, attack_dir, is_damage_tile: bool = false) -> void:
 			stagger_player(attack_dir,is_damage_tile)
 
 
+
 func add_health(health) -> void:
+
 	var new_health = Utils.player_stats.health + health
 	Utils.player_stats.health = min(Utils.player_stats.max_health, new_health)
 

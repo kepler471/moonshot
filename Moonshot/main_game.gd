@@ -1,5 +1,7 @@
 extends Node2D
 
+const MAIN_GAME : bool = true #flag for room testing
+
 var level_gen = preload("res://procedural_map_generation/level_gen.gd")
 var room_index = Vector2(0, 0)
 var current_room_node = null
@@ -111,8 +113,6 @@ func change_room(room_change : Vector2, new_entrance):
 	remove_child(current_room_node)
 	get_room_instance(room_index)
 
-	
-#----- I think player pos change should be moved to Baseroom.gd ------
 	#Move player to door entrance.
 	var door_position = current_room_node.get_node('Exit_' + new_entrance).position
 
