@@ -20,14 +20,14 @@ _global_script_classes=[ {
 "path": "res://procedural_map_generation/BaddieBuilder.gd"
 }, {
 "base": "Node",
-"class": "BaddieInterface",
-"language": "GDScript",
-"path": "res://baddies/BaddieInterface.gd"
-}, {
-"base": "Node",
 "class": "BaddieLaserController",
 "language": "GDScript",
 "path": "res://baddies/BaddieLaser/BaddieLaserPointer.gd"
+}, {
+"base": "Position2D",
+"class": "BaddieSpawner",
+"language": "GDScript",
+"path": "res://baddies/BaddieLaser/BaddieSpawner.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "BearBoi",
@@ -68,6 +68,16 @@ _global_script_classes=[ {
 "class": "GhostyBoi",
 "language": "GDScript",
 "path": "res://baddies/characters/GhostyBoi.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "MotherHen",
+"language": "GDScript",
+"path": "res://baddies/characters/MotherHen.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://player/player.gd"
 }, {
 "base": "Node",
 "class": "Room",
@@ -112,8 +122,8 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "Attributes": "",
 "BaddieBuilder": "",
-"BaddieInterface": "",
 "BaddieLaserController": "",
+"BaddieSpawner": "",
 "BearBoi": "",
 "BearCeilingBoi": "",
 "BearDroppyBoi": "",
@@ -122,6 +132,8 @@ _global_script_class_icons={
 "FloorDetector": "",
 "FlyBoi": "",
 "GhostyBoi": "",
+"MotherHen": "",
+"Player": "",
 "Room": "",
 "State": "",
 "StateMachine": "",
