@@ -1,4 +1,3 @@
-tool
 extends Position2D
 # Detects ledges using two Raycasts casting horizontally.
 # If one ray is in a wall and the other is in the air, it means the node is near a ledge.
