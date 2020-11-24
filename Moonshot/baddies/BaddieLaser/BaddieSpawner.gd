@@ -28,10 +28,13 @@ func spawn():
 
 	_baddie_dictionary[baddie_instance.get_instance_id()] = baddie_instance
 
-	_add_child(baddie_instance)
+	_add_baddie_to_scene(baddie_instance)
 	_clean_dictionary(baddie_dictionary_keys)
-	
-func _add_child(baddie_instance: Node) -> void:
+
+func _is_max_capacity(baddie_dictionary_keys: Array) -> bool:
+	return baddie_dictionary_keys.size() > max_baddies
+
+func _add_baddie_to_scene(baddie_instance: Node) -> void:
 	var parent = get_parent()
 
 	if  Utils.is_nil(parent):
@@ -48,6 +51,3 @@ func _clean_dictionary(keys: Array) -> void:
 	for key in keys:
 		if  Utils.is_nil(_baddie_dictionary.get(key)):
 			_baddie_dictionary.erase(key)
-
-func _is_max_capacity(baddie_dictionary_keys: Array) -> bool:
-	return baddie_dictionary_keys.size() > max_baddies
