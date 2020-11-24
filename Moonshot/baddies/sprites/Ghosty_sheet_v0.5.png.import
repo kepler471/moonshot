@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/PurpleBreakableTile3.png-016cd35bd48c09b34aebd75f80d60f5c.stex"
+path="res://.import/Ghosty_sheet_v0.5.png-df0e82c03711a4a20f52a93f7a41b4af.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://items_objects/assets/PurpleBreakableTile3.png"
-dest_files=[ "res://.import/PurpleBreakableTile3.png-016cd35bd48c09b34aebd75f80d60f5c.stex" ]
+source_file="res://baddies/sprites/Ghosty_sheet_v0.5.png"
+dest_files=[ "res://.import/Ghosty_sheet_v0.5.png-df0e82c03711a4a20f52a93f7a41b4af.stex" ]
 
 [params]
 

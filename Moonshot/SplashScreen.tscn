@@ -1,5 +1,6 @@
 [gd_scene load_steps=11 format=2]
 
+
 [ext_resource path="res://splash_screen.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/basic_font.tres" type="DynamicFont" id=2]
 [ext_resource path="res://baddies/characters/GhostyBoi.tscn" type="PackedScene" id=3]

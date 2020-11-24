@@ -65,9 +65,9 @@ _global_script_classes=[ {
 "path": "res://baddies/characters/FlyBoi.gd"
 }, {
 "base": "KinematicBody2D",
-"class": "Player",
+"class": "GhostyBoi",
 "language": "GDScript",
-"path": "res://player/player.gd"
+"path": "res://baddies/characters/GhostyBoi.gd"
 }, {
 "base": "Node",
 "class": "Room",
@@ -88,6 +88,11 @@ _global_script_classes=[ {
 "class": "Stats",
 "language": "GDScript",
 "path": "res://Combat/Stats.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "TankyBoi",
+"language": "GDScript",
+"path": "res://baddies/characters/TankyBoi.gd"
 }, {
 "base": "RayCast2D",
 "class": "TurningHack",
@@ -116,11 +121,12 @@ _global_script_class_icons={
 "Fade": "",
 "FloorDetector": "",
 "FlyBoi": "",
-"Player": "",
+"GhostyBoi": "",
 "Room": "",
 "State": "",
 "StateMachine": "",
 "Stats": "",
+"TankyBoi": "",
 "TurningHack": "",
 "WallBoi": "",
 "floor_generator": ""
@@ -140,6 +146,7 @@ Steering="*res://Autoload/Steering.gd"
 Utils="*res://Autoload/Utils.gd"
 CombatSignalController="*res://Autoload/CombatSignalController.gd"
 TileSheetLoader="*res://Autoload/TileSheetLoader.gd"
+
 
 [display]
 
@@ -287,6 +294,8 @@ mouse_capture={
 2d_physics/layer_5="Enemies"
 2d_physics/layer_6="CameraAnchor"
 2d_physics/layer_7="DamageTiles"
+2d_physics/layer_8="PlayerBullets"
+2d_physics/layer_9="BaddieBullets"
 2d_physics/layer_11="DamageSource"
 2d_physics/layer_12="Hitbox"
 

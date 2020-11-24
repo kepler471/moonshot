@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/PurpleBreakableTile3.png-016cd35bd48c09b34aebd75f80d60f5c.stex"
+path="res://.import/helf-Sheet.png-c1ae3bd44d0a456803d486dbd00abfe3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://items_objects/assets/PurpleBreakableTile3.png"
-dest_files=[ "res://.import/PurpleBreakableTile3.png-016cd35bd48c09b34aebd75f80d60f5c.stex" ]
+source_file="res://items_objects/assets/helf-Sheet.png"
+dest_files=[ "res://.import/helf-Sheet.png-c1ae3bd44d0a456803d486dbd00abfe3.stex" ]
 
 [params]
 

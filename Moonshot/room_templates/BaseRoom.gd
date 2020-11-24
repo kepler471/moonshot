@@ -5,7 +5,7 @@ signal indicate_room_change(exit_key, entrance)
 
 func setup_player_camera():
 	# Set the player to have the camera
-	var player_camera = $Player/Camera2D
+	var player_camera = Utils.Player.get_node('Camera2D')
 	player_camera.current = true
 	
 	# Check if there are room limits set for the camera, uses tilemap if not.
