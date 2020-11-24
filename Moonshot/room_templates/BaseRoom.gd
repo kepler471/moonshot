@@ -2,6 +2,14 @@ extends Node2D
 
 signal indicate_room_change(exit_key, entrance)
 
+const MAIN_GAME : bool = false
+
+func _ready():
+	if get_tree().get_current_scene().MAIN_GAME == false:
+		self.add_child(Utils.Player)
+		Utils.Player.position = self.get_node("testing_player_spawn").position
+		self.setup_player_camera()
+
 
 func setup_player_camera():
 	# Set the player to have the camera
