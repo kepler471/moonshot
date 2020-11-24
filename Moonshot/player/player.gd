@@ -136,13 +136,10 @@ func get_collider() -> CollisionShape2D:
 	return collider
 
 
-func _on_Player_health_depleted() -> void:
-	state_machine.transition_to("Die", {last_checkpoint = last_checkpoint})
-
-
 func set_invulnerable(time : float, animation_name = "stagger") -> void:
 	invulnerable = true
-	safety = true
+	if animation_name != "stagger":
+		safety = true
 	$AnimatedSprite.play(animation_name)
 	var timer = Utils.Player.get_tree().create_timer(time)
 	yield(timer, "timeout")
@@ -150,7 +147,7 @@ func set_invulnerable(time : float, animation_name = "stagger") -> void:
 	safety = false
 	
 
-func damagetile_check():
+func damagetile_check() -> void:
 	for i in self.get_slide_count():
 		var collision = self.get_slide_collision(i)
 		if !collision || !collision.collider:
@@ -169,7 +166,10 @@ func take_damage(damage, attack_dir, is_damage_tile: bool = false) -> void:
 	if not invulnerable:
 		Utils.player_stats.health -= damage
 		if Utils.IS_DEBUG: print("Attack Dir : ", attack_dir)
-		
+		if Utils.player_stats.health <= 0:
+			on_death()
+			safety = true
+			return
 		if is_damage_tile:
 			set_invulnerable(0.5) #BALANCING
 			stagger_player(attack_dir,is_damage_tile)
@@ -178,13 +178,10 @@ func take_damage(damage, attack_dir, is_damage_tile: bool = false) -> void:
 			attack_dir = sign(get_global_position().x - attack_dir.x)
 			stagger_player(attack_dir,is_damage_tile)
 
-	if Utils.player_stats.health <= 0:
-		on_death()
-		
-	Utils.player_stats.take_damage(1)
 
 
-func add_health(health):
+func add_health(health) -> void:
+
 	var new_health = Utils.player_stats.health + health
 	Utils.player_stats.health = min(Utils.player_stats.max_health, new_health)
 
@@ -192,10 +189,16 @@ func add_health(health):
 func on_death() -> void:
 	CombatSignalController.emit_signal("player_kill")
 	_on_Player_health_depleted()
+	CombatSignalController.disconnect("damage_player", self, "take_damage")
+
+
+func _on_Player_health_depleted() -> void:
+	state_machine.transition_to("Die", {last_checkpoint = last_checkpoint})
 
 
 func _emit_position() -> void:
 	CombatSignalController.emit_signal("emit_player_global_position", $TurnAxis.global_position)
 
-func stagger_player(attack_dir, is_damage_tile):
+
+func stagger_player(attack_dir, is_damage_tile) -> void:
 	state_machine.transition_to("Move/Stagger", {"previous" : state_machine.state, "direction" : attack_dir, "is_damage_tile" : is_damage_tile})
