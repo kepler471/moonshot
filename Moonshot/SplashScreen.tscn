@@ -12,24 +12,11 @@
 [ext_resource path="res://baddies/characters/BearDroppyBoi.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/tile_maps/TileMap.gd" type="Script" id=11]
 
-
 [node name="SplashScreen" type="Node2D"]
 script = ExtResource( 1 )
 
-[node name="LaserBlaster" parent="." instance=ExtResource( 9 )]
-position = Vector2( 580.86, 328 )
-
-[node name="MachineGun" parent="." instance=ExtResource( 12 )]
-position = Vector2( 624, 320 )
-
-[node name="MachineGun2" parent="." instance=ExtResource( 12 )]
-position = Vector2( 496, 328 )
-
-[node name="Shotgun" parent="." instance=ExtResource( 13 )]
-position = Vector2( 688, 320 )
-
-[node name="TwinShot" parent="." instance=ExtResource( 11 )]
-position = Vector2( 736, 312 )
+[node name="Node2D4" parent="." instance=ExtResource( 9 )]
+position = Vector2( 480, 315.241 )
 
 [node name="Background" type="TileMap" parent="."]
 tile_set = ExtResource( 8 )
