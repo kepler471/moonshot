@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://player/assets/idle/Medic1TALL2.png" type="Texture" id=1]
 [ext_resource path="res://player/assets/idle/Medic1TALL1.png" type="Texture" id=2]
@@ -53,6 +53,11 @@ animations = [ {
 "name": "idle",
 "speed": 3.0
 }, {
+"frames": [ ExtResource( 37 ) ],
+"loop": true,
+"name": "stagger",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 27 ), ExtResource( 28 ), ExtResource( 23 ), ExtResource( 26 ), ExtResource( 22 ), ExtResource( 21 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 29 ), ExtResource( 30 ) ],
 "loop": true,
 "name": "debug",
@@ -62,11 +67,6 @@ animations = [ {
 "loop": true,
 "name": "air",
 "speed": 5.0
-}, {
-"frames": [ ExtResource( 27 ), ExtResource( 28 ), ExtResource( 23 ), ExtResource( 26 ), ExtResource( 22 ), ExtResource( 21 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 29 ), ExtResource( 30 ) ],
-"loop": true,
-"name": "ledge",
-"speed": 100.0
 }, {
 "frames": [ ExtResource( 23 ), ExtResource( 26 ), ExtResource( 22 ), ExtResource( 21 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 27 ), ExtResource( 28 ) ],
 "loop": true,
@@ -78,6 +78,16 @@ animations = [ {
 "name": "wall",
 "speed": 0.0
 }, {
+"frames": [ ExtResource( 27 ), ExtResource( 28 ), ExtResource( 23 ), ExtResource( 26 ), ExtResource( 22 ), ExtResource( 21 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 29 ), ExtResource( 30 ) ],
+"loop": true,
+"name": "ledge",
+"speed": 100.0
+}, {
+"frames": [ ExtResource( 27 ), ExtResource( 28 ), ExtResource( 23 ), ExtResource( 26 ), ExtResource( 22 ), ExtResource( 21 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 29 ), ExtResource( 30 ) ],
+"loop": true,
+"name": "spawn",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 31 ), ExtResource( 34 ), ExtResource( 33 ), ExtResource( 32 ) ],
 "loop": true,
 "name": "die",
@@ -87,16 +97,6 @@ animations = [ {
 "loop": true,
 "name": "dodge",
 "speed": 10.0
-}, {
-"frames": [ ExtResource( 27 ), ExtResource( 28 ), ExtResource( 23 ), ExtResource( 26 ), ExtResource( 22 ), ExtResource( 21 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 29 ), ExtResource( 30 ) ],
-"loop": true,
-"name": "spawn",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 37 ) ],
-"loop": true,
-"name": "stagger",
-"speed": 5.0
 } ]
 
 [sub_resource type="SpriteFrames" id=3]
@@ -176,6 +176,7 @@ script = ExtResource( 36 )
 
 [node name="Dodge" type="Node" parent="StateMachine/Move"]
 script = ExtResource( 38 )
+dodge_speed = 2500.0
 
 [node name="DodgePeriod" type="Timer" parent="StateMachine/Move/Dodge"]
 process_mode = 0

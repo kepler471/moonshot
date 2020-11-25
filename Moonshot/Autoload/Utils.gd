@@ -1,6 +1,9 @@
 extends Node
+
+var PlayerArsenal = load("res://player/PlayerArsenal.gd")
 # Globally accessible utils functionality
 var player_stats = load('res://Combat/Stats.tscn').instance()
+var player_arsenal = PlayerArsenal.new()
 var Player = load("res://player/player.tscn").instance()
 const IS_DEBUG: bool = false
 

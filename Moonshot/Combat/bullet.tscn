@@ -18,8 +18,10 @@ animations = [ {
 } ]
 
 [node name="RigidBody2D" type="RigidBody2D"]
-collision_layer = 2147483776
+
 collision_mask = 261
+collision_layer = 2147483664
+
 mass = 0.01
 gravity_scale = 0.0
 contacts_reported = 100
@@ -31,6 +33,6 @@ shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
-frame = 1
+frame = 3
 playing = true
 [connection signal="body_entered" from="." to="." method="_on_any_body_entered"]

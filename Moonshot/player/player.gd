@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 class_name Player 
 
-var PlayerArsenal = load("res://player/PlayerArsenal.gd")
+
 
 # warning-ignore:unused_signal
 signal hopped_off_entity
@@ -23,8 +23,8 @@ const FLOOR_NORMAL := Vector2.UP
 var is_active := true setget set_is_active
 var has_teleported := false
 var last_checkpoint: Area2D = null
+var player_arsenal
 
-var player_arsenal = PlayerArsenal.new()
 var cooldown = false
 
 var facing = 1
@@ -40,9 +40,6 @@ func _input(event):
 
 
 func _ready() -> void:
-	add_child(player_arsenal)
-	player_arsenal.set_weapon()
-
 	CombatSignalController.connect("damage_player", self, "take_damage")
 	CombatSignalController.connect("get_player_global_position", self, "_emit_position")
 	CombatSignalController.connect("get_player_global_position_drop", self, "_emit_position_drop")
@@ -73,15 +70,28 @@ func _physics_process(_delta) -> void:
 	get_node("TurnAxis").rotation = PI + (position + get_node("TurnAxis").position).angle_to_point(get_global_mouse_position())
 
 	if Input.is_action_pressed("shoot") and !cooldown and !safety:
-		var weapon = player_arsenal.get_weapon()
-		var shot = weapon.shoot().instance()
+		var weapon = Utils.player_arsenal.get_weapon()
+		if weapon.ammo == 0:
+			Utils.player_arsenal.set_weapon('laser_blaster')
+			weapon = Utils.player_arsenal.get_weapon()
+		var shots = weapon.shoot()
 
 		cooldown = true
+		
+		for i in range(len(shots)):
+			var shot = shots[i]
+			var shot_rotation_modifier = weapon.shot_rotation_modifiers[i]
+			shot.position = get_node("TurnAxis/CastPoint").get_global_position()
+			shot.rotation = get_node("TurnAxis").rotation 
+			var random_spread
+			if "shot_spread" in weapon:
+				random_spread = rand_range(-weapon.shot_spread, weapon.shot_spread)
+			else:
+				random_spread = 0
+			shot.rotation += ((shot_rotation_modifier + random_spread)*2*PI) / 360 
+			get_parent().add_child(shot)
+		
 
-		shot.position = get_node("TurnAxis/CastPoint").get_global_position()
-		shot.rotation = get_node("TurnAxis").rotation
-
-		get_parent().add_child(shot)
 		var timer_delay = weapon.fire_speed/Utils.player_stats.modifiers['firerate']
 		yield(get_tree().create_timer(timer_delay), "timeout")
 

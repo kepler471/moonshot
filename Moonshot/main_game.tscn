@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://main_game.gd" type="Script" id=1]
 [ext_resource path="res://HUD/GUI.tscn" type="PackedScene" id=2]
 [ext_resource path="res://HUD/HealthBar.tscn" type="PackedScene" id=3]
+[ext_resource path="res://items_objects/assets/WeaponIcons/LaserBlasterIcon.png" type="Texture" id=4]
 
 [node name="MainGame" type="Node2D"]
 script = ExtResource( 1 )
@@ -96,9 +97,9 @@ rect_min_size = Vector2( 55, 0 )
 color = Color( 0, 0, 0, 1 )
 
 [node name="FirerateIncBar" type="ColorRect" parent="GUI/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/ColorRect"]
-margin_left = 41.3516
+margin_left = 43.3516
 margin_top = 322.0
-margin_right = 71.3516
+margin_right = 75.3516
 margin_bottom = 426.0
 rect_rotation = 180.0
 color = Color( 0.0823529, 0.721569, 0.152941, 1 )
@@ -109,7 +110,7 @@ __meta__ = {
 [node name="Level1" type="ColorRect" parent="GUI/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/ColorRect"]
 margin_left = 11.3516
 margin_top = 202.0
-margin_right = 41.3516
+margin_right = 43.3516
 margin_bottom = 209.0
 color = Color( 0.105882, 0.258824, 0.576471, 1 )
 __meta__ = {
@@ -119,7 +120,7 @@ __meta__ = {
 [node name="Level2" type="ColorRect" parent="GUI/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/ColorRect"]
 margin_left = 11.3516
 margin_top = 186.0
-margin_right = 41.3516
+margin_right = 43.3516
 margin_bottom = 193.0
 color = Color( 0.105882, 0.258824, 0.576471, 1 )
 __meta__ = {
@@ -129,7 +130,7 @@ __meta__ = {
 [node name="Level3" type="ColorRect" parent="GUI/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/ColorRect"]
 margin_left = 11.3516
 margin_top = 170.0
-margin_right = 41.3516
+margin_right = 43.3516
 margin_bottom = 177.0
 color = Color( 0.105882, 0.258824, 0.576471, 1 )
 __meta__ = {
@@ -139,7 +140,7 @@ __meta__ = {
 [node name="Level4" type="ColorRect" parent="GUI/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/ColorRect"]
 margin_left = 11.3516
 margin_top = 154.0
-margin_right = 41.3516
+margin_right = 43.3516
 margin_bottom = 161.0
 color = Color( 0.105882, 0.258824, 0.576471, 1 )
 __meta__ = {
@@ -149,12 +150,49 @@ __meta__ = {
 [node name="Level5" type="ColorRect" parent="GUI/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/ColorRect"]
 margin_left = 11.3516
 margin_top = 138.0
-margin_right = 41.3516
+margin_right = 43.3516
 margin_bottom = 145.0
 color = Color( 0.105882, 0.258824, 0.576471, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AmmoLabel" type="Label" parent="GUI/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/ColorRect"]
+margin_left = 6.35199
+margin_top = 10.0
+margin_right = 50.352
+margin_bottom = 24.0
+text = "AMMO"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GunLabel" type="Label" parent="GUI/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/ColorRect"]
+margin_left = 5.35199
+margin_top = 58.0
+margin_right = 49.352
+margin_bottom = 72.0
+text = "GUN"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ammo" type="Label" parent="GUI/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/ColorRect"]
+margin_left = 5.35199
+margin_top = 26.0
+margin_right = 49.352
+margin_bottom = 40.0
+text = "999"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GunSprite" type="Sprite" parent="GUI/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/ColorRect"]
+position = Vector2( 27.352, 91 )
+texture = ExtResource( 4 )
 
 [node name="MinimapBox" type="ColorRect" parent="GUI/MarginContainer/VBoxContainer"]
 margin_top = 388.0
