@@ -43,8 +43,9 @@
 [ext_resource path="res://player/assets/dodge/MEDICdash4.png" type="Texture" id=41]
 [ext_resource path="res://player/assets/dodge/MEDICdash2.png" type="Texture" id=42]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 14.8798, 27.3737 )
+[sub_resource type="CapsuleShape2D" id=5]
+radius = 7.47952
+height = 30.8084
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -123,8 +124,8 @@ collision_mask = 269
 script = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.297638, -27.3213 )
-shape = SubResource( 1 )
+position = Vector2( 0, -23 )
+shape = SubResource( 5 )
 
 [node name="LedgeWallDetector" parent="." instance=ExtResource( 5 )]
 is_active = true
