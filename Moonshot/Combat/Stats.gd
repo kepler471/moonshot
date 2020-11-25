@@ -69,10 +69,11 @@ func pickup_firerate(increase):
 		
 func take_damage(level_of_decrease):
 	if modifiers['firerate_pickups'] > 0:
-		modifiers['firerate_pickups'] -= no_firerate_pickups_to_increase_firerate*level_of_decrease
+		modifiers['firerate_pickups'] -= no_firerate_pickups_to_increase_firerate
 		current_firerate_level = floor(modifiers['firerate_pickups'] / no_firerate_pickups_to_increase_firerate) + 1
 		modifiers['firerate'] = pow(firerate_scaling_factor, current_firerate_level)
 		emit_signal("firerate_changed", modifiers['firerate_pickups'], current_firerate_level)
+	health -= level_of_decrease
 
 func unlock_firerate_level():
 	unlocked_firerate_level += 1
