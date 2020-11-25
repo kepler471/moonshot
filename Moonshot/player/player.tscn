@@ -195,7 +195,7 @@ script = ExtResource( 16 )
 script = ExtResource( 18 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( -0.0327721, -30.8946 )
+position = Vector2( 0, -29 )
 z_index = 2
 frames = SubResource( 2 )
 animation = "stagger"
