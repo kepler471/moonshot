@@ -1,0 +1,8 @@
+Radio Controller: "Sir, you're all thats left. We've lost contact with all the others who have gone down into the core."
+Radio Controller: "Thank god that you are our most experiened scientist. I have complete faith in your ability to stop the infection."
+Player: "..."
+Radio Controller: "Hold on, I'm getting an incoming message from the chief scientist ... Wait, so who are you?"
+Radio Controller: *Radio Patching*
+Chief Scientist over radio: "INTERN! WHAT HAVE YOU DONE! HOW DID YOU MANAGE TO CONFUSE OUR SCHEDULES???"
+Chief Scientist over radio: "IF YOU DON'T GET DOWN TO THE CORE NOW TO ADMINISTER THE ANTIDOTE, THEN YOU CAN KISS YOUR JOB AND YOUR LIFE GOODBYE!"
+Radio: *Transmission Terminated*
