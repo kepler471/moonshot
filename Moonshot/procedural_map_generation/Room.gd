@@ -165,6 +165,8 @@ func spawn_enemies(difficulty_controller: DifficultyController):
 	var distance
 	for line in baddie_spawn_lines:
 		var line_points = line.points
+		if len(line.points) == 0:
+			continue
 		distance = line_points[0].distance_to(line_points[1])
 		max_no_baddies += distance / min_baddie_spawn_distance
 	max_no_baddies = round(max_no_baddies)
