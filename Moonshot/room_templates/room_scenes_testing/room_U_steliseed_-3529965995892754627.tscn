@@ -1,7 +1,6 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://room_templates/exit_vert.tscn" type="PackedScene" id=1]
-[ext_resource path="res://room_templates/exit_hori.tscn" type="PackedScene" id=2]
 [ext_resource path="res://room_templates/BaseRoom.gd" type="Script" id=3]
 [ext_resource path="res://assets/tile_maps/TileSet_v1.tres" type="TileSet" id=4]
 [ext_resource path="res://baddies/characters/BearBoi.tscn" type="PackedScene" id=5]
@@ -54,17 +53,8 @@ collision_layer = 64
 collision_mask = 5
 format = 1
 
-[node name="Exit_UP" parent="." instance=ExtResource( 1 )]
-position = Vector2( 64.197, 61.112 )
-
 [node name="Exit_DOWN" parent="." instance=ExtResource( 1 )]
-position = Vector2( 63.3838, 124.553 )
-
-[node name="Exit_LEFT" parent="." instance=ExtResource( 2 )]
-position = Vector2( 17.8482, 92.0631 )
-
-[node name="Exit_RIGHT" parent="." instance=ExtResource( 2 )]
-position = Vector2( 111.332, 92.4619 )
+position = Vector2( 508.358, 1840.88 )
 
 [node name="camera_limit_NW" type="Position2D" parent="."]
 position = Vector2( 144.797, 71.2937 )
@@ -103,7 +93,4 @@ position = Vector2( 300, 200 )
 
 [node name="item_spawn_point2" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( 350, 200 )
-[connection signal="body_entered" from="Exit_UP" to="." method="_on_Exit_UP_body_entered"]
 [connection signal="body_entered" from="Exit_DOWN" to="." method="_on_Exit_DOWN_body_entered"]
-[connection signal="body_entered" from="Exit_LEFT" to="." method="_on_Exit_LEFT_body_entered"]
-[connection signal="body_entered" from="Exit_RIGHT" to="." method="_on_Exit_RIGHT_body_entered"]
