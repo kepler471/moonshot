@@ -6,15 +6,12 @@
 [ext_resource path="res://room_templates/exit_hori.tscn" type="PackedScene" id=4]
 [ext_resource path="res://baddies/characters/BearBoi.tscn" type="PackedScene" id=5]
 [ext_resource path="res://items_objects/breakable_tile_purple.tscn" type="PackedScene" id=6]
-[ext_resource path="res://items_objects/UnlockFirerateLevel.tscn" type="PackedScene" id=7]
+[ext_resource path="res://room_templates/next_level_button.tscn" type="PackedScene" id=7]
 
 [node name="LEVEL1" type="Node2D" groups=[
 "Room",
 ]]
 script = ExtResource( 1 )
-
-[node name="FirerateDropUnlock" parent="." instance=ExtResource( 7 )]
-position = Vector2( 744.473, 507.595 )
 
 [node name="BaseTiles" type="TileMap" parent="."]
 tile_set = ExtResource( 2 )
@@ -34,6 +31,9 @@ position = Vector2( -6.60727, 496.18 )
 
 [node name="Exit_RIGHT" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1914.05, 495.597 )
+
+[node name="Node2D" parent="." instance=ExtResource( 7 )]
+position = Vector2( 741.487, 531.482 )
 
 [node name="player_spawn" type="Position2D" parent="."]
 position = Vector2( 975.827, 336 )
