@@ -151,12 +151,6 @@ one_shot = true
 [node name="Run" type="Node" parent="StateMachine/Move"]
 script = ExtResource( 15 )
 
-[node name="SlowStarter" type="Timer" parent="StateMachine/Move/Run"]
-wait_time = 0.7
-one_shot = true
-
-[node name="Tween" type="Tween" parent="StateMachine/Move/Run"]
-
 [node name="Air" type="Node" parent="StateMachine/Move"]
 script = ExtResource( 19 )
 
