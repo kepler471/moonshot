@@ -27,6 +27,8 @@ func build_hud():
 	minimap.minimap_node.position = Vector2(900, 500)
 	Utils.player_stats.connect("firerate_changed",self,"update_firerate_hud") #signal from BaseRoom.gd
 	update_firerate_hud(Utils.player_stats.modifiers['firerate_pickups'], Utils.player_stats.current_firerate_level)
+	Utils.player_arsenal.connect("update_hud",self,"update_gun_hud") #signal from BaseRoom.gd
+	update_gun_hud()
 
 func _process(delta):
 	var new_health_bar_size = (Utils.player_stats.health*154) / Utils.player_stats.max_health
@@ -36,6 +38,7 @@ func _process(delta):
 	else:
 		health_bar.rect_min_size.x = 0
 	update_firerate_hud(Utils.player_stats.modifiers['firerate_pickups'], Utils.player_stats.current_firerate_level)
+
 
 func update_firerate_hud(new_firerate, firerate_level):
 	var firerate_level_path = "/root/GUI/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/ColorRect/Level"
@@ -55,6 +58,24 @@ func update_firerate_hud(new_firerate, firerate_level):
 	else:
 		firerate_bar.rect_size.y = 0
 		
+func update_gun_hud():
+	var weapon = Utils.player_arsenal.get_weapon()
+	var weapon_type = weapon.name
+	var ammo = weapon.ammo
+	var sprite_node = find_node('GunSprite')
+	var ammo_node: Label = find_node('Ammo')
+	if weapon_type == 'laser_blaster':
+		sprite_node.texture = load('res://items_objects/assets/WeaponIcons/LaserBlasterIcon.png')
+	elif weapon_type == 'machine_gun':
+		sprite_node.texture = load('res://items_objects/assets/WeaponIcons/MachineGunIcon.png')
+	elif weapon_type == 'twin_shot':
+		sprite_node.texture = load('res://items_objects/assets/WeaponIcons/TwinBlasterIcon.png')
+	elif weapon_type == 'shotgun':
+		sprite_node.texture = load('res://items_objects/assets/WeaponIcons/ShotgunIcon.png')
+	
+	ammo_node.text = str(ammo)
+	
+	
 func start_level(level_num):
 	
 	# Generate level and minimap
