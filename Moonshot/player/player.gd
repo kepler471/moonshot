@@ -174,7 +174,7 @@ func damagetile_check() -> void:
 
 func take_damage(damage, attack_dir, is_damage_tile: bool = false) -> void:
 	if not invulnerable:
-		Utils.player_stats.health -= damage
+		Utils.player_stats.take_damage(damage)
 		if Utils.IS_DEBUG: print("Attack Dir : ", attack_dir)
 		if Utils.player_stats.health <= 0:
 			on_death()
