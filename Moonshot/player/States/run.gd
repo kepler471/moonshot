@@ -18,8 +18,10 @@ func physics_process(delta: float) -> void:
 
 
 func enter(msg: Dictionary = {}) -> void:
+	owner.get_node("SFX").play("running")
 	_parent.enter(msg)
 
 
 func exit() -> void:
+	owner.get_node("SFX").stop("running")
 	_parent.exit()

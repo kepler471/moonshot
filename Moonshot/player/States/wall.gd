@@ -46,6 +46,9 @@ func physics_process(delta: float) -> void:
 
 
 func enter(msg: Dictionary = {}) -> void:
+	if !owner.damagetile_check():
+		owner.get_node("SFX").play("sliding")
+	
 	wall_grace_counter = 0
 	
 	_parent.enter(msg)
@@ -55,6 +58,7 @@ func enter(msg: Dictionary = {}) -> void:
 
 
 func exit() -> void:
+	owner.get_node("SFX").stop("sliding")
 	_parent.exit()
 
 
@@ -65,5 +69,6 @@ func jump() -> void:
 		velocity = impulse,
 		wall_jump = true
 	}
+	owner.get_node("SFX").play("jumping")
 	_state_machine.transition_to("Move/Air", msg)
 

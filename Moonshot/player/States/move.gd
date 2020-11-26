@@ -29,6 +29,7 @@ func _on_PassThrough_body_exited(_body):
 
 func unhandled_input(event: InputEvent) -> void:
 	if owner.is_on_floor() and event.is_action_pressed("jump"):
+		owner.get_node("SFX").play("jumping")
 		_state_machine.transition_to("Move/Air", { impulse = jump_impulse })
 	if event.is_action_pressed('toggle_debug_move'):
 		_state_machine.transition_to('Debug')

@@ -6,7 +6,7 @@ class LaserBlaster:
 	var name = 'laser_blaster'
 	var sound = AudioStreamPlayer2D.new()
 	var bullet = load("res://Combat/bullet.tscn")
-	var sfx = load("res://player/assets/sounds/laser_pew.ogg") 
+	var sfx = load("res://player/assets/sounds/blaster_v1.wav") 
 	var fire_speed = 0.25
 	var f_mag = 800
 	var damage = 0.4
@@ -16,7 +16,6 @@ class LaserBlaster:
 	var ammo = 999
 	
 	func _init():
-		sfx.set_loop(false)
 		sound.stream = sfx
 
 
