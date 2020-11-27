@@ -32,4 +32,4 @@ func on_hit(instance_id, damage) -> void:
 		attributes._on_hit(damage, global_position)
 
 func on_end() -> void:
-	call_deferred("free")
+	attributes.set_properties({"should_damage_on_collision": false})
