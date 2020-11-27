@@ -11,7 +11,13 @@ const IS_DEBUG: bool = false
 func reset_player():
 	Player = load("res://player/player.tscn").instance()
 
-
+func restart_game():
+	Player.queue_free()
+	PlayerArsenal = load("res://player/PlayerArsenal.gd")
+	player_stats = load('res://Combat/Stats.tscn').instance()
+	player_arsenal = PlayerArsenal.new()
+	Player = load("res://player/player.tscn").instance()
+	
 
 
 	

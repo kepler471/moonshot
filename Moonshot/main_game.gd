@@ -12,6 +12,11 @@ var level_no = 1
 func _ready():
 	start_level(level_no)
 	build_hud()
+	CombatSignalController.connect('player_kill', self, 'activate_death_screen')
+	
+func activate_death_screen():
+	$DeathScreen/Visibility.visible = true
+	get_tree().paused = true
 	
 func go_up_level():
 	level_no += 1
@@ -19,6 +24,7 @@ func go_up_level():
 	current_room_node.queue_free()
 	level_map.clear()
 	Utils.reset_player()
+	CombatSignalController.connect('player_kill', self, 'activate_death_screen')
 	start_level(level_no)
 	
 	
