@@ -1,7 +1,12 @@
 extends Node
 
 
-
+var weapon_textures = {
+	'laser_blaster': load('res://items_objects/assets/WeaponIcons/LaserBlasterIcon.png'),
+	'machine_gun': load('res://items_objects/assets/WeaponIcons/MachineGunIcon.png'),
+	'twin_shot': load('res://items_objects/assets/WeaponIcons/TwinBlasterIcon.png'),
+	'shotgun': load('res://items_objects/assets/WeaponIcons/ShotgunIcon.png')
+}
 
 	
 func _process(delta):
@@ -56,12 +61,12 @@ func update_gun_hud():
 	var sprite_node = get_parent().find_node('GunSprite')
 	var ammo_node: Label = get_parent().find_node('Ammo')
 	if weapon_type == 'laser_blaster':
-		sprite_node.texture = load('res://items_objects/assets/WeaponIcons/LaserBlasterIcon.png')
+		sprite_node.texture = weapon_textures['laser_blaster']
 	elif weapon_type == 'machine_gun':
-		sprite_node.texture = load('res://items_objects/assets/WeaponIcons/MachineGunIcon.png')
+		sprite_node.texture = weapon_textures['machine_gun']
 	elif weapon_type == 'twin_shot':
-		sprite_node.texture = load('res://items_objects/assets/WeaponIcons/TwinBlasterIcon.png')
+		sprite_node.texture = weapon_textures['twin_shot']
 	elif weapon_type == 'shotgun':
-		sprite_node.texture = load('res://items_objects/assets/WeaponIcons/ShotgunIcon.png')
+		sprite_node.texture = weapon_textures['shotgun']
 	
 	ammo_node.text = str(ammo)
