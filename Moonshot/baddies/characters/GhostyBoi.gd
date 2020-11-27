@@ -12,7 +12,7 @@ var dir : float
 var coll
 var damage := 0.02
 var cooldown := false
-var cooldown_timer :=  0.1
+var cooldown_timer :=  0.05
 var facing = 1
 
 
@@ -41,7 +41,7 @@ func _ready():
 
 func _physics_process(delta) -> void:
 	theta = get_global_rotation()
-	phi = get_global_position().angle_to_point(Utils.Player.get_node("TurnAxis").get_global_position() - 0.75 * $RayCast2D.get_cast_to()) - theta
+	phi = get_global_position().angle_to_point(Utils.Player.get_node("TurnAxis").get_global_position() - 0.75 * $RayCast2D.get_cast_to() - $RayCast2D.get_position() * Vector2(1,0)) - theta
 
 	attributes.velocity += Vector2.LEFT.rotated(theta + phi).normalized() * acceleration * delta
 	attributes.velocity = attributes.velocity.clamped(max_speed)
@@ -62,16 +62,15 @@ func flip_body() -> void:
 	facing *= -1
 	attributes._change_direction()
 	$RayCast2D.set_rotation(-$RayCast2D.get_rotation())
+	$RayCast2D.set_position($RayCast2D.get_position() * Vector2(-1,1))
 	$AnimatedSprite.flip_h = !$AnimatedSprite.flip_h
-	$AnimatedSprite.set_offset($AnimatedSprite.get_offset() * Vector2(-1,1))
-	$CollisionShape2D.set_position($CollisionShape2D.get_position() * Vector2(-1,1))
 
 
 func drop_blob() -> void:
 	var shot = beam.instance()
 	shot.set_damage(damage)
 	get_tree().get_root().add_child(shot)
-	shot.set_global_position(get_global_position())
+	shot.set_global_position($RayCast2D.get_global_position())
 	cooldown = true
 	yield(get_tree().create_timer(cooldown_timer), "timeout")
 	cooldown = false
