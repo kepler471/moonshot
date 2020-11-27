@@ -1,51 +1,44 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://baddies/sprites/Ghosty_sheet_v0.5.png" type="Texture" id=1]
+[ext_resource path="res://baddies/sprites/spawner2.png" type="Texture" id=1]
 [ext_resource path="res://baddies/characters/MotherHen.gd" type="Script" id=2]
 [ext_resource path="res://baddies/BaddieLaser/BaddieSpawner.tscn" type="PackedScene" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 64, 64 )
+region = Rect2( 0, 0, 128, 128 )
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 1 )
-region = Rect2( 64, 0, 64, 64 )
+region = Rect2( 128, 0, 128, 128 )
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 1 )
-region = Rect2( 128, 0, 64, 64 )
+region = Rect2( 256, 0, 128, 128 )
 
 [sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 1 )
-region = Rect2( 192, 0, 64, 64 )
+region = Rect2( 384, 0, 128, 128 )
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 1 )
-region = Rect2( 256, 0, 64, 64 )
+region = Rect2( 512, 0, 128, 128 )
 
 [sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 1 )
-region = Rect2( 320, 0, 64, 64 )
+region = Rect2( 640, 0, 128, 128 )
 
 [sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 1 )
-region = Rect2( 384, 0, 64, 64 )
+region = Rect2( 768, 0, 128, 128 )
 
-[sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 1 )
-region = Rect2( 448, 0, 64, 64 )
-
-[sub_resource type="SpriteFrames" id=9]
+[sub_resource type="SpriteFrames" id=8]
 animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ],
 "loop": true,
 "name": "float",
 "speed": 8.0
 } ]
-
-[sub_resource type="CircleShape2D" id=10]
-radius = 46.2882
 
 [node name="MotherHen" type="KinematicBody2D" groups=[
 "Baddies",
@@ -53,18 +46,15 @@ radius = 46.2882
 modulate = Color( 0.572549, 0.792157, 0.172549, 1 )
 scale = Vector2( 2, 2 )
 collision_layer = 2147483652
-collision_mask = 130
+collision_mask = 131
 script = ExtResource( 2 )
 
 [node name="BaddieSpawner" parent="." instance=ExtResource( 3 )]
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-scale = Vector2( 3, 3 )
-frames = SubResource( 9 )
+frames = SubResource( 8 )
 animation = "float"
-frame = 4
 playing = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.204758, -3.65035 )
-shape = SubResource( 10 )
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -42.7973, 8.58806, -61.297, 48.1102, 61.2636, 48.4255, 53.8007, 36.5479, 52.0137, 11.2159, 44.5508, -5.39185, 31.3067, -12.4344, 17.3268, -26.7296, -18.7267, -24.8376, -41.7462, -5.18163 )
