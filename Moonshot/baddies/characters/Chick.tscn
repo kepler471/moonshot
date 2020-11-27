@@ -1,0 +1,80 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://baddies/sprites/CheekyChickt.png" type="Texture" id=1]
+[ext_resource path="res://baddies/characters/Chick.gd" type="Script" id=3]
+[ext_resource path="res://baddies/TurningHack.gd" type="Script" id=7]
+[ext_resource path="res://baddies/Attributes.gd" type="Script" id=9]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 1 )
+region = Rect2( 128, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 1 )
+region = Rect2( 160, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
+"loop": true,
+"name": "rush",
+"speed": 9.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=8]
+
+[node name="Chick" type="KinematicBody2D" groups=[
+"Baddies",
+]]
+scale = Vector2( 0.842648, 0.937197 )
+collision_layer = 2147483652
+collision_mask = 2147483651
+script = ExtResource( 3 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 2.42491, -1.79946 )
+frames = SubResource( 7 )
+animation = "rush"
+frame = 3
+playing = true
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 8 )
+
+[node name="FrontRayCast" type="RayCast2D" parent="."]
+position = Vector2( 6, 3 )
+enabled = true
+cast_to = Vector2( 0, 20 )
+script = ExtResource( 7 )
+
+[node name="RearRayCast" type="RayCast2D" parent="."]
+position = Vector2( -6, 3 )
+enabled = true
+cast_to = Vector2( 0, 20 )
+script = ExtResource( 7 )
+
+[node name="Attributes" type="Node" parent="."]
+script = ExtResource( 9 )
+
+[node name="TriggerJump" type="RayCast2D" parent="."]
+rotation = -1.5708
+enabled = true
+cast_to = Vector2( 0, 100 )
+collision_mask = 2
