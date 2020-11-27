@@ -165,7 +165,10 @@ func spawn_items():
 		var item_children = node.get_children()
 		var item_names = []
 		for item in item_children:
-			item_names.append(item.name)
+			if item.name == 'health_pickup':
+				item_names.append('HealthPickup')
+			else:
+				item_names.append(item.name)
 			item.queue_free()
 		
 		# If there are item children on the node then use those items as the default
