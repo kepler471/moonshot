@@ -28,7 +28,7 @@ func _init() -> void:
 		"gravity": -10,
 		"damage_to_player": DAMAGE_TO_PLAYER * DAMAGE_MULTIPLIER,
 		"floor_vector": Vector2(0, -1),
-		"should_damge_on_collision": true
+		"should_damage_on_collision": true
 	})
 
 func _ready():

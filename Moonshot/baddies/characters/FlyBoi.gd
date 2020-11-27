@@ -21,7 +21,7 @@ func _init() -> void:
 		"floor_vector": Vector2(0, -1),
 		"velocity": Vector2(),
 		"damage_to_player": 0.33,
-		"should_damge_on_collision": true
+		"should_damage_on_collision": true
 	})
 
 func _ready():
