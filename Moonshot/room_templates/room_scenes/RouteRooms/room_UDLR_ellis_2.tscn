@@ -1,23 +1,23 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/tile_maps/Damage_TileSet.tres" type="TileSet" id=1]
-[ext_resource path="res://room_templates/BaseRoom.gd" type="Script" id=2]
-[ext_resource path="res://assets/tile_maps/TileSet_v1.tres" type="TileSet" id=3]
+[ext_resource path="res://assets/tile_maps/TileSet_v1.tres" type="TileSet" id=2]
+[ext_resource path="res://room_templates/BaseRoom.gd" type="Script" id=3]
 [ext_resource path="res://assets/tile_maps/TileMap.gd" type="Script" id=4]
-[ext_resource path="res://room_templates/exit_vert.tscn" type="PackedScene" id=5]
-[ext_resource path="res://room_templates/exit_hori.tscn" type="PackedScene" id=6]
-[ext_resource path="res://baddies/characters/FlyBoi.tscn" type="PackedScene" id=7]
-[ext_resource path="res://items_objects/breakable_tile_purple.tscn" type="PackedScene" id=8]
-[ext_resource path="res://baddies/characters/BearBoi.tscn" type="PackedScene" id=9]
+[ext_resource path="res://baddies/characters/FlyBoi.tscn" type="PackedScene" id=5]
+[ext_resource path="res://baddies/characters/BearBoi.tscn" type="PackedScene" id=6]
+[ext_resource path="res://items_objects/breakable_tile_purple.tscn" type="PackedScene" id=7]
+[ext_resource path="res://room_templates/exit_vert.tscn" type="PackedScene" id=8]
+[ext_resource path="res://room_templates/exit_hori.tscn" type="PackedScene" id=9]
 
 [node name="Room Root" type="Node2D" groups=[
 "Room",
 ]]
-script = ExtResource( 2 )
+script = ExtResource( 3 )
 
 [node name="Background" type="TileMap" parent="."]
 z_index = -5
-tile_set = ExtResource( 3 )
+tile_set = ExtResource( 2 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 format = 1
@@ -33,7 +33,7 @@ format = 1
 tile_data = PoolIntArray( 1376245, 22, 0, 1376246, 22, 0, 1376247, 22, 0, 1376248, 22, 0, 1376249, 22, 0, 1376250, 22, 0, 1376251, 22, 0, 1376252, 22, 0, 1376253, 22, 0, 1376254, 22, 0, 1441789, 22, 65536, 1441790, 22, 65536, 1441791, 22, 0, 1507324, 22, 65536, 1507325, 22, 65536, 1507326, 22, 65536, 1507327, 22, 65536, 1572860, 22, 65536, 1572861, 22, 65536, 1572862, 22, 65536, 1572863, 22, 65536, 1507328, 22, 0, 1507329, 22, 0, 1638396, 22, 65536, 1638397, 22, 65536, 1638398, 22, 65536, 1638399, 22, 65536, 1572864, 22, 65536, 1572865, 22, 65536, 1572866, 22, 0, 1703933, 22, 65536, 1703934, 22, 65536, 1703935, 22, 65536, 1638400, 22, 65536, 1638401, 22, 65536, 1638402, 22, 65536, 1769469, 22, 65536, 1769470, 22, 65536, 1769471, 22, 65536, 1703936, 22, 65536, 1703937, 22, 65536, 1703938, 22, 65536, 1703939, 22, 0, 1835005, 22, 65536, 1835006, 22, 65536, 1835007, 22, 65536, 1769472, 22, 65536, 1769473, 22, 65536, 1769474, 22, 65536, 1769475, 22, 65536, 1769476, 22, 0, 1769477, 22, 0, 1769478, 22, 0, 1769479, 22, 0, 1900541, 22, 65536, 1900542, 22, 65536, 1900543, 22, 65536, 1835008, 22, 65536, 1835009, 22, 65536, 1835010, 22, 65536, 1835011, 22, 65536, 1835012, 22, 65536, 1835013, 22, 65536, 1835014, 22, 65536, 1835015, 22, 65536, 1966078, 22, 65536, 1966079, 22, 65536, 1900544, 22, 65536, 1900545, 22, 65536, 1900546, 22, 65536, 1900547, 22, 65536, 1900548, 22, 65536, 1900549, 22, 65536, 1900550, 22, 65536, 1900551, 22, 65536, 1900558, 22, 0, 1900559, 22, 0, 1900560, 22, 0, 1900561, 22, 0, 1900562, 22, 0, 1900563, 22, 0, 1900564, 22, 0, 1900565, 22, 0, 1900566, 22, 0, 1900567, 22, 0, 1900568, 22, 0, 1900569, 22, 0, 1900570, 22, 0, 1900571, 22, 0, 1900572, 22, 0, 1900573, 22, 0, 2031614, 22, 65536, 2031615, 22, 65536, 1966080, 22, 65536, 1966081, 22, 65536, 1966082, 22, 65536, 1966083, 22, 65536, 1966084, 22, 65536, 1966085, 22, 65536, 1966086, 22, 65536, 1966087, 22, 65536, 1966094, 22, 65536, 1966095, 22, 65536, 1966096, 22, 65536, 1966097, 22, 65536, 1966098, 22, 65536, 1966099, 22, 65536, 1966100, 22, 65536, 1966101, 22, 65536, 1966102, 22, 65536, 1966103, 22, 65536, 1966104, 22, 65536, 1966105, 22, 65536, 1966106, 22, 65536, 1966107, 22, 65536, 1966108, 22, 65536, 1966109, 22, 65536, 2097150, 22, 65536, 2097151, 22, 65536, 2031616, 22, 65536, 2031617, 22, 65536, 2031618, 22, 65536, 2031619, 22, 65536, 2031620, 22, 65536, 2031621, 22, 65536, 2031622, 22, 65536, 2031623, 22, 65536, 2031624, 22, 65536, 2031625, 22, 65536, 2031626, 22, 65536, 2031627, 22, 65536, 2031628, 22, 65536, 2031629, 22, 65536, 2031630, 22, 65536, 2031631, 22, 65536, 2031632, 22, 65536, 2031633, 22, 65536, 2031634, 22, 65536, 2031635, 22, 65536, 2031636, 22, 65536, 2031637, 22, 65536, 2031638, 22, 65536, 2031639, 22, 65536, 2031640, 22, 65536, 2031641, 22, 65536, 2031642, 22, 65536, 2031643, 22, 65536, 2031644, 22, 65536, 2031645, 22, 65536, 2162686, 22, 65536, 2162687, 22, 65536, 2097152, 22, 65536, 2097153, 22, 65536, 2097154, 22, 65536, 2097155, 22, 65536, 2097156, 22, 65536, 2097157, 22, 65536, 2097158, 22, 65536, 2097159, 22, 65536, 2097160, 22, 65536, 2097161, 22, 65536, 2097162, 22, 65536, 2097163, 22, 65536, 2097164, 22, 65536, 2097165, 22, 65536, 2097166, 22, 65536, 2097167, 22, 65536, 2097168, 22, 65536, 2097169, 22, 65536, 2097170, 22, 65536, 2097171, 22, 65536, 2097172, 22, 65536, 2097173, 22, 65536, 2097174, 22, 65536, 2097175, 22, 65536, 2097176, 22, 65536, 2097177, 22, 65536, 2097178, 22, 65536, 2097179, 22, 65536, 2097180, 22, 65536, 2097181, 22, 65536, 2097214, 22, 0, 2097215, 22, 0, 2097216, 22, 0, 2228223, 22, 65536, 2162688, 22, 65536, 2162689, 22, 65536, 2162690, 22, 65536, 2162691, 22, 65536, 2162692, 22, 65536, 2162693, 22, 65536, 2162694, 22, 65536, 2162695, 22, 65536, 2162702, 22, 65536, 2162703, 22, 65536, 2162704, 22, 65536, 2162705, 22, 65536, 2162706, 22, 65536, 2162707, 22, 65536, 2162708, 22, 65536, 2162709, 22, 65536, 2162710, 22, 65536, 2162711, 22, 65536, 2162712, 22, 65536, 2162713, 22, 65536, 2162714, 22, 65536, 2162715, 22, 65536, 2162716, 22, 65536, 2162717, 22, 65536, 2162742, 22, 0, 2162743, 22, 0, 2162744, 22, 0, 2162745, 22, 0, 2162746, 22, 0, 2162747, 22, 0, 2162748, 22, 0, 2162749, 22, 0, 2162750, 22, 65536, 2162751, 22, 65536, 2293759, 22, 65536, 2228224, 22, 65536, 2228225, 22, 65536, 2228226, 22, 65536, 2228227, 22, 65536, 2228228, 22, 65536, 2228229, 22, 65536, 2228230, 22, 65536, 2228231, 22, 65536, 2228239, 22, 65536, 2228240, 22, 65536, 2228241, 22, 65536, 2228242, 22, 65536, 2228243, 22, 65536, 2228244, 22, 65536, 2228245, 22, 65536, 2228246, 22, 65536, 2228247, 22, 65536, 2228248, 22, 65536, 2228249, 22, 65536, 2228250, 22, 65536, 2228251, 22, 65536, 2228252, 22, 65536, 2228253, 22, 65536, 2228280, 22, 65536, 2228281, 22, 65536, 2228282, 22, 65536, 2228283, 22, 65536, 2228284, 22, 65536, 2228285, 22, 65536, 2228286, 22, 65536, 2228287, 22, 65536, 2293760, 22, 65536, 2293761, 22, 65536, 2293762, 22, 65536, 2293763, 22, 65536, 2293764, 22, 65536, 2293765, 22, 65536, 2293766, 22, 65536, 2293767, 22, 65536, 2293775, 22, 65536, 2293776, 22, 65536, 2293777, 22, 65536, 2293778, 22, 65536, 2293779, 22, 65536, 2293780, 22, 65536, 2293781, 22, 65536, 2293782, 22, 65536, 2293783, 22, 65536, 2293784, 22, 65536, 2293785, 22, 65536, 2293786, 22, 65536, 2293787, 22, 65536, 2293788, 22, 65536, 2293789, 22, 65536, 2293816, 22, 65536, 2293817, 22, 65536, 2293818, 22, 65536, 2293819, 22, 65536, 2293820, 22, 65536, 2293821, 22, 65536, 2359297, 22, 65536, 2359298, 22, 65536, 2359299, 22, 65536, 2359300, 22, 65536, 2359301, 22, 65536, 2359302, 22, 65536, 2359303, 22, 65536, 2359311, 22, 65536, 2359312, 22, 65536, 2359313, 22, 65536, 2359314, 22, 65536, 2359315, 22, 65536, 2359316, 22, 65536, 2359317, 22, 65536, 2359318, 22, 65536, 2359319, 22, 65536, 2359320, 22, 65536, 2359321, 22, 65536, 2359322, 22, 65536, 2359323, 22, 65536, 2359324, 22, 65536, 2359325, 22, 65536, 2359352, 22, 65536, 2359353, 22, 65536, 2359354, 22, 65536, 2359355, 22, 65536, 2424834, 22, 65536, 2424835, 22, 65536, 2424836, 22, 65536, 2424837, 22, 65536, 2424838, 22, 65536, 2424847, 22, 65536, 2424848, 22, 65536, 2424849, 22, 65536, 2424850, 22, 65536, 2424851, 22, 65536, 2424852, 22, 65536, 2424853, 22, 65536, 2424854, 22, 65536, 2424855, 22, 65536, 2424856, 22, 65536, 2424857, 22, 65536, 2424858, 22, 65536, 2424859, 22, 65536, 2424860, 22, 65536, 2424861, 22, 65536, 2424888, 22, 65536, 2424889, 22, 65536, 2490371, 22, 65536, 2490372, 22, 65536, 2490373, 22, 65536, 2490383, 22, 65536, 2490384, 22, 65536, 2490385, 22, 65536, 2490386, 22, 65536, 2490387, 22, 65536, 2490388, 22, 65536, 2490389, 22, 65536, 2490390, 22, 65536, 2490391, 22, 65536, 2490392, 22, 65536, 2490393, 22, 65536, 2490394, 22, 65536, 2490395, 22, 65536, 2490396, 22, 65536, 2490397, 22, 65536, 2490415, 22, 0, 2490416, 22, 0, 2490417, 22, 0, 2490418, 22, 0, 2490419, 22, 0, 2490420, 22, 0, 2490421, 22, 0, 2555908, 22, 65536, 2555909, 22, 65536, 2555919, 22, 65536, 2555920, 22, 65536, 2555921, 22, 65536, 2555922, 22, 65536, 2555923, 22, 65536, 2555924, 22, 65536, 2555925, 22, 65536, 2555926, 22, 65536, 2555927, 22, 65536, 2555928, 22, 65536, 2555929, 22, 65536, 2555930, 22, 65536, 2555931, 22, 65536, 2555932, 22, 65536, 2555933, 22, 65536, 2555934, 22, 65536, 2555951, 22, 65536, 2555952, 22, 65536, 2555953, 22, 65536, 2555954, 22, 65536, 2555955, 22, 65536, 2621445, 22, 65536, 2621455, 22, 65536, 2621456, 22, 65536, 2621457, 22, 65536, 2621458, 22, 65536, 2621459, 22, 65536, 2621460, 22, 65536, 2621461, 22, 65536, 2621462, 22, 65536, 2621463, 22, 65536, 2621464, 22, 65536, 2621465, 22, 65536, 2621466, 22, 65536, 2621467, 22, 65536, 2621468, 22, 65536, 2621469, 22, 65536, 2621470, 22, 65536, 2621486, 22, 65536, 2621487, 22, 65536, 2621488, 22, 65536, 2621489, 22, 65536, 2686990, 22, 65536, 2686991, 22, 65536, 2686992, 22, 65536, 2686993, 22, 65536, 2686994, 22, 65536, 2686995, 22, 65536, 2686996, 22, 65536, 2686997, 22, 65536, 2686998, 22, 65536, 2686999, 22, 65536, 2687000, 22, 65536, 2687001, 22, 65536, 2687002, 22, 65536, 2687003, 22, 65536, 2687004, 22, 65536, 2687005, 22, 65536, 2687006, 22, 65536, 2687023, 22, 65536, 2752526, 22, 65536, 2752527, 22, 65536, 2752528, 22, 65536, 2752529, 22, 65536, 2752530, 22, 65536, 2752531, 22, 65536, 2752532, 22, 65536, 2752533, 22, 65536, 2752534, 22, 65536, 2752535, 22, 65536, 2752536, 22, 65536, 2752537, 22, 65536, 2752538, 22, 65536, 2752539, 22, 65536, 2752540, 22, 65536, 2752541, 22, 65536, 2752542, 22, 65536, 2818063, 22, 65536, 2818064, 22, 65536, 2818065, 22, 65536, 2818066, 22, 65536, 2818067, 22, 65536, 2818068, 22, 65536, 2818069, 22, 65536, 2818070, 22, 65536, 2818071, 22, 65536, 2818072, 22, 65536, 2818073, 22, 65536, 2818074, 22, 65536, 2818075, 22, 65536, 2818076, 22, 65536, 2818077, 22, 65536, 2818078, 22, 65536, 2883603, 22, 65536, 2883604, 22, 65536, 2883605, 22, 65536, 2883606, 22, 65536, 2883607, 22, 65536, 2883608, 22, 65536, 2883609, 22, 65536, 2883610, 22, 65536, 2883611, 22, 65536, 2883612, 22, 65536, 2883613, 22, 65536, 2883614, 22, 65536 )
 
 [node name="OneWayPlatforms" type="TileMap" parent="."]
-tile_set = ExtResource( 3 )
+tile_set = ExtResource( 2 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 collision_layer = 8
@@ -41,7 +41,7 @@ collision_mask = 5
 format = 1
 
 [node name="BaseTiles" type="TileMap" parent="."]
-tile_set = ExtResource( 3 )
+tile_set = ExtResource( 2 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 format = 1
@@ -56,16 +56,16 @@ collision_mask = 5
 format = 1
 tile_data = PoolIntArray( -65514, 23, 0, 22, 23, 0, 26, 24, 0, 65558, 23, 0, 65562, 24, 0, 131093, 23, 0, 131098, 24, 0, 196629, 23, 0, 196634, 24, 0, 262166, 23, 0, 262170, 24, 0, 327703, 23, 0, 327706, 24, 0, 393239, 23, 0, 393241, 24, 0, 720907, 24, 0, 786443, 24, 0, 851979, 24, 0, 852009, 23, 0, 917515, 24, 0, 917546, 23, 0, 983051, 24, 0, 1048587, 24, 0, 1114123, 24, 0, 1179659, 24, 0, 1376253, 22, 0, 1376254, 24, 0, 1441791, 24, 0, 1507327, 24, 0, 1507329, 24, 0, 1572866, 24, 0, 1638402, 24, 0, 1703939, 24, 0, 1769478, 22, 0, 1769479, 22, 0, 2031681, 23, 0, 2097188, 24, 0, 2097214, 23, 0, 2162724, 24, 0, 2162742, 23, 0, 2228260, 24, 0, 2228278, 23, 0, 2293796, 24, 0, 2293814, 23, 0, 2359332, 24, 0, 2359350, 23, 0, 2424868, 24, 0, 2424886, 23, 0, 2490404, 24, 0 )
 
-[node name="Exit_UP" parent="." instance=ExtResource( 5 )]
+[node name="Exit_UP" parent="." instance=ExtResource( 8 )]
 position = Vector2( 1008, -240 )
 
-[node name="Exit_DOWN" parent="." instance=ExtResource( 5 )]
+[node name="Exit_DOWN" parent="." instance=ExtResource( 8 )]
 position = Vector2( 1312, 1472 )
 
-[node name="Exit_LEFT" parent="." instance=ExtResource( 6 )]
+[node name="Exit_LEFT" parent="." instance=ExtResource( 9 )]
 position = Vector2( -432, 80 )
 
-[node name="Exit_RIGHT" parent="." instance=ExtResource( 6 )]
+[node name="Exit_RIGHT" parent="." instance=ExtResource( 9 )]
 position = Vector2( 2176, 960 )
 
 [node name="camera_limit_NW" type="Position2D" parent="."]
@@ -81,292 +81,292 @@ position = Vector2( -376, 88 )
 
 [node name="level_setup_1" type="Node2D" parent="level_setups"]
 
-[node name="breakable_tile" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 688, 432 )
 
-[node name="breakable_tile2" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile2" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 720, 432 )
 
-[node name="breakable_tile3" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile3" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 752, 432 )
 
-[node name="breakable_tile4" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile4" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 784, 432 )
 
-[node name="breakable_tile5" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile5" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 816, 432 )
 
-[node name="breakable_tile6" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile6" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 848, 432 )
 
-[node name="breakable_tile7" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile7" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 712, 464 )
 
-[node name="breakable_tile8" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile8" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 744, 464 )
 
-[node name="breakable_tile9" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile9" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 776, 464 )
 
-[node name="breakable_tile10" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile10" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 744, 496 )
 
-[node name="breakable_tile11" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile11" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 776, 496 )
 
-[node name="breakable_tile12" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile12" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 808, 496 )
 
-[node name="breakable_tile13" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile13" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 696, 400 )
 
-[node name="breakable_tile14" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile14" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 728, 400 )
 
-[node name="breakable_tile15" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile15" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 760, 400 )
 
-[node name="breakable_tile16" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile16" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 784, 400 )
 
-[node name="breakable_tile17" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile17" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 816, 400 )
 
-[node name="breakable_tile18" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile18" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 848, 400 )
 
-[node name="breakable_tile19" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile19" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 704, 368 )
 
-[node name="breakable_tile20" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile20" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 736, 368 )
 
-[node name="breakable_tile21" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile21" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 768, 368 )
 
-[node name="breakable_tile22" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile22" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 800, 368 )
 
-[node name="breakable_tile25" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile25" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 720, 336 )
 
-[node name="breakable_tile26" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile26" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 752, 336 )
 
-[node name="breakable_tile27" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile27" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 784, 336 )
 
-[node name="breakable_tile28" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile28" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 816, 336 )
 
-[node name="breakable_tile29" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile29" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 728, 304 )
 
-[node name="breakable_tile30" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile30" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 760, 304 )
 
-[node name="breakable_tile31" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile31" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 792, 304 )
 
-[node name="breakable_tile32" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile32" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 824, 304 )
 
-[node name="breakable_tile41" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile41" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 848, 336 )
 
-[node name="breakable_tile33" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile33" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 736, 272 )
 
-[node name="breakable_tile34" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile34" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 768, 272 )
 
-[node name="breakable_tile35" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile35" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 800, 272 )
 
-[node name="breakable_tile36" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile36" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 832, 272 )
 
-[node name="breakable_tile37" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile37" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 736, 240 )
 
-[node name="breakable_tile38" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile38" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 768, 240 )
 
-[node name="breakable_tile39" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile39" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 800, 240 )
 
-[node name="breakable_tile40" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile40" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 832, 240 )
 
-[node name="breakable_tile23" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile23" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 832, 368 )
 
-[node name="breakable_tile24" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile24" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 864, 368 )
 
-[node name="breakable_tile42" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile42" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 672, 720 )
 
-[node name="breakable_tile43" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile43" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 704, 720 )
 
-[node name="breakable_tile44" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile44" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 736, 720 )
 
-[node name="breakable_tile45" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile45" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 768, 720 )
 
-[node name="breakable_tile46" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile46" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 800, 720 )
 
-[node name="breakable_tile47" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile47" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 832, 720 )
 
-[node name="breakable_tile48" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile48" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 696, 752 )
 
-[node name="breakable_tile49" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile49" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 728, 752 )
 
-[node name="breakable_tile50" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile50" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 760, 752 )
 
-[node name="breakable_tile51" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile51" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 728, 784 )
 
-[node name="breakable_tile52" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile52" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 760, 784 )
 
-[node name="breakable_tile53" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile53" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 792, 784 )
 
-[node name="breakable_tile54" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile54" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 680, 688 )
 
-[node name="breakable_tile55" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile55" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 712, 688 )
 
-[node name="breakable_tile56" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile56" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 744, 688 )
 
-[node name="breakable_tile57" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile57" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 768, 688 )
 
-[node name="breakable_tile58" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile58" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 800, 688 )
 
-[node name="breakable_tile59" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile59" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 832, 688 )
 
-[node name="breakable_tile83" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile83" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 704, 848 )
 
-[node name="breakable_tile84" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile84" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 736, 848 )
 
-[node name="breakable_tile85" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile85" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 768, 848 )
 
-[node name="breakable_tile86" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile86" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 800, 848 )
 
-[node name="breakable_tile87" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile87" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 696, 880 )
 
-[node name="breakable_tile88" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile88" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 728, 880 )
 
-[node name="breakable_tile89" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile89" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 696, 912 )
 
-[node name="breakable_tile90" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile90" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 728, 912 )
 
-[node name="breakable_tile91" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile91" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 760, 912 )
 
-[node name="breakable_tile92" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile92" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 680, 816 )
 
-[node name="breakable_tile93" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile93" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 712, 816 )
 
-[node name="breakable_tile94" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile94" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 736, 816 )
 
-[node name="breakable_tile95" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile95" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 768, 816 )
 
-[node name="breakable_tile96" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile96" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 800, 816 )
 
-[node name="breakable_tile60" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile60" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 688, 656 )
 
-[node name="breakable_tile61" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile61" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 720, 656 )
 
-[node name="breakable_tile62" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile62" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 752, 656 )
 
-[node name="breakable_tile63" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile63" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 784, 656 )
 
-[node name="breakable_tile64" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile64" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 704, 624 )
 
-[node name="breakable_tile65" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile65" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 736, 624 )
 
-[node name="breakable_tile66" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile66" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 768, 624 )
 
-[node name="breakable_tile67" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile67" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 800, 624 )
 
-[node name="breakable_tile68" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile68" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 712, 592 )
 
-[node name="breakable_tile69" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile69" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 744, 592 )
 
-[node name="breakable_tile70" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile70" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 776, 592 )
 
-[node name="breakable_tile71" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile71" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 808, 592 )
 
-[node name="breakable_tile72" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile72" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 832, 624 )
 
-[node name="breakable_tile73" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile73" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 720, 560 )
 
-[node name="breakable_tile74" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile74" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 752, 560 )
 
-[node name="breakable_tile75" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile75" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 784, 560 )
 
-[node name="breakable_tile76" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile76" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 816, 560 )
 
-[node name="breakable_tile77" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile77" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 720, 528 )
 
-[node name="breakable_tile78" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile78" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 752, 528 )
 
-[node name="breakable_tile79" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile79" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 784, 528 )
 
-[node name="breakable_tile80" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile80" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 816, 528 )
 
-[node name="breakable_tile81" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile81" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 816, 656 )
 
-[node name="breakable_tile82" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+[node name="breakable_tile82" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 position = Vector2( 848, 656 )
 
 [node name="baddie_spawn_line1" type="Line2D" parent="level_setups/level_setup_1"]
@@ -375,42 +375,42 @@ points = PoolVector2Array( 1000, 808, 1264, 816 )
 [node name="baddie_spawn_line2" type="Line2D" parent="level_setups/level_setup_1"]
 points = PoolVector2Array( 1296, 112, 1304, 296 )
 
-[node name="FlyBoi" parent="level_setups/level_setup_1/baddie_spawn_line2" instance=ExtResource( 7 )]
+[node name="FlyBoi" parent="level_setups/level_setup_1/baddie_spawn_line2" instance=ExtResource( 5 )]
 
 [node name="baddie_spawn_line3" type="Line2D" parent="level_setups/level_setup_1"]
 position = Vector2( -792, -88 )
 points = PoolVector2Array( 1296, 112, 1304, 296 )
 
-[node name="FlyBoi" parent="level_setups/level_setup_1/baddie_spawn_line3" instance=ExtResource( 7 )]
+[node name="FlyBoi" parent="level_setups/level_setup_1/baddie_spawn_line3" instance=ExtResource( 5 )]
 
 [node name="baddie_spawn_line4" type="Line2D" parent="level_setups/level_setup_1"]
 position = Vector2( -1224, 336 )
 points = PoolVector2Array( 1296, 112, 1304, 296 )
 
-[node name="FlyBoi" parent="level_setups/level_setup_1/baddie_spawn_line4" instance=ExtResource( 7 )]
+[node name="FlyBoi" parent="level_setups/level_setup_1/baddie_spawn_line4" instance=ExtResource( 5 )]
 
 [node name="baddie_spawn_point1" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( 1032, 160 )
 
-[node name="BearBoi" parent="level_setups/level_setup_1/baddie_spawn_point1" instance=ExtResource( 9 )]
+[node name="BearBoi" parent="level_setups/level_setup_1/baddie_spawn_point1" instance=ExtResource( 6 )]
 position = Vector2( -0.749146, 0 )
 
 [node name="baddie_spawn_point3" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( 1544, 816 )
 
-[node name="BearBoi" parent="level_setups/level_setup_1/baddie_spawn_point3" instance=ExtResource( 9 )]
+[node name="BearBoi" parent="level_setups/level_setup_1/baddie_spawn_point3" instance=ExtResource( 6 )]
 position = Vector2( -0.749146, 0 )
 
 [node name="baddie_spawn_point4" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( 1872, 896 )
 
-[node name="BearBoi" parent="level_setups/level_setup_1/baddie_spawn_point4" instance=ExtResource( 9 )]
+[node name="BearBoi" parent="level_setups/level_setup_1/baddie_spawn_point4" instance=ExtResource( 6 )]
 position = Vector2( -0.749146, 0 )
 
 [node name="baddie_spawn_point5" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( -256, 56 )
 
-[node name="BearBoi" parent="level_setups/level_setup_1/baddie_spawn_point5" instance=ExtResource( 9 )]
+[node name="BearBoi" parent="level_setups/level_setup_1/baddie_spawn_point5" instance=ExtResource( 6 )]
 position = Vector2( -0.749146, 0 )
 
 [node name="baddie_spawn_point2" type="Position2D" parent="level_setups/level_setup_1"]
