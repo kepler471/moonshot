@@ -29,7 +29,7 @@ func _physics_process(delta) -> void:
 
 	if $TriggerJump.is_colliding():
 		if is_on_floor():
-			attributes.velocity += (Vector2(0, -400))
+			attributes.velocity += (Vector2(0, -800))
 			attributes._move(delta)
 			return
 		else:

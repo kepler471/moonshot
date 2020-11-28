@@ -12,9 +12,6 @@ func set_max_baddies(m: int) -> void:
 
 func spawn_randomly() -> void:
 	spawn()
-	var timer: Timer = Timer.new()
-	add_child(timer)
-	timer.start(0.5)
 
 func spawn():
 	var baddie_dictionary_keys: Array = _baddie_dictionary.keys()
