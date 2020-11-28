@@ -228,12 +228,15 @@ margin_right = 10.0
 margin_bottom = 162.0
 rect_min_size = Vector2( 10, 162 )
 
-[node name="ColorRect" type="ColorRect" parent="GUI/MarginContainer/VBoxContainer/MinimapBox/VBoxContainer2/HBoxContainer"]
+[node name="MinimapBackground" type="ColorRect" parent="GUI/MarginContainer/VBoxContainer/MinimapBox/VBoxContainer2/HBoxContainer"]
 margin_left = 14.0
 margin_right = 168.0
 margin_bottom = 162.0
 rect_min_size = Vector2( 154, 154 )
 color = Color( 0.729412, 0.729412, 0.729412, 1 )
+
+[node name="MinimapCentre" type="Position2D" parent="GUI/MarginContainer/VBoxContainer/MinimapBox/VBoxContainer2/HBoxContainer/MinimapBackground"]
+position = Vector2( 77, 82 )
 
 [node name="HSplitContainer2" type="HSplitContainer" parent="GUI/MarginContainer/VBoxContainer/MinimapBox/VBoxContainer2/HBoxContainer"]
 margin_left = 172.0

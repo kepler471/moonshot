@@ -5,15 +5,20 @@ const distance = Vector2(25, 25)
 var minimap_index = {}
 var minimap_node = Node2D.new()
 var start_pos = Vector2.ZERO
+var shifted_distance = Vector2.ZERO
 var curr_pos
 var opens = []
 var done = []
 # minimap connections indexed by the rooms they connect to toggle visibility
 var indexed_connections = {}
+var current_not_hidden_nodes = []
+var current_not_hidden_conns = []
 var world_map
+var minimap_size
 var current_location_type_scene = preload("res://procedural_map_generation/assets/CurrentLocation.tscn")
 var connection_type_scene = preload("res://procedural_map_generation/assets/Connection.tscn")
 var debug = true
+
 
 func _init(gen):
 	world_map = gen.map
@@ -33,6 +38,7 @@ func _init(gen):
 	minimap_index[start_pos].queue_free()
 	minimap_index[start_pos] = current_location_type_scene.instance()
 	minimap_index[start_pos].visible = true
+	current_not_hidden_nodes.append(start_pos)
 	
 	minimap_node.add_child(minimap_index[start_pos])
 	return [minimap_node, minimap_index]
@@ -66,8 +72,9 @@ func change_current_node(new_pos: Vector2, old_pos:Vector2):
 		print("setting minimap node " + str(new_pos) + " to CurrentLocation")
 	minimap_index[new_pos].set_position(Vector2(new_pos.x*distance[0], new_pos.y*distance[1]))
 	minimap_node.add_child(minimap_index[new_pos])
-	
+	shift_node_positions(old_pos - new_pos)
 	turn_on_visibility(new_pos, old_pos)
+	set_minimap_visibility()
 
 	
 func add_connection_between (pos1:Vector2, pos2:Vector2):
@@ -100,5 +107,48 @@ func add_connection_between (pos1:Vector2, pos2:Vector2):
 # Set the visibility for the node and the surrounding connections to be true
 func turn_on_visibility(new_pos: Vector2, old_pos: Vector2):
 	minimap_index[new_pos].visible = true
+	current_not_hidden_nodes.append(new_pos)
 	indexed_connections[new_pos][old_pos].visible = true
+	current_not_hidden_conns.append(indexed_connections[new_pos][old_pos])
+	
+func shift_node_positions(diff: Vector2):
+	var shift_distance = Vector2.ZERO
+	var key_specific
+	var conn_specific
+	for key in indexed_connections:
+		key_specific = key
+		for conn in indexed_connections[key]:
+			conn_specific = conn
+			shift_distance.x = diff.x * distance.x
+			shift_distance.y = diff.y * distance.y
+			indexed_connections[key][conn].position += shift_distance / 2
+	shifted_distance += shift_distance
+	for node_vector in minimap_index:
+		shift_distance.x = diff.x * distance.x
+		shift_distance.y = diff.y * distance.y
+		minimap_index[node_vector].position = Vector2(node_vector.x*distance[0], node_vector.y*distance[1]) + shifted_distance
+		
+		
+func set_minimap_size(minimap_size_vector: Vector2):
+	minimap_size = minimap_size_vector
+	set_minimap_visibility()
+
+# Updates the visibility of all minimap nodes basedontheir position 
+func set_minimap_visibility():
+	# turn off all nodes first
+	for key in indexed_connections:
+		for conn in indexed_connections[key]:
+			indexed_connections[key][conn].visible = false
+	for key in minimap_index:
+		minimap_index[key].visible = false
+		
+	# turn on all nodes within the minimap boundaries
+	for conn in current_not_hidden_conns:
+		if (abs(conn.position.x) < minimap_size.x) && (abs(conn.position.y) < minimap_size.y):
+			conn.visible = true
+			
+	for node_coord in current_not_hidden_nodes:
+		var node = minimap_index[node_coord]
+		if (abs(node.position.x) < minimap_size.x) && (abs(node.position.y) < minimap_size.y):
+			node.visible = true
 

@@ -19,8 +19,7 @@ func _process(delta):
 	update_firerate_hud(Utils.player_stats.modifiers['firerate_pickups'], Utils.player_stats.current_firerate_level)
 
 func build_hud(minimap):
-	get_parent().find_node('GUI').add_child(minimap.minimap_node)
-	minimap.minimap_node.position = Vector2(900, 500)
+	get_parent().find_node('MinimapCentre').add_child(minimap.minimap_node)
 	Utils.player_stats.connect("firerate_changed",self,"update_firerate_hud") #signal from BaseRoom.gd
 	update_firerate_hud(Utils.player_stats.modifiers['firerate_pickups'], Utils.player_stats.current_firerate_level)
 	Utils.player_arsenal.connect("update_hud",self,"update_gun_hud") #signal from BaseRoom.gd
