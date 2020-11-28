@@ -44,6 +44,8 @@ func select_level_setup():
 	if level_setups_node == null:
 		return false
 	var level_setups = level_setups_node.get_children()
+	if !level_setups:
+		return false
 	selected_level_setup = level_setups[randi()%level_setups.size()]
 	# Delete all the level setups not nee
 	for level_setup in level_setups:
@@ -183,6 +185,8 @@ func spawn_items():
 
 	
 func get_baddie_list():
+	return [];
+	
 	var dir = Directory.new()
 	dir.open("res://baddies/characters/")
 	dir.list_dir_begin()
