@@ -52,20 +52,18 @@ func complete_Level():
 	
 # Load all room templates into a list of Rooms
 func load_template_rooms():
-	var room_dict = {"Boss": [], "Reward": [], "Route": []}
-	for key in room_dict.keys():
-		var dir = Directory.new()
-		var folder_name = "res://room_templates/room_scenes/" + key + "Rooms"
-		dir.open(folder_name)
-		dir.list_dir_begin()
+	var room_list = []
+	var dir = Directory.new()
+	dir.open("res://room_templates/room_scenes")
+	dir.list_dir_begin()
 
-		while true:
-			var file = dir.get_next()
-			if file == "":
-				break
-			elif file.begins_with("room"):
-				room_dict[key].append(Room.new(key, [], 0, file))
-	return room_dict
+	while true:
+		var file = dir.get_next()
+		if file == "":
+			break
+		elif file.begins_with("room"):
+			room_list.append(Room.new("Route", [], 0, file))
+	return room_list
 
 
 # Grow the room_locations list by placing one room next to an exsisting room
@@ -147,23 +145,23 @@ func get_Room_With_Requirement (requires:Array, end:bool = false):
 			requires[i] = "UP"
 
 	
-# If a room with only one connection then select either BOSS, 
-	# REWARD or SHOP
-	var room_type
-	if len(requires) == 1:
-		if not boss_room_created:
-			room_type = "Boss"
-			boss_room_created = true
-		else:
-			room_type = "Reward"
-	else:
-		room_type = "Route"
-			
 	while true:
-		var rand_room = template_rooms[room_type][randi()%template_rooms[room_type].size()]
+		var rand_room = template_rooms[randi()%template_rooms.size()]
 		if arrays_match(rand_room.connections, requires):
 			# Copy the room_template
-			new_room = Room.new(room_type, [], floor_level, rand_room.get_template_name())
+			new_room = Room.new("Route", [], floor_level, rand_room.get_template_name())
+			# If a room with only one connection then select either BOSS, 
+			# REWARD or SHOP
+			var type
+			if len(requires) == 1:
+				if not boss_room_created:
+					type = "Boss"
+					boss_room_created = true
+				else:
+					type = "Reward"
+				new_room.set_room_type(type)
+			else:
+				new_room.set_room_type("Route")
 			break
 	return new_room
 
