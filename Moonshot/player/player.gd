@@ -45,6 +45,7 @@ func _ready() -> void:
 	CombatSignalController.connect("get_player_global_position", self, "_emit_position")
 	CombatSignalController.connect("get_player_global_position_drop", self, "_emit_position_drop")
 	
+	Utils.player_arsenal.reset_arsenal()
 	Utils.player_arsenal.set_weapon('laser_blaster')
 
 	if not OS.is_debug_build():
@@ -208,7 +209,6 @@ func take_damage(damage, attack_dir, is_damage_tile: bool = false) -> void:
 
 func add_health(health) -> void:
 	$SFX.play("health")
-	print("HEALTH ADDED")
 	var new_health = Utils.player_stats.health + health
 	Utils.player_stats.health = min(Utils.player_stats.max_health, new_health)
 
