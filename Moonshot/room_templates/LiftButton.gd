@@ -15,4 +15,3 @@ func change_texture(state):
 			set_texture(green)
 		"on":
 			set_texture(on)
-			print("I AM RUNNING")
