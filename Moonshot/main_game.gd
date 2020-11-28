@@ -24,6 +24,7 @@ func activate_death_screen():
 	
 func go_up_level():
 	level_no += 1
+	TileSheetLoader.update_level_no()
 	current_room_node.get_node("Player").queue_free()
 	current_room_node.queue_free()
 	level_map.clear()
