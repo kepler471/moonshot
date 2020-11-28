@@ -21,12 +21,10 @@ func go_up_level():
 	current_room_node.get_node("Player").queue_free()
 	current_room_node.queue_free()
 	level_map.clear()
+	var minimap_gui_box = get_node('GUI/MarginContainer/VBoxContainer/MinimapBox/VBoxContainer2/HBoxContainer/MinimapBackground')
+	minimap.set_minimap_size(minimap_gui_box.rect_size / 2)
 	Utils.reset_player()
 	start_level(level_no)
-	
-
-
-
 	
 	
 func start_level(level_num):
@@ -35,7 +33,8 @@ func start_level(level_num):
 	var returns = level_gen.new(level_num)
 	level_map =  returns.gen.map
 	minimap = returns.minimap
-	
+	var minimap_gui_box = get_node('GUI/MarginContainer/VBoxContainer/MinimapBox/VBoxContainer2/HBoxContainer/MinimapBackground')
+	minimap.set_minimap_size(minimap_gui_box.rect_size / 2)
 	get_room_instance(room_index)
 	
 	current_room_node.add_child(Utils.Player)
