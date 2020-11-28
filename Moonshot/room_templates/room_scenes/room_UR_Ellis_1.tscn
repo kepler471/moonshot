@@ -7,7 +7,9 @@
 [ext_resource path="res://room_templates/exit_vert.tscn" type="PackedScene" id=5]
 [ext_resource path="res://room_templates/exit_hori.tscn" type="PackedScene" id=6]
 [ext_resource path="res://items_objects/breakable_tile_purple.tscn" type="PackedScene" id=7]
-[ext_resource path="res://items_objects/health_pickup.tscn" type="PackedScene" id=8]
+[ext_resource path="res://items_objects/item_pickups/HealthPickup.tscn" type="PackedScene" id=8]
+
+
 
 [node name="Room Root" type="Node2D" groups=[
 "Room",

@@ -37,15 +37,11 @@ func random_room_difficulty(room_type):
 # Based ona determined difficulty rating, fetch the number of baddies to include
 # In a room. The max no of possible baddies should already have been determined in 
 # Room.gd
-func get_no_baddies_in_room(room_difficulty, room_size_x, room_size_y, max_baddies, min_baddies):
-	var max_difficulty_rating = room_size_x*room_size_y
+func get_no_baddies_in_room(room_difficulty, max_baddies, min_baddies):
 	var no_baddies_scaling_factor = 1.2
-	for i in range(max_level):
-		max_difficulty_rating = pow(max_difficulty_rating, global_difficulty_scaling*no_baddies_scaling_factor)
+	var max_difficulty_rating = pow(global_difficulty_scaling*no_baddies_scaling_factor, max_level)
 
-	var difficulty_rating = rand_range(0.3, 1)*room_size_x*room_size_y
-	for i in range(room_difficulty):
-		difficulty_rating = pow(difficulty_rating, global_difficulty_scaling*no_baddies_scaling_factor)
+	var difficulty_rating = rand_range(0.3, 1)*pow(global_difficulty_scaling*no_baddies_scaling_factor, room_difficulty)
 
 	var scaled_difficulty_rating = difficulty_rating / max_difficulty_rating
 	var no_baddies =  round(scaled_difficulty_rating*(max_baddies-min_baddies)) + min_baddies
@@ -73,7 +69,7 @@ func get_random_attributes(room_difficulty: int, baddie_builder: BaddieBuilder, 
 	for attr in baddie_attribute_names:
 		attribute_levels[attr] = 1
 		
-	var total_points = current_level*(len(baddie_attribute_names) - 1)
+	var total_points = room_difficulty*(len(baddie_attribute_names) - 1)
 	for point in range(total_points):
 		var rand_attr = baddie_attribute_names[randi() % len(baddie_attribute_names)]
 		attribute_levels[rand_attr] += 1

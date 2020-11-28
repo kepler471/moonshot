@@ -8,7 +8,6 @@
 [ext_resource path="res://items_objects/breakable_tile_purple.tscn" type="PackedScene" id=6]
 [ext_resource path="res://room_templates/next_level_button.tscn" type="PackedScene" id=7]
 
-
 [node name="LEVEL1" type="Node2D" groups=[
 "Room",
 ]]
@@ -55,7 +54,40 @@ position = Vector2( 1914.05, 952.946 )
 position = Vector2( 334.96, 561.382 )
 
 [node name="item_spawn_point" type="Position2D" parent="level_setups/level_setup_1"]
-position = Vector2( 832, 256 )
+position = Vector2( 1284.85, 515.769 )
+
+[node name="item_spawn_point2" type="Position2D" parent="level_setups/level_setup_1"]
+position = Vector2( 1357.51, 516.764 )
+
+[node name="item_spawn_point3" type="Position2D" parent="level_setups/level_setup_1"]
+position = Vector2( 1423.2, 510.793 )
+
+[node name="item_spawn_point4" type="Position2D" parent="level_setups/level_setup_1"]
+position = Vector2( 1510.78, 510.793 )
+
+[node name="item_spawn_point5" type="Position2D" parent="level_setups/level_setup_1"]
+position = Vector2( 1565.52, 511.788 )
+
+[node name="item_spawn_point6" type="Position2D" parent="level_setups/level_setup_1"]
+position = Vector2( 1611.31, 512.783 )
+
+[node name="item_spawn_point7" type="Position2D" parent="level_setups/level_setup_1"]
+position = Vector2( 1657.09, 510.793 )
+
+[node name="item_spawn_point8" type="Position2D" parent="level_setups/level_setup_1"]
+position = Vector2( 1700.88, 510.793 )
+
+[node name="item_spawn_point9" type="Position2D" parent="level_setups/level_setup_1"]
+position = Vector2( 1757.61, 510.793 )
+
+[node name="item_spawn_point10" type="Position2D" parent="level_setups/level_setup_1"]
+position = Vector2( 1811.36, 510.793 )
+
+[node name="item_spawn_point11" type="Position2D" parent="level_setups/level_setup_1"]
+position = Vector2( 1465, 515.769 )
+
+[node name="item_spawn_point12" type="Position2D" parent="level_setups/level_setup_1"]
+position = Vector2( 1227.13, 520.746 )
 
 [node name="baddie_spawn_line" type="Line2D" parent="level_setups/level_setup_1"]
 position = Vector2( 1226.06, 520.277 )

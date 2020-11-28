@@ -3,7 +3,7 @@ class_name Attributes
 
 onready var fade: Fade
 
-var firerate_boost_drop = load("res://items_objects/FireRatePickup.tscn")
+var firerate_boost_drop = load("res://items_objects/item_pickups/FireRatePickup.tscn")
 enum Direction {
 	LEFT = -1,
 	RIGHT = 1
