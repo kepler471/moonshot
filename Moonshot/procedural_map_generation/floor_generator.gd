@@ -8,7 +8,7 @@ const min_rooms : int = 20
 const room_Count_Depth_Multiplier : float = 3.0
 var max_rooms = 100
 const room_Count_Variation = 0;
-var starting_room = 'room_base.tscn'
+var starting_room = 'room_temp_spawn.tscn'
 var floor_level
 
 
