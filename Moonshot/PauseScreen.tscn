@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/fonts/basic_font_size_64.tres" type="DynamicFont" id=1]
+[ext_resource path="res://PauseScreen.gd" type="Script" id=2]
+
+[node name="PauseScreen" type="CanvasLayer"]
+pause_mode = 2
+script = ExtResource( 2 )
+
+[node name="Visibility" type="Node2D" parent="."]
+pause_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="Visibility"]
+pause_mode = 2
+margin_right = 1024.0
+margin_bottom = 576.0
+color = Color( 0, 0, 0, 0.745098 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RestartButton" type="Label" parent="Visibility"]
+pause_mode = 2
+margin_left = 360.0
+margin_top = 264.0
+margin_right = 689.0
+margin_bottom = 335.0
+custom_fonts/font = ExtResource( 1 )
+text = "Restart"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ExitButton" type="Label" parent="Visibility"]
+pause_mode = 2
+margin_left = 424.0
+margin_top = 360.0
+margin_right = 612.0
+margin_bottom = 431.0
+custom_fonts/font = ExtResource( 1 )
+text = "Exit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ResumeButton" type="Label" parent="Visibility"]
+pause_mode = 2
+margin_left = 376.0
+margin_top = 168.0
+margin_right = 658.0
+margin_bottom = 239.0
+custom_fonts/font = ExtResource( 1 )
+text = "Resume"
+__meta__ = {
+"_edit_use_anchors_": false
+}

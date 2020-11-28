@@ -13,8 +13,14 @@ var level_no = 1
 
 func _ready():
 	start_level(level_no)
+	CombatSignalController.connect('player_kill', self, 'activate_death_screen')
 	add_child(HUD_manager)
 	HUD_manager.build_hud(minimap)
+
+	
+func activate_death_screen():
+	$DeathScreen/Visibility.visible = true
+	get_tree().paused = true
 	
 func go_up_level():
 	level_no += 1
@@ -24,6 +30,7 @@ func go_up_level():
 	var minimap_gui_box = get_node('GUI/MarginContainer/VBoxContainer/MinimapBox/VBoxContainer2/HBoxContainer/MinimapBackground')
 	minimap.set_minimap_size(minimap_gui_box.rect_size / 2)
 	Utils.reset_player()
+	CombatSignalController.connect('player_kill', self, 'activate_death_screen')
 	start_level(level_no)
 	
 	
