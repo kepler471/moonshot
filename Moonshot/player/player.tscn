@@ -192,6 +192,10 @@ script = ExtResource( 13 )
 [node name="Spawn" type="Node" parent="StateMachine"]
 script = ExtResource( 16 )
 
+[node name="SafePeriod" type="Timer" parent="StateMachine/Spawn"]
+wait_time = 2.0
+one_shot = true
+
 [node name="Die" type="Node" parent="StateMachine"]
 script = ExtResource( 18 )
 
