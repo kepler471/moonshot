@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/tile_maps/Damage_TileSet.tres" type="TileSet" id=1]
 [ext_resource path="res://room_templates/BaseRoom.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://items_objects/item_pickups/HealthPickup.tscn" type="PackedScene" id=6]
 [ext_resource path="res://room_templates/exit_vert.tscn" type="PackedScene" id=7]
 [ext_resource path="res://baddies/characters/WallBoi.tscn" type="PackedScene" id=8]
+[ext_resource path="res://baddies/characters/GhostyBoi.tscn" type="PackedScene" id=9]
 
 [node name="Room Root" type="Node2D" groups=[
 "Room",
@@ -27,16 +28,15 @@ tile_set = ExtResource( 1 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 collision_layer = 64
-collision_mask = 5
 format = 1
-tile_data = PoolIntArray( 1507311, 22, 0, 1507312, 22, 0, 1507313, 22, 0, 1507314, 22, 0, 1507315, 22, 0, 1507316, 22, 0 )
+tile_data = PoolIntArray( 458744, 25, 0, 524280, 25, 0, 589816, 25, 0, 655352, 25, 0, 720888, 25, 0, 786424, 25, 0, 851960, 25, 0, 917496, 25, 0, 983032, 25, 0, 1048568, 25, 0, 1114104, 25, 0, 1114105, 25, 0, 1507311, 22, 0, 1507312, 22, 0, 1507313, 22, 0, 1507314, 22, 0, 1507315, 22, 0, 1507316, 22, 0 )
 
 [node name="OneWayPlatforms" type="TileMap" parent="."]
 tile_set = ExtResource( 3 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 collision_layer = 8
-collision_mask = 5
+
 format = 1
 
 [node name="BaseTiles" type="TileMap" parent="."]
@@ -52,7 +52,6 @@ tile_set = ExtResource( 1 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 collision_layer = 64
-collision_mask = 5
 format = 1
 
 [node name="Exit_DOWN" parent="." instance=ExtResource( 7 )]
@@ -85,4 +84,7 @@ rotation = -1.5708
 
 [node name="testing_player_spawn" type="Position2D" parent="."]
 position = Vector2( 94.2988, 774.432 )
+
+[node name="GhostyBoi" parent="." instance=ExtResource( 9 )]
+position = Vector2( -281.103, 265.678 )
 [connection signal="body_entered" from="Exit_DOWN" to="." method="_on_Exit_DOWN_body_entered"]

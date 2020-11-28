@@ -29,7 +29,7 @@ tile_set = ExtResource( 2 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 collision_layer = 64
-collision_mask = 5
+
 format = 1
 tile_data = PoolIntArray( 3211267, 22, 0, 3211268, 22, 0, 3211269, 22, 0, 3211270, 22, 0, 3211271, 22, 0, 3211272, 22, 0, 3211273, 22, 0, 3211274, 22, 0, 3211275, 22, 0, 3211276, 22, 0, 3211277, 22, 0, 3211278, 22, 0, 3211279, 22, 0, 3276803, 22, 65536, 3276804, 22, 65536, 3276805, 22, 65536, 3276806, 22, 65536, 3276807, 22, 65536, 3276808, 22, 65536, 3276809, 22, 65536, 3276810, 22, 65536, 3276811, 22, 65536, 3276812, 22, 65536, 3276813, 22, 65536, 3276814, 22, 65536, 3276815, 22, 65536 )
 
@@ -38,7 +38,7 @@ tile_set = ExtResource( 3 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 collision_layer = 8
-collision_mask = 5
+
 format = 1
 
 [node name="BaseTiles" type="TileMap" parent="."]
@@ -53,7 +53,7 @@ tile_set = ExtResource( 2 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 collision_layer = 64
-collision_mask = 5
+
 format = 1
 tile_data = PoolIntArray( 524308, 23, 0, 589844, 23, 0, 655380, 23, 0, 720916, 23, 0, 786452, 23, 0, 851988, 23, 0, 917524, 23, 0, 983060, 23, 0, 1048596, 23, 0, 1114132, 23, 0, 1179668, 23, 0, 1245204, 23, 0 )
 
