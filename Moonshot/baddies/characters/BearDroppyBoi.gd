@@ -1,9 +1,12 @@
+tool
 extends KinematicBody2D
 class_name BearDroppyBoi
 
 var attributes: Attributes = preload("res://baddies/Attributes.gd").new()
 
 onready var Laser = $BaddieLaserPointer
+
+export(bool)  var swap_dir  setget swap_dir
 
 const HP_MAX := 1.0
 const ARMOR := 5.0
@@ -16,6 +19,10 @@ const Animations := {
 var facing = 1
 var has_fallen = false
 var in_air = false
+
+func swap_dir(value = null) -> void:
+	if !Engine.is_editor_hint(): return
+	change_direction()
 
 func _init() -> void:
 	CombatSignalController.connect("damage_baddie", self, "on_hit")
@@ -32,9 +39,12 @@ func _init() -> void:
 	})
 
 func _ready():
+	if Engine.is_editor_hint(): return
 	attributes.set_sprite($AnimatedSprite)
 
 func _physics_process(delta) -> void:
+	if Engine.is_editor_hint(): return
+
 	if attributes._has_died():
 
 		return

@@ -1,12 +1,21 @@
+tool
 extends KinematicBody2D
 
 var attributes: Attributes = preload("res://baddies/Attributes.gd").new()
+
+export(bool)  var swap_dir  setget swap_dir
+
 onready var Laser = $BaddieLaserPointer
+
 class_name BearCeilingBoi
 
 const Animations := {
 	"RUSH": "rush"
 }
+
+func swap_dir(value = null) -> void:
+	if !Engine.is_editor_hint(): return
+	change_direction()
 
 func _init() -> void:
 	CombatSignalController.connect("damage_baddie", self, "on_hit")
@@ -23,6 +32,7 @@ func _init() -> void:
 	})
 
 func _ready():
+	if Engine.is_editor_hint(): return
 	attributes.set_sprite($AnimatedSprite)
 	Laser.set_upper_shot_frequency(1)
 	Laser.set_shot_speed(attributes.shot_speed)
@@ -30,6 +40,8 @@ func _ready():
 	Laser.shoot_randomly()
 
 func _physics_process(delta) -> void:
+	if Engine.is_editor_hint(): return
+
 	if attributes._has_died():
 		return
 

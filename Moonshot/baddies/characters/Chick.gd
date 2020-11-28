@@ -2,6 +2,8 @@ extends KinematicBody2D
 class_name Chick
 
 var attributes: Attributes = preload("res://baddies/Attributes.gd").new()
+onready var sprite : AnimatedSprite = $AnimatedSprite
+var mother_dir
 
 const Animations := {
 	"RUSH": "rush"
@@ -11,6 +13,7 @@ func _init() -> void:
 	CombatSignalController.connect("damage_baddie", self, "on_hit")
 	attributes.set_properties({
 		"body": self,
+		"sprite": sprite,
 		"animation": Animations.RUSH,
 		"speed": 230,
 		"inital_hp": 1.0,
@@ -19,9 +22,13 @@ func _init() -> void:
 		"floor_vector": Vector2(0, -1),
 		"should_damage_on_collision": true
 	})
-	
+
 func _ready():
 	attributes.set_sprite($AnimatedSprite)
+	print("chicks mdir ::: ", mother_dir)
+	if attributes.direction != mother_dir:
+		change_direction()
+
 
 func _physics_process(delta) -> void:
 	if attributes._has_died():
@@ -29,7 +36,7 @@ func _physics_process(delta) -> void:
 
 	if $TriggerJump.is_colliding():
 		if is_on_floor():
-			attributes.velocity += (Vector2(0, -800))
+			attributes.velocity += (Vector2(0, -700))
 			attributes._move(delta)
 			return
 		else:
@@ -41,10 +48,13 @@ func _physics_process(delta) -> void:
 	var falling_off_ledge: bool = $FrontRayCast.is_colliding() == false || $RearRayCast.is_colliding() == false
 	var collided_with_wall: bool = is_on_wall() && !collided_with_player
 
-	if (falling_off_ledge || collided_with_wall) && !$FrontRayCast.is_turning:
+	if (falling_off_ledge || collided_with_wall) && !$FrontRayCast.is_turning and is_on_floor():
 		change_direction()
 
 	attributes._move(delta)
+
+func set_mother_dir(x: float) -> void:
+	mother_dir = sign(x)
 
 func change_direction() -> void:
 	if !attributes._has_died():

@@ -51,7 +51,6 @@ script = ExtResource( 3 )
 position = Vector2( 2.42491, -1.79946 )
 frames = SubResource( 7 )
 animation = "rush"
-frame = 3
 playing = true
 flip_h = true
 

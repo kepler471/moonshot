@@ -1,7 +1,10 @@
+tool
 extends KinematicBody2D
 class_name FlyBoi
 
 var attributes: Attributes = preload("res://baddies/Attributes.gd").new()
+
+export(bool)  var swap_dir  setget swap_dir
 
 const BOUNCE_FACTOR := 0.7
 
@@ -9,6 +12,10 @@ var bounce := 0.7;
 const Animations := {
 	"RUSH": "rush"
 }
+
+func swap_dir(value = null) -> void:
+	if !Engine.is_editor_hint(): return
+	change_direction()
 
 func _init() -> void:
 	CombatSignalController.connect("damage_baddie", self, "on_hit")
@@ -25,9 +32,12 @@ func _init() -> void:
 	})
 
 func _ready():
+	if Engine.is_editor_hint(): return
 	attributes.set_sprite($AnimatedSprite)
 
 func _physics_process(delta) -> void:
+	if Engine.is_editor_hint(): return
+
 	if attributes._has_died():
 		return
 

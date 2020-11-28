@@ -1,11 +1,20 @@
+tool
 extends KinematicBody2D
 class_name BearBoi
 
 var attributes: Attributes = preload("res://baddies/Attributes.gd").new()
 
+export(bool)  var swap_dir  setget swap_dir
+
 const Animations := {
 	"RUSH": "rush"
 }
+
+
+func swap_dir(value = null) -> void:
+	if !Engine.is_editor_hint(): return
+	change_direction()
+
 
 func _init() -> void:
 	CombatSignalController.connect("damage_baddie", self, "on_hit")
@@ -19,11 +28,14 @@ func _init() -> void:
 		"floor_vector": Vector2(0, -1),
 		"should_damage_on_collision": true
 	})
-	
+
 func _ready():
+	if Engine.is_editor_hint(): return
 	attributes.set_sprite($AnimatedSprite)
 
 func _physics_process(delta) -> void:
+	if Engine.is_editor_hint(): return
+	
 	if attributes._has_died():
 		return
 

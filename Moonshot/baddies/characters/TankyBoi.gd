@@ -1,6 +1,8 @@
+tool
 extends KinematicBody2D
 class_name TankyBoi
 
+export(bool)  var swap_dir  setget swap_dir
 
 const COOL_DOWN_COLOR: Color = Color(1, 1, 1, 1)
 const COOL_DOWN_SPEED: int = 100
@@ -17,6 +19,10 @@ const Animations := {
 	"SPRINT": "sprint"
 }
 
+func swap_dir(value = null) -> void:
+	if !Engine.is_editor_hint(): return
+	change_direction()
+
 func _init() -> void:
 	CombatSignalController.connect("damage_baddie", self, "on_hit")
 	attributes.set_properties({
@@ -31,9 +37,12 @@ func _init() -> void:
 	})
 	
 func _ready():
+	if Engine.is_editor_hint(): return
 	attributes.set_sprite($AnimatedSprite)
 
 func _physics_process(delta) -> void:
+	if Engine.is_editor_hint(): return
+
 	var tree: SceneTree = get_tree()
 	if attributes._has_died() || Utils.is_nil(tree):
 		return
