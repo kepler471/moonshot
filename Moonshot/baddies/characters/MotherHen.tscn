@@ -43,10 +43,9 @@ animations = [ {
 [node name="MotherHen" type="KinematicBody2D" groups=[
 "Baddies",
 ]]
-modulate = Color( 0.572549, 0.792157, 0.172549, 1 )
 scale = Vector2( 2, 2 )
-collision_layer = 2147483652
-collision_mask = 131
+collision_layer = 4
+collision_mask = 3
 script = ExtResource( 2 )
 
 [node name="BaddieSpawner" parent="." instance=ExtResource( 3 )]
@@ -58,4 +57,5 @@ animation = "float"
 playing = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( -42.7973, 8.58806, -61.297, 48.1102, 61.2636, 48.4255, 53.8007, 36.5479, 52.0137, 11.2159, 44.5508, -5.39185, 31.3067, -12.4344, 17.3268, -26.7296, -18.7267, -24.8376, -41.7462, -5.18163 )
+visible = false
+polygon = PoolVector2Array( -42.7973, 8.58806, -61.297, 40, 55.357, 40, 53.8007, 36.5479, 52.0137, 11.2159, 44.5508, -5.39185, 31.3067, -12.4344, 17.327, -26, -18.727, -26, -41.7462, -5.18163 )
