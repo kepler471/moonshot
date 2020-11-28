@@ -9,7 +9,7 @@ const layer_dodge = 4 # Baddie layer
 const mask_dodge = 9 # Walls & PassThrough
 
 export var dodge_speed := 2500.0
-var dodge_dir
+var dodge_dir : float
 
 
 func _get_configuration_warning() -> String:
@@ -30,7 +30,11 @@ func physics_process(delta) -> void:
 func enter(_msg: Dictionary = {}) -> void:
 	dodge_period.start()
 	_parent.max_speed.x = dodge_speed
-	dodge_dir = owner.facing
+
+	dodge_dir = (
+		owner.get_facing() if _parent.get_move_direction().x in [null, 0]
+		else sign(_parent.get_move_direction().x)
+	)
 	
 	owner.set_invulnerable(dodge_period.get_wait_time(), "dodge")
 	

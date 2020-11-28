@@ -25,8 +25,8 @@ extents = Vector2( 18.0318, 11.2155 )
 ]]
 rotation = 3.14159
 scale = Vector2( 0.842648, 0.937197 )
-collision_layer = 2147483652
-collision_mask = 2147483651
+collision_layer = 4
+collision_mask = 3
 script = ExtResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]

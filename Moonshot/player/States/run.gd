@@ -9,7 +9,7 @@ func unhandled_input(event: InputEvent) -> void:
 
 
 func physics_process(delta: float) -> void:
-	if owner.is_on_floor():
+	if owner.is_on_floor() and owner.floor_detector.is_close_to_floor():
 		if _parent.get_move_direction().x == 0.0:
 			_state_machine.transition_to("Move/Idle")
 	else:
@@ -18,8 +18,10 @@ func physics_process(delta: float) -> void:
 
 
 func enter(msg: Dictionary = {}) -> void:
+	owner.get_node("SFX").play("running")
 	_parent.enter(msg)
 
 
 func exit() -> void:
+	owner.get_node("SFX").stop("running")
 	_parent.exit()
