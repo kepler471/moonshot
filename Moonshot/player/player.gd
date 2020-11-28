@@ -113,6 +113,10 @@ func set_facing(dir) -> void:
 		flip_facing()
 
 
+func get_facing() -> float:
+	return facing
+
+
 func set_animation() -> void:
 	if invulnerable:
 		if not $AnimatedSprite.playing:
