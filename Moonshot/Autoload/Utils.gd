@@ -9,6 +9,7 @@ const IS_DEBUG: bool = false
 
 
 func reset_player():
+	Player.queue_free()
 	Player = load("res://player/player.tscn").instance()
 
 

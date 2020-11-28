@@ -176,7 +176,7 @@ func get_weapon():
 
 func set_weapon(new_weapon: String = "laser_blaster") -> void:
 	current_weapon_type = new_weapon
-	Utils.Player.get_parent().add_child(get_weapon().sound)
+	Utils.Player.add_child(get_weapon().sound)
 	
 func reset_arsenal():
 	arsenal= {
