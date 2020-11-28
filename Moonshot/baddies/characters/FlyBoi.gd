@@ -19,7 +19,6 @@ func _init() -> void:
 		"gravity": 0,
 		"speed": 300,
 		"floor_vector": Vector2(0, -1),
-		"sprite": $AnimatedSprite,
 		"velocity": Vector2(),
 		"damage_to_player": 0.33,
 		"should_damge_on_collision": true

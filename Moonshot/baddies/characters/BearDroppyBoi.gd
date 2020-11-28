@@ -21,7 +21,6 @@ func _init() -> void:
 	CombatSignalController.connect("damage_baddie", self, "on_hit")
 
 	attributes.set_properties({
-		"sprite": $AnimatedSprite,
 		"body": self,
 		"animation": Animations.RUSH,
 		"speed": 230,

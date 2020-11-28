@@ -19,7 +19,6 @@ func _init() -> void:
 		"inital_hp": HP_MAX,
 		"gravity": GRAVITY,
 		"speed": SPEED,
-		"sprite": $AnimatedSprite,
 		"velocity": Vector2(),
 		"body": self,
 		"floor_vector": FLOOR,
