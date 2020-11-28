@@ -32,6 +32,7 @@ var animation_name
 var playing_reverse
 var invulnerable = false
 var safety = false
+var dead = false
 
 
 func _input(event):
@@ -43,7 +44,8 @@ func _ready() -> void:
 	CombatSignalController.connect("damage_player", self, "take_damage")
 	CombatSignalController.connect("get_player_global_position", self, "_emit_position")
 	CombatSignalController.connect("get_player_global_position_drop", self, "_emit_position_drop")
-
+	
+	Utils.player_arsenal.set_weapon('laser_blaster')
 
 	if not OS.is_debug_build():
 		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
@@ -54,7 +56,6 @@ func _ready() -> void:
 
 
 func _physics_process(_delta) -> void:
-	damagetile_check()
 	
 	var direction = (
 		Input.get_action_strength("move_right")
@@ -97,6 +98,8 @@ func _physics_process(_delta) -> void:
 
 		cooldown = false
 		
+	if damagetile_check() and not dead:
+		damagetile_impulse()
 	
 func flip_facing() -> void:
 	facing *= -1
@@ -157,24 +160,33 @@ func set_invulnerable(time : float, animation_name = "stagger") -> void:
 	safety = false
 	
 
-func damagetile_check() -> void:
+func damagetile_check():
 	for i in self.get_slide_count():
 		var collision = self.get_slide_collision(i)
 		if !collision || !collision.collider:
 			break
 			
 		if collision.collider.name == "DamagePools" or collision.collider.name == "DamageWalls":
-			if is_on_floor():
-				take_damage(0.1,Vector2.UP, true)
-				
-			elif is_on_wall():
-				var wall_normal = $LedgeWallDetector.scale.x * - 1
-				take_damage(0.1,Vector2(wall_normal,0) , true)
+			return true
+		else:
+			return false
+
+func damagetile_impulse():
+	$SFX.play("sizzle")
+	if is_on_floor():
+		take_damage(0.1,Vector2.UP, true)
+		
+	elif is_on_wall():
+		var wall_normal = $LedgeWallDetector.scale.x * - 1
+		take_damage(0.1,Vector2(wall_normal,0) , true)
 
 
 func take_damage(damage, attack_dir, is_damage_tile: bool = false) -> void:
-	if not invulnerable:
+
+	if not invulnerable and not dead:
+		$SFX.play("pain")
 		Utils.player_stats.take_damage(damage)
+
 		if Utils.IS_DEBUG: print("Attack Dir : ", attack_dir)
 		if Utils.player_stats.health <= 0:
 			on_death()
@@ -191,15 +203,19 @@ func take_damage(damage, attack_dir, is_damage_tile: bool = false) -> void:
 
 
 func add_health(health) -> void:
-
+	$SFX.play("health")
+	print("HEALTH ADDED")
 	var new_health = Utils.player_stats.health + health
 	Utils.player_stats.health = min(Utils.player_stats.max_health, new_health)
 
 
 func on_death() -> void:
+	dead = true
+	$SFX.play("death")
 	CombatSignalController.emit_signal("player_kill")
 	_on_Player_health_depleted()
 	CombatSignalController.disconnect("damage_player", self, "take_damage")
+	
 
 
 func _on_Player_health_depleted() -> void:
