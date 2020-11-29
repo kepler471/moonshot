@@ -5,6 +5,7 @@ func _ready():
 	add_child(Utils.Player)
 	Utils.Player.position = Vector2(80, 350)
 	Utils.Player.get_node('Camera2D').current = false
+	Utils.Player.state_machine.transition_to("Move/Spawn", {"room": true})
 	$Camera2D.current = true
 	
 func _process(delta):
