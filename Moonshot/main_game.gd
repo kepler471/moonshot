@@ -10,6 +10,7 @@ var current_room_node = null
 var level_map 
 var minimap
 var level_no = 1
+const death_screen_delay = 3
 
 func _ready():
 	start_level(level_no)
@@ -19,6 +20,7 @@ func _ready():
 
 	
 func activate_death_screen():
+	yield(get_tree().create_timer(death_screen_delay), "timeout")
 	$DeathScreen/Visibility.visible = true
 	get_tree().paused = true
 	
