@@ -43,6 +43,7 @@
 [ext_resource path="res://player/assets/dodge/MEDICdash4.png" type="Texture" id=41]
 [ext_resource path="res://player/assets/dodge/MEDICdash2.png" type="Texture" id=42]
 [ext_resource path="res://player/PlayerAudio.gd" type="Script" id=43]
+[ext_resource path="res://player/assets/shield.png" type="Texture" id=45]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 7.47952
@@ -117,6 +118,14 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="SpriteFrames" id=15]
+animations = [ {
+"frames": [ ExtResource( 45 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
 [node name="Player" type="KinematicBody2D" groups=[
 "Player",
 ]]
@@ -185,19 +194,19 @@ process_mode = 0
 wait_time = 2.0
 one_shot = true
 
+[node name="Spawn" type="Node" parent="StateMachine/Move"]
+script = ExtResource( 16 )
+
+[node name="SafePeriod" type="Timer" parent="StateMachine/Move/Spawn"]
+process_mode = 0
+wait_time = 2.0
+one_shot = true
+
 [node name="Ledge" type="Node" parent="StateMachine"]
 script = ExtResource( 10 )
 
 [node name="Debug" type="Node" parent="StateMachine"]
 script = ExtResource( 13 )
-
-[node name="Spawn" type="Node" parent="StateMachine"]
-script = ExtResource( 16 )
-
-[node name="SpawnPeriod" type="Timer" parent="StateMachine/Spawn"]
-process_mode = 0
-wait_time = 2.0
-one_shot = true
 
 [node name="Die" type="Node" parent="StateMachine"]
 script = ExtResource( 18 )
@@ -206,7 +215,7 @@ script = ExtResource( 18 )
 position = Vector2( 0, -29 )
 z_index = 2
 frames = SubResource( 2 )
-animation = "stagger"
+animation = "idle"
 playing = true
 
 [node name="Camera2D" parent="." instance=ExtResource( 6 )]
@@ -233,3 +242,8 @@ scale = Vector2( 0.5, 0.5 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="TurnAxis/Crosshair"]
 frames = SubResource( 4 )
+
+[node name="Shield" type="AnimatedSprite" parent="."]
+z_index = -1
+frames = SubResource( 15 )
+offset = Vector2( 0, -29 )
