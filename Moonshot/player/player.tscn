@@ -174,7 +174,6 @@ script = ExtResource( 36 )
 
 [node name="Dodge" type="Node" parent="StateMachine/Move"]
 script = ExtResource( 38 )
-dodge_speed = 2500.0
 
 [node name="DodgePeriod" type="Timer" parent="StateMachine/Move/Dodge"]
 process_mode = 0
