@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://main_game.gd" type="Script" id=1]
 [ext_resource path="res://HUD/GUI.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://assets/HUD/test_tube_lines.png" type="Texture" id=9]
 [ext_resource path="res://assets/HUD/test_tube_body.png" type="Texture" id=10]
 [ext_resource path="res://assets/HUD/test_tube_plunger.png" type="Texture" id=11]
+[ext_resource path="res://assets/HUD/HUD_graphic.png" type="Texture" id=12]
 
 [sub_resource type="DynamicFont" id=1]
 size = 120
@@ -21,80 +22,22 @@ script = ExtResource( 1 )
 
 [node name="GUI" parent="." instance=ExtResource( 2 )]
 
-[node name="HealthBar" parent="GUI" instance=ExtResource( 3 )]
-margin_left = 1007.0
-margin_top = 39.0
-margin_right = 1159.0
-margin_bottom = 69.0
-color = Color( 1, 0, 0, 0.533333 )
+[node name="OtherHUD" type="Node2D" parent="GUI"]
+position = Vector2( 816, 520 )
+rotation = 1.5708
 
-[node name="HSplitContainer" type="HSplitContainer" parent="GUI"]
-margin_left = 1011.65
-margin_top = 14.0
-margin_right = 1021.65
-margin_bottom = 37.0
-rect_min_size = Vector2( 10, 23 )
-
-[node name="TestTube" type="Sprite" parent="GUI"]
-position = Vector2( 878, 24 )
-z_index = -1
-texture = ExtResource( 10 )
-
-[node name="WhiteLines" type="Sprite" parent="GUI"]
-position = Vector2( 878, 24 )
-texture = ExtResource( 9 )
-
-[node name="PlungerPosition" type="Position2D" parent="GUI"]
-position = Vector2( 701, 23 )
-
-[node name="Plunger" type="Sprite" parent="GUI/PlungerPosition"]
-z_index = -1
-texture = ExtResource( 11 )
-
-[node name="MarginContainer" type="MarginContainer" parent="GUI"]
-margin_left = 840.648
-margin_right = 1022.65
-margin_bottom = 600.0
-grow_horizontal = 0
-grow_vertical = 0
+[node name="FirerateIncBarBackground" type="ColorRect" parent="GUI/OtherHUD"]
+margin_left = 43.3516
+margin_top = 322.0
+margin_right = 75.3516
+margin_bottom = 426.0
+rect_rotation = 180.0
+color = Color( 0.105882, 0.258824, 0.576471, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GUI/MarginContainer"]
-margin_right = 182.0
-margin_bottom = 600.0
-
-[node name="VBoxContainer3" type="ColorRect" parent="GUI/MarginContainer/VBoxContainer"]
-margin_right = 182.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 0, 50 )
-color = Color( 0, 0, 0, 0 )
-
-[node name="VBoxContainer" type="VBoxContainer" parent="GUI/MarginContainer/VBoxContainer"]
-margin_top = 54.0
-margin_right = 182.0
-margin_bottom = 384.0
-rect_min_size = Vector2( 0, 330 )
-
-[node name="HBoxContainer" type="HBoxContainer" parent="GUI/MarginContainer/VBoxContainer/VBoxContainer"]
-margin_right = 182.0
-margin_bottom = 330.0
-rect_min_size = Vector2( 0, 330 )
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="GUI/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
-margin_right = 120.0
-margin_bottom = 330.0
-rect_min_size = Vector2( 120, 0 )
-
-[node name="ColorRect" type="ColorRect" parent="GUI/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
-margin_left = 124.0
-margin_right = 179.0
-margin_bottom = 330.0
-rect_min_size = Vector2( 55, 0 )
-color = Color( 0, 0, 0, 1 )
-
-[node name="FirerateIncBar" type="ColorRect" parent="GUI/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/ColorRect"]
+[node name="FirerateIncBar" type="ColorRect" parent="GUI/OtherHUD"]
 margin_left = 43.3516
 margin_top = 322.0
 margin_right = 75.3516
@@ -105,7 +48,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Level1" type="ColorRect" parent="GUI/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/ColorRect"]
+[node name="Level1" type="ColorRect" parent="GUI/OtherHUD"]
 margin_left = 11.3516
 margin_top = 202.0
 margin_right = 43.3516
@@ -115,7 +58,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Level2" type="ColorRect" parent="GUI/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/ColorRect"]
+[node name="Level2" type="ColorRect" parent="GUI/OtherHUD"]
 margin_left = 11.3516
 margin_top = 186.0
 margin_right = 43.3516
@@ -125,7 +68,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Level3" type="ColorRect" parent="GUI/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/ColorRect"]
+[node name="Level3" type="ColorRect" parent="GUI/OtherHUD"]
 margin_left = 11.3516
 margin_top = 170.0
 margin_right = 43.3516
@@ -135,7 +78,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Level4" type="ColorRect" parent="GUI/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/ColorRect"]
+[node name="Level4" type="ColorRect" parent="GUI/OtherHUD"]
 margin_left = 11.3516
 margin_top = 154.0
 margin_right = 43.3516
@@ -145,7 +88,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Level5" type="ColorRect" parent="GUI/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/ColorRect"]
+[node name="Level5" type="ColorRect" parent="GUI/OtherHUD"]
 margin_left = 11.3516
 margin_top = 138.0
 margin_right = 43.3516
@@ -155,99 +98,90 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AmmoLabel" type="Label" parent="GUI/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/ColorRect"]
-margin_left = 6.35199
-margin_top = 10.0
-margin_right = 50.352
-margin_bottom = 24.0
+[node name="AmmoLabel" type="Label" parent="GUI/OtherHUD"]
+margin_left = 9.0
+margin_top = 61.0
+margin_right = 53.0
+margin_bottom = 75.0
+rect_rotation = -90.0
 text = "AMMO"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GunLabel" type="Label" parent="GUI/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/ColorRect"]
-margin_left = 5.35199
-margin_top = 58.0
-margin_right = 49.352
-margin_bottom = 72.0
-text = "GUN"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Ammo" type="Label" parent="GUI/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/ColorRect"]
-margin_left = 5.35199
-margin_top = 26.0
-margin_right = 49.352
-margin_bottom = 40.0
+[node name="Ammo" type="Label" parent="GUI/OtherHUD"]
+margin_left = 30.0
+margin_top = 61.0
+margin_right = 74.0
+margin_bottom = 75.0
+rect_rotation = -90.0
 text = "999"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GunSprite" type="Sprite" parent="GUI/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/ColorRect"]
-position = Vector2( 27.352, 91 )
+[node name="GunSprite" type="Sprite" parent="GUI/OtherHUD"]
+position = Vector2( 28, 95.9999 )
+scale = Vector2( 1.4, 1.4 )
 texture = ExtResource( 4 )
 
-[node name="MinimapBox" type="ColorRect" parent="GUI/MarginContainer/VBoxContainer"]
-margin_top = 388.0
-margin_right = 182.0
-margin_bottom = 573.0
+[node name="MinimapBox" type="ColorRect" parent="GUI"]
+margin_left = 832.0
+margin_top = 384.0
+margin_right = 1014.0
+margin_bottom = 569.0
 rect_min_size = Vector2( 182, 185 )
-color = Color( 0, 0, 0, 1 )
-
-[node name="VBoxContainer" type="VBoxContainer" parent="GUI/MarginContainer/VBoxContainer/MinimapBox"]
-margin_right = 182.0
-margin_bottom = 10.0
-rect_min_size = Vector2( 0, 10 )
+color = Color( 0.768627, 0.768627, 0.768627, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="GUI/MarginContainer/VBoxContainer/MinimapBox"]
-margin_top = 14.0
-margin_right = 182.0
-margin_bottom = 176.0
-rect_min_size = Vector2( 0, 154 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HBoxContainer" type="HBoxContainer" parent="GUI/MarginContainer/VBoxContainer/MinimapBox/VBoxContainer2"]
-margin_right = 182.0
-margin_bottom = 162.0
-rect_min_size = Vector2( 0, 154 )
-
-[node name="HSplitContainer" type="HSplitContainer" parent="GUI/MarginContainer/VBoxContainer/MinimapBox/VBoxContainer2/HBoxContainer"]
-margin_right = 10.0
-margin_bottom = 162.0
-rect_min_size = Vector2( 10, 162 )
-
-[node name="MinimapBackground" type="ColorRect" parent="GUI/MarginContainer/VBoxContainer/MinimapBox/VBoxContainer2/HBoxContainer"]
+[node name="MinimapBackground" type="ColorRect" parent="GUI/MinimapBox"]
 margin_left = 14.0
+margin_top = 14.0
 margin_right = 168.0
-margin_bottom = 162.0
+margin_bottom = 176.0
 rect_min_size = Vector2( 154, 154 )
-color = Color( 0.729412, 0.729412, 0.729412, 1 )
+color = Color( 0.729412, 0.729412, 0.729412, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="MinimapCentre" type="Position2D" parent="GUI/MarginContainer/VBoxContainer/MinimapBox/VBoxContainer2/HBoxContainer/MinimapBackground"]
+[node name="MinimapCentre" type="Position2D" parent="GUI/MinimapBox/MinimapBackground"]
 position = Vector2( 77, 82 )
 
-[node name="HSplitContainer2" type="HSplitContainer" parent="GUI/MarginContainer/VBoxContainer/MinimapBox/VBoxContainer2/HBoxContainer"]
-margin_left = 172.0
-margin_right = 182.0
-margin_bottom = 162.0
-rect_min_size = Vector2( 10, 162 )
+[node name="HealthBarParent" type="Position2D" parent="GUI"]
+position = Vector2( -608, 520 )
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="GUI/MarginContainer/VBoxContainer/MinimapBox"]
-margin_left = -2.99976
-margin_top = 180.0
-margin_right = 179.0
-margin_bottom = 190.0
-rect_min_size = Vector2( 0, 10 )
+[node name="HealthBar" parent="GUI/HealthBarParent" instance=ExtResource( 3 )]
+margin_left = 1007.0
+margin_top = 39.0
+margin_right = 1159.0
+margin_bottom = 69.0
+color = Color( 1, 0, 0, 0.533333 )
+
+[node name="TestTube" type="Sprite" parent="GUI/HealthBarParent"]
+position = Vector2( 878, 24 )
+z_index = -1
+texture = ExtResource( 10 )
+
+[node name="WhiteLines" type="Sprite" parent="GUI/HealthBarParent"]
+position = Vector2( 878, 24 )
+texture = ExtResource( 9 )
+
+[node name="PlungerPosition" type="Position2D" parent="GUI/HealthBarParent"]
+position = Vector2( 701, 23 )
+
+[node name="Plunger" type="Sprite" parent="GUI/HealthBarParent/PlungerPosition"]
+z_index = -1
+texture = ExtResource( 11 )
+
+[node name="Sprite" type="Sprite" parent="GUI"]
+position = Vector2( 512, 288 )
+z_index = -1
+texture = ExtResource( 12 )
 
 [node name="PauseScreen" type="CanvasLayer" parent="."]
 pause_mode = 2
