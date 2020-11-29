@@ -4,8 +4,6 @@ class_name BearDroppyBoi
 
 var attributes: Attributes = preload("res://baddies/Attributes.gd").new()
 
-onready var Laser = $BaddieLaserPointer
-
 export(bool)  var swap_dir  setget swap_dir
 
 const HP_MAX := 1.0
