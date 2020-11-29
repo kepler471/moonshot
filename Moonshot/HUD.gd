@@ -11,11 +11,11 @@ var weapon_textures = {
 var plunger
 
 func _ready():
-	plunger = get_parent().get_node("GUI/PlungerPosition/Plunger")
+	plunger = get_parent().get_node("GUI/HealthBarParent/PlungerPosition/Plunger")
 	
 func _process(delta):
 	var new_health_bar_size = (Utils.player_stats.health*152) / Utils.player_stats.max_health
-	var health_bar = get_parent().get_node("GUI/HealthBar")
+	var health_bar = get_parent().get_node("GUI/HealthBarParent/HealthBar")
 	if new_health_bar_size > 0:
 		plunger.position.x = 154 - new_health_bar_size
 		health_bar.rect_size.x = new_health_bar_size

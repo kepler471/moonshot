@@ -41,7 +41,7 @@ func start_level(level_num):
 	var returns = level_gen.new(level_num)
 	level_map =  returns.gen.map
 	minimap = returns.minimap
-	var minimap_gui_box = get_node('GUI/MarginContainer/VBoxContainer/MinimapBox/VBoxContainer2/HBoxContainer/MinimapBackground')
+	var minimap_gui_box = get_node('GUI/MinimapBox/MinimapBackground')
 	minimap.set_minimap_size(minimap_gui_box.rect_size / 2)
 	get_room_instance(room_index)
 	

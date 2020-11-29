@@ -133,7 +133,7 @@ func spawn_baddies(difficulty_controller: DifficultyController, room_difficulty)
 			print("The point_difference_vector is: " + str(point_difference_vector))
 			print("The random_point is: " + str(random_point))
 
-			spawn_place.add_child(baddie_instance)
+			spawn_place.get_parent().add_child(baddie_instance)
 			baddie_instance.position = random_point
 
 func set_spawn_baddie_type() -> String:
