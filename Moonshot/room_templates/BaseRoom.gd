@@ -24,6 +24,7 @@ func _ready():
 	if get_tree().get_current_scene().MAIN_GAME == false:
 		self.add_child(Utils.Player)
 		Utils.Player.position = self.get_node("testing_player_spawn").position
+		Utils.Player.state_machine.transition_to("Move/Spawn", {"room": true})
 		self.setup_player_camera()
 		spawn_things(testing_room_difficulty)
 		

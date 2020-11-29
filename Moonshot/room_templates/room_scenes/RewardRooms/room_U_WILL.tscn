@@ -8,10 +8,6 @@
 [ext_resource path="res://assets/tile_maps/TileMap.gd" type="Script" id=8]
 [ext_resource path="res://assets/tile_maps/Damage_TileSet.tres" type="TileSet" id=9]
 
-
-
-
-
 [node name="Room Root" type="Node2D" groups=[
 "Room",
 ]]
@@ -29,7 +25,6 @@ tile_set = ExtResource( 9 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 collision_layer = 64
-
 format = 1
 
 [node name="OneWayPlatforms" type="TileMap" parent="."]
@@ -37,7 +32,6 @@ tile_set = ExtResource( 4 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 collision_layer = 8
-
 format = 1
 
 [node name="BaseTiles" type="TileMap" parent="."]
@@ -53,11 +47,10 @@ tile_set = ExtResource( 9 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 collision_layer = 64
-
 format = 1
 
 [node name="Exit_UP" parent="." instance=ExtResource( 1 )]
-position = Vector2( 488, 56 )
+position = Vector2( 499.297, 51.8378 )
 
 [node name="camera_limit_NW" type="Position2D" parent="."]
 position = Vector2( -232, 56 )

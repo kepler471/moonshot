@@ -8,8 +8,6 @@
 [ext_resource path="res://room_templates/exit_hori.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/tile_maps/TileSet_v1.tres" type="TileSet" id=7]
 
-
-
 [node name="Room Root" type="Node2D" groups=[
 "Room",
 ]]
@@ -27,7 +25,6 @@ tile_set = ExtResource( 2 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 collision_layer = 64
-
 format = 1
 tile_data = PoolIntArray( 2818087, 22, 0, 2818088, 22, 0, 2818089, 22, 0, 2818090, 22, 0, 3014712, 22, 0, 3014713, 22, 0, 3014714, 22, 0, 3014715, 22, 0, 3014716, 22, 0, 3014717, 22, 0, 3014718, 22, 0 )
 
@@ -36,7 +33,6 @@ tile_set = ExtResource( 7 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 collision_layer = 8
-
 format = 1
 tile_data = PoolIntArray( 1441866, 20, 0, 1441867, 20, 2, 1638466, 20, 0, 1638467, 20, 2, 1835065, 20, 0, 1835066, 20, 2, 2031682, 20, 0, 2031683, 20, 2, 2228297, 20, 0, 2228298, 20, 2, 2621532, 20, 0, 2621533, 20, 1, 2621534, 20, 1, 2621535, 20, 2, 3735608, 20, 0, 3735609, 20, 1, 3735610, 20, 1, 3735611, 20, 1, 3735612, 20, 1, 3735613, 20, 1, 3735614, 20, 1, 3735615, 20, 2 )
 
@@ -53,7 +49,6 @@ tile_set = ExtResource( 2 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 collision_layer = 64
-
 format = 1
 tile_data = PoolIntArray( 983102, 23, 65536, 1048638, 23, 65536, 1048649, 23, 131072, 1114174, 25, 65536, 1114186, 23, 131072, 1179710, 25, 131072, 1245234, 536870935, 0, 1310770, 536870935, 131072, 2555950, 25, 0, 2621486, 25, 65536, 2687022, 23, 131072 )
 
