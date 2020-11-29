@@ -1,16 +1,12 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://DeathScreen.gd" type="Script" id=1]
-[ext_resource path="res://assets/fonts/basic_font_size_64.tres" type="DynamicFont" id=2]
-[ext_resource path="res://assets/fonts/VCR_OSD_MONO_1.001.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/fonts/basic_font_size_64.tres" type="DynamicFont" id=1]
+[ext_resource path="res://HUD/PauseScreen.gd" type="Script" id=2]
 
-[sub_resource type="DynamicFont" id=1]
-size = 120
-font_data = ExtResource( 3 )
 
-[node name="DeathScreen" type="CanvasLayer"]
+[node name="PauseScreen" type="CanvasLayer"]
 pause_mode = 2
-script = ExtResource( 1 )
+script = ExtResource( 2 )
 
 [node name="Visibility" type="Node2D" parent="."]
 pause_mode = 2
@@ -30,7 +26,7 @@ margin_left = 360.0
 margin_top = 264.0
 margin_right = 689.0
 margin_bottom = 335.0
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 1 )
 text = "Restart"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -42,20 +38,20 @@ margin_left = 424.0
 margin_top = 360.0
 margin_right = 612.0
 margin_bottom = 431.0
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 1 )
 text = "Exit"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DeathText" type="Label" parent="Visibility"]
-margin_left = 136.0
-margin_top = 112.0
-margin_right = 906.0
-margin_bottom = 218.0
-custom_fonts/font = SubResource( 1 )
-custom_colors/font_color = Color( 1, 0, 0, 1 )
-text = "You Died :("
+[node name="ResumeButton" type="Label" parent="Visibility"]
+pause_mode = 2
+margin_left = 376.0
+margin_top = 168.0
+margin_right = 658.0
+margin_bottom = 239.0
+custom_fonts/font = ExtResource( 1 )
+text = "Resume"
 __meta__ = {
 "_edit_use_anchors_": false
 }
