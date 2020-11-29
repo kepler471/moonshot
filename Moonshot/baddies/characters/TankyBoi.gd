@@ -64,7 +64,7 @@ func _physics_process(delta) -> void:
 		attributes.fade.set_fade_speed(0.02)
 		attributes.fade.set_fade_factor(0.2)
 		attributes.speed = RUSH_SPEED
-		attributes.fade.occilate([attributes.fade.R], 0.3, 4)
+		attributes.fade.oscillate([attributes.fade.R], 0.3, 4)
 
 		yield(tree.create_timer(COOL_DOWN_PERIOD), "timeout")
 		$AnimatedSprite.modulate = COOL_DOWN_COLOR

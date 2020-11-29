@@ -140,16 +140,9 @@ func _is_dying(global_position) -> void:
 	new_firerate_boost.global_position = global_position
 	dead = true
 
-	if !fade.is_animating:
-		body.on_end()
-
-	fade.set_on_fade_out_finish(funcref(body, "on_end"))
-	fade.set_fade_speed(0.05)
-	fade.set_fade_factor(0.3)
-	sprite.visible = false
 	body.collision_layer = 0
 	body.collision_mask = 0
-	
+	body.on_end()
 
 func _flash() -> void:
 	if dead:
