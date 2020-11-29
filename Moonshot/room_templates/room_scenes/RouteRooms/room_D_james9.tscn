@@ -29,7 +29,6 @@ tile_set = ExtResource( 1 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 collision_layer = 64
-collision_mask = 5
 format = 1
 
 [node name="OneWayPlatforms" type="TileMap" parent="."]
@@ -37,7 +36,7 @@ tile_set = ExtResource( 3 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 collision_layer = 8
-collision_mask = 5
+
 format = 1
 
 [node name="BaseTiles" type="TileMap" parent="."]
@@ -119,7 +118,7 @@ tile_set = ExtResource( 1 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 collision_layer = 64
-collision_mask = 5
+
 format = 1
 
 [node name="Exit_DOWN" parent="." instance=ExtResource( 5 )]

@@ -28,7 +28,6 @@ tile_set = ExtResource( 9 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 collision_layer = 64
-collision_mask = 5
 format = 1
 tile_data = PoolIntArray( 458761, 22, 0, 458762, 22, 0, 458763, 22, 0, 458764, 22, 0, 458765, 22, 0, 458771, 22, 0, 458772, 22, 0, 458773, 22, 0, 458774, 22, 0, 458775, 22, 0, 524297, 22, 65536, 524298, 22, 65536, 524299, 22, 65536, 524300, 22, 65536, 524301, 22, 65536, 524307, 22, 65536, 524308, 22, 65536, 524309, 22, 65536, 524310, 22, 65536, 524311, 22, 65536 )
 
@@ -37,7 +36,7 @@ tile_set = ExtResource( 4 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 collision_layer = 8
-collision_mask = 5
+
 format = 1
 
 [node name="BaseTiles" type="TileMap" parent="."]
@@ -53,7 +52,6 @@ tile_set = ExtResource( 9 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 collision_layer = 64
-collision_mask = 5
 format = 1
 
 [node name="Exit_DOWN" parent="." instance=ExtResource( 1 )]
