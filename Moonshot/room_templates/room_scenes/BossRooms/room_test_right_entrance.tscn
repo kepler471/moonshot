@@ -1,9 +1,12 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/tile_maps/SimpleTileset.tres" type="TileSet" id=1]
-[ext_resource path="res://room_templates/exit_hori.tscn" type="PackedScene" id=2]
-[ext_resource path="res://room_templates/BaseRoom.gd" type="Script" id=3]
-[ext_resource path="res://room_templates/next_level_button.tscn" type="PackedScene" id=4]
+[ext_resource path="res://room_templates/canvas_nodes_and_scripts/exit_hori.tscn" type="PackedScene" id=2]
+[ext_resource path="res://room_templates/canvas_nodes_and_scripts/BaseRoom.gd" type="Script" id=3]
+[ext_resource path="res://room_templates/canvas_nodes_and_scripts/next_level_button.tscn" type="PackedScene" id=4]
+
+
+
 
 [node name="Node2D" type="Node2D"]
 position = Vector2( 0, -10.6475 )

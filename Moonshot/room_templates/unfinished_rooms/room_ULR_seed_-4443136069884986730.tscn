@@ -1,14 +1,18 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://room_templates/BaseRoom.gd" type="Script" id=1]
+[ext_resource path="res://room_templates/canvas_nodes_and_scripts/BaseRoom.gd" type="Script" id=1]
 [ext_resource path="res://assets/tile_maps/TileMap.gd" type="Script" id=2]
 [ext_resource path="res://assets/tile_maps/TileSet_v1.tres" type="TileSet" id=3]
-[ext_resource path="res://room_templates/exit_hori.tscn" type="PackedScene" id=4]
+[ext_resource path="res://room_templates/canvas_nodes_and_scripts/exit_hori.tscn" type="PackedScene" id=4]
 [ext_resource path="res://items_objects/breakable_tile_purple.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/tile_maps/Damage_TileSet.tres" type="TileSet" id=6]
 [ext_resource path="res://items_objects/item_pickups/HealthPickup.tscn" type="PackedScene" id=7]
-[ext_resource path="res://room_templates/exit_vert.tscn" type="PackedScene" id=8]
+[ext_resource path="res://room_templates/canvas_nodes_and_scripts/exit_vert.tscn" type="PackedScene" id=8]
 [ext_resource path="res://baddies/characters/BearBoi.tscn" type="PackedScene" id=9]
+
+
+
+
 
 
 

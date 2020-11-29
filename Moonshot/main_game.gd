@@ -3,7 +3,7 @@ extends Node2D
 const MAIN_GAME : bool = true #flag for room testing
 
 var level_gen = preload("res://procedural_map_generation/level_gen.gd")
-var HUD_manager = preload("res://HUD.gd").new()
+var HUD_manager = preload("res://HUD/HUD.gd").new()
 
 var room_index = Vector2(0, 0)
 var current_room_node = null
