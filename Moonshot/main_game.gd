@@ -111,6 +111,7 @@ func change_room(room_change : Vector2, new_entrance):
 		
 	current_room_node.add_child(Utils.Player)
 	call_deferred("add_child",current_room_node)
+	call_deferred("spawn_safely")
 	call_deferred("set_player_velocity", new_entrance)
 	current_room_node.setup_player_camera()
 	
@@ -120,3 +121,6 @@ func set_player_velocity(new_entrance):
 	if new_entrance == 'DOWN':
 		Utils.Player.state_machine.transition_to("Move/Air", {"impulse": 1010.0})
 
+func spawn_safely() -> void:
+	Utils.Player.state_machine.transition_to("Move/Spawn", {"room": true})
+#	pass
