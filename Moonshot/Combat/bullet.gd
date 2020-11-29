@@ -10,7 +10,8 @@ var damage = 0.4
 
 func _ready():
 	apply_impulse(Vector2(100,100).rotated(rotation), Vector2(f_mag, 0).rotated(rotation))
-	animation.connect("animation_finished", self, "_on_AnimationPlayer_animation_finished")
+	if !animation.is_connected("animation_finished", self, "_on_AnimationPlayer_animation_finished"):
+		animation.connect("animation_finished", self, "_on_AnimationPlayer_animation_finished")
 	# Ranomize the starting frameof the animation
 	randomize()
 	animation.play("default")

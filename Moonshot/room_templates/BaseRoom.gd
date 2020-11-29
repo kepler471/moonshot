@@ -185,8 +185,6 @@ func spawn_items():
 
 	
 func get_baddie_list():
-	return [];
-	
 	var dir = Directory.new()
 	dir.open("res://baddies/characters/")
 	dir.list_dir_begin()
