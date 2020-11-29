@@ -15,7 +15,7 @@ func unhandled_input(event: InputEvent) -> void:
 
 func enter(msg: Dictionary = {}) -> void:
 	if "room" in msg:
-		owner.set_invulnerable(2, "spawn")
+		owner.set_invulnerable(safe_period.get_wait_time(), "spawn")
 	_state_machine.transition_to("Move/Idle")
 
 func exit() -> void:
