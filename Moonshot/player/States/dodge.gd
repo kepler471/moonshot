@@ -8,7 +8,7 @@ var mask_default
 const layer_dodge = 4 # Baddie layer
 const mask_dodge = 9 # Walls & PassThrough
 
-export var dodge_speed := 2500.0
+export var dodge_speed := 1250.0
 var dodge_dir : float
 
 
