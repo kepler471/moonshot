@@ -13,14 +13,23 @@ var fade_speed: float setget set_fade_speed
 var on_fade_in_finish: FuncRef = funcref(self, "noop") setget set_on_fade_in_finish
 var on_fade_out_finish: FuncRef = funcref(self, "noop") setget set_on_fade_out_finish
 var original_values: Color
+var is_animating: bool = false
+var is_occilating: bool = false
 
 func fade_in(rgba: String = A, should_reset: bool = false, counter: float = 0.0) -> void:
-	if sceneTree != null:
-		yield(sceneTree.create_timer(fade_speed), "timeout")
+	if is_animating == true:
+		return
 
-	if counter < 1:
+	if !is_inside_tree() || !is_instance_valid(self):
+		queue_free()
+		return
+
+	if counter < 1 && sceneTree != null:
+		is_animating = true
 		if Utils.is_nil(sprite): return
+		yield(create_timer(), "timeout")
 		sprite.modulate[rgba] = counter
+		is_animating = false
 		fade_in(rgba, should_reset, counter + fade_factor)
 
 	else:
@@ -29,14 +38,22 @@ func fade_in(rgba: String = A, should_reset: bool = false, counter: float = 0.0)
 		if should_reset:
 			sprite.modulate = original_values
 			on_fade_out_finish = funcref(self, "noop")
+		is_animating = false
 
 func fade_out(rgba: String = A, should_reset: bool = false, counter: float = 1.0) -> void:
-	if sceneTree != null:
-		yield(sceneTree.create_timer(fade_speed), "timeout")
+	if is_animating == true:
+		return
 
-	if counter > 0:
+	if !is_inside_tree() || !is_instance_valid(self):
+		queue_free()
+		return
+
+	if counter > 0 &&  sceneTree != null:
+		is_animating = true
 		if Utils.is_nil(sprite): return
+		yield(create_timer(), "timeout")
 		sprite.modulate[rgba] = counter
+		is_animating = false
 		fade_out(rgba, should_reset, counter - fade_factor)
 
 	else:
@@ -45,15 +62,25 @@ func fade_out(rgba: String = A, should_reset: bool = false, counter: float = 1.0
 		if should_reset:
 			sprite.modulate = original_values
 			on_fade_out_finish = funcref(self, "noop")
+		is_animating = false
 
-func occilate(rgba: Array, timer: float = 0.5, occilations: int = 1) -> void:
+func occilate(rgba: Array, timer: float = 0.3, occilations: int = 1) -> void:
+	if is_occilating == true || is_animating == true:
+		return
+
+	if !is_inside_tree() || !is_instance_valid(self):
+		queue_free()
+		return
+
 	if occilations != 0:
 		fade_in(rgba[occilations % rgba.size()], false)
-		yield(sceneTree.create_timer(timer), "timeout")
-		fade_out(rgba[occilations % rgba.size()], false)
-		yield(sceneTree.create_timer(timer), "timeout")
+		is_occilating = true
+		yield(create_timer(timer), "timeout")
+		is_occilating = false
 		occilate(rgba, timer, occilations - 1)
 	else:
+		is_occilating = false
+		is_animating = false
 		sprite.modulate = original_values
 
 func set_tree(t: SceneTree) -> void:
@@ -77,3 +104,9 @@ func set_on_fade_out_finish(fn: FuncRef) -> void:
 
 func noop() -> void:
 	return
+
+func create_timer(timer_speed = fade_speed):
+	return sceneTree.create_timer(timer_speed)
+
+func remove():
+	call_deferred("free")
