@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/tile_maps/Damage_TileSet.tres" type="TileSet" id=1]
 [ext_resource path="res://room_templates/BaseRoom.gd" type="Script" id=2]
@@ -9,7 +9,11 @@
 [ext_resource path="res://items_objects/breakable_tile_purple.tscn" type="PackedScene" id=7]
 [ext_resource path="res://baddies/characters/FlyBoi.tscn" type="PackedScene" id=8]
 [ext_resource path="res://room_templates/exit_hori.tscn" type="PackedScene" id=9]
-[ext_resource path="res://items_objects/item_pickups/HealthPickup.tscn" type="PackedScene" id=10]
+[ext_resource path="res://baddies/characters/BearCeilingBoi.tscn" type="PackedScene" id=10]
+[ext_resource path="res://baddies/characters/BearDroppyBoi.tscn" type="PackedScene" id=11]
+[ext_resource path="res://baddies/characters/Chick.tscn" type="PackedScene" id=12]
+[ext_resource path="res://baddies/characters/GhostyBoi.tscn" type="PackedScene" id=13]
+[ext_resource path="res://baddies/characters/TankyBoi.tscn" type="PackedScene" id=14]
 
 [node name="Room Root" type="Node2D" groups=[
 "Room",
@@ -36,7 +40,6 @@ tile_set = ExtResource( 3 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 collision_layer = 8
-
 format = 1
 
 [node name="BaseTiles" type="TileMap" parent="."]
@@ -118,7 +121,6 @@ tile_set = ExtResource( 1 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 collision_layer = 64
-
 format = 1
 
 [node name="Exit_DOWN" parent="." instance=ExtResource( 5 )]
@@ -133,14 +135,8 @@ position = Vector2( -662.638, -633.075 )
 [node name="camera_limit_SE" type="Position2D" parent="."]
 position = Vector2( 689.15, 819.688 )
 
-[node name="HealthPickup" parent="." instance=ExtResource( 10 )]
-position = Vector2( 590.879, 657.341 )
-
 [node name="FlyBoi" parent="." instance=ExtResource( 8 )]
 position = Vector2( -78.4956, 116.378 )
-
-[node name="HealthPickup2" parent="." instance=ExtResource( 10 )]
-position = Vector2( -84.2049, 116.042 )
 
 [node name="testing_player_spawn" type="Position2D" parent="."]
 position = Vector2( -636.868, -470.256 )
@@ -150,7 +146,23 @@ position = Vector2( -636.868, -470.256 )
 [node name="level_setup_1" type="Node2D" parent="level_setups"]
 
 [node name="baddie_spawn_line1" type="Line2D" parent="level_setups/level_setup_1"]
-points = PoolVector2Array( -185.093, -130.369 )
+points = PoolVector2Array( -184, -136, -320, -136 )
+
+[node name="BearBoi" parent="level_setups/level_setup_1/baddie_spawn_line1" instance=ExtResource( 6 )]
+
+[node name="BearCeilingBoi" parent="level_setups/level_setup_1/baddie_spawn_line1" instance=ExtResource( 10 )]
+
+[node name="BearDroppyBoi" parent="level_setups/level_setup_1/baddie_spawn_line1" instance=ExtResource( 11 )]
+
+[node name="Chick" parent="level_setups/level_setup_1/baddie_spawn_line1" instance=ExtResource( 12 )]
+
+[node name="FlyBoi" parent="level_setups/level_setup_1/baddie_spawn_line1" instance=ExtResource( 8 )]
+
+[node name="GhostyBoi" parent="level_setups/level_setup_1/baddie_spawn_line1" instance=ExtResource( 13 )]
+swap_dir = false
+
+[node name="TankyBoi" parent="level_setups/level_setup_1/baddie_spawn_line1" instance=ExtResource( 14 )]
+swap_dir = false
 
 [node name="baddie_spawn_line2" type="Line2D" parent="level_setups/level_setup_1"]
 position = Vector2( 281.005, -420.388 )
@@ -166,6 +178,12 @@ position = Vector2( 122.679, 600.742 )
 position = Vector2( -131.736, -57.0967 )
 
 [node name="baddie_spawn_point2" type="Position2D" parent="level_setups/level_setup_1"]
-position = Vector2( -443.159, 37.1065 )
+position = Vector2( -432, -29.447 )
+
+[node name="item_spawn_point" type="Position2D" parent="level_setups/level_setup_1"]
+position = Vector2( -96, 120 )
+
+[node name="item_spawn_point2" type="Position2D" parent="level_setups/level_setup_1"]
+position = Vector2( 600, 656 )
 [connection signal="body_entered" from="Exit_DOWN" to="." method="_on_Exit_DOWN_body_entered"]
 [connection signal="body_entered" from="Exit_LEFT" to="." method="_on_Exit_LEFT_body_entered"]

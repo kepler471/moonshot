@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/tile_maps/Damage_TileSet.tres" type="TileSet" id=1]
 [ext_resource path="res://room_templates/exit_hori.tscn" type="PackedScene" id=2]
@@ -10,6 +10,11 @@
 [ext_resource path="res://room_templates/exit_vert.tscn" type="PackedScene" id=8]
 [ext_resource path="res://items_objects/breakable_tile_purple.tscn" type="PackedScene" id=9]
 [ext_resource path="res://baddies/characters/BearBoi.tscn" type="PackedScene" id=10]
+[ext_resource path="res://baddies/characters/Chick.tscn" type="PackedScene" id=11]
+[ext_resource path="res://baddies/characters/BearCeilingBoi.tscn" type="PackedScene" id=12]
+[ext_resource path="res://baddies/characters/GhostyBoi.tscn" type="PackedScene" id=13]
+[ext_resource path="res://baddies/characters/TankyBoi.tscn" type="PackedScene" id=14]
+[ext_resource path="res://baddies/characters/BearDroppyBoi.tscn" type="PackedScene" id=15]
 
 [node name="Room Root" type="Node2D" groups=[
 "Room",
@@ -36,7 +41,6 @@ tile_set = ExtResource( 4 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 collision_layer = 8
-
 format = 1
 
 [node name="BaseTiles" type="TileMap" parent="."]
@@ -118,7 +122,6 @@ tile_set = ExtResource( 1 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 collision_layer = 64
-
 format = 1
 
 [node name="Exit_DOWN" parent="." instance=ExtResource( 8 )]
@@ -150,7 +153,23 @@ position = Vector2( -636.868, -470.256 )
 [node name="level_setup_1" type="Node2D" parent="level_setups"]
 
 [node name="baddie_spawn_line1" type="Line2D" parent="level_setups/level_setup_1"]
-points = PoolVector2Array( -185.093, -130.369 )
+points = PoolVector2Array( -162.937, -149.919, -340.097, -152.904 )
+
+[node name="BearBoi" parent="level_setups/level_setup_1/baddie_spawn_line1" instance=ExtResource( 10 )]
+
+[node name="BearCeilingBoi" parent="level_setups/level_setup_1/baddie_spawn_line1" instance=ExtResource( 12 )]
+
+[node name="BearDroppyBoi" parent="level_setups/level_setup_1/baddie_spawn_line1" instance=ExtResource( 15 )]
+
+[node name="Chick" parent="level_setups/level_setup_1/baddie_spawn_line1" instance=ExtResource( 11 )]
+
+[node name="FlyBoi" parent="level_setups/level_setup_1/baddie_spawn_line1" instance=ExtResource( 6 )]
+
+[node name="GhostyBoi" parent="level_setups/level_setup_1/baddie_spawn_line1" instance=ExtResource( 13 )]
+swap_dir = false
+
+[node name="TankyBoi" parent="level_setups/level_setup_1/baddie_spawn_line1" instance=ExtResource( 14 )]
+swap_dir = false
 
 [node name="baddie_spawn_line2" type="Line2D" parent="level_setups/level_setup_1"]
 position = Vector2( 281.005, -420.388 )

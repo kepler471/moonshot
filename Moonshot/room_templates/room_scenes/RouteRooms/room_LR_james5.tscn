@@ -29,7 +29,6 @@ tile_set = ExtResource( 1 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 collision_layer = 64
-
 format = 1
 
 [node name="OneWayPlatforms" type="TileMap" parent="."]
@@ -37,7 +36,6 @@ tile_set = ExtResource( 3 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 collision_layer = 8
-
 format = 1
 
 [node name="BaseTiles" type="TileMap" parent="."]
@@ -53,7 +51,6 @@ tile_set = ExtResource( 1 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 collision_layer = 64
-
 format = 1
 
 [node name="Exit_LEFT" parent="." instance=ExtResource( 10 )]
@@ -68,176 +65,174 @@ position = Vector2( -1069.83, -170.592 )
 [node name="camera_limit_SE" type="Position2D" parent="."]
 position = Vector2( 1069.51, 619.737 )
 
-[node name="HealthPickup" parent="." instance=ExtResource( 5 )]
-position = Vector2( -62.2245, 80.1134 )
-
-[node name="HealthPickup2" parent="." instance=ExtResource( 5 )]
-position = Vector2( -5.33044, 80.1134 )
-
-[node name="HealthPickup5" parent="." instance=ExtResource( 5 )]
-position = Vector2( 196.673, 78.9216 )
-
-[node name="HealthPickup6" parent="." instance=ExtResource( 5 )]
-position = Vector2( -123.911, 87.264 )
-
-[node name="HealthPickup3" parent="." instance=ExtResource( 5 )]
-position = Vector2( 66.356, 81.2512 )
-
-[node name="BreakableTileTeal" parent="." instance=ExtResource( 9 )]
-position = Vector2( -146.41, 16.7489 )
-
-[node name="BreakableTileTeal2" parent="." instance=ExtResource( 9 )]
-position = Vector2( -118.075, 16.7489 )
-
-[node name="BreakableTileTeal3" parent="." instance=ExtResource( 9 )]
-position = Vector2( -89.521, 16.5293 )
-
-[node name="BreakableTileTeal4" parent="." instance=ExtResource( 9 )]
-position = Vector2( -60.7473, 16.3096 )
-
-[node name="BreakableTileTeal5" parent="." instance=ExtResource( 9 )]
-position = Vector2( -32.4129, 16.3096 )
-
-[node name="BreakableTileTeal6" parent="." instance=ExtResource( 9 )]
-position = Vector2( -2.32126, 16.5293 )
-
-[node name="BreakableTileTeal14" parent="." instance=ExtResource( 9 )]
-position = Vector2( -182.866, 46.1554 )
-
-[node name="BreakableTileTeal15" parent="." instance=ExtResource( 9 )]
-position = Vector2( -213.19, 45.8069 )
-
-[node name="BreakableTileTeal16" parent="." instance=ExtResource( 9 )]
-position = Vector2( -243.164, 18.272 )
-
-[node name="BreakableTileTeal17" parent="." instance=ExtResource( 9 )]
-position = Vector2( -214.584, 16.8778 )
-
-[node name="BreakableTileTeal18" parent="." instance=ExtResource( 9 )]
-position = Vector2( -181.124, 17.2264 )
-
-[node name="BreakableTileTeal19" parent="." instance=ExtResource( 9 )]
-position = Vector2( 242.356, 47.5496 )
-
-[node name="BreakableTileTeal20" parent="." instance=ExtResource( 9 )]
-position = Vector2( 240.962, 15.1351 )
-
-[node name="BreakableTileTeal21" parent="." instance=ExtResource( 9 )]
-position = Vector2( 271.982, 15.1351 )
-
-[node name="BreakableTileTeal22" parent="." instance=ExtResource( 9 )]
-position = Vector2( 213.775, 48.9438 )
-
-[node name="BreakableTileTeal23" parent="." instance=ExtResource( 9 )]
-position = Vector2( 183.104, 49.9894 )
-
-[node name="BreakableTileTeal24" parent="." instance=ExtResource( 9 )]
-position = Vector2( 215.17, 80.6612 )
-
-[node name="BreakableTileTeal25" parent="." instance=ExtResource( 9 )]
-position = Vector2( -145.921, 82.7524 )
-
-[node name="BreakableTileTeal26" parent="." instance=ExtResource( 9 )]
-position = Vector2( -147.315, 49.2923 )
-
-[node name="BreakableTileTeal27" parent="." instance=ExtResource( 9 )]
-position = Vector2( -115.249, 50.6865 )
-
-[node name="BreakableTileTeal7" parent="." instance=ExtResource( 9 )]
-position = Vector2( 26.1421, 17.3553 )
-
-[node name="BreakableTileTeal8" parent="." instance=ExtResource( 9 )]
-position = Vector2( 55.0066, 17.3934 )
-
-[node name="BreakableTileTeal9" parent="." instance=ExtResource( 9 )]
-position = Vector2( 84.2959, 17.742 )
-
-[node name="BreakableTileTeal10" parent="." instance=ExtResource( 9 )]
-position = Vector2( 114.76, 18.0905 )
-
-[node name="FirerateDrop" parent="." instance=ExtResource( 7 )]
-position = Vector2( 32.1591, 105.467 )
-
-[node name="FirerateDrop2" parent="." instance=ExtResource( 7 )]
-position = Vector2( 22.9339, 108.323 )
-
-[node name="FirerateDrop3" parent="." instance=ExtResource( 7 )]
-position = Vector2( 15.6855, 99.976 )
-
-[node name="FirerateDrop4" parent="." instance=ExtResource( 7 )]
-position = Vector2( 25.1304, 93.3866 )
-
-[node name="FirerateDrop15" parent="." instance=ExtResource( 7 )]
-position = Vector2( -67.3529, 121.556 )
-
-[node name="FirerateDrop16" parent="." instance=ExtResource( 7 )]
-position = Vector2( -76.5781, 124.411 )
-
-[node name="FirerateDrop17" parent="." instance=ExtResource( 7 )]
-position = Vector2( -83.8264, 116.065 )
-
-[node name="FirerateDrop18" parent="." instance=ExtResource( 7 )]
-position = Vector2( -74.3816, 109.475 )
-
-[node name="BearBoi" parent="." instance=ExtResource( 8 )]
-position = Vector2( -137.998, 463.148 )
-
-[node name="BearBoi2" parent="." instance=ExtResource( 8 )]
-position = Vector2( -9.84641, 459.185 )
-
-[node name="BearBoi3" parent="." instance=ExtResource( 8 )]
-position = Vector2( 84.563, 457.98 )
-
-[node name="BearBoi4" parent="." instance=ExtResource( 8 )]
-position = Vector2( 142.414, 457.176 )
-
-[node name="GhostyBoi" parent="." instance=ExtResource( 6 )]
-position = Vector2( -18.6754, -652.546 )
-
-[node name="FirerateDrop5" parent="." instance=ExtResource( 7 )]
-position = Vector2( 10.6337, 107.883 )
-
-[node name="FirerateDrop6" parent="." instance=ExtResource( 7 )]
-position = Vector2( 2.28705, 110.299 )
-
-[node name="FirerateDrop7" parent="." instance=ExtResource( 7 )]
-position = Vector2( 6.67999, 115.571 )
-
-[node name="FirerateDrop8" parent="." instance=ExtResource( 7 )]
-position = Vector2( 17.6624, 116.23 )
-
-[node name="FirerateDrop9" parent="." instance=ExtResource( 7 )]
-position = Vector2( 30.6215, 119.085 )
-
-[node name="FirerateDrop10" parent="." instance=ExtResource( 7 )]
-position = Vector2( 40.2859, 116.669 )
-
-[node name="FirerateDrop11" parent="." instance=ExtResource( 7 )]
-position = Vector2( 42.9218, 109.421 )
-
-[node name="FirerateDrop12" parent="." instance=ExtResource( 7 )]
-position = Vector2( 40.9449, 100.855 )
-
-[node name="FirerateDrop13" parent="." instance=ExtResource( 7 )]
-position = Vector2( 37.8699, 95.5831 )
-
-[node name="FirerateDrop14" parent="." instance=ExtResource( 7 )]
-position = Vector2( 37.8699, 95.5831 )
-
-[node name="BreakableTileTeal11" parent="." instance=ExtResource( 9 )]
-position = Vector2( 146.078, 18.568 )
-
-[node name="BreakableTileTeal12" parent="." instance=ExtResource( 9 )]
-position = Vector2( 177.76, 18.3102 )
-
-[node name="BreakableTileTeal13" parent="." instance=ExtResource( 9 )]
-position = Vector2( 209.714, 17.742 )
-
-[node name="HealthPickup4" parent="." instance=ExtResource( 5 )]
-position = Vector2( 140.318, 80.1134 )
-
 [node name="testing_player_spawn" type="Position2D" parent="."]
 position = Vector2( 1010, -11.0917 )
 scale = Vector2( 0.996277, 2.37687 )
+
+[node name="level_setups" type="Node2D" parent="."]
+
+[node name="level_setup1" type="Node2D" parent="level_setups"]
+
+[node name="GhostyBoi" parent="level_setups/level_setup1" instance=ExtResource( 6 )]
+position = Vector2( -18.6754, -652.546 )
+swap_dir = false
+
+[node name="baddie_spawn_line" type="Line2D" parent="level_setups/level_setup1"]
+
+[node name="BearBoi4" parent="level_setups/level_setup1/baddie_spawn_line" instance=ExtResource( 8 )]
+position = Vector2( 142.414, 457.176 )
+
+[node name="BreakableTileTeal" parent="level_setups/level_setup1" instance=ExtResource( 9 )]
+position = Vector2( -146.41, 16.7489 )
+
+[node name="BreakableTileTeal2" parent="level_setups/level_setup1" instance=ExtResource( 9 )]
+position = Vector2( -118.075, 16.7489 )
+
+[node name="BreakableTileTeal3" parent="level_setups/level_setup1" instance=ExtResource( 9 )]
+position = Vector2( -89.521, 16.5293 )
+
+[node name="BreakableTileTeal4" parent="level_setups/level_setup1" instance=ExtResource( 9 )]
+position = Vector2( -60.7473, 16.3096 )
+
+[node name="BreakableTileTeal5" parent="level_setups/level_setup1" instance=ExtResource( 9 )]
+position = Vector2( -32.4129, 16.3096 )
+
+[node name="BreakableTileTeal6" parent="level_setups/level_setup1" instance=ExtResource( 9 )]
+position = Vector2( -2.32126, 16.5293 )
+
+[node name="BreakableTileTeal14" parent="level_setups/level_setup1" instance=ExtResource( 9 )]
+position = Vector2( -182.866, 46.1554 )
+
+[node name="BreakableTileTeal15" parent="level_setups/level_setup1" instance=ExtResource( 9 )]
+position = Vector2( -213.19, 45.8069 )
+
+[node name="BreakableTileTeal16" parent="level_setups/level_setup1" instance=ExtResource( 9 )]
+position = Vector2( -243.164, 18.272 )
+
+[node name="BreakableTileTeal17" parent="level_setups/level_setup1" instance=ExtResource( 9 )]
+position = Vector2( -214.584, 16.8778 )
+
+[node name="BreakableTileTeal18" parent="level_setups/level_setup1" instance=ExtResource( 9 )]
+position = Vector2( -181.124, 17.2264 )
+
+[node name="BreakableTileTeal19" parent="level_setups/level_setup1" instance=ExtResource( 9 )]
+position = Vector2( 242.356, 47.5496 )
+
+[node name="BreakableTileTeal20" parent="level_setups/level_setup1" instance=ExtResource( 9 )]
+position = Vector2( 240.962, 15.1351 )
+
+[node name="BreakableTileTeal21" parent="level_setups/level_setup1" instance=ExtResource( 9 )]
+position = Vector2( 271.982, 15.1351 )
+
+[node name="BreakableTileTeal22" parent="level_setups/level_setup1" instance=ExtResource( 9 )]
+position = Vector2( 213.775, 48.9438 )
+
+[node name="BreakableTileTeal23" parent="level_setups/level_setup1" instance=ExtResource( 9 )]
+position = Vector2( 183.104, 49.9894 )
+
+[node name="BreakableTileTeal24" parent="level_setups/level_setup1" instance=ExtResource( 9 )]
+position = Vector2( 215.17, 80.6612 )
+
+[node name="BreakableTileTeal25" parent="level_setups/level_setup1" instance=ExtResource( 9 )]
+position = Vector2( -145.921, 82.7524 )
+
+[node name="BreakableTileTeal26" parent="level_setups/level_setup1" instance=ExtResource( 9 )]
+position = Vector2( -147.315, 49.2923 )
+
+[node name="BreakableTileTeal27" parent="level_setups/level_setup1" instance=ExtResource( 9 )]
+position = Vector2( -115.249, 50.6865 )
+
+[node name="BreakableTileTeal7" parent="level_setups/level_setup1" instance=ExtResource( 9 )]
+position = Vector2( 26.1421, 17.3553 )
+
+[node name="BreakableTileTeal8" parent="level_setups/level_setup1" instance=ExtResource( 9 )]
+position = Vector2( 55.0066, 17.3934 )
+
+[node name="BreakableTileTeal9" parent="level_setups/level_setup1" instance=ExtResource( 9 )]
+position = Vector2( 84.2959, 17.742 )
+
+[node name="BreakableTileTeal10" parent="level_setups/level_setup1" instance=ExtResource( 9 )]
+position = Vector2( 114.76, 18.0905 )
+
+[node name="FirerateDrop" parent="level_setups/level_setup1" instance=ExtResource( 7 )]
+position = Vector2( 32.1591, 105.467 )
+
+[node name="FirerateDrop2" parent="level_setups/level_setup1" instance=ExtResource( 7 )]
+position = Vector2( 22.9339, 108.323 )
+
+[node name="FirerateDrop3" parent="level_setups/level_setup1" instance=ExtResource( 7 )]
+position = Vector2( 15.6855, 99.976 )
+
+[node name="FirerateDrop4" parent="level_setups/level_setup1" instance=ExtResource( 7 )]
+position = Vector2( 25.1304, 93.3866 )
+
+[node name="FirerateDrop15" parent="level_setups/level_setup1" instance=ExtResource( 7 )]
+position = Vector2( -67.3529, 121.556 )
+
+[node name="FirerateDrop16" parent="level_setups/level_setup1" instance=ExtResource( 7 )]
+position = Vector2( -76.5781, 124.411 )
+
+[node name="FirerateDrop17" parent="level_setups/level_setup1" instance=ExtResource( 7 )]
+position = Vector2( -83.8264, 116.065 )
+
+[node name="FirerateDrop18" parent="level_setups/level_setup1" instance=ExtResource( 7 )]
+position = Vector2( -74.3816, 109.475 )
+
+[node name="FirerateDrop5" parent="level_setups/level_setup1" instance=ExtResource( 7 )]
+position = Vector2( 10.6337, 107.883 )
+
+[node name="FirerateDrop6" parent="level_setups/level_setup1" instance=ExtResource( 7 )]
+position = Vector2( 2.28705, 110.299 )
+
+[node name="FirerateDrop7" parent="level_setups/level_setup1" instance=ExtResource( 7 )]
+position = Vector2( 6.67999, 115.571 )
+
+[node name="FirerateDrop8" parent="level_setups/level_setup1" instance=ExtResource( 7 )]
+position = Vector2( 17.6624, 116.23 )
+
+[node name="FirerateDrop9" parent="level_setups/level_setup1" instance=ExtResource( 7 )]
+position = Vector2( 30.6215, 119.085 )
+
+[node name="FirerateDrop10" parent="level_setups/level_setup1" instance=ExtResource( 7 )]
+position = Vector2( 40.2859, 116.669 )
+
+[node name="FirerateDrop11" parent="level_setups/level_setup1" instance=ExtResource( 7 )]
+position = Vector2( 42.9218, 109.421 )
+
+[node name="FirerateDrop12" parent="level_setups/level_setup1" instance=ExtResource( 7 )]
+position = Vector2( 40.9449, 100.855 )
+
+[node name="FirerateDrop13" parent="level_setups/level_setup1" instance=ExtResource( 7 )]
+position = Vector2( 37.8699, 95.5831 )
+
+[node name="HealthPickup" parent="level_setups/level_setup1" instance=ExtResource( 5 )]
+position = Vector2( 173.658, 82.104 )
+
+[node name="HealthPickup2" parent="level_setups/level_setup1" instance=ExtResource( 5 )]
+position = Vector2( -105.854, 90.0662 )
+
+[node name="HealthPickup3" parent="level_setups/level_setup1" instance=ExtResource( 5 )]
+position = Vector2( 118.111, 84.237 )
+
+[node name="FirerateDrop14" parent="level_setups/level_setup1" instance=ExtResource( 7 )]
+position = Vector2( 37.8699, 95.5831 )
+
+[node name="BreakableTileTeal11" parent="level_setups/level_setup1" instance=ExtResource( 9 )]
+position = Vector2( 146.078, 18.568 )
+
+[node name="BreakableTileTeal12" parent="level_setups/level_setup1" instance=ExtResource( 9 )]
+position = Vector2( 177.76, 18.3102 )
+
+[node name="BreakableTileTeal13" parent="level_setups/level_setup1" instance=ExtResource( 9 )]
+position = Vector2( 209.714, 17.742 )
+
+[node name="item_spawn_point" type="Position2D" parent="level_setups/level_setup1"]
+position = Vector2( 72.6558, 83.6039 )
+
+[node name="item_spawn_point2" type="Position2D" parent="level_setups/level_setup1"]
+position = Vector2( -2.98584, 86.5898 )
+
+[node name="item_spawn_point3" type="Position2D" parent="level_setups/level_setup1"]
+position = Vector2( -60.7123, 83.6039 )
 [connection signal="body_entered" from="Exit_LEFT" to="." method="_on_Exit_LEFT_body_entered"]
 [connection signal="body_entered" from="Exit_RIGHT" to="." method="_on_Exit_RIGHT_body_entered"]

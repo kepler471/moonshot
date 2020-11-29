@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/tile_maps/TileMap.gd" type="Script" id=1]
 [ext_resource path="res://assets/tile_maps/Damage_TileSet.tres" type="TileSet" id=2]
@@ -8,8 +8,13 @@
 [ext_resource path="res://items_objects/item_pickups/HealthPickup.tscn" type="PackedScene" id=6]
 [ext_resource path="res://room_templates/exit_vert.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/tile_maps/TileSet_v1.tres" type="TileSet" id=8]
-
-
+[ext_resource path="res://baddies/characters/WallBoi.tscn" type="PackedScene" id=10]
+[ext_resource path="res://baddies/characters/BearDroppyBoi.tscn" type="PackedScene" id=11]
+[ext_resource path="res://baddies/characters/TankyBoi.tscn" type="PackedScene" id=12]
+[ext_resource path="res://baddies/characters/BearBoi.tscn" type="PackedScene" id=13]
+[ext_resource path="res://baddies/characters/FlyBoi.tscn" type="PackedScene" id=14]
+[ext_resource path="res://baddies/characters/Chick.tscn" type="PackedScene" id=15]
+[ext_resource path="res://baddies/characters/GhostyBoi.tscn" type="PackedScene" id=16]
 
 [node name="Room Root" type="Node2D" groups=[
 "Room",
@@ -28,7 +33,6 @@ tile_set = ExtResource( 2 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 collision_layer = 64
-
 format = 1
 tile_data = PoolIntArray( 1048649, 22, 0, 1048650, 22, 0, 1048651, 22, 0, 1048652, 22, 0, 1048653, 22, 0, 1048654, 22, 0, 1048655, 22, 0, 1048656, 22, 0, 1048657, 22, 0, 1048658, 22, 0, 1048659, 22, 0, 1048660, 22, 0, 1048661, 22, 0, 1048662, 22, 0, 1048663, 22, 0, 1048664, 22, 0, 1048665, 22, 0, 1048666, 22, 0, 1048667, 22, 0, 1048668, 22, 0, 1048669, 22, 0, 1048670, 22, 0, 1048671, 22, 0, 1048672, 22, 0, 1048673, 22, 0, 1048674, 22, 0, 1048675, 22, 0, 1114185, 22, 65536, 1114186, 22, 65536, 1114187, 22, 65536, 1114188, 22, 65536, 1114189, 22, 65536, 1114190, 22, 65536, 1114191, 22, 65536, 1114192, 22, 65536, 1114193, 22, 65536, 1114194, 22, 65536, 1114195, 22, 65536, 1114196, 22, 65536, 1114197, 22, 65536, 1114198, 22, 65536, 1114199, 22, 65536, 1114200, 22, 65536, 1114201, 22, 65536, 1114202, 22, 65536, 1114203, 22, 65536, 1114204, 22, 65536, 1114205, 22, 65536, 1114206, 22, 65536, 1114207, 22, 65536, 1114208, 22, 65536, 1114209, 22, 65536, 1114210, 22, 65536, 1114211, 22, 65536, 1114212, 22, 65536, 1114213, 22, 65536, 1179736, 22, 65536, 1179737, 22, 65536, 1179738, 22, 65536, 1179739, 22, 65536, 1179740, 22, 65536, 1179741, 22, 65536, 1179742, 22, 65536, 1179743, 22, 65536, 1179744, 22, 65536, 1179745, 22, 65536, 1179746, 22, 65536, 1179747, 22, 65536, 1179748, 22, 65536, 1179749, 22, 65536, 2228241, 22, 0, 2228242, 22, 0, 2228243, 22, 0, 2228244, 22, 0, 2228245, 22, 0, 2228246, 22, 0, 2293777, 22, 65536, 2293778, 22, 65536, 2293779, 22, 65536, 2293780, 22, 65536, 2293781, 22, 65536, 2293782, 22, 65536, 2293783, 22, 65536 )
 
@@ -37,7 +41,6 @@ tile_set = ExtResource( 8 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 collision_layer = 8
-
 format = 1
 tile_data = PoolIntArray( 327703, 20, 0, 327704, 20, 1, 327705, 20, 1, 327706, 20, 2, 720923, 20, 0, 720924, 20, 1, 720925, 20, 2, 720926, 4, 196611, 917523, 20, 0, 917524, 20, 1, 917525, 20, 1, 917526, 20, 2, 1245243, 20, 0, 1245244, 20, 1, 1245245, 20, 1, 1245246, 20, 2, 1507333, 20, 0, 1507334, 20, 1, 1507335, 20, 1, 1507336, 20, 1, 1507337, 20, 1, 1507338, 20, 1, 1507339, 20, 1, 1507340, 20, 2, 1507346, 20, 0, 1507347, 20, 2 )
 
@@ -54,7 +57,6 @@ tile_set = ExtResource( 2 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 collision_layer = 64
-
 format = 1
 tile_data = PoolIntArray( 1638403, 24, 65536, 1638421, 23, 131072, 1703939, 24, 131072, 1769474, 24, 0, 1769495, 23, 0, 1835010, 24, 65536, 1835031, 23, 65536, 1900546, 24, 131072, 1900567, 23, 65536, 1966103, 23, 65536, 2031639, 23, 65536, 2097175, 23, 131072, 2162710, 23, 0 )
 
@@ -80,12 +82,13 @@ position = Vector2( 605.161, 718.1 )
 
 [node name="level_setup_1" type="Node2D" parent="level_setups"]
 
-[node name="baddie_spawn_line1" type="Line2D" parent="level_setups/level_setup_1"]
-points = PoolVector2Array( 222.899, 1098.15, 498.191, 1098.15 )
-
 [node name="baddie_spawn_line3" type="Line2D" parent="level_setups/level_setup_1"]
 position = Vector2( 2377.16, -923.908 )
 points = PoolVector2Array( 222.899, 1098.15, 498.191, 1098.15 )
+
+[node name="BearDroppyBoi" parent="level_setups/level_setup_1/baddie_spawn_line3" instance=ExtResource( 11 )]
+
+[node name="FlyBoi" parent="level_setups/level_setup_1/baddie_spawn_line3" instance=ExtResource( 14 )]
 
 [node name="BearCeilingBoi" parent="level_setups/level_setup_1/baddie_spawn_line3" instance=ExtResource( 5 )]
 position = Vector2( 356.659, 1103.67 )
@@ -99,11 +102,34 @@ position = Vector2( 152.356, 817.941 )
 [node name="baddie_spawn_point1" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( 147.316, 956.533 )
 
+[node name="FlyBoi" parent="level_setups/level_setup_1/baddie_spawn_point1" instance=ExtResource( 14 )]
+position = Vector2( -147.316, -956.533 )
+
+[node name="GhostyBoi" parent="level_setups/level_setup_1/baddie_spawn_point1" instance=ExtResource( 16 )]
+position = Vector2( -147.316, -956.533 )
+swap_dir = false
+
+[node name="WallBoi" parent="level_setups/level_setup_1/baddie_spawn_point1" instance=ExtResource( 10 )]
+position = Vector2( -147.316, -956.533 )
+
 [node name="baddie_spawn_point2" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( 644.891, 1026.46 )
 
+[node name="FlyBoi" parent="level_setups/level_setup_1/baddie_spawn_point2" instance=ExtResource( 14 )]
+position = Vector2( -644.891, -1026.46 )
+
 [node name="baddie_spawn_point3" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( 1469.15, 356.878 )
+
+[node name="FlyBoi" parent="level_setups/level_setup_1/baddie_spawn_point3" instance=ExtResource( 14 )]
+scale = Vector2( 0.842648, 0.937197 )
+
+[node name="Chick" parent="level_setups/level_setup_1/baddie_spawn_point3" instance=ExtResource( 15 )]
+
+[node name="BearBoi" parent="level_setups/level_setup_1/baddie_spawn_point3" instance=ExtResource( 13 )]
+
+[node name="TankyBoi" parent="level_setups/level_setup_1/baddie_spawn_point3" instance=ExtResource( 12 )]
+swap_dir = false
 
 [node name="item_spawn_point1" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( 350, 700 )
@@ -117,6 +143,21 @@ position = Vector2( 160, 1030 )
 
 [node name="item_spawn_point2" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( 604.954, 290.769 )
+
+[node name="baddie_spawn_line" type="Line2D" parent="level_setups/level_setup_1"]
+points = PoolVector2Array( 208.681, 1093.57, 491.889, 1098.2 )
+
+[node name="BearBoi" parent="level_setups/level_setup_1/baddie_spawn_line" instance=ExtResource( 13 )]
+
+[node name="Chick" parent="level_setups/level_setup_1/baddie_spawn_line" instance=ExtResource( 15 )]
+
+[node name="FlyBoi" parent="level_setups/level_setup_1/baddie_spawn_line" instance=ExtResource( 14 )]
+
+[node name="GhostyBoi" parent="level_setups/level_setup_1/baddie_spawn_line" instance=ExtResource( 16 )]
+swap_dir = false
+
+[node name="TankyBoi" parent="level_setups/level_setup_1/baddie_spawn_line" instance=ExtResource( 12 )]
+swap_dir = false
 [connection signal="body_entered" from="Exit_UP" to="." method="_on_Exit_UP_body_entered"]
 [connection signal="body_entered" from="Exit_DOWN" to="." method="_on_Exit_DOWN_body_entered"]
 [connection signal="body_entered" from="Exit_RIGHT" to="." method="_on_Exit_RIGHT_body_entered"]

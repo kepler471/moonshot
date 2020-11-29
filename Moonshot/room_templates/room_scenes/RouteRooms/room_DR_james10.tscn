@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://room_templates/exit_hori.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/tile_maps/Damage_TileSet.tres" type="TileSet" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://assets/tile_maps/TileSet_v1.tres" type="TileSet" id=4]
 [ext_resource path="res://assets/tile_maps/TileMap.gd" type="Script" id=5]
 [ext_resource path="res://baddies/characters/BearCeilingBoi.tscn" type="PackedScene" id=6]
-[ext_resource path="res://items_objects/item_pickups/HealthPickup.tscn" type="PackedScene" id=7]
 [ext_resource path="res://baddies/characters/BearBoi.tscn" type="PackedScene" id=8]
 [ext_resource path="res://room_templates/exit_vert.tscn" type="PackedScene" id=9]
 
@@ -37,7 +36,6 @@ tile_set = ExtResource( 4 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 collision_layer = 8
-
 format = 1
 
 [node name="BaseTiles" type="TileMap" parent="."]
@@ -73,19 +71,30 @@ position = Vector2( 662.671, 448.278 )
 
 [node name="level_setups" type="Node2D" parent="."]
 
-[node name="HealthPickup" parent="." instance=ExtResource( 7 )]
-position = Vector2( -487.896, 635.392 )
+[node name="level_setup_1" type="Node2D" parent="level_setups"]
 
-[node name="HealthPickup2" parent="." instance=ExtResource( 7 )]
-position = Vector2( -323.919, -482.99 )
+[node name="baddie_spawn_point" type="Position2D" parent="level_setups/level_setup_1"]
+position = Vector2( -384, -168 )
 
-[node name="BearBoi" parent="." instance=ExtResource( 8 )]
-position = Vector2( -409.781, -177.235 )
+[node name="BearBoi" parent="level_setups/level_setup_1/baddie_spawn_point" instance=ExtResource( 8 )]
+position = Vector2( -25.781, -9.235 )
 
-[node name="BearBoi2" parent="." instance=ExtResource( 8 )]
-position = Vector2( 116.039, -306.868 )
+[node name="baddie_spawn_point2" type="Position2D" parent="level_setups/level_setup_1"]
+position = Vector2( 80, -306.868 )
 
-[node name="BearCeilingBoi" parent="." instance=ExtResource( 6 )]
-position = Vector2( 509.01, -19.8321 )
+[node name="BearBoi2" parent="level_setups/level_setup_1/baddie_spawn_point2" instance=ExtResource( 8 )]
+position = Vector2( 36.039, 0 )
+
+[node name="baddie_spawn_point3" type="Position2D" parent="level_setups/level_setup_1"]
+position = Vector2( 480, -16 )
+
+[node name="BearCeilingBoi" parent="level_setups/level_setup_1/baddie_spawn_point3" instance=ExtResource( 6 )]
+position = Vector2( 29.01, -3.8321 )
+
+[node name="item_spawn_point" type="Position2D" parent="level_setups/level_setup_1"]
+position = Vector2( -323.919, -466.99 )
+
+[node name="item_spawn_point2" type="Position2D" parent="level_setups/level_setup_1"]
+position = Vector2( -448, 635.392 )
 [connection signal="body_entered" from="Exit_UP" to="." method="_on_Exit_UP_body_entered"]
 [connection signal="body_entered" from="Exit_RIGHT" to="." method="_on_Exit_RIGHT_body_entered"]

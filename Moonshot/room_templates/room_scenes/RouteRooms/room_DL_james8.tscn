@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/tile_maps/Damage_TileSet.tres" type="TileSet" id=1]
 [ext_resource path="res://room_templates/BaseRoom.gd" type="Script" id=2]
@@ -8,6 +8,9 @@
 [ext_resource path="res://baddies/characters/BearBoi.tscn" type="PackedScene" id=6]
 [ext_resource path="res://items_objects/item_pickups/HealthPickup.tscn" type="PackedScene" id=7]
 [ext_resource path="res://baddies/characters/TankyBoi.tscn" type="PackedScene" id=8]
+[ext_resource path="res://baddies/characters/Chick.tscn" type="PackedScene" id=9]
+[ext_resource path="res://baddies/characters/FlyBoi.tscn" type="PackedScene" id=10]
+[ext_resource path="res://baddies/characters/GhostyBoi.tscn" type="PackedScene" id=11]
 
 [node name="Room Root" type="Node2D" groups=[
 "Room",
@@ -35,7 +38,6 @@ tile_set = ExtResource( 3 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 collision_layer = 8
-
 format = 1
 
 [node name="BaseTiles" type="TileMap" parent="."]
@@ -68,6 +70,7 @@ position = Vector2( 590.879, 657.341 )
 
 [node name="TankyBoi" parent="." instance=ExtResource( 8 )]
 position = Vector2( 276.607, -529.477 )
+swap_dir = false
 
 [node name="testing_player_spawn" type="Position2D" parent="."]
 position = Vector2( 473.244, 774.507 )
@@ -77,11 +80,23 @@ position = Vector2( 473.244, 774.507 )
 [node name="level_setup_1" type="Node2D" parent="level_setups"]
 
 [node name="baddie_spawn_line1" type="Line2D" parent="level_setups/level_setup_1"]
-points = PoolVector2Array( -185.093, -130.369 )
+points = PoolVector2Array( -184, -136, -280, -136 )
+
+[node name="BearBoi" parent="level_setups/level_setup_1/baddie_spawn_line1" instance=ExtResource( 6 )]
+
+[node name="Chick" parent="level_setups/level_setup_1/baddie_spawn_line1" instance=ExtResource( 9 )]
+
+[node name="FlyBoi" parent="level_setups/level_setup_1/baddie_spawn_line1" instance=ExtResource( 10 )]
+
+[node name="GhostyBoi" parent="level_setups/level_setup_1/baddie_spawn_line1" instance=ExtResource( 11 )]
+swap_dir = false
+
+[node name="TankyBoi" parent="level_setups/level_setup_1/baddie_spawn_line1" instance=ExtResource( 8 )]
+swap_dir = false
 
 [node name="baddie_spawn_line2" type="Line2D" parent="level_setups/level_setup_1"]
 position = Vector2( 281.005, -420.388 )
-points = PoolVector2Array( 49.4682, 203.591 )
+points = PoolVector2Array( 49.4682, 203.591, -297.005, 196.388 )
 
 [node name="BearBoi" parent="level_setups/level_setup_1/baddie_spawn_line2" instance=ExtResource( 6 )]
 position = Vector2( 48.537, 207.091 )
@@ -93,5 +108,5 @@ position = Vector2( 122.679, 600.742 )
 position = Vector2( -131.736, -57.0967 )
 
 [node name="baddie_spawn_point2" type="Position2D" parent="level_setups/level_setup_1"]
-position = Vector2( -443.159, 37.1065 )
+position = Vector2( -440, -32 )
 [connection signal="body_entered" from="Exit_DOWN" to="." method="_on_Exit_DOWN_body_entered"]

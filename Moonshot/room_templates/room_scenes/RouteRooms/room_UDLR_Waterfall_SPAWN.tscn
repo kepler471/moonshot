@@ -1,16 +1,19 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/tile_maps/TileMap.gd" type="Script" id=1]
 [ext_resource path="res://assets/tile_maps/Damage_TileSet.tres" type="TileSet" id=2]
 [ext_resource path="res://room_templates/BaseRoom.gd" type="Script" id=3]
 [ext_resource path="res://items_objects/breakable_tile_purple.tscn" type="PackedScene" id=4]
-[ext_resource path="res://items_objects/item_pickups/HealthPickup.tscn" type="PackedScene" id=5]
+[ext_resource path="res://baddies/characters/BearBoi.tscn" type="PackedScene" id=5]
 [ext_resource path="res://baddies/characters/FlyBoi.tscn" type="PackedScene" id=6]
 [ext_resource path="res://room_templates/exit_hori.tscn" type="PackedScene" id=7]
 [ext_resource path="res://room_templates/exit_vert.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/tile_maps/TileSet_v1.tres" type="TileSet" id=9]
-
-
+[ext_resource path="res://baddies/characters/BearDroppyBoi.tscn" type="PackedScene" id=10]
+[ext_resource path="res://baddies/characters/GhostyBoi.tscn" type="PackedScene" id=11]
+[ext_resource path="res://baddies/characters/Chick.tscn" type="PackedScene" id=12]
+[ext_resource path="res://baddies/characters/BearCeilingBoi.tscn" type="PackedScene" id=13]
+[ext_resource path="res://baddies/characters/TankyBoi.tscn" type="PackedScene" id=14]
 
 [node name="Room Root" type="Node2D" groups=[
 "Room",
@@ -29,7 +32,6 @@ tile_set = ExtResource( 2 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 collision_layer = 64
-
 format = 1
 tile_data = PoolIntArray( 2686986, 22, 0, 2686987, 22, 0, 2686988, 22, 0, 2686989, 22, 0, 2686990, 22, 0, 2686991, 22, 0, 2686992, 22, 0, 2686993, 22, 0, 2686994, 22, 0, 2686995, 22, 0, 2686996, 22, 0, 2752522, 22, 65536, 2752523, 22, 65536, 2752524, 22, 65536, 2752525, 22, 65536, 2752526, 22, 65536, 2752527, 22, 65536, 2752528, 22, 65536, 2752529, 22, 65536, 2752530, 22, 65536, 2752531, 22, 65536, 2818058, 22, 65536, 2818059, 22, 65536, 2818060, 22, 65536, 2818061, 22, 65536, 2818062, 22, 65536, 2818063, 22, 65536, 2818064, 22, 65536, 2818065, 22, 65536, 2818066, 22, 65536, 2818067, 22, 65536, 2883595, 22, 65536, 2883596, 22, 65536, 2883597, 22, 65536, 2883598, 22, 65536, 2883599, 22, 65536, 2883600, 22, 65536, 2883601, 22, 65536, 2883602, 22, 65536, 2883603, 22, 65536, 2883626, 22, 0, 2883627, 22, 0, 2883628, 22, 0, 2883629, 22, 0, 2883644, 22, 0, 2883645, 22, 0, 2883646, 22, 0, 2949162, 22, 65536, 2949163, 22, 65536, 2949164, 22, 65536, 2949165, 22, 0, 2949166, 22, 0, 2949167, 22, 0, 2949168, 22, 0, 2949169, 22, 0, 2949170, 22, 0, 2949171, 22, 0, 2949172, 22, 0, 2949173, 22, 0, 2949174, 22, 0, 2949175, 22, 0, 2949176, 22, 0, 3014699, 22, 65536, 3014700, 22, 65536, 3014701, 22, 65536, 3014702, 22, 65536, 3014703, 22, 65536, 3014704, 22, 65536, 3014705, 22, 65536, 3014706, 22, 65536, 3014707, 22, 65536, 3014708, 22, 65536, 3014709, 22, 65536, 3014710, 22, 65536, 3080235, 22, 65536, 3080236, 22, 65536, 3080237, 22, 65536, 3080238, 22, 65536, 3080239, 22, 65536, 3080240, 22, 65536, 3080241, 22, 65536, 3080242, 22, 65536, 3080243, 22, 65536, 3080244, 22, 65536, 3080245, 22, 65536, 3080246, 22, 65536, 3145767, 22, 0, 3145768, 22, 0, 3145769, 22, 0, 3145770, 22, 65536, 3145771, 22, 65536, 3145772, 22, 65536, 3145782, 22, 0, 3145783, 22, 0, 3145784, 22, 0, 3211303, 22, 65536, 3211304, 22, 65536, 3211305, 22, 65536, 3211306, 22, 65536, 3211307, 22, 65536, 3276839, 22, 65536, 3276840, 22, 65536, 3276841, 22, 65536, 3276842, 22, 65536, 3342375, 22, 65536, 3342376, 22, 65536, 3342377, 22, 65536, 3407912, 22, 65536, 3473448, 22, 65536, 3538984, 22, 65536, 3604520, 22, 65536, 3670056, 22, 65536, 3735592, 22, 65536, 3801128, 22, 65536, 3866664, 22, 65536, 3932200, 22, 65536, 3932227, 22, 0, 3932228, 22, 0, 3932229, 22, 0, 3932230, 22, 0, 3932231, 22, 0, 3932232, 22, 0, 3932233, 22, 0, 3932234, 22, 0, 3932235, 22, 0, 3932236, 22, 0, 3932237, 22, 0, 3932238, 22, 0, 3932239, 22, 0, 3932240, 22, 0, 3932241, 22, 0, 3932242, 22, 0, 3997734, 22, 0, 3997735, 22, 0, 3997736, 22, 65536, 3997737, 22, 0, 3997738, 22, 0, 3997739, 22, 0, 3997762, 22, 65536, 3997763, 22, 65536, 3997764, 22, 65536, 3997765, 22, 65536, 3997766, 22, 65536, 3997767, 22, 65536, 3997768, 22, 65536, 3997769, 22, 65536, 3997770, 22, 65536, 3997771, 22, 65536, 3997772, 22, 65536, 3997773, 22, 65536, 3997774, 22, 65536, 3997775, 22, 65536, 3997776, 22, 65536, 3997777, 22, 65536, 3997778, 22, 65536, 4063270, 22, 65536, 4063271, 22, 65536, 4063272, 22, 65536, 4063273, 22, 65536, 4063274, 22, 65536, 4063275, 22, 65536, 4128806, 22, 65536, 4128807, 22, 65536, 4128808, 22, 65536, 4128809, 22, 65536, 4128810, 22, 65536, 4194342, 22, 65536, 4194343, 22, 65536, 4194344, 22, 65536, 4194345, 22, 65536 )
 
@@ -38,7 +40,6 @@ tile_set = ExtResource( 9 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 collision_layer = 8
-
 format = 1
 tile_data = PoolIntArray( 1245275, 20, 0, 1245276, 20, 2, 1704030, 20, 0, 1704031, 20, 1, 1704032, 20, 2, 2097240, 20, 0, 2097241, 20, 1, 2097242, 20, 1, 2097243, 20, 1, 2097244, 20, 2, 3670113, 20, 0, 3670114, 20, 1, 3670115, 20, 1, 3670116, 20, 2, 3997742, 20, 0, 3997743, 20, 1, 3997744, 20, 1, 3997745, 20, 1, 3997746, 20, 1, 3997747, 20, 2, 4259887, 20, 0, 4259888, 20, 1, 4259889, 20, 1, 4259890, 20, 2 )
 
@@ -55,7 +56,6 @@ tile_set = ExtResource( 2 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 collision_layer = 64
-
 format = 1
 tile_data = PoolIntArray( 3342375, -1073741801, 0, 3342377, -1073741801, 131072, 3407912, 25, 65536, 3473448, 25, 65536, 3538984, 25, 65536, 3604520, 25, 65536, 3670056, 25, 65536, 3735592, 25, 65536, 3801128, 25, 65536, 3866664, 25, 65536, 3932200, 25, 65536, 3997736, 25, 65536 )
 
@@ -93,6 +93,22 @@ position = Vector2( 1674.33, 607.427 )
 points = PoolVector2Array( 2285.62, 1738.33, 2480.05, 1738.33 )
 default_color = Color( 0.4, 0.501961, 1, 0 )
 
+[node name="BearBoi" parent="level_setups/level_setup_1/baddie_spawn_line1" instance=ExtResource( 5 )]
+
+[node name="BearCeilingBoi" parent="level_setups/level_setup_1/baddie_spawn_line1" instance=ExtResource( 13 )]
+
+[node name="BearDroppyBoi" parent="level_setups/level_setup_1/baddie_spawn_line1" instance=ExtResource( 10 )]
+
+[node name="Chick" parent="level_setups/level_setup_1/baddie_spawn_line1" instance=ExtResource( 12 )]
+
+[node name="FlyBoi" parent="level_setups/level_setup_1/baddie_spawn_line1" instance=ExtResource( 6 )]
+
+[node name="GhostyBoi" parent="level_setups/level_setup_1/baddie_spawn_line1" instance=ExtResource( 11 )]
+swap_dir = false
+
+[node name="TankyBoi" parent="level_setups/level_setup_1/baddie_spawn_line1" instance=ExtResource( 14 )]
+swap_dir = false
+
 [node name="baddie_spawn_line2" type="Line2D" parent="level_setups/level_setup_1"]
 points = PoolVector2Array( 1109.81, 1816.06, 1606.37, 1813.39 )
 default_color = Color( 0.4, 0.501961, 1, 0 )
@@ -102,8 +118,6 @@ position = Vector2( 1241.81, 1815.52 )
 
 [node name="item_spawn_point1" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( 2700, 385 )
-
-[node name="health_pickup" parent="level_setups/level_setup_1/item_spawn_point1" instance=ExtResource( 5 )]
 
 [node name="item_spawn_point2" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( 2816.78, 984.886 )
