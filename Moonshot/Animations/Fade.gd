@@ -14,7 +14,7 @@ var on_fade_in_finish: FuncRef = funcref(self, "noop") setget set_on_fade_in_fin
 var on_fade_out_finish: FuncRef = funcref(self, "noop") setget set_on_fade_out_finish
 var original_values: Color
 var is_animating: bool = false
-var is_occilating: bool = false
+var is_oscillating: bool = false
 
 func fade_in(rgba: String = A, should_reset: bool = false, counter: float = 0.0) -> void:
 	if is_animating == true:
@@ -64,22 +64,22 @@ func fade_out(rgba: String = A, should_reset: bool = false, counter: float = 1.0
 			on_fade_out_finish = funcref(self, "noop")
 		is_animating = false
 
-func occilate(rgba: Array, timer: float = 0.3, occilations: int = 1) -> void:
-	if is_occilating == true || is_animating == true:
+func oscillate(rgba: Array, timer: float = 0.3, oscillations: int = 1) -> void:
+	if is_oscillating == true || is_animating == true:
 		return
 
 	if !is_inside_tree() || !is_instance_valid(self):
 		queue_free()
 		return
 
-	if occilations != 0:
-		fade_in(rgba[occilations % rgba.size()], false)
-		is_occilating = true
+	if oscillations != 0:
+		fade_in(rgba[oscillations % rgba.size()], false)
+		is_oscillating = true
 		yield(create_timer(timer), "timeout")
-		is_occilating = false
-		occilate(rgba, timer, occilations - 1)
+		is_oscillating = false
+		oscillate(rgba, timer, oscillations - 1)
 	else:
-		is_occilating = false
+		is_oscillating = false
 		is_animating = false
 		sprite.modulate = original_values
 

@@ -157,7 +157,7 @@ func _flash() -> void:
 
 	fade.set_fade_speed(0.02)
 	fade.set_fade_factor(0.2)
-	fade.occilate([fade.G], 0.2, 4)
+	fade.oscillate([fade.G], 0.2, 4)
 
 func _has_died() -> bool:
 	return dead == true
