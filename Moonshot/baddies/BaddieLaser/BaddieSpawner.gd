@@ -1,31 +1,32 @@
 extends Position2D
 class_name BaddieSpawner
 
-var bearBoi = load("res://baddies/characters/BearBoi.tscn")
+var chick = load("res://baddies/characters/Chick.tscn")
 var baddie_builder = load("res://procedural_map_generation/BaddieBuilder.gd")
-var max_baddies = 5 setget set_max_baddies
+var max_baddies = 8 setget set_max_baddies
 var _baddie_dictionary: Dictionary = {}
+var spawn_dir : float
 
 func set_max_baddies(m: int) -> void:
 	max_baddies = m
 
 func spawn_randomly() -> void:
 	spawn()
-	var timer: Timer = Timer.new()
-	add_child(timer)
-	timer.start(0.5)
+
+func set_direction(x: float) -> void:
+	spawn_dir = sign(x)
 
 func spawn():
 	var baddie_dictionary_keys: Array = _baddie_dictionary.keys()
 	if _is_max_capacity(baddie_dictionary_keys):
 		return
 
-	var builder = baddie_builder.new(bearBoi, { "inital_hp": 0.75, "hp": 0.75 })
+	var builder = baddie_builder.new(chick, { "inital_hp": 0.75, "hp": 0.75})
 	var baddie_instance = builder.build()
 
-	baddie_instance.position = global_position -  Vector2(0.75, 0.75) # slightly beneath mother hen
-	baddie_instance.scale = Vector2(0.75, 0.75) # smaller
+	baddie_instance.set_mother_dir(spawn_dir)
 
+	baddie_instance.position = global_position
 	_baddie_dictionary[baddie_instance.get_instance_id()] = baddie_instance
 
 	_add_baddie_to_scene(baddie_instance)

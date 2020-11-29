@@ -21,7 +21,7 @@ var sprite: AnimatedSprite
 var floor_vector = Vector2(0, -1)
 var body: KinematicBody2D
 var damage_to_player: float = 0.2
-var should_damge_on_collision = false
+var should_damage_on_collision = false
 var shot_speed = 500
 var shot_damage = 0.5
 var item_drop = null
@@ -46,7 +46,7 @@ func get_current_state() -> Dictionary:
 		"body": body,
 		"animation": animation,
 		"damage_to_player": damage_to_player,
-		"should_damge_on_collision": should_damge_on_collision,
+		"should_damage_on_collision": should_damage_on_collision,
 		"shot_speed": shot_speed,
 		"shot_damage": shot_damage,
 		"item_drop": item_drop,
@@ -65,7 +65,7 @@ func _get_default_baddie_attributes():
 		"body": null,
 		"animation": "rush",
 		"damage_to_player": 0.02,
-		"should_damge_on_collision": false,
+		"should_damage_on_collision": false,
 		"shot_speed": 500,
 		"shot_damage": 0.4,
 		"item_drop": null
@@ -115,7 +115,7 @@ func _check_player_colision() -> bool:
 		if !collision || !collision.collider:
 			break
 		if collision.collider.name == "Player":
-			if should_damge_on_collision:
+			if should_damage_on_collision:
 				if Utils.IS_DEBUG: print("hit by melee with x := ", body.position)
 				CombatSignalController.emit_signal("damage_player", self.damage_to_player, body.position)
 			return true

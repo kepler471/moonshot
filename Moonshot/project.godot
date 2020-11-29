@@ -49,6 +49,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://baddies/characters/BearDroppyBoi.gd"
 }, {
+"base": "KinematicBody2D",
+"class": "Chick",
+"language": "GDScript",
+"path": "res://baddies/characters/Chick.gd"
+}, {
 "base": "Node",
 "class": "DifficultyController",
 "language": "GDScript",
@@ -133,6 +138,7 @@ _global_script_class_icons={
 "BearBoi": "",
 "BearCeilingBoi": "",
 "BearDroppyBoi": "",
+"Chick": "",
 "DifficultyController": "",
 "Fade": "",
 "FloorDetector": "",

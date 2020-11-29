@@ -1,5 +1,8 @@
+tool
 extends KinematicBody2D
 class_name WallBoi
+
+export(bool)  var swap_dir  setget swap_dir
 
 var attributes: Attributes = preload("res://baddies/Attributes.gd").new()
 onready var Laser = $BaddieLaserPointer
@@ -12,6 +15,12 @@ const DAMAGE_TO_PLAYER := 0.02
 const Animations := {
 	"RUSH": "rush"
 }
+
+
+func swap_dir(value = null) -> void:
+	if !Engine.is_editor_hint(): return
+	change_direction()
+
 
 func _init() -> void:
 	CombatSignalController.connect("damage_baddie", self, "on_hit")
@@ -27,6 +36,7 @@ func _init() -> void:
 	})
 
 func _ready():
+	if Engine.is_editor_hint(): return
 	attributes.set_sprite($AnimatedSprite)
 	Laser.set_upper_shot_frequency(1)
 	Laser.set_shot_speed(attributes.shot_speed)
@@ -34,6 +44,8 @@ func _ready():
 	Laser.shoot_randomly()
 
 func _physics_process(delta) -> void:
+	if Engine.is_editor_hint(): return
+
 	if attributes._has_died():
 		return
 

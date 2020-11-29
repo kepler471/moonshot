@@ -1,64 +1,67 @@
-tool
 extends KinematicBody2D
+class_name Chick
 
 var attributes: Attributes = preload("res://baddies/Attributes.gd").new()
-
-export(bool)  var swap_dir  setget swap_dir
-
-onready var Laser = $BaddieLaserPointer
-
-class_name BearCeilingBoi
+onready var sprite : AnimatedSprite = $AnimatedSprite
+var mother_dir
 
 const Animations := {
 	"RUSH": "rush"
 }
 
-func swap_dir(value = null) -> void:
-	if !Engine.is_editor_hint(): return
-	change_direction()
-
 func _init() -> void:
 	CombatSignalController.connect("damage_baddie", self, "on_hit")
-	
 	attributes.set_properties({
 		"body": self,
+		"sprite": sprite,
 		"animation": Animations.RUSH,
 		"speed": 230,
 		"inital_hp": 1.0,
-		"gravity": -10,
+		"gravity": 50,
 		"damage_to_player": 0.02,
 		"floor_vector": Vector2(0, -1),
 		"should_damage_on_collision": true
 	})
 
 func _ready():
-	if Engine.is_editor_hint(): return
 	attributes.set_sprite($AnimatedSprite)
-	Laser.set_upper_shot_frequency(1)
-	Laser.set_shot_speed(attributes.shot_speed)
-	Laser.set_damage(attributes.shot_damage)
-	Laser.shoot_randomly()
+	if attributes.direction != mother_dir:
+		change_direction()
+
 
 func _physics_process(delta) -> void:
-	if Engine.is_editor_hint(): return
-
 	if attributes._has_died():
 		return
+
+	if $TriggerJump.is_colliding():
+		if is_on_floor():
+			attributes.velocity += (Vector2(0, -700))
+			attributes._move(delta)
+			return
+		else:
+			attributes._move(delta)
+			return
+		
 
 	var collided_with_player: bool = attributes._check_player_colision()
 	var falling_off_ledge: bool = $FrontRayCast.is_colliding() == false || $RearRayCast.is_colliding() == false
 	var collided_with_wall: bool = is_on_wall() && !collided_with_player
 
-	if (falling_off_ledge || collided_with_wall) && !$FrontRayCast.is_turning:
+	if (falling_off_ledge || collided_with_wall) && !$FrontRayCast.is_turning and is_on_floor():
 		change_direction()
 
 	attributes._move(delta)
+
+func set_mother_dir(x: float) -> void:
+	mother_dir = sign(x)
 
 func change_direction() -> void:
 	if !attributes._has_died():
 		attributes.set("direction", attributes._change_direction())
 		attributes.flip_sprite_horizontal()
+
 		$FrontRayCast.async_change_direction()
+		$TriggerJump.set_rotation(-$TriggerJump.get_rotation())
 
 func on_hit(instance_id, damage) -> void:
 	if instance_id == self.get_instance_id() && !attributes._has_died():
@@ -66,4 +69,3 @@ func on_hit(instance_id, damage) -> void:
 
 func on_end() -> void:
 	call_deferred("free")
-
