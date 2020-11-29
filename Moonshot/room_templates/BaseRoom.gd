@@ -76,6 +76,7 @@ func spawn_baddies(difficulty_controller: DifficultyController, room_difficulty)
 	
 	var distance
 	for line in baddie_spawn_lines:
+		line.visible = false
 		var line_points = line.points
 		distance = line_points[0].distance_to(line_points[1])
 		max_no_baddies += distance / min_baddie_spawn_distance
