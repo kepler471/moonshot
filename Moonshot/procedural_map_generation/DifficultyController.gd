@@ -38,8 +38,8 @@ func random_room_difficulty(room_type):
 # In a room. The max no of possible baddies should already have been determined in 
 # Room.gd
 func get_no_baddies_in_room(room_difficulty, max_baddies, min_baddies):
-	var scaled_difficulty_rating = (room_difficulty -1) / (max_level - 1)
-	var no_baddies =  round(scaled_difficulty_rating*(max_baddies-min_baddies)) + min_baddies
+	var scaled_difficulty_rating = room_difficulty / max_level
+	var no_baddies =  max(round(scaled_difficulty_rating*max_baddies), min_baddies)
 	return no_baddies
 	
 # For a specific baddie type and room difficulty, return the baddie_instance
