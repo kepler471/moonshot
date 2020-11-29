@@ -38,12 +38,7 @@ func random_room_difficulty(room_type):
 # In a room. The max no of possible baddies should already have been determined in 
 # Room.gd
 func get_no_baddies_in_room(room_difficulty, max_baddies, min_baddies):
-	var no_baddies_scaling_factor = 1.2
-	var max_difficulty_rating = pow(global_difficulty_scaling*no_baddies_scaling_factor, max_level)
-
-	var difficulty_rating = rand_range(0.3, 1)*pow(global_difficulty_scaling*no_baddies_scaling_factor, room_difficulty)
-
-	var scaled_difficulty_rating = difficulty_rating / max_difficulty_rating
+	var scaled_difficulty_rating = (room_difficulty -1) / (max_level - 1)
 	var no_baddies =  round(scaled_difficulty_rating*(max_baddies-min_baddies)) + min_baddies
 	return no_baddies
 	
