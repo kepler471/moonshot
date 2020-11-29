@@ -8,14 +8,20 @@ var weapon_textures = {
 	'shotgun': load('res://items_objects/assets/WeaponIcons/ShotgunIcon.png')
 }
 
+var plunger
+
+func _ready():
+	plunger = get_parent().get_node("GUI/PlungerPosition/Plunger")
 	
 func _process(delta):
-	var new_health_bar_size = (Utils.player_stats.health*154) / Utils.player_stats.max_health
-	var health_bar = get_parent().get_node("GUI/MarginContainer/VBoxContainer/VBoxContainer3/VBoxContainer2/HBoxContainer2/HealthBar")
+	var new_health_bar_size = (Utils.player_stats.health*152) / Utils.player_stats.max_health
+	var health_bar = get_parent().get_node("GUI/HealthBar")
 	if new_health_bar_size > 0:
-		health_bar.rect_min_size.x = new_health_bar_size
+		plunger.position.x = 154 - new_health_bar_size
+		health_bar.rect_size.x = new_health_bar_size
 	else:
-		health_bar.rect_min_size.x = 0
+		plunger.position.x = 154
+		health_bar.rect_size.x = 0
 	update_firerate_hud(Utils.player_stats.modifiers['firerate_pickups'], Utils.player_stats.current_firerate_level)
 
 func build_hud(minimap):
