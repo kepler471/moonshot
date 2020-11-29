@@ -17,7 +17,6 @@ func set_direction(x: float) -> void:
 	spawn_dir = sign(x)
 
 func spawn():
-	print("Spawned")
 	var baddie_dictionary_keys: Array = _baddie_dictionary.keys()
 	if _is_max_capacity(baddie_dictionary_keys):
 		return
@@ -26,7 +25,6 @@ func spawn():
 	var baddie_instance = builder.build()
 
 	baddie_instance.set_mother_dir(spawn_dir)
-	print("spawner dir ::: ", spawn_dir)
 
 	baddie_instance.position = global_position
 	_baddie_dictionary[baddie_instance.get_instance_id()] = baddie_instance

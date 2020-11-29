@@ -25,7 +25,6 @@ func _init() -> void:
 
 func _ready():
 	attributes.set_sprite($AnimatedSprite)
-	print("chicks mdir ::: ", mother_dir)
 	if attributes.direction != mother_dir:
 		change_direction()
 
