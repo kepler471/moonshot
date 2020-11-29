@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/laser_blaster.ogg-5b119cbd6f44b2d000933eec7f950043.oggstr"
+
+[deps]
+
+source_file="res://moonshot/Moonshot/player/assets/sounds/laser_blaster.ogg"
+dest_files=[ "res://.import/laser_blaster.ogg-5b119cbd6f44b2d000933eec7f950043.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

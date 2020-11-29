@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/laser_pew.ogg-2469408cf7ff112c83d9f317e276bfbc.oggstr"
+
+[deps]
+
+source_file="res://moonshot/Moonshot/player/assets/sounds/laser_pew.ogg"
+dest_files=[ "res://.import/laser_pew.ogg-2469408cf7ff112c83d9f317e276bfbc.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
