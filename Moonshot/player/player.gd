@@ -33,6 +33,7 @@ var playing_reverse
 var invulnerable = false
 var safety = false
 var dead = false
+var priority_animations = ["stagger", "dodge"]
 
 
 func _input(event):
@@ -57,7 +58,7 @@ func _ready() -> void:
 
 
 func _physics_process(_delta) -> void:
-	
+
 	var direction = (
 		Input.get_action_strength("move_right")
 		- Input.get_action_strength("move_left")
@@ -119,7 +120,7 @@ func get_facing() -> float:
 
 
 func set_animation() -> void:
-	if invulnerable:
+	if invulnerable and animation_name in priority_animations:
 		if not $AnimatedSprite.playing:
 			$AnimatedSprite.play(animation_name)
 		return
@@ -154,16 +155,19 @@ func get_collider() -> CollisionShape2D:
 	return collider
 
 
-func set_invulnerable(time : float, animation_name = "stagger") -> void:
+func set_invulnerable(time : float, _anim_name) -> void:
 	invulnerable = true
-	if animation_name != "stagger":
+	$Shield.set_visible(true)
+	if _anim_name != "stagger":
 		safety = true
-	$AnimatedSprite.play(animation_name)
+	if _anim_name in priority_animations:
+		$AnimatedSprite.play(_anim_name)
 	var timer = Utils.Player.get_tree().create_timer(time)
 	yield(timer, "timeout")
 	invulnerable = false
+	$Shield.set_visible(false)
 	safety = false
-	
+
 
 func damagetile_check():
 	for i in self.get_slide_count():
@@ -198,10 +202,10 @@ func take_damage(damage, attack_dir, is_damage_tile: bool = false) -> void:
 			safety = true
 			return
 		if is_damage_tile:
-			set_invulnerable(0.5) #BALANCING
+			set_invulnerable(0.5, "stagger") #BALANCING
 			stagger_player(attack_dir,is_damage_tile)
 		else:
-			set_invulnerable(0.8) #BALANCING
+			set_invulnerable(0.8, "stagger") #BALANCING
 			attack_dir = sign(get_global_position().x - attack_dir.x)
 			stagger_player(attack_dir,is_damage_tile)
 
