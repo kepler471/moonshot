@@ -128,3 +128,4 @@ position = Vector2( 842.234, 84.94 )
 
 [node name="GhostyBoi" parent="." instance=ExtResource( 3 )]
 position = Vector2( 766.94, -139.995 )
+swap_dir = false
