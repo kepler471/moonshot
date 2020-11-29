@@ -126,24 +126,30 @@ func _change_direction() -> int:
 
 func _on_hit(damage: float, global_position: Vector2) -> void:
 	hp -= damage
-	_flash()
 	if hp <= 0:
 		_is_dying(global_position)
-
-func _is_dying(global_position) -> bool:
+	else:
+		_flash()
+	
+func _is_dying(global_position) -> void:
+	
 	var new_firerate_boost = firerate_boost_drop.instance()
 	var room_scene = Utils.Player.get_parent()
 
 	room_scene.call_deferred('add_child', new_firerate_boost)
 	new_firerate_boost.global_position = global_position
+	dead = true
+
+	if !fade.is_animating:
+		body.on_end()
 
 	fade.set_on_fade_out_finish(funcref(body, "on_end"))
 	fade.set_fade_speed(0.05)
 	fade.set_fade_factor(0.3)
-	dead = true
-	sprite.stop()
-	fade.fade_out()
-	return true
+	sprite.visible = false
+	body.collision_layer = 0
+	body.collision_mask = 0
+	
 
 func _flash() -> void:
 	if dead:
@@ -151,7 +157,7 @@ func _flash() -> void:
 
 	fade.set_fade_speed(0.02)
 	fade.set_fade_factor(0.2)
-	fade.occilate([fade.G], 0.2, 4)
+	fade.oscillate([fade.G], 0.2, 4)
 
 func _has_died() -> bool:
 	return dead == true

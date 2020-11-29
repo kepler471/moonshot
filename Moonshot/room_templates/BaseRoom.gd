@@ -24,6 +24,7 @@ func _ready():
 	if get_tree().get_current_scene().MAIN_GAME == false:
 		self.add_child(Utils.Player)
 		Utils.Player.position = self.get_node("testing_player_spawn").position
+		Utils.Player.state_machine.transition_to("Move/Spawn", {"room": true})
 		self.setup_player_camera()
 		spawn_things(testing_room_difficulty)
 		
@@ -76,6 +77,7 @@ func spawn_baddies(difficulty_controller: DifficultyController, room_difficulty)
 	
 	var distance
 	for line in baddie_spawn_lines:
+		line.visible = false
 		var line_points = line.points
 		distance = line_points[0].distance_to(line_points[1])
 		max_no_baddies += distance / min_baddie_spawn_distance
