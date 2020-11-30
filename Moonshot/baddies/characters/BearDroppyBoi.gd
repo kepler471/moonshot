@@ -4,7 +4,7 @@ class_name BearDroppyBoi
 
 var attributes: Attributes = preload("res://baddies/Attributes.gd").new()
 
-export(bool)  var swap_dir  setget swap_dir
+export(bool)  var swap_direction  setget swap_dir
 
 const HP_MAX := 1.0
 const ARMOR := 5.0
@@ -18,7 +18,7 @@ var facing = 1
 var has_fallen = false
 var in_air = false
 
-func swap_dir(value = null) -> void:
+func swap_dir(_value = null) -> void:
 	if !Engine.is_editor_hint(): return
 	change_direction()
 
