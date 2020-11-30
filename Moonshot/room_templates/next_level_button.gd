@@ -9,7 +9,7 @@ var entered_body
 func _ready():
 	activate_lift()
 
-func _input(event):
+func _input(_event):
 	if Input.is_action_pressed("enter") and entered_body and lift_active:
 		$PlayerContainer.get_node("CollisionBox").set_disabled(false)
 		Doors.play()
