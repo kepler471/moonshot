@@ -52,7 +52,6 @@ func start_level(level_num):
 	current_room_node.setup_player_camera()
 	
 	add_child(current_room_node)
-	connect_exit_signal()
 
 
 func get_room_instance(index):
@@ -93,7 +92,7 @@ func change_room(room_change : Vector2, new_entrance):
 		
 	get_tree().paused = true
 	current_room_node.get_node("Player").queue_free()
-	remove_child(current_room_node)
+	call_deferred("remove_child",current_room_node)
 	get_room_instance(room_index)
 
 	#Move player to door entrance.
