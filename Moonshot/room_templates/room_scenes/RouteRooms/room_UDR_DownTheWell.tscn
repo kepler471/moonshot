@@ -5,10 +5,10 @@
 [ext_resource path="res://room_templates/BaseRoom.gd" type="Script" id=3]
 [ext_resource path="res://room_templates/exit_hori.tscn" type="PackedScene" id=4]
 [ext_resource path="res://baddies/characters/BearCeilingBoi.tscn" type="PackedScene" id=5]
+[ext_resource path="res://baddies/characters/BearBoi.tscn" type="PackedScene" id=6]
 [ext_resource path="res://room_templates/exit_vert.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/tile_maps/TileSet_v1.tres" type="TileSet" id=8]
 [ext_resource path="res://baddies/characters/WallBoi.tscn" type="PackedScene" id=10]
-[ext_resource path="res://baddies/characters/BearDroppyBoi.tscn" type="PackedScene" id=11]
 [ext_resource path="res://baddies/characters/FlyBoi.tscn" type="PackedScene" id=14]
 
 [node name="room_UDR_DownTheWell" type="Node2D" groups=[
@@ -76,17 +76,7 @@ position = Vector2( 605.161, 718.1 )
 [node name="level_setups" type="Node2D" parent="."]
 
 [node name="level_setup_1" type="Node2D" parent="level_setups"]
-
-[node name="baddie_spawn_line3" type="Line2D" parent="level_setups/level_setup_1"]
-position = Vector2( 2377.16, -923.908 )
-points = PoolVector2Array( 222.899, 1098.15, 498.191, 1098.15 )
-
-[node name="BearDroppyBoi" parent="level_setups/level_setup_1/baddie_spawn_line3" instance=ExtResource( 11 )]
-
-[node name="FlyBoi" parent="level_setups/level_setup_1/baddie_spawn_line3" instance=ExtResource( 14 )]
-
-[node name="BearCeilingBoi" parent="level_setups/level_setup_1/baddie_spawn_line3" instance=ExtResource( 5 )]
-position = Vector2( 356.659, 1103.67 )
+position = Vector2( -2.58896, 1.94171 )
 
 [node name="baddie_spawn_line2" type="Line2D" parent="level_setups/level_setup_1"]
 points = PoolVector2Array( 135.334, 812.775, 215.969, 812.775 )
@@ -94,20 +84,30 @@ points = PoolVector2Array( 135.334, 812.775, 215.969, 812.775 )
 [node name="BearCeilingBoi" parent="level_setups/level_setup_1/baddie_spawn_line2" instance=ExtResource( 5 )]
 position = Vector2( 152.356, 817.941 )
 
+[node name="baddie_spawn_line3" type="Line2D" parent="level_setups/level_setup_1"]
+position = Vector2( 1561.84, 326.729 )
+scale = Vector2( 6.55659, -0.203265 )
+points = PoolVector2Array( 135.334, 812.775, 215.969, 812.775 )
+
+[node name="BearCeilingBoi" parent="level_setups/level_setup_1/baddie_spawn_line3" instance=ExtResource( 5 )]
+position = Vector2( 176.158, 738.57 )
+rotation = -3.14151
+scale = Vector2( 0.128519, -4.61071 )
+
 [node name="baddie_spawn_point1" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( 147.316, 956.533 )
 
 [node name="FlyBoi" parent="level_setups/level_setup_1/baddie_spawn_point1" instance=ExtResource( 14 )]
-position = Vector2( -147.316, -956.533 )
+position = Vector2( -119.485, -807.022 )
 
 [node name="WallBoi" parent="level_setups/level_setup_1/baddie_spawn_point1" instance=ExtResource( 10 )]
-position = Vector2( -147.316, -956.533 )
+position = Vector2( 535.515, -575.312 )
 
 [node name="baddie_spawn_point2" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( 644.891, 1026.46 )
 
 [node name="FlyBoi" parent="level_setups/level_setup_1/baddie_spawn_point2" instance=ExtResource( 14 )]
-position = Vector2( -644.891, -1026.46 )
+position = Vector2( 219.166, -578.574 )
 
 [node name="baddie_spawn_point3" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( 1469.15, 356.878 )
@@ -119,10 +119,13 @@ position = Vector2( 350, 700 )
 position = Vector2( 160, 1030 )
 
 [node name="item_spawn_point2" type="Position2D" parent="level_setups/level_setup_1"]
-position = Vector2( 604.954, 290.769 )
+position = Vector2( 687.153, 436.397 )
 
 [node name="baddie_spawn_line" type="Line2D" parent="level_setups/level_setup_1"]
 points = PoolVector2Array( 208.681, 1093.57, 491.889, 1098.2 )
+
+[node name="BearBoi" parent="level_setups/level_setup_1/baddie_spawn_line" instance=ExtResource( 6 )]
+position = Vector2( 373.33, 1096.84 )
 [connection signal="body_entered" from="Exit_UP" to="." method="_on_Exit_UP_body_entered"]
 [connection signal="body_entered" from="Exit_DOWN" to="." method="_on_Exit_DOWN_body_entered"]
 [connection signal="body_entered" from="Exit_RIGHT" to="." method="_on_Exit_RIGHT_body_entered"]
