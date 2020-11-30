@@ -1,40 +1,117 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=21 format=2]
 
-[ext_resource path="res://baddies/characters/GhostyBoi.gd" type="Script" id=1]
+[ext_resource path="res://baddies/characters/Waspy.gd" type="Script" id=1]
+[ext_resource path="res://baddies/sprites/Flightywhip-Sheet.png" type="Texture" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 24.5
+radius = 43.8877
 height = 0.0
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 2 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 2 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 2 )
+region = Rect2( 256, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 2 )
+region = Rect2( 320, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 2 )
+region = Rect2( 384, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 2 )
+region = Rect2( 448, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 2 )
+region = Rect2( 512, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 2 )
+region = Rect2( 576, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 2 )
+region = Rect2( 640, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 2 )
+region = Rect2( 704, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 2 )
+region = Rect2( 768, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 2 )
+region = Rect2( 832, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 2 )
+region = Rect2( 896, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 2 )
+region = Rect2( 960, 0, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=18]
 animations = [ {
-"frames": [  ],
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
 "loop": true,
 "name": "default",
-"speed": 10.0
+"speed": 30.0
 } ]
 
 [node name="Waspy" type="KinematicBody2D" groups=[
 "Baddies",
 ]]
-collision_layer = 4
-collision_mask = 2147483782
+collision_layer = 2
+collision_mask = 2147483780
 script = ExtResource( 1 )
-swap_direction = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
+disabled = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 2, 2 )
-frames = SubResource( 2 )
+frames = SubResource( 18 )
+frame = 7
 playing = true
-flip_h = true
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-position = Vector2( 20, 5 )
-rotation = -0.261799
-scale = Vector2( 30, 1 )
+scale = Vector2( 20, 1 )
+enabled = true
+cast_to = Vector2( 0, 120 )
+collision_mask = 2
+
+[node name="RayCast2D2" type="RayCast2D" parent="."]
+position = Vector2( 20, 0 )
+scale = Vector2( 20, 1 )
+enabled = true
+cast_to = Vector2( 0, 120 )
+collision_mask = 2
+
+[node name="RayCast2D3" type="RayCast2D" parent="."]
+position = Vector2( -20, 0 )
+scale = Vector2( 20, 1 )
 enabled = true
 cast_to = Vector2( 0, 120 )
 collision_mask = 2

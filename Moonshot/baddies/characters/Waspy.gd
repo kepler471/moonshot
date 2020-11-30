@@ -1,6 +1,6 @@
 tool
 extends KinematicBody2D
-class_name GhostyBoi
+class_name Waspy
 
 export(bool)  var swap_direction  setget swap_dir
 
@@ -9,15 +9,15 @@ var beam = load("res://baddies/BaddieLaser/Blob.tscn")
 var phi : float # angle between self and target
 var theta : float # global rotation
 var turn_max := PI
-var max_speed := 2.0
-var acceleration := 6.0
+var max_speed := 9.0
+var acceleration := 40.0
 var dir : float
 var coll
-var damage := 0.02
-var cooldown := false
-var cooldown_timer :=  0.05
 var facing = 1
-
+var is_diving := false
+var dive_counter : int = 1
+const wobble_rate : float = 4.0
+const wobble_amp : float = 20.0
 
 func _get_configuration_warning() -> String:
 	return "" if is_z_relative() else "%s requires relative z index enabled" % name
@@ -33,10 +33,10 @@ func _init() -> void:
 	attributes.set_properties({
 		"body": self,
 		"direction": attributes.Direction.RIGHT,
-		"inital_hp": 10,
+		"inital_hp": 3,
 		"gravity": 0,
 		"speed": max_speed,
-		"velocity": Vector2(),
+		"velocity": Vector2()
 	})
 
 
@@ -45,47 +45,55 @@ func _ready():
 	attributes.set_sprite($AnimatedSprite)
 	$AnimatedSprite.play()
 	set_z_index(3)
+	$CollisionShape2D.set_deferred("disabled", false)
 
 
 func _physics_process(delta) -> void:
 	if Engine.is_editor_hint(): return
 
-	theta = get_global_rotation()
-	phi = get_global_position().angle_to_point(Utils.Player.get_node("TurnAxis").get_global_position() - 0.75 * $RayCast2D.get_cast_to() - $RayCast2D.get_position() * Vector2(1,0)) - theta
+	if is_diving:
+		if dive_counter % 120 == 0:
+			dive_counter += 1
+			CombatSignalController.emit_signal("damage_player", attributes.damage_to_player, position)
+			return
+			
+		dive_counter += 1
+		set_global_position(Utils.Player.get_node("TurnAxis").get_global_position() - $RayCast2D.get_cast_to())
 
-	attributes.velocity += Vector2.LEFT.rotated(theta + phi).normalized() * acceleration * delta
-	attributes.velocity = attributes.velocity.clamped(max_speed)
-	coll = attributes.body.move_and_collide(attributes.velocity)
-	
-	if $RayCast2D.is_colliding() and not cooldown:
-		drop_blob()
+		# Physics for wobble and charging/descent to player
+		$CollisionShape2D.set_position(Vector2(wobble_amp*sin(2*PI*wobble_rate*float(dive_counter%120)/120),((clamp(float(dive_counter),0,120)/120))*120))
+		$AnimatedSprite.set_position(Vector2(wobble_amp*sin(2*PI*wobble_rate*float(dive_counter%120)/120),((clamp(float(dive_counter),0,120)/120))*120))
 
-	dir = Utils.Player.get_global_position().x - get_global_position().x
+	elif not is_diving:
+		theta = get_global_rotation()
+		phi = get_global_position().angle_to_point(Utils.Player.get_node("TurnAxis").get_global_position() - $RayCast2D.get_cast_to() - $RayCast2D.get_position() * Vector2(1,0)) - theta
+
+		attributes.velocity += Vector2.LEFT.rotated(theta + phi).normalized() * acceleration * delta
+		attributes.velocity = attributes.velocity.clamped(max_speed)
+		coll = attributes.body.move_and_collide(attributes.velocity)
 	
-	if sign(dir) == 0:
-		pass
-	elif sign(dir) != sign(facing):
-		change_direction()
+		if $RayCast2D.is_colliding() or $RayCast2D2.is_colliding() or $RayCast2D3.is_colliding():
+			attributes.velocity = Vector2.ZERO
+			is_diving = true
+			attack()
+			return
+
+		dir = Utils.Player.get_global_position().x - get_global_position().x
+		
+		if sign(dir) == 0:
+			pass
+		elif sign(dir) != sign(facing):
+			change_direction()
 
 
 func change_direction() -> void:
 	facing *= -1
 # warning-ignore:return_value_discarded
 	attributes._change_direction()
-	$RayCast2D.set_rotation(-$RayCast2D.get_rotation())
-	$RayCast2D.set_position($RayCast2D.get_position() * Vector2(-1,1))
 	$AnimatedSprite.flip_h = !$AnimatedSprite.flip_h
 
-
-func drop_blob() -> void:
-	var shot = beam.instance()
-	shot.set_damage(damage)
-	get_tree().get_root().add_child(shot)
-	shot.set_global_position($RayCast2D.get_global_position())
-	cooldown = true
-	yield(get_tree().create_timer(cooldown_timer), "timeout")
-	cooldown = false
-
+func attack():
+	attributes._flash()
 
 # warning-ignore:shadowed_variable
 func on_hit(instance_id, damage) -> void:
