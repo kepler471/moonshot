@@ -145,11 +145,8 @@ points = PoolVector2Array( -162.937, -149.919, -340.097, -152.904 )
 
 [node name="baddie_spawn_line2" type="Line2D" parent="level_setups/level_setup_1"]
 position = Vector2( 281.005, -420.388 )
-<<<<<<< HEAD:Moonshot/room_templates/room_scenes/RouteRooms/room_DL_james9.tscn
-points = PoolVector2Array( 49.4682, 203.591, -282.706, 199.804 )
-=======
 points = PoolVector2Array( 49.4682, 203.591, -257.005, 212.388 )
->>>>>>> Added in spawn line and changed function get_baddie_list:Moonshot/room_templates/room_scenes/RouteRooms/room_D_james9.tscn
+
 
 [node name="BearBoi" parent="level_setups/level_setup_1/baddie_spawn_line2" instance=ExtResource( 10 )]
 position = Vector2( 48.537, 207.091 )
