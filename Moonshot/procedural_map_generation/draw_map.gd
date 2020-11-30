@@ -113,12 +113,12 @@ func turn_on_visibility(new_pos: Vector2, old_pos: Vector2):
 	
 func shift_node_positions(diff: Vector2):
 	var shift_distance = Vector2.ZERO
-	var key_specific
-	var conn_specific
+#	var key_specific
+#	var conn_specific
 	for key in indexed_connections:
-		key_specific = key
+#		key_specific = key
 		for conn in indexed_connections[key]:
-			conn_specific = conn
+#			conn_specific = conn
 			shift_distance.x = diff.x * distance.x
 			shift_distance.y = diff.y * distance.y
 			indexed_connections[key][conn].position += shift_distance / 2
