@@ -189,7 +189,7 @@ func spawn_items():
 	
 func get_baddie_list():
 	var baddie_filenames = ['BearBoi.tscn', 'FlyBoi.tscn','Chick.tscn']
-	return baddie_filenames[randi() % baddie_filenames.size]
+	return baddie_filenames
 	
 func shuffle_list(list):
 	var shuffled_list = []
