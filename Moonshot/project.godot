@@ -171,6 +171,12 @@ Utils="*res://Autoload/Utils.gd"
 CombatSignalController="*res://Autoload/CombatSignalController.gd"
 TileSheetLoader="*res://Autoload/TileSheetLoader.gd"
 
+[debug]
+
+gdscript/warnings/shadowed_variable=false
+gdscript/warnings/unused_signal=false
+gdscript/warnings/return_value_discarded=false
+
 [display]
 
 window/size/height=576
@@ -329,4 +335,5 @@ pause={
 
 [rendering]
 
+quality/2d/use_pixel_snap=true
 environment/default_environment="res://default_env.tres"
