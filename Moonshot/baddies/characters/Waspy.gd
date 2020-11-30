@@ -18,7 +18,7 @@ var is_diving := false
 var dive_counter : int = 1
 const wobble_rate : float = 4.0
 const wobble_amp : float = 20.0
-onready var hover_height = $RayCast2D.get_cast_to()
+onready var hover_height = $RayCast2D.get_cast_to() + $RayCast2D.get_position()
 var target : Vector2
 
 func _get_configuration_warning() -> String:

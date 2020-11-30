@@ -93,25 +93,26 @@ disabled = true
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 2, 2 )
 frames = SubResource( 18 )
-frame = 7
+frame = 8
 playing = true
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2( 0, 40 )
 scale = Vector2( 20, 1 )
 enabled = true
-cast_to = Vector2( 0, 120 )
+cast_to = Vector2( 0, 80 )
 collision_mask = 2
 
 [node name="RayCast2D2" type="RayCast2D" parent="."]
-position = Vector2( 20, 0 )
+position = Vector2( 20, 40 )
 scale = Vector2( 20, 1 )
 enabled = true
-cast_to = Vector2( 0, 120 )
+cast_to = Vector2( 0, 80 )
 collision_mask = 2
 
 [node name="RayCast2D3" type="RayCast2D" parent="."]
-position = Vector2( -20, 0 )
+position = Vector2( -20, 40 )
 scale = Vector2( 20, 1 )
 enabled = true
-cast_to = Vector2( 0, 120 )
+cast_to = Vector2( 0, 80 )
 collision_mask = 2
