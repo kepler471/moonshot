@@ -2,9 +2,9 @@ extends Node
 
 
 var item_weights: Dictionary = {
-'FireratePickup' : 30,
+'FireratePickup' : 0,
 'HealthPickup': 20,
-'FirerateDropUnlock': 3,
+'FirerateDropUnlock': 1,
 'MachineGun': 10,
 'Shotgun':10,
 'TwinShot': 10}

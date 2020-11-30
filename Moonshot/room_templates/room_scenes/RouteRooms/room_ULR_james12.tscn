@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/tile_maps/TileMap.gd" type="Script" id=1]
 [ext_resource path="res://assets/tile_maps/Damage_TileSet.tres" type="TileSet" id=2]
 [ext_resource path="res://room_templates/BaseRoom.gd" type="Script" id=3]
-[ext_resource path="res://items_objects/item_pickups/HealthPickup.tscn" type="PackedScene" id=4]
 [ext_resource path="res://room_templates/exit_vert.tscn" type="PackedScene" id=5]
 [ext_resource path="res://room_templates/exit_hori.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/tile_maps/TileSet_v1.tres" type="TileSet" id=7]
@@ -72,21 +71,24 @@ position = Vector2( 3674.47, 1562.87 )
 [node name="testing_player_spawn" type="Position2D" parent="."]
 position = Vector2( 2111.08, 366.549 )
 
-[node name="WallBoi" parent="." instance=ExtResource( 8 )]
-position = Vector2( 904.94, 770.223 )
-
-[node name="WallBoi2" parent="." instance=ExtResource( 8 )]
-position = Vector2( 905.894, 469.373 )
-
-[node name="FlyBoi" parent="." instance=ExtResource( 9 )]
-position = Vector2( 2356.36, 770.639 )
-
-[node name="FlyBoi3" parent="." instance=ExtResource( 9 )]
-position = Vector2( 1936.15, 873.632 )
-
 [node name="level_setups" type="Node2D" parent="."]
 
 [node name="level_setup_1" type="Node2D" parent="level_setups"]
+
+[node name="WallBoi" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+position = Vector2( 904.94, 770.223 )
+
+[node name="WallBoi2" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+position = Vector2( 905.894, 469.373 )
+
+[node name="FlyBoi2" parent="level_setups/level_setup_1" instance=ExtResource( 9 )]
+position = Vector2( 2917.47, 480.608 )
+
+[node name="FlyBoi" parent="level_setups/level_setup_1" instance=ExtResource( 9 )]
+position = Vector2( 2356.36, 770.639 )
+
+[node name="FlyBoi3" parent="level_setups/level_setup_1" instance=ExtResource( 9 )]
+position = Vector2( 1936.15, 873.632 )
 
 [node name="baddie_spawn_line1" type="Line2D" parent="level_setups/level_setup_1"]
 position = Vector2( 1176.05, -167.763 )
@@ -124,12 +126,6 @@ position = Vector2( 3325.92, 465.325 )
 
 [node name="item_spawn_point1" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( 3545.66, 754.328 )
-
-[node name="health_pickup" parent="level_setups/level_setup_1/item_spawn_point1" instance=ExtResource( 4 )]
-position = Vector2( 2078.18, 464.308 )
-
-[node name="FlyBoi2" parent="." instance=ExtResource( 9 )]
-position = Vector2( 2917.47, 480.608 )
 [connection signal="body_entered" from="Exit_UP" to="." method="_on_Exit_UP_body_entered"]
 [connection signal="body_entered" from="Exit_LEFT" to="." method="_on_Exit_LEFT_body_entered"]
 [connection signal="body_entered" from="Exit_RIGHT" to="." method="_on_Exit_RIGHT_body_entered"]
