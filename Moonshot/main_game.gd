@@ -110,7 +110,8 @@ func change_room(room_change : Vector2, new_entrance):
 		Utils.Player.position = door_position + player_door_diff + Vector2(-40, 0)
 	elif new_entrance == 'LEFT':
 		Utils.Player.position = door_position + player_door_diff + Vector2(40, 0)
-		
+
+	print("Current Room ::: ", current_room_node.name) # DEBUG
 	current_room_node.add_child(Utils.Player)
 	call_deferred("add_child",current_room_node)
 	call_deferred("spawn_safely")

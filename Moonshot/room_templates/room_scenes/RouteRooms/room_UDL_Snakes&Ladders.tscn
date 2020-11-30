@@ -10,7 +10,7 @@
 [ext_resource path="res://room_templates/exit_vert.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/tile_maps/TileSet_v1.tres" type="TileSet" id=9]
 
-[node name="Room Root" type="Node2D" groups=[
+[node name="room_UDL_Snakes&Ladders" type="Node2D" groups=[
 "Room",
 ]]
 script = ExtResource( 3 )
