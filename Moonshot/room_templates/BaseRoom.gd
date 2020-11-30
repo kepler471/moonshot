@@ -93,7 +93,7 @@ func spawn_baddies(difficulty_controller: DifficultyController, room_difficulty)
 	var baddie_type_per_spawn = set_spawn_baddie_type()
 	
 	# Spawn each baddie
-	for i in range(no_baddies):
+	for _i in range(no_baddies):
 		# Select a random spawn point/line
 		var spawn_place = combined_baddie_spawns[randi()%combined_baddie_spawns.size()]
 		var baddie_name = baddie_type_per_spawn[spawn_place.name]
@@ -140,7 +140,7 @@ func set_spawn_baddie_type() -> String:
 	var spawn_baddie_type = {}
 	var selected_baddie
 	var baddie_instance
-	var new_baddie_instance 
+#	var new_baddie_instance 
 	var baddie_list = get_baddie_list()
 	# Decide on the baddies that are allocated for each spawn poinmt
 	for spawn_place in combined_baddie_spawns:
@@ -182,7 +182,8 @@ func spawn_items():
 			possible_items = default_possible_items
 		
 		var item_instance = item_drop_chances.get_random_item(possible_items)
-		item_instance.global_position = node.global_position
+		if node.is_inside_tree():
+			item_instance.global_position = node.global_position
 		node.get_parent().add_child(item_instance)
 
 	
@@ -202,7 +203,7 @@ func get_baddie_list():
 func shuffle_list(list):
 	var shuffled_list = []
 	var index_list = range(list.size())
-	for i in range(list.size()):
+	for _i in range(list.size()):
 		randomize()
 		var x = randi()%index_list.size()
 		shuffled_list.append(list[x])
@@ -257,7 +258,7 @@ func _on_Exit_RIGHT_body_entered(body):
 		
 		
 #---------- ROOM TELEPORTER IN DEBUG ----------
-func _input(event):
+func _input(_event):
 	if OS.is_debug_build():
 		
 		if Input.is_action_just_pressed("map_left") and get_node_or_null("Exit_LEFT"):
