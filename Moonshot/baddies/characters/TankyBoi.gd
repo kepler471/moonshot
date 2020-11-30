@@ -38,6 +38,8 @@ func _init() -> void:
 	
 func _ready():
 	if Engine.is_editor_hint(): return
+	attributes.fade.set_fade_speed(0.02)
+	attributes.fade.set_fade_factor(0.2)
 	attributes.set_sprite($AnimatedSprite)
 
 func _physics_process(_delta) -> void:
@@ -61,10 +63,9 @@ func _physics_process(_delta) -> void:
 		$AnimatedSprite.modulate = RUSH_COLOR
 		$AnimatedSprite.play(Animations.SPRINT)
 
-		attributes.fade.set_fade_speed(0.02)
-		attributes.fade.set_fade_factor(0.2)
 		attributes.speed = RUSH_SPEED
-		attributes.fade.oscillate([attributes.fade.R], 0.3, 4)
+		if attributes.fade:
+			attributes.fade.oscillate([attributes.fade.R], 0.3, 4)
 
 		yield(tree.create_timer(COOL_DOWN_PERIOD), "timeout")
 		$AnimatedSprite.modulate = COOL_DOWN_COLOR

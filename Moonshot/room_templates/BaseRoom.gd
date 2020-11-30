@@ -188,16 +188,7 @@ func spawn_items():
 
 	
 func get_baddie_list():
-	var dir = Directory.new()
-	dir.open("res://baddies/characters/")
-	dir.list_dir_begin()
-	var baddie_filenames = []
-	while true:
-		var file = dir.get_next()
-		if file == "":
-			break
-		elif file.ends_with(".tscn"):
-			baddie_filenames.append(file)	
+	var baddie_filenames = ['BearBoi.tscn', 'FlyBoi.tscn','Chick.tscn']
 	return baddie_filenames
 	
 func shuffle_list(list):
