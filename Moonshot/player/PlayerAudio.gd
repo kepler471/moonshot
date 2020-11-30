@@ -32,7 +32,7 @@ var sound_position = 0
 func _ready():
 	assign_buses()
 	
-func _process(delta):
+func _process(_delta):
 	if not owner.state_machine._state_name == "Wall": #fix stuck sliding sound 
 		stop("sliding")
 
