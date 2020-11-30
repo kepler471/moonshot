@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/tile_maps/TileSet_v1.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/tile_maps/TileMap.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://room_templates/exit_vert.tscn" type="PackedScene" id=5]
 [ext_resource path="res://room_templates/BaseRoom.gd" type="Script" id=6]
 [ext_resource path="res://assets/tile_maps/Damage_TileSet.tres" type="TileSet" id=7]
+[ext_resource path="res://room_templates/lift_level_arrival.tscn" type="PackedScene" id=8]
 
 [node name="room_temp_spawn" type="Node2D" groups=[
 "Room",
@@ -61,10 +62,12 @@ position = Vector2( -814.631, -40.9434 )
 position = Vector2( 1097.98, 716.191 )
 
 [node name="testing_player_spawn" type="Position2D" parent="."]
-position = Vector2( 118.411, 383.025 )
+position = Vector2( -480, 383.025 )
 
 [node name="player_spawn" type="Position2D" parent="."]
-position = Vector2( 118.411, 383.025 )
+position = Vector2( -480, 384 )
+
+[node name="LiftEntrance" parent="player_spawn" instance=ExtResource( 8 )]
 
 [node name="level_setups" type="Node2D" parent="."]
 
