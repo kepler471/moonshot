@@ -14,7 +14,7 @@
 [ext_resource path="res://baddies/characters/GhostyBoi.tscn" type="PackedScene" id=12]
 [ext_resource path="res://baddies/characters/BearDroppyBoi.tscn" type="PackedScene" id=13]
 
-[node name="Room Root" type="Node2D" groups=[
+[node name="room_DLR_steli_wide-veiny-rewards" type="Node2D" groups=[
 "Room",
 ]]
 position = Vector2( 5.03955, 0 )

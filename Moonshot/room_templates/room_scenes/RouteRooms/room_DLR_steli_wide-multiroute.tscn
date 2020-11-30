@@ -9,7 +9,7 @@
 [ext_resource path="res://room_templates/BaseRoom.gd" type="Script" id=7]
 [ext_resource path="res://assets/tile_maps/TileSet_v1.tres" type="TileSet" id=8]
 
-[node name="Room Root" type="Node2D" groups=[
+[node name="room_DLR_steli_wide-multiroute" type="Node2D" groups=[
 "Room",
 ]]
 script = ExtResource( 7 )

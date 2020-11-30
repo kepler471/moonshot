@@ -7,7 +7,7 @@
 [ext_resource path="res://baddies/characters/BearBoi.tscn" type="PackedScene" id=5]
 [ext_resource path="res://room_templates/exit_hori.tscn" type="PackedScene" id=6]
 
-[node name="Room Root" type="Node2D" groups=[
+[node name="room_LR_will_1" type="Node2D" groups=[
 "Room",
 ]]
 position = Vector2( 648, 144 )
