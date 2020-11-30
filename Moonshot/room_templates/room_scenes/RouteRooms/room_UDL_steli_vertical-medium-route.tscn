@@ -92,8 +92,8 @@ position = Vector2( 233.191, 549.627 )
 [node name="BearBoi" parent="level_setups/level_setup_1/baddie_spawn_point1" instance=ExtResource( 3 )]
 position = Vector2( -0.749146, 0 )
 
-[node name="baddie_spawn_point2" type="Position2D" parent="level_setups/level_setup_1"]
-position = Vector2( -366.076, -1022.08 )
+[node name="baddie_spawn_point4" type="Position2D" parent="level_setups/level_setup_1"]
+position = Vector2( -364.644, -1047.87 )
 [connection signal="body_entered" from="Exit_UP" to="." method="_on_Exit_UP_body_entered"]
 [connection signal="body_entered" from="Exit_DOWN" to="." method="_on_Exit_DOWN_body_entered"]
 [connection signal="body_entered" from="Exit_LEFT" to="." method="_on_Exit_LEFT_body_entered"]

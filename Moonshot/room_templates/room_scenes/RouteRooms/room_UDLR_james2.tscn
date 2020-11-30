@@ -69,11 +69,15 @@ position = Vector2( -1170.75, -789.576 )
 [node name="camera_limit_SE" type="Position2D" parent="."]
 position = Vector2( 769.333, 964.633 )
 
-[node name="BearCeilingBoi" parent="." instance=ExtResource( 3 )]
-position = Vector2( -672.362, 50.5305 )
-
 [node name="testing_player_spawn" type="Position2D" parent="."]
 position = Vector2( -199.123, -761.079 )
+
+[node name="level_setups" type="Node2D" parent="."]
+
+[node name="level_setup_1" type="Node2D" parent="level_setups"]
+
+[node name="BearCeilingBoi" parent="level_setups/level_setup_1" instance=ExtResource( 3 )]
+position = Vector2( -672.362, 50.5305 )
 [connection signal="body_entered" from="Exit_UP" to="." method="_on_Exit_UP_body_entered"]
 [connection signal="body_entered" from="Exit_DOWN" to="." method="_on_Exit_DOWN_body_entered"]
 [connection signal="body_entered" from="Exit_LEFT" to="." method="_on_Exit_LEFT_body_entered"]

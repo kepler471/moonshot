@@ -1,7 +1,6 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://room_templates/BaseRoom.gd" type="Script" id=1]
-[ext_resource path="res://items_objects/item_pickups/HealthPickup.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/tile_maps/TileSet_v1.tres" type="TileSet" id=3]
 [ext_resource path="res://assets/tile_maps/TileMap.gd" type="Script" id=4]
 [ext_resource path="res://assets/tile_maps/Damage_TileSet.tres" type="TileSet" id=5]
@@ -115,8 +114,6 @@ position = Vector2( 50, 200 )
 
 [node name="item_spawn_point1" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( 300, 200 )
-
-[node name="health_pickup" parent="level_setups/level_setup_1/item_spawn_point1" instance=ExtResource( 2 )]
 
 [node name="item_spawn_point2" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( 350, 200 )

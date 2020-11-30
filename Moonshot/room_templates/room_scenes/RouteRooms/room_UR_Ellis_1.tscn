@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://room_templates/BaseRoom.gd" type="Script" id=1]
 [ext_resource path="res://assets/tile_maps/Damage_TileSet.tres" type="TileSet" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://room_templates/exit_vert.tscn" type="PackedScene" id=5]
 [ext_resource path="res://room_templates/exit_hori.tscn" type="PackedScene" id=6]
 [ext_resource path="res://items_objects/breakable_tile_purple.tscn" type="PackedScene" id=7]
-[ext_resource path="res://items_objects/item_pickups/HealthPickup.tscn" type="PackedScene" id=8]
 
 [node name="room_UR_Ellis_1" type="Node2D" groups=[
 "Room",
@@ -115,8 +114,6 @@ position = Vector2( 560, 928 )
 [node name="item_spawn_point1" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( 672, 1768 )
 
-[node name="health_pickup" parent="level_setups/level_setup_1/item_spawn_point1" instance=ExtResource( 8 )]
-
 [node name="level_setup_2" type="Node2D" parent="level_setups"]
 
 [node name="breakable_tile" parent="level_setups/level_setup_2" instance=ExtResource( 7 )]
@@ -205,7 +202,5 @@ position = Vector2( 816, 336 )
 
 [node name="item_spawn_point1" type="Position2D" parent="level_setups/level_setup_2"]
 position = Vector2( 672, 1768 )
-
-[node name="health_pickup" parent="level_setups/level_setup_2/item_spawn_point1" instance=ExtResource( 8 )]
 [connection signal="body_entered" from="Exit_UP" to="." method="_on_Exit_UP_body_entered"]
 [connection signal="body_entered" from="Exit_RIGHT" to="." method="_on_Exit_RIGHT_body_entered"]
