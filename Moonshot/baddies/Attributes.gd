@@ -3,7 +3,7 @@ class_name Attributes
 
 onready var fade: Fade
 
-var firerate_boost_drop = load("res://items_objects/item_pickups/FireRatePickup.tscn")
+var firerate_boost_drop = load("res://items_objects/item_pickups/FireratePickup.tscn")
 enum Direction {
 	LEFT = -1,
 	RIGHT = 1
@@ -102,7 +102,7 @@ func flip_sprite_horizontal() -> void:
 func flip_sprite_vertical() -> void:
 	sprite.flip_v = !sprite.flip_v
 
-func _move(delta) -> void:
+func _move(_delta) -> void:
 	velocity.x = speed * direction
 	sprite.play(animation)
 	velocity.y += gravity
