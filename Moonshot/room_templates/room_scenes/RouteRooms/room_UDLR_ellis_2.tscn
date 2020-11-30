@@ -13,7 +13,7 @@
 [ext_resource path="res://baddies/characters/TankyBoi.tscn" type="PackedScene" id=11]
 [ext_resource path="res://baddies/characters/Chick.tscn" type="PackedScene" id=12]
 
-[node name="Room Root" type="Node2D" groups=[
+[node name="room_UDLR_ellis_2" type="Node2D" groups=[
 "Room",
 ]]
 script = ExtResource( 3 )

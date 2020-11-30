@@ -11,7 +11,7 @@
 [ext_resource path="res://room_templates/BaseRoom.gd" type="Script" id=9]
 [ext_resource path="res://assets/tile_maps/Damage_TileSet.tres" type="TileSet" id=10]
 
-[node name="Room Root" type="Node2D" groups=[
+[node name="room_UL_james8" type="Node2D" groups=[
 "Room",
 ]]
 script = ExtResource( 9 )

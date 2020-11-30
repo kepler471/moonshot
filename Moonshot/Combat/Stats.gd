@@ -5,8 +5,6 @@ extends Node
 class_name Stats
 
 signal health_changed(old_value, new_value)
-signal health_depleted()
-signal damage_taken()
 signal firerate_changed(new_firerate, firerate_level)
 
 var modifiers = {"firerate_pickups": 0, "firerate": 1}
@@ -18,7 +16,7 @@ var current_firerate_level = 0
 
 var invulnerable := false
 
-export var max_health := 1.0 setget set_max_health, get_max_health
+export var max_health := 5.0 setget set_max_health, get_max_health
 var health := max_health
 
 export var attack: int = 1

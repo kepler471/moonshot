@@ -10,6 +10,7 @@ var current_room_node = null
 var level_map 
 var minimap
 var level_no = 1
+const death_screen_delay = 3
 
 func _ready():
 	start_level(level_no)
@@ -19,6 +20,7 @@ func _ready():
 
 	
 func activate_death_screen():
+	yield(get_tree().create_timer(death_screen_delay), "timeout")
 	$DeathScreen/Visibility.visible = true
 	get_tree().paused = true
 	
@@ -28,7 +30,7 @@ func go_up_level():
 	current_room_node.get_node("Player").queue_free()
 	current_room_node.queue_free()
 	level_map.clear()
-	var minimap_gui_box = get_node('GUI/MarginContainer/VBoxContainer/MinimapBox/VBoxContainer2/HBoxContainer/MinimapBackground')
+	var minimap_gui_box = get_node('GUI/MinimapBox/MinimapBackground')
 	minimap.set_minimap_size(minimap_gui_box.rect_size / 2)
 	Utils.reset_player()
 	CombatSignalController.connect('player_kill', self, 'activate_death_screen')
@@ -41,7 +43,7 @@ func start_level(level_num):
 	var returns = level_gen.new(level_num)
 	level_map =  returns.gen.map
 	minimap = returns.minimap
-	var minimap_gui_box = get_node('GUI/MarginContainer/VBoxContainer/MinimapBox/VBoxContainer2/HBoxContainer/MinimapBackground')
+	var minimap_gui_box = get_node('GUI/MinimapBox/MinimapBackground')
 	minimap.set_minimap_size(minimap_gui_box.rect_size / 2)
 	get_room_instance(room_index)
 	
@@ -50,7 +52,6 @@ func start_level(level_num):
 	current_room_node.setup_player_camera()
 	
 	add_child(current_room_node)
-	connect_exit_signal()
 
 
 func get_room_instance(index):
@@ -91,7 +92,7 @@ func change_room(room_change : Vector2, new_entrance):
 		
 	get_tree().paused = true
 	current_room_node.get_node("Player").queue_free()
-	remove_child(current_room_node)
+	call_deferred("remove_child",current_room_node)
 	get_room_instance(room_index)
 
 	#Move player to door entrance.
@@ -108,7 +109,8 @@ func change_room(room_change : Vector2, new_entrance):
 		Utils.Player.position = door_position + player_door_diff + Vector2(-40, 0)
 	elif new_entrance == 'LEFT':
 		Utils.Player.position = door_position + player_door_diff + Vector2(40, 0)
-		
+
+	print("Current Room ::: ", current_room_node.name) # DEBUG
 	current_room_node.add_child(Utils.Player)
 	call_deferred("add_child",current_room_node)
 	call_deferred("spawn_safely")

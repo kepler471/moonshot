@@ -23,7 +23,7 @@ class LaserBlaster:
 		sound.play()
 		var shots = []
 		var shot
-		for i in range(no_shots):
+		for _i in range(no_shots):
 			shot = bullet.instance()
 			shot.f_mag = f_mag
 			shot.damage = damage
@@ -59,7 +59,7 @@ class MachineGunBlaster:
 		sound.play()
 		var shots = []
 		var shot
-		for i in range(no_shots):
+		for _i in range(no_shots):
 			shot = bullet.instance()
 			shot.f_mag = f_mag
 			shot.damage = damage
@@ -99,7 +99,7 @@ class ShotgunBlaster:
 		sound.play()
 		var shots = []
 		var shot
-		for i in range(no_shots):
+		for _i in range(no_shots):
 			shot = bullet.instance()
 			shot.f_mag = f_mag
 			shot.damage = damage
@@ -138,7 +138,7 @@ class TwinShotBlaster:
 		sound.play()
 		var shots = []
 		var shot
-		for i in range(no_shots):
+		for _i in range(no_shots):
 			shot = bullet.instance()
 			shot.f_mag = f_mag
 			shot.damage = damage

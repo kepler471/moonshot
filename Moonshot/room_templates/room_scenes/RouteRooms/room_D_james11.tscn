@@ -13,7 +13,7 @@
 [ext_resource path="res://baddies/characters/BearBoi.tscn" type="PackedScene" id=11]
 [ext_resource path="res://baddies/characters/TankyBoi.tscn" type="PackedScene" id=12]
 
-[node name="Room Root" type="Node2D" groups=[
+[node name="room_D_james11" type="Node2D" groups=[
 "Room",
 ]]
 script = ExtResource( 2 )
@@ -32,7 +32,7 @@ cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 collision_layer = 64
 format = 1
-tile_data = PoolIntArray( 458744, 25, 0, 524280, 25, 0, 589816, 25, 0, 655352, 25, 0, 720888, 25, 0, 786424, 25, 0, 851960, 25, 0, 917496, 25, 0, 983032, 25, 0, 1048568, 25, 0, 1114104, 25, 0, 1114105, 25, 0, 1507311, 22, 0, 1507312, 22, 0, 1507313, 22, 0, 1507314, 22, 0, 1507315, 22, 0, 1507316, 22, 0 )
+tile_data = PoolIntArray( 917496, 25, 0, 983032, 25, 0, 1048568, 25, 0, 1114104, 25, 0, 1114105, 25, 0, 1507311, 22, 0, 1507312, 22, 0, 1507313, 22, 0, 1507314, 22, 0, 1507315, 22, 0, 1507316, 22, 0 )
 
 [node name="OneWayPlatforms" type="TileMap" parent="."]
 tile_set = ExtResource( 3 )

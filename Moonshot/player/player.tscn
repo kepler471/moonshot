@@ -199,7 +199,7 @@ script = ExtResource( 16 )
 
 [node name="SafePeriod" type="Timer" parent="StateMachine/Move/Spawn"]
 process_mode = 0
-wait_time = 2.0
+wait_time = 1.0
 one_shot = true
 
 [node name="Ledge" type="Node" parent="StateMachine"]

@@ -3,7 +3,7 @@ extends KinematicBody2D
 
 var attributes: Attributes = preload("res://baddies/Attributes.gd").new()
 
-export(bool)  var swap_dir  setget swap_dir
+export(bool)  var swap_direction  setget swap_dir
 
 onready var Laser = $BaddieLaserPointer
 
@@ -13,7 +13,7 @@ const Animations := {
 	"RUSH": "rush"
 }
 
-func swap_dir(value = null) -> void:
+func swap_dir(_value = null) -> void:
 	if !Engine.is_editor_hint(): return
 	change_direction()
 

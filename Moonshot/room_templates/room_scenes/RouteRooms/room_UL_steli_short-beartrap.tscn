@@ -9,7 +9,7 @@
 [ext_resource path="res://baddies/characters/BearBoi.tscn" type="PackedScene" id=8]
 [ext_resource path="res://baddies/characters/BearDroppyBoi.tscn" type="PackedScene" id=9]
 
-[node name="Room Root" type="Node2D" groups=[
+[node name="room_UL_steli_short-beartrap" type="Node2D" groups=[
 "Room",
 ]]
 script = ExtResource( 1 )
