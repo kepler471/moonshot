@@ -30,7 +30,7 @@ func go_up_level():
 	current_room_node.get_node("Player").queue_free()
 	current_room_node.queue_free()
 	level_map.clear()
-	var minimap_gui_box = get_node('GUI/MarginContainer/VBoxContainer/MinimapBox/VBoxContainer2/HBoxContainer/MinimapBackground')
+	var minimap_gui_box = get_node('GUI/MinimapBox/MinimapBackground')
 	minimap.set_minimap_size(minimap_gui_box.rect_size / 2)
 	Utils.reset_player()
 	CombatSignalController.connect('player_kill', self, 'activate_death_screen')
