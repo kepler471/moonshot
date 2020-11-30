@@ -18,6 +18,8 @@ var is_diving := false
 var dive_counter : int = 1
 const wobble_rate : float = 4.0
 const wobble_amp : float = 20.0
+onready var hover_height = $RayCast2D.get_cast_to()
+var target : Vector2
 
 func _get_configuration_warning() -> String:
 	return "" if is_z_relative() else "%s requires relative z index enabled" % name
@@ -50,6 +52,8 @@ func _ready():
 
 func _physics_process(delta) -> void:
 	if Engine.is_editor_hint(): return
+	
+	target = Utils.Player.get_node("TurnAxis").get_global_position()
 
 	if is_diving:
 		if dive_counter % 120 == 0:
@@ -58,15 +62,21 @@ func _physics_process(delta) -> void:
 			return
 			
 		dive_counter += 1
-		set_global_position(Utils.Player.get_node("TurnAxis").get_global_position() - $RayCast2D.get_cast_to())
+		set_global_position(target - hover_height)
 
 		# Physics for wobble and charging/descent to player
-		$CollisionShape2D.set_position(Vector2(wobble_amp*sin(2*PI*wobble_rate*float(dive_counter%120)/120),((clamp(float(dive_counter),0,120)/120))*120))
-		$AnimatedSprite.set_position(Vector2(wobble_amp*sin(2*PI*wobble_rate*float(dive_counter%120)/120),((clamp(float(dive_counter),0,120)/120))*120))
+		$CollisionShape2D.set_position(Vector2(
+			wobble_amp*sin(2*PI*wobble_rate*float(dive_counter%120)/120),
+			((clamp(float(dive_counter),0,120)/120))*hover_height.y)
+		)
+		$AnimatedSprite.set_position(Vector2(
+			wobble_amp*sin(2*PI*wobble_rate*float(dive_counter%120)/120),
+			((clamp(float(dive_counter),0,120)/120))*hover_height.y)
+		)
 
 	elif not is_diving:
 		theta = get_global_rotation()
-		phi = get_global_position().angle_to_point(Utils.Player.get_node("TurnAxis").get_global_position() - $RayCast2D.get_cast_to() - $RayCast2D.get_position() * Vector2(1,0)) - theta
+		phi = get_global_position().angle_to_point(target - hover_height - $RayCast2D.get_position() * Vector2(1,0)) - theta
 
 		attributes.velocity += Vector2.LEFT.rotated(theta + phi).normalized() * acceleration * delta
 		attributes.velocity = attributes.velocity.clamped(max_speed)
