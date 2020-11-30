@@ -65,7 +65,7 @@ func get_random_attributes(room_difficulty: int, baddie_builder: BaddieBuilder, 
 		attribute_levels[attr] = 1
 		
 	var total_points = room_difficulty*(len(baddie_attribute_names) - 1)
-	for point in range(total_points):
+	for _point in range(total_points):
 		var rand_attr = baddie_attribute_names[randi() % len(baddie_attribute_names)]
 		attribute_levels[rand_attr] += 1
 	

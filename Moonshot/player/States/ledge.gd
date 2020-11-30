@@ -4,7 +4,6 @@ extends State
 
 func enter(msg: Dictionary = {}) -> void:
 	assert("move_state" in msg and msg.move_state is State)
-	var start: Vector2 = owner.global_position
 	var ld = owner.ledge_wall_detector
 	owner.global_position = ld.get_mid_global_position() + ld.get_cast_to_directed()
 	owner.global_position = owner.floor_detector.get_floor_position()

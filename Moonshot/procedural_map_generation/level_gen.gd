@@ -13,7 +13,7 @@ func _init(level_no):
 	
 	
 	gen.complete_Level()
-	var level_map = gen.map
+#	var level_map = gen.map
 	minimap = draw_map.new(gen)
 	return [gen, minimap]
 	

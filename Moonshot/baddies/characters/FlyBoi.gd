@@ -4,7 +4,7 @@ class_name FlyBoi
 
 var attributes: Attributes = preload("res://baddies/Attributes.gd").new()
 
-export(bool)  var swap_dir  setget swap_dir
+export(bool)  var swap_direction  setget swap_dir
 
 const BOUNCE_FACTOR := 0.7
 
@@ -13,7 +13,7 @@ const Animations := {
 	"RUSH": "rush"
 }
 
-func swap_dir(value = null) -> void:
+func swap_dir(_value = null) -> void:
 	if !Engine.is_editor_hint(): return
 	change_direction()
 
@@ -35,7 +35,7 @@ func _ready():
 	if Engine.is_editor_hint(): return
 	attributes.set_sprite($AnimatedSprite)
 
-func _physics_process(delta) -> void:
+func _physics_process(_delta) -> void:
 	if Engine.is_editor_hint(): return
 
 	if attributes._has_died():

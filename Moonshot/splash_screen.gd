@@ -8,7 +8,7 @@ func _ready():
 	Utils.Player.state_machine.transition_to("Move/Spawn", {"room": true})
 	$Camera2D.current = true
 	
-func _process(delta):
+func _process(_delta):
 	# Player has died	
 	if $Player == null:
 		return
@@ -41,4 +41,5 @@ func _process(delta):
 		if button_pressed == 'play':
 			remove_child(Utils.Player)
 			Utils.reset_player()
-			get_tree().change_scene("res://main_game.tscn")
+			if get_tree().change_scene("res://main_game.tscn") != OK:
+				print ("An unexpected error occured when trying to switch to the MainGame scene")

@@ -2,7 +2,7 @@ tool
 extends KinematicBody2D
 class_name WallBoi
 
-export(bool)  var swap_dir  setget swap_dir
+export(bool)  var swap_direction  setget swap_dir
 
 var attributes: Attributes = preload("res://baddies/Attributes.gd").new()
 onready var Laser = $BaddieLaserPointer
@@ -17,7 +17,7 @@ const Animations := {
 }
 
 
-func swap_dir(value = null) -> void:
+func swap_dir(_value = null) -> void:
 	if !Engine.is_editor_hint(): return
 	change_direction()
 
@@ -43,7 +43,7 @@ func _ready():
 	Laser.set_damage(attributes.shot_damage)
 	Laser.shoot_randomly()
 
-func _physics_process(delta) -> void:
+func _physics_process(_delta) -> void:
 	if Engine.is_editor_hint(): return
 
 	if attributes._has_died():

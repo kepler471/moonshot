@@ -13,7 +13,7 @@ var plunger
 func _ready():
 	plunger = get_parent().get_node("GUI/HealthBarParent/PlungerPosition/Plunger")
 	
-func _process(delta):
+func _process(_delta):
 	var new_health_bar_size = (Utils.player_stats.health*152) / Utils.player_stats.max_health
 	var health_bar = get_parent().get_node("GUI/HealthBarParent/HealthBar")
 	if new_health_bar_size > 0:
@@ -33,7 +33,7 @@ func build_hud(minimap):
 
 
 func update_firerate_hud(new_firerate, firerate_level):
-	var firerate_level_path = "/root/GUI/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/ColorRect/Level"
+#	var firerate_level_path = "/root/GUI/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/ColorRect/Level"
 	for level in range(1, Utils.player_stats.max_firerate_level):
 		var level_box = get_parent().find_node('Level' + str(level))
 		# If the level is below the current unlocked level then set it to the

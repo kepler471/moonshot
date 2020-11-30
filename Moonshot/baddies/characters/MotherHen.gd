@@ -2,7 +2,7 @@ tool
 extends KinematicBody2D
 class_name MotherHen
 
-export(bool)  var swap_dir  setget swap_dir
+export(bool)  var swap_direction  setget swap_dir
 
 var attributes: Attributes = preload("res://baddies/Attributes.gd").new()
 onready var spawner: BaddieSpawner = $BaddieSpawner
@@ -13,7 +13,7 @@ const Animations = {
 }
 
 
-func swap_dir(value = null) -> void:
+func swap_dir(_value = null) -> void:
 	if !Engine.is_editor_hint(): return
 	change_direction()
 

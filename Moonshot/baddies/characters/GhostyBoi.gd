@@ -2,7 +2,7 @@ tool
 extends KinematicBody2D
 class_name GhostyBoi
 
-export(bool)  var swap_dir  setget swap_dir
+export(bool)  var swap_direction  setget swap_dir
 
 var attributes: Attributes = preload("res://baddies/Attributes.gd").new()
 var beam = load("res://baddies/BaddieLaser/Blob.tscn")
@@ -23,14 +23,13 @@ func _get_configuration_warning() -> String:
 	return "" if is_z_relative() else "%s requires relative z index enabled" % name
 
 
-func swap_dir(value = null) -> void:
+func swap_dir(_value = null) -> void:
 	if !Engine.is_editor_hint(): return
 	change_direction()
 
 
 func _init() -> void:
 	CombatSignalController.connect("damage_baddie", self, "on_hit")
-
 	attributes.set_properties({
 		"body": self,
 		"direction": attributes.Direction.RIGHT,
@@ -71,6 +70,7 @@ func _physics_process(delta) -> void:
 
 func change_direction() -> void:
 	facing *= -1
+# warning-ignore:return_value_discarded
 	attributes._change_direction()
 	$RayCast2D.set_rotation(-$RayCast2D.get_rotation())
 	$RayCast2D.set_position($RayCast2D.get_position() * Vector2(-1,1))
@@ -87,6 +87,7 @@ func drop_blob() -> void:
 	cooldown = false
 
 
+# warning-ignore:shadowed_variable
 func on_hit(instance_id, damage) -> void:
 	if instance_id == self.get_instance_id() && !attributes._has_died():
 		attributes._on_hit(damage, global_position)

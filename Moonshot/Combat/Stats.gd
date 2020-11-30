@@ -5,8 +5,6 @@ extends Node
 class_name Stats
 
 signal health_changed(old_value, new_value)
-signal health_depleted()
-signal damage_taken()
 signal firerate_changed(new_firerate, firerate_level)
 
 var modifiers = {"firerate_pickups": 0, "firerate": 1}
