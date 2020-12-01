@@ -36,7 +36,9 @@ func enter(_msg: Dictionary = {}) -> void:
 		else sign(_parent.get_move_direction().x)
 	)
 	
-	owner.set_invulnerable(dodge_period.get_wait_time(), "dodge")
+	if owner:
+		owner.set_invulnerable(dodge_period.get_wait_time(), "dodge")
+
 	
 	layer_default = owner.get_collision_layer()
 	mask_default = owner.get_collision_mask()

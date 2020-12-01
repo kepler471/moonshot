@@ -9,11 +9,12 @@ script = ExtResource( 2 )
 
 [node name="Visibility" type="Node2D" parent="."]
 pause_mode = 2
+scale = Vector2( 1.25534, 1.25534 )
 
 [node name="ColorRect" type="ColorRect" parent="Visibility"]
 pause_mode = 2
-margin_right = 1024.0
-margin_bottom = 576.0
+margin_right = 1280.0
+margin_bottom = 720.0
 color = Color( 0, 0, 0, 0.745098 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -21,10 +22,10 @@ __meta__ = {
 
 [node name="RestartButton" type="Label" parent="Visibility"]
 pause_mode = 2
-margin_left = 360.0
-margin_top = 264.0
-margin_right = 689.0
-margin_bottom = 335.0
+margin_left = 489.471
+margin_top = 318.197
+margin_right = 818.471
+margin_bottom = 389.197
 custom_fonts/font = ExtResource( 1 )
 text = "Restart"
 __meta__ = {
@@ -33,10 +34,10 @@ __meta__ = {
 
 [node name="ExitButton" type="Label" parent="Visibility"]
 pause_mode = 2
-margin_left = 424.0
-margin_top = 360.0
-margin_right = 612.0
-margin_bottom = 431.0
+margin_left = 553.471
+margin_top = 414.197
+margin_right = 741.471
+margin_bottom = 485.197
 custom_fonts/font = ExtResource( 1 )
 text = "Exit"
 __meta__ = {
@@ -45,10 +46,10 @@ __meta__ = {
 
 [node name="ResumeButton" type="Label" parent="Visibility"]
 pause_mode = 2
-margin_left = 376.0
-margin_top = 168.0
-margin_right = 658.0
-margin_bottom = 239.0
+margin_left = 505.471
+margin_top = 222.197
+margin_right = 787.471
+margin_bottom = 293.197
 custom_fonts/font = ExtResource( 1 )
 text = "Resume"
 __meta__ = {
