@@ -1,0 +1,37 @@
+Spawn Room 1 - 
+Radio Controller: Good luck intern. There are old mining lifts on each floor that will take you down towards the core. 
+Radio Controller: Unfortunatly we have lost the cave maps so you will have to find the lifts yourself. We aren't sure how deep it runs but as we recieve more data from your suit we will update you.
+Radio Controller: You can use the infection orbs collected by your suit to power up your weapon, but any knock to the suit and they will be damaged.
+Radio Controller: Keep moving, and stay alive.
+Radio: *Transmission terminated.*
+
+Spawn Room 2 - 
+Radio Controller: Well done you found the first lift, I remember now that the caves get larger as you go down so don't slow down now.
+Radio: *Transmission Terminated*
+
+Spawn Room 3 - 
+Radio controller: Intern are you there?
+Radio Controller: These readings, they don't seem to make sense. It looks like the infection is man made... sorry the Chief Scientist is back, I have to go.
+Radio: *Transmission Terminated*
+
+Spawn Room 4 - 
+Radio Controller: Intern, listen quickly.
+Radio Controller: I'm starting to have concerns about the Chief, he has been behaving more and more erratically. There are suggestions that he may have had something to do with the the infection in the first place to procure the contract for removing it. Don't trust him.
+Radio: *Transmission Terminated*
+
+Spawn Room 5 -
+Radio Controller: I know the Chief is involved. 
+Radio COntroller: You will also be glad to hear that this is the final cave, I'm not getting any infection readings closer to the core.
+Radio Controller: If... sorry... When you have cleared this floor I will use the data from your suit to prove the chief started the infection. 
+Radio Controller: The board will hear about it and he will be terminated. 
+Radio Controller: I need to be careful or he will...
+Radio: *Radio Signal Lost*
+
+
+Radio Controller: Good work Intern. We have stopped picking up signals from the infection, you can return home we will prepare to send a shuttle.
+Radio: ...
+Chief Scientist: CONTROLLER WHAT ARE YOU TALKING ABOUT, YOUR NEED TO SCROLL DOWN. YOURE FIRED, GO HOME!
+Radio Controller: No, please no! Not me!! Not like the others!! PLEA...
+Radio: *Screams*
+Chief Scientist: INTERN, GET BACK TO WORK.
+Radio: *Transmission Terminated*
