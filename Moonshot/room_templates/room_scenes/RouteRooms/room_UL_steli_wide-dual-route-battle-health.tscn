@@ -121,7 +121,7 @@ swap_direction = false
 position = Vector2( -3825.27, -876.591 )
 
 [node name="BearBoi" parent="." instance=ExtResource( 6 )]
-position = Vector2( -2157.36, -120.781 )
+position = Vector2( -2153.78, -114.819 )
 
 [node name="BearBoi2" parent="." instance=ExtResource( 6 )]
 position = Vector2( -1553.8, -117.762 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=2]
+[gd_scene load_steps=99 format=2]
 
 [ext_resource path="res://player/assets/idle/Medic1TALL1-Sheet.png" type="Texture" id=1]
 [ext_resource path="res://player/assets/wall/palettewall-Sheet3-sheet.png" type="Texture" id=2]
@@ -33,14 +33,17 @@
 [ext_resource path="res://player/assets/die/playerdie.png" type="Texture" id=31]
 [ext_resource path="res://player/assets/run/paletterun-Sheet3.png" type="Texture" id=32]
 [ext_resource path="res://player/WeaponSFX.gd" type="Script" id=33]
+[ext_resource path="res://items_objects/assets/machine_gun_pickup.png" type="Texture" id=34]
 [ext_resource path="res://player/assets/red_cross.png" type="Texture" id=35]
 [ext_resource path="res://player/States/stagger.gd" type="Script" id=36]
+[ext_resource path="res://items_objects/assets/double_shot_arm.png" type="Texture" id=37]
 [ext_resource path="res://player/States/dodge.gd" type="Script" id=38]
 [ext_resource path="res://player/assets/dodge/MEDICdash3.png" type="Texture" id=39]
 [ext_resource path="res://player/assets/dodge/MEDICdash1.png" type="Texture" id=40]
 [ext_resource path="res://player/assets/dodge/MEDICdash4.png" type="Texture" id=41]
 [ext_resource path="res://player/assets/dodge/MEDICdash2.png" type="Texture" id=42]
 [ext_resource path="res://player/PlayerAudio.gd" type="Script" id=43]
+[ext_resource path="res://items_objects/assets/shotgunarm.png" type="Texture" id=44]
 [ext_resource path="res://player/assets/shield.png" type="Texture" id=45]
 
 [sub_resource type="CapsuleShape2D" id=1]
@@ -140,60 +143,60 @@ atlas = ExtResource( 32 )
 region = Rect2( 704, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=25]
-atlas = ExtResource( 31 )
+atlas = ExtResource( 32 )
 region = Rect2( 0, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=26]
-atlas = ExtResource( 31 )
+atlas = ExtResource( 32 )
 region = Rect2( 64, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=27]
-atlas = ExtResource( 31 )
+atlas = ExtResource( 32 )
 region = Rect2( 128, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=28]
 atlas = ExtResource( 32 )
-region = Rect2( 0, 0, 64, 64 )
+region = Rect2( 192, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=29]
 atlas = ExtResource( 32 )
-region = Rect2( 64, 0, 64, 64 )
+region = Rect2( 256, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=30]
 atlas = ExtResource( 32 )
-region = Rect2( 128, 0, 64, 64 )
+region = Rect2( 320, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=31]
 atlas = ExtResource( 32 )
-region = Rect2( 192, 0, 64, 64 )
+region = Rect2( 448, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=32]
 atlas = ExtResource( 32 )
-region = Rect2( 256, 0, 64, 64 )
+region = Rect2( 512, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=33]
 atlas = ExtResource( 32 )
-region = Rect2( 320, 0, 64, 64 )
+region = Rect2( 576, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=34]
 atlas = ExtResource( 32 )
-region = Rect2( 448, 0, 64, 64 )
+region = Rect2( 640, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=35]
 atlas = ExtResource( 32 )
-region = Rect2( 512, 0, 64, 64 )
+region = Rect2( 704, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=36]
-atlas = ExtResource( 32 )
-region = Rect2( 576, 0, 64, 64 )
+atlas = ExtResource( 31 )
+region = Rect2( 0, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=37]
-atlas = ExtResource( 32 )
-region = Rect2( 640, 0, 64, 64 )
+atlas = ExtResource( 31 )
+region = Rect2( 64, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=38]
-atlas = ExtResource( 32 )
-region = Rect2( 704, 0, 64, 64 )
+atlas = ExtResource( 31 )
+region = Rect2( 128, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=39]
 atlas = ExtResource( 32 )
@@ -243,12 +246,12 @@ region = Rect2( 704, 0, 64, 64 )
 animations = [ {
 "frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 2 ) ],
 "loop": true,
-"name": "idle",
+"name": "spawn",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 6 ) ],
 "loop": true,
-"name": "spawn",
+"name": "idle",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 10 ), SubResource( 11 ) ],
@@ -271,17 +274,7 @@ animations = [ {
 "name": "ledge",
 "speed": 50.0
 }, {
-"frames": [ SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 26 ), SubResource( 27 ) ],
-"loop": false,
-"name": "die",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ) ],
-"loop": true,
-"name": "air",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ) ],
+"frames": [ SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ) ],
 "loop": true,
 "name": "run",
 "speed": 15.0
@@ -290,13 +283,38 @@ animations = [ {
 "loop": true,
 "name": "dodge",
 "speed": 10.0
+}, {
+"frames": [ SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 37 ), SubResource( 38 ) ],
+"loop": false,
+"name": "die",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ) ],
+"loop": true,
+"name": "air",
+"speed": 5.0
 } ]
 
 [sub_resource type="SpriteFrames" id=51]
 animations = [ {
 "frames": [ ExtResource( 4 ) ],
 "loop": true,
-"name": "default",
+"name": "laser_blaster",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 34 ) ],
+"loop": true,
+"name": "machine_gun",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 37 ) ],
+"loop": true,
+"name": "twin_shot",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 44 ) ],
+"loop": true,
+"name": "shotgun",
 "speed": 5.0
 } ]
 
@@ -359,9 +377,6 @@ script = ExtResource( 15 )
 
 [node name="Air" type="Node" parent="StateMachine/Move"]
 script = ExtResource( 19 )
-acceleration_x = 2500.0
-jump_deceleration = 5000.0
-air_resistance = 1250.0
 
 [node name="JumpDelay" type="Timer" parent="StateMachine/Move/Air"]
 wait_time = 0.1
@@ -432,6 +447,7 @@ position = Vector2( 28, 0 )
 position = Vector2( 6.53168, 4.35445 )
 z_index = 1
 frames = SubResource( 51 )
+animation = "shotgun"
 offset = Vector2( -16, -4 )
 
 [node name="Crosshair" type="Position2D" parent="TurnAxis"]
