@@ -36,6 +36,7 @@ func _init() -> void:
 		"body": self,
 		"direction": attributes.Direction.RIGHT,
 		"inital_hp": 3,
+		"damage_to_player": 0.1,
 		"gravity": 0,
 		"speed": max_speed,
 		"velocity": Vector2()

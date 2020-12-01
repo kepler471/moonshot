@@ -16,7 +16,7 @@ var current_firerate_level = 0
 
 var invulnerable := false
 
-export var max_health := 5.0 setget set_max_health, get_max_health
+export var max_health := 2.0 setget set_max_health, get_max_health
 var health := max_health
 
 export var attack: int = 1
