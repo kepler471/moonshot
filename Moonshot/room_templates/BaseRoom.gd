@@ -13,7 +13,7 @@ var selected_level_setup
 export var testing_room_difficulty = 1
 var scaling_factor = 0.75
 # Distance between enemy spawns on a line
-var min_baddie_spawn_distance = 32
+var min_baddie_spawn_distance = 16
 
 var item_spawn_nodes = []
 var baddie_spawn_lines = []
@@ -112,8 +112,8 @@ func spawn_baddies(difficulty_controller: DifficultyController, room_difficulty)
 			spawn_place.add_child(baddie_instance)
 			combined_baddie_spawns.erase(spawn_place)
 		else:
-			var line_start = spawn_place.points[0]
-			var line_end = spawn_place.points[1]
+			var line_start = spawn_place.get_point_position(0) + spawn_place.global_position
+			var line_end = spawn_place.get_point_position(1) + spawn_place.global_position
 			var point_difference_vector = line_end - line_start
 			var rand_step_options = shuffle_list(range(0, round(point_difference_vector.length() / min_baddie_spawn_distance)))
 			var chosen_step
@@ -126,13 +126,14 @@ func spawn_baddies(difficulty_controller: DifficultyController, room_difficulty)
 			if chosen_step == null:
 				continue
 					
-			var random_point = line_start + chosen_step*(point_difference_vector / min_baddie_spawn_distance)
+			var random_point = line_start + chosen_step*(point_difference_vector / point_difference_vector.length())
 
 			print("The line_start is: "+ str(line_start))
 			print("The line_end is: " + str(line_end))
 			print("The point_difference_vector is: " + str(point_difference_vector))
 			print("The random_point is: " + str(random_point))
 
+			spawn_place.get_parent().visible = true
 			spawn_place.get_parent().add_child(baddie_instance)
 			baddie_instance.position = random_point
 
