@@ -29,7 +29,6 @@ var cooldown = false
 var facing = 1
 var animation_name
 var playing_reverse
-var invulnerable = false
 var safety = false
 var dead = false
 var priority_animations = ["stagger", "dodge"]
@@ -77,10 +76,6 @@ func get_facing() -> float:
 
 
 func set_animation() -> void:
-	if invulnerable and animation_name in priority_animations:
-		if not $AnimatedSprite.playing:
-			$AnimatedSprite.play(animation_name)
-		return
 	var new_state = state_machine.get_animation_name()
 	if new_state != null and new_state != animation_name:
 		animation_name = new_state
