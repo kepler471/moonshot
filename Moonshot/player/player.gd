@@ -39,12 +39,10 @@ var dead = false
 var priority_animations = ["stagger", "dodge"]
 
 
-func _input(event):
-	if event.is_action_pressed("mouse_capture"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
-		
-
 func _ready() -> void:
+	var crs = load("res://player/assets/blankCursor.png")
+	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+	Input.set_custom_mouse_cursor(crs)
 	CombatSignalController.connect("damage_player", self, "take_damage")
 	CombatSignalController.connect("get_player_global_position", self, "_emit_position")
 	CombatSignalController.connect("get_player_global_position_drop", self, "_emit_position_drop")
