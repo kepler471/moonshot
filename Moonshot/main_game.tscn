@@ -31,7 +31,7 @@ margin_top = 322.0
 margin_right = 75.3516
 margin_bottom = 426.0
 rect_rotation = 180.0
-color = Color( 0.105882, 0.258824, 0.576471, 1 )
+color = Color( 0.105882, 0.141176, 0.278431, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -42,7 +42,7 @@ margin_top = 322.0
 margin_right = 75.3516
 margin_bottom = 426.0
 rect_rotation = 180.0
-color = Color( 0.0823529, 0.721569, 0.152941, 1 )
+color = Color( 0, 0.501961, 0.192157, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -52,7 +52,7 @@ margin_left = 11.3516
 margin_top = 202.0
 margin_right = 43.3516
 margin_bottom = 209.0
-color = Color( 0.105882, 0.258824, 0.576471, 1 )
+color = Color( 0.105882, 0.141176, 0.278431, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -62,7 +62,7 @@ margin_left = 11.3516
 margin_top = 186.0
 margin_right = 43.3516
 margin_bottom = 193.0
-color = Color( 0.105882, 0.258824, 0.576471, 1 )
+color = Color( 0.105882, 0.141176, 0.278431, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -72,7 +72,7 @@ margin_left = 11.3516
 margin_top = 170.0
 margin_right = 43.3516
 margin_bottom = 177.0
-color = Color( 0.482353, 0.0117647, 0, 1 )
+color = Color( 0.380392, 0.152941, 0.113725, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -82,17 +82,17 @@ margin_left = 11.3516
 margin_top = 154.0
 margin_right = 43.3516
 margin_bottom = 161.0
-color = Color( 0.482353, 0.0117647, 0, 1 )
+color = Color( 0.380392, 0.152941, 0.113725, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Level5" type="ColorRect" parent="GUI/OtherHUD"]
-margin_left = 11.3516
+margin_left = 11.0005
 margin_top = 138.0
-margin_right = 43.3516
+margin_right = 43.0005
 margin_bottom = 145.0
-color = Color( 0.482353, 0.0117647, 0, 1 )
+color = Color( 0.380392, 0.152941, 0.113725, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

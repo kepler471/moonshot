@@ -42,13 +42,13 @@ func update_firerate_hud(new_firerate, firerate_level):
 		if level <= Utils.player_stats.unlocked_firerate_level:
 			if level < firerate_level:
 				# Active firerate buff colour
-				level_box.color = Color8(21, 184, 39)
+				level_box.color = Color8(0, 128, 49)
 			else:
 				# Unactive firerate buff colour
-				level_box.color = Color8(27, 66, 147)
+				level_box.color = Color8(27, 36, 71)
 		else:
 			# Locked firerate buff colour
-			level_box.color = Color8(123, 3, 0)
+			level_box.color = Color8(97, 39, 29)
 			
 	# Now scale the power par to leveling up the firerate
 	var remainder_firerate_pickups = Utils.player_stats.modifiers['firerate_pickups'] % Utils.player_stats.no_firerate_pickups_to_increase_firerate
