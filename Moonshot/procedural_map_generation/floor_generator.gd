@@ -4,8 +4,8 @@ class_name floor_generator
 
 var Room = load("res://procedural_map_generation/Room.gd")
 #--------------------TWEAK VARIABLES--------------------
-const rooms_per_level : int = 5
-const extra_rooms_per_level = 1
+const rooms_per_level : int = 9
+const extra_rooms_per_level = 3
 const max_rooms_per_level = 40
 var max_rooms
 # Spawn room indexed by level
