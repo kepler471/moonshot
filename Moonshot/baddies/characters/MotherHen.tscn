@@ -62,21 +62,21 @@ animations = [ {
 "speed": 12.0
 } ]
 
-[sub_resource type="AtlasTexture" id=14]
+[sub_resource type="AtlasTexture" id=13]
 atlas = ExtResource( 5 )
 region = Rect2( 0, 0, 514, 514 )
 
-[sub_resource type="AtlasTexture" id=15]
+[sub_resource type="AtlasTexture" id=14]
 atlas = ExtResource( 5 )
 region = Rect2( 514, 0, 514, 514 )
 
-[sub_resource type="AtlasTexture" id=16]
+[sub_resource type="AtlasTexture" id=15]
 atlas = ExtResource( 5 )
 region = Rect2( 1028, 0, 514, 514 )
 
-[sub_resource type="SpriteFrames" id=13]
+[sub_resource type="SpriteFrames" id=16]
 animations = [ {
-"frames": [ SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
+"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ) ],
 "loop": true,
 "name": "default",
 "speed": 12.0
@@ -111,6 +111,7 @@ collision_mask = 0
 [node name="Death" type="CanvasLayer" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="Death"]
+pause_mode = 2
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -127,4 +128,6 @@ frames = SubResource( 12 )
 [node name="Panel2" type="AnimatedSprite" parent="Death"]
 pause_mode = 2
 visible = false
-frames = SubResource( 13 )
+frames = SubResource( 16 )
+
+[node name="ChristopherNodelan" type="Tween" parent="."]
