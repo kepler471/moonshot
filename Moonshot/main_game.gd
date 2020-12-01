@@ -13,16 +13,17 @@ var level_no = 1
 const death_screen_delay = 3
 
 func _ready():
+	Engine.set_time_scale(1)
 	start_level(level_no)
 	CombatSignalController.connect('player_kill', self, 'activate_death_screen')
 	add_child(HUD_manager)
 	HUD_manager.build_hud(minimap)
+	$AudioStreamPlayer.play()
 
 	
 func activate_death_screen():
 	$DeathScreen/Visibility.visible = true
-	get_tree().paused = true
-	
+
 func go_up_level():
 	level_no += 1
 	TileSheetLoader.update_level_no()
