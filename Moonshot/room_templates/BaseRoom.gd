@@ -14,6 +14,7 @@ export var testing_room_difficulty = 1
 var scaling_factor = 0.75
 # Distance between enemy spawns on a line
 var min_baddie_spawn_distance = 16
+var hud_camera_margin = 100
 
 var item_spawn_nodes = []
 var baddie_spawn_lines = []
@@ -215,13 +216,13 @@ func setup_player_camera():
 		player_camera.limit_left = map_limits.position.x * map_cellsize.x
 		player_camera.limit_right = map_limits.end.x * map_cellsize.x
 		player_camera.limit_top = map_limits.position.y * map_cellsize.y
-		player_camera.limit_bottom = map_limits.end.y * map_cellsize.y
+		player_camera.limit_bottom = map_limits.end.y * map_cellsize.y + hud_camera_margin
 	
 	else:
 		player_camera.limit_left = get_node('camera_limit_NW').position.x
 		player_camera.limit_right = get_node('camera_limit_SE').position.x
 		player_camera.limit_top = get_node('camera_limit_NW').position.y
-		player_camera.limit_bottom = get_node('camera_limit_SE').position.y
+		player_camera.limit_bottom = get_node('camera_limit_SE').position.y + hud_camera_margin
 
 
 #Level Change Signalling - Likely a far better way to write this code.
