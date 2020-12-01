@@ -10,7 +10,8 @@ const DEFAULT_CHILD_COUNT = 10
 onready var tween = get_node("ChristopherNodelan")
 
 const Animations = {
-	"FLOAT": "float"
+	"DEFAULT": "default",
+	"DIE": "die"
 }
 
 
@@ -23,7 +24,7 @@ func _init() -> void:
 	CombatSignalController.connect("damage_baddie", self, "on_hit")
 	attributes.set_properties({
 		"body": self,
-		"animation": Animations.FLOAT,
+		"animation": Animations.DEFAULT,
 		"speed": 0,
 		"inital_hp": 10.0,
 		"gravity": 1,
@@ -37,6 +38,7 @@ func _ready():
 	if Engine.is_editor_hint(): return
 	print("mother hen dir ::: ", $SpawnDirection.get_cast_to().x)
 	attributes.set_sprite($AnimatedSprite)
+	$AnimatedSprite.play(Animations.DEFAULT)
 	spawner.set_direction($SpawnDirection.get_cast_to().x)
 	spawner.spawn_randomly()
 
@@ -89,14 +91,15 @@ func death_transition() -> void:
 	get_parent().get_tree().paused = false
 	if get_parent().get_node("ExitLift"):
 		get_parent().get_node("ExitLift").activate_lift()
-	Utils.speeeeeeeedup(tween, 0.2)
-	$AnimatedSprite.hide()
+	$AnimatedSprite.play(Animations.DIE)
+	Utils.speeeeeeeedup(tween, 0.5)
 	yield(tween, "tween_completed")
 	on_end()
 
 
 func on_end() -> void:
 	call_deferred("free")
+	$AnimatedSprite.hide()
 
 
 func change_direction() -> void:

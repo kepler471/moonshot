@@ -201,6 +201,7 @@ func take_damage(damage, attack_dir, is_damage_tile: bool = false) -> void:
 
 		if Utils.IS_DEBUG: print("Attack Dir : ", attack_dir)
 		if Utils.player_stats.health <= 0:
+			dead = true
 			on_death()
 			safety = true
 			return
@@ -221,13 +222,15 @@ func add_health(health) -> void:
 
 
 func on_death() -> void:
-	dead = true
 	CombatSignalController.disconnect("damage_player", self, "take_damage")
 	$SFX.play("death")
+	$TurnAxis/CastPoint/AnimatedSprite.hide()
+	$TurnAxis/Crosshair/AnimatedSprite.hide()
+	$AnimatedSprite.play("die")
 	Utils.sloooooowdown(slow, 1)
 	Utils.zoomin(zoom, camera, 1)
-	yield(slow, "tween_completed")
 	_on_Player_health_depleted()
+	yield(slow, "tween_completed")
 	CombatSignalController.emit_signal("player_kill")
 
 

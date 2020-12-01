@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/large.png-84f1dcad2e2f971cdc3e8a2099b02f79.stex"
+path="res://.import/paletterun-Sheet3.png-a504c1d3f115d3ad8fe5088a82c200aa.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/assets/die/large.png"
-dest_files=[ "res://.import/large.png-84f1dcad2e2f971cdc3e8a2099b02f79.stex" ]
+source_file="res://player/assets/run/paletterun-Sheet3.png"
+dest_files=[ "res://.import/paletterun-Sheet3.png-a504c1d3f115d3ad8fe5088a82c200aa.stex" ]
 
 [params]
 
