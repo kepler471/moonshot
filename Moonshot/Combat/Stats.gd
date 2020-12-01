@@ -8,8 +8,8 @@ signal health_changed(old_value, new_value)
 signal firerate_changed(new_firerate, firerate_level)
 
 var modifiers = {"firerate_pickups": 0, "firerate": 1}
-var no_firerate_pickups_to_increase_firerate = 2
-var firerate_scaling_factor = 1.2
+var no_firerate_pickups_to_increase_firerate = 6
+var firerate_scaling_factor = 1.13
 var max_firerate_level = 5
 var unlocked_firerate_level = 2
 var current_firerate_level = 0
