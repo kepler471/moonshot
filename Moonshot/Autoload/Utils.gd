@@ -64,10 +64,9 @@ static func sloooooowdown(tween: Tween, duration: float) -> void:
 	tween.start()
 
 static func speeeeeeeedup(tween: Tween, duration: float) -> void:
-	tween.interpolate_property(Engine, "time_scale", 0.1, 1, duration, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween.interpolate_property(Engine, "time_scale", 0.1, 1, duration, Tween.TRANS_LINEAR)
 	tween.start()
 
 static func zoomin(tween: Tween, _cam: Camera2D, duration: float) -> void:
-	tween.interpolate_property(_cam, "zoom", Vector2(1, 1), Vector2(0.4, 0.4), duration, Tween.TRANS_LINEAR, Tween. EASE_IN_OUT)
+	tween.interpolate_property(_cam, "zoom", Vector2(1, 1), Vector2(0.4, 0.4), duration, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.start()
-
