@@ -4,9 +4,7 @@ signal update_hud
 	
 class LaserBlaster:
 	var name = 'laser_blaster'
-	var sound = AudioStreamPlayer2D.new()
 	var bullet = load("res://Combat/bullet.tscn")
-	var sfx = load("res://player/assets/sounds/blaster_v1.wav") 
 	var fire_speed = 0.25
 	var f_mag = 800
 	var damage = 0.4
@@ -15,12 +13,8 @@ class LaserBlaster:
 	# set to positive, doesn't go down
 	var ammo = 999
 	
-	func _init():
-		sound.stream = sfx
-
 
 	func shoot():
-		sound.play()
 		var shots = []
 		var shot
 		for _i in range(no_shots):
@@ -37,9 +31,7 @@ class LaserBlaster:
 		
 class MachineGunBlaster:
 	var name = "machine_gun"
-	var sound = AudioStreamPlayer2D.new()
 	var bullet = load("res://Combat/bullet.tscn")
-	var sfx = load("res://player/assets/sounds/laser_pew.ogg") 
 	var fire_speed = 0.05
 	var f_mag = 800
 	var damage = 0.15
@@ -50,13 +42,10 @@ class MachineGunBlaster:
 	var ammo 
 	
 	func _init():
-		sfx.set_loop(false)
-		sound.stream = sfx
 		ammo = ammo_time/fire_speed
 
 
 	func shoot():
-		sound.play()
 		var shots = []
 		var shot
 		for _i in range(no_shots):
@@ -78,9 +67,7 @@ class MachineGunBlaster:
 		
 class ShotgunBlaster:
 	var name = "shotgun"
-	var sound = AudioStreamPlayer2D.new()
 	var bullet = load("res://Combat/bullet.tscn")
-	var sfx = load("res://player/assets/sounds/laser_pew.ogg") 
 	var fire_speed = 0.5
 	var f_mag = 800
 	var damage = 0.2
@@ -89,14 +76,12 @@ class ShotgunBlaster:
 	var ammo_time = 20
 	var ammo 
 	
+	
 	func _init():
-		sfx.set_loop(false)
-		sound.stream = sfx
 		ammo = ammo_time/fire_speed
 
 
 	func shoot():
-		sound.play()
 		var shots = []
 		var shot
 		for _i in range(no_shots):
@@ -113,9 +98,7 @@ class ShotgunBlaster:
 		
 class TwinShotBlaster:
 	var name = 'twin_shot'
-	var sound = AudioStreamPlayer2D.new()
 	var bullet = load("res://Combat/bullet.tscn")
-	var sfx = load("res://player/assets/sounds/laser_pew.ogg") 
 	var fire_speed 
 	var f_mag
 	var damage 
@@ -124,9 +107,8 @@ class TwinShotBlaster:
 	var ammo_time = 20
 	var ammo 
 	
+	
 	func _init():
-		sfx.set_loop(false)
-		sound.stream = sfx
 		# set the attributes to be the same as the LaserBlaster
 		var laser_blaster = LaserBlaster.new()
 		fire_speed = laser_blaster.fire_speed
@@ -134,8 +116,8 @@ class TwinShotBlaster:
 		damage = laser_blaster.damage
 		ammo = ammo_time/fire_speed
 
+
 	func shoot():
-		sound.play()
 		var shots = []
 		var shot
 		for _i in range(no_shots):
@@ -176,7 +158,6 @@ func get_weapon():
 
 func set_weapon(new_weapon: String = "laser_blaster") -> void:
 	current_weapon_type = new_weapon
-	Utils.Player.add_child(get_weapon().sound)
 	
 func reset_arsenal():
 	arsenal= {

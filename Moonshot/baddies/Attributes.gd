@@ -145,7 +145,7 @@ func _is_dying(global_position) -> void:
 	body.on_end()
 
 func _flash() -> void:
-	if dead:
+	if dead || !fade:
 		return
 
 	fade.set_fade_speed(0.02)
