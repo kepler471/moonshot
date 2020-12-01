@@ -17,6 +17,9 @@ onready var floor_detector: RayCast2D = $FloorDetector
 
 onready var pass_through: Area2D = $PassThrough
 
+onready var slow: Tween = $ChristopherNodelan
+onready var zoom: Tween = $QuentinTarantinode
+onready var camera: Camera2D = $Camera2D
 
 const FLOOR_NORMAL := Vector2.UP
 
@@ -219,11 +222,13 @@ func add_health(health) -> void:
 
 func on_death() -> void:
 	dead = true
-	$SFX.play("death")
-	CombatSignalController.emit_signal("player_kill")
-	_on_Player_health_depleted()
 	CombatSignalController.disconnect("damage_player", self, "take_damage")
-	
+	$SFX.play("death")
+	Utils.sloooooowdown(slow, 1)
+	Utils.zoomin(zoom, camera, 1)
+	yield(slow, "tween_completed")
+	_on_Player_health_depleted()
+	CombatSignalController.emit_signal("player_kill")
 
 
 func _on_Player_health_depleted() -> void:

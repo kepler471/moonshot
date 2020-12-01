@@ -20,7 +20,6 @@ func _ready():
 
 	
 func activate_death_screen():
-	yield(get_tree().create_timer(death_screen_delay), "timeout")
 	$DeathScreen/Visibility.visible = true
 	get_tree().paused = true
 	

@@ -247,3 +247,7 @@ frames = SubResource( 4 )
 [node name="Shield" type="AnimatedSprite" parent="."]
 frames = SubResource( 15 )
 offset = Vector2( 0, -29 )
+
+[node name="ChristopherNodelan" type="Tween" parent="."]
+
+[node name="QuentinTarantinode" type="Tween" parent="."]
