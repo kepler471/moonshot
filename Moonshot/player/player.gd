@@ -42,7 +42,7 @@ var priority_animations = ["stagger", "dodge"]
 func _input(event):
 	if event.is_action_pressed("mouse_capture"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
-
+		
 
 func _ready() -> void:
 	CombatSignalController.connect("damage_player", self, "take_damage")
@@ -77,6 +77,8 @@ func _physics_process(_delta) -> void:
 
 	if Input.is_action_pressed("shoot") and !cooldown and !safety:
 		var weapon = Utils.player_arsenal.get_weapon()
+		var weapon_type = weapon.name
+		$WeaponSFX.play(weapon_type)
 		if weapon.ammo == 0:
 			Utils.player_arsenal.set_weapon('laser_blaster')
 			weapon = Utils.player_arsenal.get_weapon()
@@ -102,6 +104,8 @@ func _physics_process(_delta) -> void:
 		yield(get_tree().create_timer(timer_delay), "timeout")
 
 		cooldown = false
+
+			
 		
 	if damagetile_check() and not dead:
 		damagetile_impulse()

@@ -168,6 +168,10 @@ config/name="Moonshot"
 run/main_scene="res://Menu/Intro.tscn"
 config/icon="res://icon.png"
 
+[audio]
+
+output_latency=10
+
 [autoload]
 
 Settings="*res://Autoload/InputSettings.gd"
