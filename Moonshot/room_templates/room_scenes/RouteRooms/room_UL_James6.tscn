@@ -60,7 +60,7 @@ position = Vector2( -783.465, 509.414 )
 position = Vector2( -761.233, -720.913 )
 
 [node name="camera_limit_SE" type="Position2D" parent="."]
-position = Vector2( 772.075, 660.381 )
+position = Vector2( 769.133, 595.661 )
 
 [node name="testing_player_spawn" type="Position2D" parent="."]
 position = Vector2( -749.35, 515.523 )

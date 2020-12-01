@@ -122,7 +122,7 @@ format = 1
 position = Vector2( -611.084, 822.386 )
 
 [node name="Exit_LEFT" parent="." instance=ExtResource( 2 )]
-position = Vector2( -665.485, -490.789 )
+position = Vector2( -652.52, -497.271 )
 
 [node name="camera_limit_NW" type="Position2D" parent="."]
 position = Vector2( -662.638, -633.075 )
