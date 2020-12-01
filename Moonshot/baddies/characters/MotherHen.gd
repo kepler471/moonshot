@@ -25,7 +25,7 @@ func _init() -> void:
 		"body": self,
 		"animation": Animations.FLOAT,
 		"speed": 0,
-		"inital_hp": 1.0,
+		"inital_hp": 10.0,
 		"gravity": 1,
 		"damage_to_player": 0.05,
 		"floor_vector": Vector2(0, -1),
