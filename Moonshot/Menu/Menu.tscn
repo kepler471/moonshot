@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Menu/assets/SurfaceBackground.png" type="Texture" id=1]
 [ext_resource path="res://Menu/fadeinfromblack.gd" type="Script" id=2]
@@ -6,10 +6,17 @@
 [ext_resource path="res://room_templates/next_level_button.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Menu/MenuBase.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Menu/Menu.gd" type="Script" id=6]
+[ext_resource path="res://Menu/assets/EXIT.png" type="Texture" id=7]
+[ext_resource path="res://Menu/ExitButton.gd" type="Script" id=8]
 [ext_resource path="res://Menu/assets/Terran.png" type="Texture" id=9]
+[ext_resource path="res://Menu/assets/PLAY.png" type="Texture" id=10]
+[ext_resource path="res://Menu/PlayButton.gd" type="Script" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 10.2822, 36.6898 )
+extents = Vector2( 28.7123, 35.1928 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 12.1695, 36.7306 )
 
 [node name="Menu" type="Node2D"]
 position = Vector2( 225.821, -6.20328 )
@@ -51,7 +58,6 @@ z_index = 6
 script = ExtResource( 2 )
 
 [node name="ColorRect" type="ColorRect" parent="fadeinfromblack"]
-visible = false
 margin_left = -759.433
 margin_top = -371.938
 margin_right = 740.567
@@ -65,9 +71,33 @@ __meta__ = {
 
 [node name="ExitButton" type="Area2D" parent="."]
 position = Vector2( -289.901, 117.134 )
+script = ExtResource( 8 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitButton"]
-position = Vector2( -0.202087, 0.259148 )
+[node name="Exitcollider" type="CollisionShape2D" parent="ExitButton"]
+position = Vector2( -0.202087, 3.34592 )
 shape = SubResource( 1 )
-[connection signal="body_entered" from="ExitButton" to="." method="_on_ExitButton_body_entered"]
-[connection signal="body_exited" from="ExitButton" to="." method="_on_ExitButton_body_exited"]
+
+[node name="ExitTween" type="Tween" parent="ExitButton"]
+
+[node name="sprite" type="Sprite" parent="ExitButton"]
+position = Vector2( 0, -130 )
+texture = ExtResource( 7 )
+offset = Vector2( 0, 50 )
+
+[node name="PlayButton" type="Area2D" parent="."]
+position = Vector2( 735.618, 116.19 )
+script = ExtResource( 11 )
+
+[node name="Playcollider" type="CollisionShape2D" parent="PlayButton"]
+shape = SubResource( 2 )
+
+[node name="PlayTween" type="Tween" parent="PlayButton"]
+
+[node name="sprite" type="Sprite" parent="PlayButton"]
+position = Vector2( 0, -130 )
+texture = ExtResource( 10 )
+offset = Vector2( 0, 50 )
+[connection signal="body_entered" from="ExitButton" to="ExitButton" method="_on_ExitButton_body_entered"]
+[connection signal="body_exited" from="ExitButton" to="ExitButton" method="_on_ExitButton_body_exited"]
+[connection signal="body_entered" from="PlayButton" to="PlayButton" method="_on_PlayButton_body_entered"]
+[connection signal="body_exited" from="PlayButton" to="PlayButton" method="_on_PlayButton_body_exited"]
