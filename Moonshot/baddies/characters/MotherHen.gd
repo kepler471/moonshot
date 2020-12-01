@@ -6,8 +6,9 @@ export(bool)  var swap_direction  setget swap_dir
 
 var attributes: Attributes = preload("res://baddies/Attributes.gd").new()
 onready var spawner: BaddieSpawner = $BaddieSpawner
-const DEFAULT_CHILD_COUNT = 10
 onready var tween = get_node("ChristopherNodelan")
+var cooldown: bool
+var cooldown_time: float = 3
 
 const Animations = {
 	"DEFAULT": "default",
@@ -26,7 +27,7 @@ func _init() -> void:
 		"body": self,
 		"animation": Animations.DEFAULT,
 		"speed": 0,
-		"inital_hp": 10.0,
+		"inital_hp": 20.0,
 		"gravity": 1,
 		"damage_to_player": 0.05,
 		"floor_vector": Vector2(0, -1),
@@ -36,10 +37,8 @@ func _init() -> void:
 
 func _ready():
 	if Engine.is_editor_hint(): return
-	print("mother hen dir ::: ", $SpawnDirection.get_cast_to().x)
 	attributes.set_sprite($AnimatedSprite)
 	$AnimatedSprite.play(Animations.DEFAULT)
-	spawner.set_direction($SpawnDirection.get_cast_to().x)
 	spawner.spawn_randomly()
 
 	# Setup mother kill animation
@@ -57,10 +56,19 @@ func _physics_process(delta):
 	move_and_slide(Vector2.ZERO)
 	var _q = attributes._check_player_colision()
 
+	if not cooldown:
+		cooldown_timer()
+
+
+func cooldown_timer() -> void:
+	cooldown = true
+	yield(get_tree().create_timer(cooldown_time), "timeout")
+	spawner.spawn_randomly()
+	cooldown = false
+
 
 func on_hit(instance_id, damage) -> void:
 	if instance_id == self.get_instance_id() && !attributes._has_died():
-		spawner.spawn_randomly()
 		attributes.hp -= damage
 		attributes._flash()
 		if attributes.hp <= 0:
