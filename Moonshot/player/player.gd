@@ -45,6 +45,7 @@ func _input(event):
 		
 
 func _ready() -> void:
+	$TurnAxis/CastPoint/AnimatedSprite.set_animation('laser_blaster')
 	CombatSignalController.connect("damage_player", self, "take_damage")
 	CombatSignalController.connect("get_player_global_position", self, "_emit_position")
 	CombatSignalController.connect("get_player_global_position_drop", self, "_emit_position_drop")
@@ -81,6 +82,7 @@ func _physics_process(_delta) -> void:
 		$WeaponSFX.play(weapon_type)
 		if weapon.ammo == 0:
 			Utils.player_arsenal.set_weapon('laser_blaster')
+			set_arm_sprite('laser_blaster')
 			weapon = Utils.player_arsenal.get_weapon()
 		var shots = weapon.shoot()
 
@@ -248,3 +250,7 @@ func _emit_position() -> void:
 
 func stagger_player(attack_dir, is_damage_tile) -> void:
 	state_machine.transition_to("Move/Stagger", {"previous" : state_machine.state, "direction" : attack_dir, "is_damage_tile" : is_damage_tile})
+
+func set_arm_sprite(weapon):
+	$TurnAxis/CastPoint/AnimatedSprite.set_animation(weapon)
+	$TurnAxis/CastPoint/AnimatedSprite.play()
