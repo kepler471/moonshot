@@ -151,4 +151,10 @@ func set_minimap_visibility():
 		var node = minimap_index[node_coord]
 		if (abs(node.position.x) < minimap_size.x) && (abs(node.position.y) < minimap_size.y):
 			node.visible = true
-
+			
+func delete_minimap():
+	for key in indexed_connections:
+		for conn in indexed_connections[key]:
+			indexed_connections[key][conn].queue_free()
+	for key in minimap_index:
+		minimap_index[key].queue_free()
