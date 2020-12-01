@@ -1,9 +1,9 @@
-extends Reference
+extends Node
 
 var initial_story = [
 	{"character": "Radio Controller", "text": "Sir, you're all thats left. We\'ve lost contact with all the others who have gone down into the core."},
 	{"character": "Radio Controller", "text": "Thank god that you are our most experiened scientist. I have complete faith in your ability to stop the infection."},
-	{"character": "Radio", "text": "..."},
+	{"character": "Radio Controller", "text": "..."},
 	{"character": "Radio Controller", "text": "Hold on, I'm getting an incoming message from the chief scientist ... Wait, so who are you?"},
 	{"character": "Radio Controller", "text": "*Radio Patching*"},
 	{"character": "Chief Scientist", "text": "INTERN! WHAT HAVE YOU DONE! HOW DID YOU MANAGE TO CONFUSE OUR SCHEDULES???"},

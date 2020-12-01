@@ -180,6 +180,7 @@ Steering="*res://Autoload/Steering.gd"
 Utils="*res://Autoload/Utils.gd"
 CombatSignalController="*res://Autoload/CombatSignalController.gd"
 TileSheetLoader="*res://Autoload/TileSheetLoader.gd"
+StoryText="*res://Autoload/StoryText.gd"
 
 [debug]
 
