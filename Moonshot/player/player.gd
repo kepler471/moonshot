@@ -48,9 +48,7 @@ func _ready() -> void:
 	CombatSignalController.connect("damage_player", self, "take_damage")
 	CombatSignalController.connect("get_player_global_position", self, "_emit_position")
 	CombatSignalController.connect("get_player_global_position_drop", self, "_emit_position_drop")
-	
-	Utils.player_arsenal.reset_arsenal()
-	Utils.player_arsenal.set_weapon('laser_blaster')
+
 
 	if not OS.is_debug_build():
 		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
