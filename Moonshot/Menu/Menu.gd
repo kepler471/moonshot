@@ -7,3 +7,4 @@ func _ready():
 	Utils.Player.get_node("Camera2D").position += Vector2(0,-150)
 	Utils.Player.state_machine.transition_to("Move/Spawn", {"room": true})
 	Utils.Player.safety = true
+	$ExitLift.activate_lift()
