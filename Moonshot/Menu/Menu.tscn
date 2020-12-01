@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Menu/assets/SurfaceBackground.png" type="Texture" id=1]
 [ext_resource path="res://Menu/fadeinfromblack.gd" type="Script" id=2]
@@ -13,12 +13,38 @@
 [ext_resource path="res://Menu/PlayButton.gd" type="Script" id=11]
 [ext_resource path="res://Menu/menuplayer.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Menu/menuplayer.gd" type="Script" id=13]
+[ext_resource path="res://Menu/assets/computer1sheet_.png" type="Texture" id=14]
+[ext_resource path="res://Menu/DialogBox.tscn" type="PackedScene" id=15]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 28.7123, 35.1928 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 12.1695, 36.7306 )
+extents = Vector2( 23.9529, 36.7306 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 14 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 14 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 14 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 14 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [node name="Menu" type="Node2D"]
 position = Vector2( 225.821, -6.20328 )
@@ -89,8 +115,11 @@ texture = ExtResource( 7 )
 offset = Vector2( 0, 50 )
 
 [node name="PlayButton" type="Area2D" parent="."]
-position = Vector2( 735.618, 116.19 )
+position = Vector2( 344.226, 116.509 )
 script = ExtResource( 11 )
+
+[node name="DialogBox" parent="PlayButton" instance=ExtResource( 15 )]
+position = Vector2( -409.605, -269.191 )
 
 [node name="Playcollider" type="CollisionShape2D" parent="PlayButton"]
 shape = SubResource( 2 )
@@ -101,6 +130,10 @@ shape = SubResource( 2 )
 position = Vector2( 0, -130 )
 texture = ExtResource( 10 )
 offset = Vector2( 0, 50 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="PlayButton"]
+position = Vector2( -0.388, 10.9926 )
+frames = SubResource( 7 )
 
 [node name="Player" parent="." instance=ExtResource( 12 )]
 position = Vector2( -141.534, 151.293 )

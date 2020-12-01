@@ -1,5 +1,6 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
+[ext_resource path="res://Menu/DialogBox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/environment/LiftDoors-Sheet.png" type="Texture" id=2]
 [ext_resource path="res://assets/environment/LiftBackground.png" type="Texture" id=3]
 [ext_resource path="res://room_templates/LiftButton.gd" type="Script" id=4]
@@ -91,4 +92,7 @@ animation = "Open"
 position = Vector2( 47.9961, 9.0217 )
 texture = ExtResource( 5 )
 script = ExtResource( 4 )
+
+[node name="DialogBox" parent="." instance=ExtResource( 1 )]
+position = Vector2( -352.809, -229.289 )
 [connection signal="animation_finished" from="LiftDoors" to="." method="_on_LiftDoors_animation_finished"]

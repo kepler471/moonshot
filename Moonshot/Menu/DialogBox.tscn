@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Menu/DialogueText.gd" type="Script" id=1]
+[ext_resource path="res://Menu/DialogBox.gd" type="Script" id=2]
+[ext_resource path="res://Menu/assets/Audiowide-Regular.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 18
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 3 )
+
+[node name="Polygon2D" type="Polygon2D"]
+scale = Vector2( 0.675002, 0.526699 )
+color = Color( 0.439216, 0.552941, 0.647059, 1 )
+polygon = PoolVector2Array( 160, 64, 160, 256, 880, 256, 880, 64 )
+script = ExtResource( 2 )
+
+[node name="CharacterName" type="RichTextLabel" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 189.629
+margin_top = 95.6641
+margin_right = 381.629
+margin_bottom = 127.664
+rect_scale = Vector2( 1.42212, 1.74585 )
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 189.357
+margin_top = 138.665
+margin_right = 685.357
+margin_bottom = 234.665
+rect_scale = Vector2( 1.0005, 1.07341 )
+custom_fonts/normal_font = SubResource( 2 )
+bbcode_enabled = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true
+[connection signal="timeout" from="Timer" to="RichTextLabel" method="_on_Timer_timeout"]
