@@ -1,11 +1,22 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://items_objects/weapon_pickups/LaserBlaster.gd" type="Script" id=1]
 [ext_resource path="res://items_objects/assets/HealthPickup.png" type="Texture" id=2]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
 
-[sub_resource type="Animation" id=2]
+
+func _on_Area2D_body_entered(body):
+	if body.is_in_group('Player'):
+		Utils.player_arsenal.set_weapon(\"laser_blaster\")
+		var weapon = Utils.player_arsenal.get_weapon()
+		Utils.player_arsenal.update_hud()
+		queue_free()
+"
+
+[sub_resource type="CircleShape2D" id=2]
+
+[sub_resource type="Animation" id=3]
 length = 2.0
 loop = true
 tracks/0/type = "value"
@@ -47,7 +58,7 @@ tracks/2/keys = {
 
 [node name="LaserBlaster" type="Node2D"]
 z_index = 1
-script = ExtResource( 1 )
+script = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
@@ -55,9 +66,9 @@ texture = ExtResource( 2 )
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Bobbing"
-anims/Bobbing = SubResource( 2 )
+anims/Bobbing = SubResource( 3 )
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

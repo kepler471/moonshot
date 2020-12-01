@@ -6,4 +6,5 @@ func _on_Area2D_body_entered(body):
 		Utils.player_arsenal.set_weapon("machine_gun")
 		Utils.player_arsenal.update_hud()
 		Utils.player_arsenal.reset_arsenal()
+		body.set_arm_sprite('machine_gun')
 		queue_free()
