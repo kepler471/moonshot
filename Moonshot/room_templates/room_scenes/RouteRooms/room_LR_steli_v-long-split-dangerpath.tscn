@@ -1,10 +1,9 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/tile_maps/TileSet_v1.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/tile_maps/Damage_TileSet.tres" type="TileSet" id=2]
 [ext_resource path="res://assets/tile_maps/TileMap.gd" type="Script" id=3]
 [ext_resource path="res://baddies/characters/Chick.tscn" type="PackedScene" id=4]
-[ext_resource path="res://items_objects/item_pickups/HealthPickup.tscn" type="PackedScene" id=5]
 [ext_resource path="res://room_templates/exit_hori.tscn" type="PackedScene" id=6]
 [ext_resource path="res://baddies/characters/FlyBoi.tscn" type="PackedScene" id=7]
 [ext_resource path="res://baddies/characters/BearBoi.tscn" type="PackedScene" id=8]
@@ -143,8 +142,6 @@ position = Vector2( 625.684, 60.2567 )
 
 [node name="item_spawn_point1" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( -1401.71, 498.337 )
-
-[node name="health_pickup" parent="level_setups/level_setup_1/item_spawn_point1" instance=ExtResource( 5 )]
 
 [node name="item_spawn_point2" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( -1244.34, 495.996 )
