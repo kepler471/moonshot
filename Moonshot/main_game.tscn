@@ -24,7 +24,7 @@ script = ExtResource( 1 )
 [node name="GUI" parent="." instance=ExtResource( 2 )]
 
 [node name="OtherHUD" type="Node2D" parent="GUI"]
-position = Vector2( 816, 520 )
+position = Vector2( 816, 509 )
 rotation = 1.5708
 
 [node name="FirerateIncBarBackground" type="ColorRect" parent="GUI/OtherHUD"]
@@ -33,7 +33,7 @@ margin_top = 322.0
 margin_right = 75.3516
 margin_bottom = 426.0
 rect_rotation = 180.0
-color = Color( 0.105882, 0.258824, 0.576471, 1 )
+color = Color( 0.105882, 0.141176, 0.278431, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -44,7 +44,7 @@ margin_top = 322.0
 margin_right = 75.3516
 margin_bottom = 426.0
 rect_rotation = 180.0
-color = Color( 0.0823529, 0.721569, 0.152941, 1 )
+color = Color( 0, 0.501961, 0.192157, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -54,7 +54,7 @@ margin_left = 11.3516
 margin_top = 202.0
 margin_right = 43.3516
 margin_bottom = 209.0
-color = Color( 0.105882, 0.258824, 0.576471, 1 )
+color = Color( 0.105882, 0.141176, 0.278431, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -64,7 +64,7 @@ margin_left = 11.3516
 margin_top = 186.0
 margin_right = 43.3516
 margin_bottom = 193.0
-color = Color( 0.105882, 0.258824, 0.576471, 1 )
+color = Color( 0.105882, 0.141176, 0.278431, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -74,7 +74,7 @@ margin_left = 11.3516
 margin_top = 170.0
 margin_right = 43.3516
 margin_bottom = 177.0
-color = Color( 0.482353, 0.0117647, 0, 1 )
+color = Color( 0.380392, 0.152941, 0.113725, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -84,17 +84,17 @@ margin_left = 11.3516
 margin_top = 154.0
 margin_right = 43.3516
 margin_bottom = 161.0
-color = Color( 0.482353, 0.0117647, 0, 1 )
+color = Color( 0.380392, 0.152941, 0.113725, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Level5" type="ColorRect" parent="GUI/OtherHUD"]
-margin_left = 11.3516
+margin_left = 11.0005
 margin_top = 138.0
-margin_right = 43.3516
+margin_right = 43.0005
 margin_bottom = 145.0
-color = Color( 0.482353, 0.0117647, 0, 1 )
+color = Color( 0.380392, 0.152941, 0.113725, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -129,29 +129,27 @@ scale = Vector2( 1.4, 1.4 )
 texture = ExtResource( 4 )
 
 [node name="MinimapBox" type="ColorRect" parent="GUI"]
-margin_left = 832.0
-margin_top = 384.0
-margin_right = 1014.0
-margin_bottom = 569.0
-rect_min_size = Vector2( 182, 185 )
+margin_left = 823.0
+margin_top = 443.0
+margin_right = 1005.0
+margin_bottom = 558.0
+rect_min_size = Vector2( 182, 115 )
 color = Color( 0.768627, 0.768627, 0.768627, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MinimapBackground" type="ColorRect" parent="GUI/MinimapBox"]
-margin_left = 14.0
-margin_top = 14.0
-margin_right = 168.0
-margin_bottom = 176.0
-rect_min_size = Vector2( 154, 154 )
+margin_right = 182.0
+margin_bottom = 115.0
+rect_min_size = Vector2( 182, 115 )
 color = Color( 0.729412, 0.729412, 0.729412, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MinimapCentre" type="Position2D" parent="GUI/MinimapBox/MinimapBackground"]
-position = Vector2( 77, 82 )
+position = Vector2( 91, 57.5 )
 
 [node name="HealthBarParent" type="Position2D" parent="GUI"]
 position = Vector2( -608, 520 )
@@ -184,7 +182,8 @@ rect_rotation = 270.0
 color = Color( 0.72549, 0.270588, 0.113725, 1 )
 
 [node name="Sprite" type="Sprite" parent="GUI"]
-position = Vector2( 512, 288 )
+position = Vector2( 613, 440 )
+scale = Vector2( 0.7, 0.7 )
 z_index = -1
 texture = ExtResource( 12 )
 
