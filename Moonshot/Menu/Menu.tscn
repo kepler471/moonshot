@@ -54,6 +54,7 @@ script = ExtResource( 6 )
 scroll_ignore_camera_zoom = true
 
 [node name="Space" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2( 0, -100 )
 motion_scale = Vector2( 0.1, 0.1 )
 motion_mirroring = Vector2( 2000, 0 )
 
@@ -136,7 +137,7 @@ position = Vector2( -0.388, 10.9926 )
 frames = SubResource( 7 )
 
 [node name="Player" parent="." instance=ExtResource( 12 )]
-position = Vector2( -141.534, 151.293 )
+position = Vector2( -139.014, 151.293 )
 script = ExtResource( 13 )
 [connection signal="body_entered" from="ExitButton" to="ExitButton" method="_on_ExitButton_body_entered"]
 [connection signal="body_exited" from="ExitButton" to="ExitButton" method="_on_ExitButton_body_exited"]
