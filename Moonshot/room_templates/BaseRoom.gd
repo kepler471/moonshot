@@ -105,6 +105,8 @@ func spawn_baddies(difficulty_controller: DifficultyController, room_difficulty)
 		if not baddie_location_per_spawn_line.has(spawn_place.name):
 			baddie_location_per_spawn_line[spawn_place.name] = {}
 
+		baddie_instance.visible = true
+
 		# If it is a spawn point then remove the node from the
 		# combined_spawn areas
 		# If it is a line then duplicate instance and spawn randomly on the line
