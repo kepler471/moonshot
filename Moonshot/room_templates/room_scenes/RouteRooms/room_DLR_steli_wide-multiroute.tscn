@@ -87,6 +87,12 @@ position = Vector2( -2244.45, 67.7853 )
 [node name="BearBoi" parent="level_setups/level_setup_1/baddie_spawn_point1" instance=ExtResource( 3 )]
 position = Vector2( -0.749146, 0 )
 
+[node name="item_spawn_point" type="Position2D" parent="level_setups/level_setup_1"]
+position = Vector2( 392, 1104 )
+
+[node name="item_spawn_point2" type="Position2D" parent="level_setups/level_setup_1"]
+position = Vector2( -2856, -552 )
+
 [node name="GhostyBoi" parent="." instance=ExtResource( 4 )]
 position = Vector2( -369.086, -347.778 )
 swap_direction = false

@@ -113,8 +113,8 @@ func spawn_baddies(difficulty_controller: DifficultyController, room_difficulty)
 			spawn_place.add_child(baddie_instance)
 			combined_baddie_spawns.erase(spawn_place)
 		else:
-			var line_start = spawn_place.get_point_position(0) + spawn_place.global_position
-			var line_end = spawn_place.get_point_position(1) + spawn_place.global_position
+			var line_start = spawn_place.get_point_position(0) + spawn_place.position
+			var line_end = spawn_place.get_point_position(1) + spawn_place.position
 			var point_difference_vector = line_end - line_start
 			var rand_step_options = shuffle_list(range(0, round(point_difference_vector.length() / min_baddie_spawn_distance)))
 			var chosen_step
