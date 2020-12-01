@@ -1,0 +1,384 @@
+[gd_scene load_steps=88 format=2]
+
+[ext_resource path="res://player/assets/idle/Medic1TALL1-Sheet.png" type="Texture" id=1]
+[ext_resource path="res://player/assets/wall/palettewall-Sheet3-sheet.png" type="Texture" id=2]
+[ext_resource path="res://player/FloorDetector.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Menu/air2.gd" type="Script" id=4]
+[ext_resource path="res://Menu/PlayerAudioMenu.gd" type="Script" id=5]
+[ext_resource path="res://player/Camera.tscn" type="PackedScene" id=6]
+[ext_resource path="res://player/PassThrough.tscn" type="PackedScene" id=7]
+[ext_resource path="res://player/assets/idle/menuidle-sheet.png" type="Texture" id=8]
+[ext_resource path="res://player/States/idle.gd" type="Script" id=9]
+[ext_resource path="res://player/States/ledge.gd" type="Script" id=10]
+[ext_resource path="res://player/States/move.gd" type="Script" id=11]
+[ext_resource path="res://player/States/wall.gd" type="Script" id=12]
+[ext_resource path="res://player/States/debug.gd" type="Script" id=13]
+[ext_resource path="res://player/player.gd" type="Script" id=14]
+[ext_resource path="res://player/States/run.gd" type="Script" id=15]
+[ext_resource path="res://player/States/spawn.gd" type="Script" id=16]
+[ext_resource path="res://StateMachine/StateMachine.gd" type="Script" id=17]
+[ext_resource path="res://player/States/die.gd" type="Script" id=18]
+[ext_resource path="res://player/assets/stagger/palettestagger-Sheet-sheet.png" type="Texture" id=20]
+[ext_resource path="res://player/assets/run/MEDICrun5.png" type="Texture" id=21]
+[ext_resource path="res://player/assets/run/MEDICrun4.png" type="Texture" id=22]
+[ext_resource path="res://player/assets/run/MEDICrun2.png" type="Texture" id=23]
+[ext_resource path="res://player/assets/run/MEDICrun6.png" type="Texture" id=24]
+[ext_resource path="res://player/assets/run/MEDICrun7.png" type="Texture" id=25]
+[ext_resource path="res://player/assets/run/MEDICrun3.png" type="Texture" id=26]
+[ext_resource path="res://player/assets/run/MEDICrun0.png" type="Texture" id=27]
+[ext_resource path="res://player/assets/run/MEDICrun1.png" type="Texture" id=28]
+[ext_resource path="res://player/assets/run/MEDICrun8.png" type="Texture" id=29]
+[ext_resource path="res://player/assets/run/MEDICrun9.png" type="Texture" id=30]
+[ext_resource path="res://player/assets/die/playerdie.png" type="Texture" id=31]
+[ext_resource path="res://player/assets/run/paletterun-Sheet3.png" type="Texture" id=32]
+[ext_resource path="res://player/States/stagger.gd" type="Script" id=36]
+[ext_resource path="res://player/States/dodge.gd" type="Script" id=38]
+[ext_resource path="res://player/assets/dodge/MEDICdash3.png" type="Texture" id=39]
+[ext_resource path="res://player/assets/dodge/MEDICdash1.png" type="Texture" id=40]
+[ext_resource path="res://player/assets/dodge/MEDICdash4.png" type="Texture" id=41]
+[ext_resource path="res://player/assets/dodge/MEDICdash2.png" type="Texture" id=42]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 7.47952
+height = 30.8084
+
+[sub_resource type="AtlasTexture" id=51]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 32, 64 )
+
+[sub_resource type="AtlasTexture" id=52]
+atlas = ExtResource( 8 )
+region = Rect2( 32, 0, 32, 64 )
+
+[sub_resource type="AtlasTexture" id=53]
+atlas = ExtResource( 8 )
+region = Rect2( 64, 0, 32, 64 )
+
+[sub_resource type="AtlasTexture" id=54]
+atlas = ExtResource( 8 )
+region = Rect2( 96, 0, 32, 64 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 32, 64 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 1 )
+region = Rect2( 32, 0, 32, 64 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 1 )
+region = Rect2( 64, 0, 32, 64 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 1 )
+region = Rect2( 96, 0, 32, 64 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 20 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 20 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 2 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 31 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 31 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 31 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 32 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 32 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 32 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 32 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 32 )
+region = Rect2( 256, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 32 )
+region = Rect2( 320, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 32 )
+region = Rect2( 448, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 32 )
+region = Rect2( 512, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 32 )
+region = Rect2( 576, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 32 )
+region = Rect2( 640, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 32 )
+region = Rect2( 704, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 32 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 32 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=30]
+atlas = ExtResource( 32 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 32 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 32 )
+region = Rect2( 256, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 32 )
+region = Rect2( 320, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=34]
+atlas = ExtResource( 32 )
+region = Rect2( 448, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=35]
+atlas = ExtResource( 32 )
+region = Rect2( 512, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=36]
+atlas = ExtResource( 32 )
+region = Rect2( 576, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=37]
+atlas = ExtResource( 32 )
+region = Rect2( 640, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=38]
+atlas = ExtResource( 32 )
+region = Rect2( 704, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=39]
+atlas = ExtResource( 32 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=40]
+atlas = ExtResource( 32 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=41]
+atlas = ExtResource( 32 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=42]
+atlas = ExtResource( 32 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=43]
+atlas = ExtResource( 32 )
+region = Rect2( 256, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=44]
+atlas = ExtResource( 32 )
+region = Rect2( 320, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=45]
+atlas = ExtResource( 32 )
+region = Rect2( 448, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=46]
+atlas = ExtResource( 32 )
+region = Rect2( 512, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=47]
+atlas = ExtResource( 32 )
+region = Rect2( 576, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=48]
+atlas = ExtResource( 32 )
+region = Rect2( 640, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=49]
+atlas = ExtResource( 32 )
+region = Rect2( 704, 0, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=50]
+animations = [ {
+"frames": [ SubResource( 51 ), SubResource( 52 ), SubResource( 53 ), SubResource( 54 ) ],
+"loop": true,
+"name": "idle",
+"speed": 4.0
+}, {
+"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 6 ) ],
+"loop": true,
+"name": "spawn",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 10 ), SubResource( 11 ) ],
+"loop": true,
+"name": "stagger",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 27 ), ExtResource( 28 ), ExtResource( 23 ), ExtResource( 26 ), ExtResource( 22 ), ExtResource( 21 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 29 ), ExtResource( 30 ) ],
+"loop": true,
+"name": "debug",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 12 ), SubResource( 13 ) ],
+"loop": true,
+"name": "wall",
+"speed": 2.0
+}, {
+"frames": [ SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 15 ), SubResource( 16 ) ],
+"loop": false,
+"name": "die",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ) ],
+"loop": true,
+"name": "ledge",
+"speed": 50.0
+}, {
+"frames": [ SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ) ],
+"loop": true,
+"name": "air",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ) ],
+"loop": true,
+"name": "run",
+"speed": 15.0
+}, {
+"frames": [ ExtResource( 40 ), ExtResource( 42 ), ExtResource( 39 ), ExtResource( 41 ) ],
+"loop": true,
+"name": "dodge",
+"speed": 10.0
+} ]
+
+[node name="Player" type="KinematicBody2D" groups=[
+"Player",
+]]
+collision_layer = 2
+collision_mask = 333
+script = ExtResource( 14 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -23 )
+shape = SubResource( 1 )
+
+[node name="FloorDetector" parent="." instance=ExtResource( 3 )]
+collision_mask = 9
+
+[node name="PassThrough" parent="." instance=ExtResource( 7 )]
+
+[node name="SFX" type="Node" parent="."]
+script = ExtResource( 5 )
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 17 )
+initial_state = NodePath("Move/Idle")
+
+[node name="Move" type="Node" parent="StateMachine"]
+script = ExtResource( 11 )
+
+[node name="Idle" type="Node" parent="StateMachine/Move"]
+script = ExtResource( 9 )
+
+[node name="JumpDelay" type="Timer" parent="StateMachine/Move/Idle"]
+wait_time = 0.1
+one_shot = true
+
+[node name="Run" type="Node" parent="StateMachine/Move"]
+script = ExtResource( 15 )
+
+[node name="Air" type="Node" parent="StateMachine/Move"]
+script = ExtResource( 4 )
+
+[node name="JumpDelay" type="Timer" parent="StateMachine/Move/Air"]
+wait_time = 0.1
+one_shot = true
+
+[node name="ControlsFreeze" type="Timer" parent="StateMachine/Move/Air"]
+wait_time = 0.16
+one_shot = true
+
+[node name="Wall" type="Node" parent="StateMachine/Move"]
+script = ExtResource( 12 )
+
+[node name="Stagger" type="Node" parent="StateMachine/Move"]
+script = ExtResource( 36 )
+
+[node name="Dodge" type="Node" parent="StateMachine/Move"]
+script = ExtResource( 38 )
+dodge_speed = 1250.0
+
+[node name="DodgePeriod" type="Timer" parent="StateMachine/Move/Dodge"]
+process_mode = 0
+wait_time = 0.12
+one_shot = true
+
+[node name="DodgeCooldown" type="Timer" parent="StateMachine/Move"]
+process_mode = 0
+wait_time = 2.0
+one_shot = true
+
+[node name="Spawn" type="Node" parent="StateMachine/Move"]
+script = ExtResource( 16 )
+
+[node name="SafePeriod" type="Timer" parent="StateMachine/Move/Spawn"]
+process_mode = 0
+one_shot = true
+
+[node name="Ledge" type="Node" parent="StateMachine"]
+script = ExtResource( 10 )
+
+[node name="Debug" type="Node" parent="StateMachine"]
+script = ExtResource( 13 )
+
+[node name="Die" type="Node" parent="StateMachine"]
+script = ExtResource( 18 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -29 )
+z_index = 2
+frames = SubResource( 50 )
+animation = "idle"
+frame = 1
+playing = true
+
+[node name="Camera2D" parent="." instance=ExtResource( 6 )]
+drag_margin_left = 0.1
+drag_margin_top = 0.1
+drag_margin_right = 0.1
