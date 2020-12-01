@@ -28,9 +28,9 @@ Radio Controller: I need to be careful or he will...
 Radio: *Radio Signal Lost*
 
 
-Radio Controller: Good work Intern. We have stopped picking up signals from the infection, you can return home we will prepare to send a shuttle.
+Radio Controller: Good work Intern. We have stopped picking up signals from the infection, you can return home, we will prepare to send a shuttle.
 Radio: ...
-Chief Scientist: CONTROLLER WHAT ARE YOU TALKING ABOUT, YOUR NEED TO SCROLL DOWN. YOURE FIRED, GO HOME!
+Chief Scientist: CONTROLLER WHAT ARE YOU TALKING ABOUT, YOU NEED TO SCROLL DOWN. YOURE FIRED, GO HOME!
 Radio Controller: No, please no! Not me!! Not like the others!! PLEA...
 Radio: *Screams*
 Chief Scientist: INTERN, GET BACK TO WORK.
