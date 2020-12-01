@@ -42,5 +42,10 @@ func _on_LiftDoors_animation_finished():
 		Doors.play()
 
 	elif Doors.get_animation() == "Close":
-		if get_tree().get_current_scene().MAIN_GAME == true:
+		if get_parent().name == "Menu":
+			remove_child(Utils.Player)
+			Utils.reset_player()
+			if get_tree().change_scene("res://main_game.tscn") != OK:
+				print ("An unexpected error occured when trying to switch to the MainGame scene")
+		elif get_tree().get_current_scene().MAIN_GAME == true:
 			next_level()
