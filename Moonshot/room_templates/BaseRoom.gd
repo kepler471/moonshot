@@ -13,7 +13,7 @@ var selected_level_setup
 export var testing_room_difficulty = 1
 var scaling_factor = 0.75
 # Distance between enemy spawns on a line
-var min_baddie_spawn_distance = 32
+var min_baddie_spawn_distance = 16
 
 var item_spawn_nodes = []
 var baddie_spawn_lines = []
@@ -126,7 +126,7 @@ func spawn_baddies(difficulty_controller: DifficultyController, room_difficulty)
 			if chosen_step == null:
 				continue
 					
-			var random_point = line_start + chosen_step*(point_difference_vector / min_baddie_spawn_distance)
+			var random_point = line_start + chosen_step*(point_difference_vector / point_difference_vector.length())
 
 			print("The line_start is: "+ str(line_start))
 			print("The line_end is: " + str(line_end))
