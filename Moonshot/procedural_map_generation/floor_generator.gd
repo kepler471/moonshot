@@ -4,11 +4,17 @@ class_name floor_generator
 
 var Room = load("res://procedural_map_generation/Room.gd")
 #--------------------TWEAK VARIABLES--------------------
-const min_rooms : int = 20
-const room_Count_Depth_Multiplier : float = 3.0
-var max_rooms = 100
-const room_Count_Variation = 0;
-var starting_room = 'room_temp_spawn.tscn'
+const rooms_per_level : int = 5
+const extra_rooms_per_level = 3
+const max_rooms_per_level = 40
+var max_rooms
+# Spawn room indexed by level
+var starting_room = {
+	1: 'spawn_level_1.tscn',
+	2: 'spawn_level_2.tscn',
+	3: 'spawn_level_3.tscn',
+	4: 'spawn_level_4.tscn',
+	5: 'spawn_level_5.tscn'}
 var floor_level
 
 
@@ -32,7 +38,7 @@ func _init(level : int):
 	rng.randomize()
 	floor_level = level
 	# Decide on a number of rooms for the floor, can be at max the original value
-	max_rooms = min(max_rooms, room_Count_Depth_Multiplier * floor_level + min_rooms + rng.randi_range(0,room_Count_Variation)) as int
+	max_rooms = min(rooms_per_level + extra_rooms_per_level*level, max_rooms_per_level)
 	
 	# Add initial room & surround with rooms so that the start is always the same
 	var pos = Vector2.ZERO
@@ -85,7 +91,7 @@ func grow():
 func fill_with_rooms():
 	# Ensure that the starting room is always the same
 
-	add_Room(Room.new("Route", [], floor_level, starting_room), Vector2(0, 0))
+	add_Room(Room.new("Route", [], floor_level, starting_room[floor_level]), Vector2(0, 0))
 
 	
 	# For all other rooms, identify the adjacent rooms i.e. connection requirements
