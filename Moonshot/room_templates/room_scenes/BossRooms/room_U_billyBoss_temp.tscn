@@ -114,10 +114,10 @@ position = Vector2( 104, -16 )
 position = Vector2( 830.665, 1042.37 )
 
 [node name="ExitLift" parent="level_setups/level_setup_1" instance=ExtResource( 5 )]
-position = Vector2( -220.344, 472.19 )
+position = Vector2( -161.335, 472.19 )
 
 [node name="MotherHen" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
-position = Vector2( -129.335, 413.33 )
+position = Vector2( -275.344, 413.33 )
 swap_direction = false
 
 [node name="item_spawn_point2" type="Position2D" parent="level_setups/level_setup_1"]
