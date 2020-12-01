@@ -1,7 +1,7 @@
 [gd_scene load_steps=2 format=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 33.0028, 5 )
+extents = Vector2( 40.8956, 5 )
 
 [node name="Area2D" type="Area2D"]
 

@@ -33,6 +33,7 @@ cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 collision_layer = 8
 format = 1
+tile_data = PoolIntArray( 1245197, 20, 0, 1245198, 20, 1, 1245199, 20, 1, 1245200, 20, 1, 1245201, 20, 2 )
 
 [node name="BaseTiles" type="TileMap" parent="."]
 tile_set = ExtResource( 4 )
@@ -53,10 +54,10 @@ format = 1
 position = Vector2( 499.297, 51.8378 )
 
 [node name="camera_limit_NW" type="Position2D" parent="."]
-position = Vector2( -232, 56 )
+position = Vector2( -242.488, 44.0135 )
 
 [node name="camera_limit_SE" type="Position2D" parent="."]
-position = Vector2( 1184, 832 )
+position = Vector2( 1298.55, 898.468 )
 
 [node name="testing_player_spawn" type="Position2D" parent="."]
 position = Vector2( 504, 688 )
