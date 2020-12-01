@@ -159,7 +159,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Moonshot"
-run/main_scene="res://SplashScreen.tscn"
+run/main_scene="res://Menu/Intro.tscn"
 config/icon="res://icon.png"
 
 [autoload]
