@@ -5,7 +5,7 @@ class_name floor_generator
 var Room = load("res://procedural_map_generation/Room.gd")
 #--------------------TWEAK VARIABLES--------------------
 const rooms_per_level : int = 5
-const extra_rooms_per_level = 3
+const extra_rooms_per_level = 1
 const max_rooms_per_level = 40
 var max_rooms
 # Spawn room indexed by level
@@ -58,7 +58,7 @@ func complete_Level():
 	
 # Load all room templates into a list of Rooms
 func load_template_rooms():
-	var room_dict = {"Boss": [], "Reward": [], "Route": []}
+	var room_dict = {"Boss": [], "Reward": [], "Route": [], "FinalBoss": []}
 	for key in room_dict.keys():
 		var dir = Directory.new()
 		var folder_name = "res://room_templates/room_scenes/" + key + "Rooms"
@@ -90,8 +90,7 @@ func grow():
 # Given the 2-D grid of room locations, assign a room template and room type
 func fill_with_rooms():
 	# Ensure that the starting room is always the same
-
-	add_Room(Room.new("Route", [], floor_level, starting_room[floor_level]), Vector2(0, 0))
+	add_Room(Room.new("Route", [], floor_level, starting_room[floor_level % 6]), Vector2(0, 0))
 
 	
 	# For all other rooms, identify the adjacent rooms i.e. connection requirements
@@ -110,11 +109,18 @@ func fill_with_rooms():
 func add_boss_room():
 	var pos : Vector2 = open_Connections.keys()[rng.randi_range(0,open_Connections.size()-1)]
 	var room_reqs = get_room_requirements(pos)
-	while len(room_reqs) != 1:
-		pos = open_Connections.keys()[rng.randi_range(0,open_Connections.size()-1)]
-		room_reqs = get_room_requirements(pos)
+	# For the final boss, only look for the UP connection
+	if floor_level == 5:
+		while room_reqs != ['UP']:
+			pos = open_Connections.keys()[rng.randi_range(0,open_Connections.size()-1)]
+			room_reqs = get_room_requirements(pos)
+	else:
+		while len(room_reqs) != 1:
+			pos = open_Connections.keys()[rng.randi_range(0,open_Connections.size()-1)]
+			room_reqs = get_room_requirements(pos)
 	add_Room(get_Room_With_Requirement(room_reqs), pos)
 	boss_room_created = true
+	
 		
 # For a given room in the room_locations map, identify all the connecting rooms
 func get_room_requirements(pos):
@@ -157,7 +163,11 @@ func get_Room_With_Requirement (requires:Array, end:bool = false):
 	# REWARD or SHOP
 	var room_type
 	if len(requires) == 1:
-		if not boss_room_created:
+				# Check to see if a final boss room can be inserted
+		if floor_level == 5 && arrays_match(requires, ['UP']):
+			room_type = "FinalBoss"
+			boss_room_created = true
+		elif not boss_room_created && floor_level != 5:		
 			room_type = "Boss"
 			boss_room_created = true
 		else:

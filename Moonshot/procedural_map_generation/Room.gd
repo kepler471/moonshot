@@ -31,7 +31,7 @@ var combined_baddie_spawns = []
 var loot_destroyable_objects =[]
 
 # Type of room that need to be considered
-const ROOM_TYPES : Array = ["Boss", "Reward", "Route", "CurrentLocation"]
+const ROOM_TYPES : Array = ["Boss", "FinalBoss", "Reward", "Route", "CurrentLocation"]
 
 func _init(type, con: Array, level: int, template_name=null, difficulty=null):
 	if ROOM_TYPES.has(type):
@@ -57,6 +57,8 @@ func set_type_graphic(type):
 	# Add the minimap graphics
 	match type:
 		"Boss":
+			type_scene = load("res://procedural_map_generation/assets/BossNode.tscn")
+		"FinalBoss":
 			type_scene = load("res://procedural_map_generation/assets/BossNode.tscn")
 		"Challenge":
 			type_scene = load("res://procedural_map_generation/assets/ChallengeNode.tscn")

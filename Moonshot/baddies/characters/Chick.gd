@@ -4,36 +4,45 @@ class_name Chick
 var attributes: Attributes = preload("res://baddies/Attributes.gd").new()
 onready var sprite : AnimatedSprite = $AnimatedSprite
 var mother_dir
+var rng = RandomNumberGenerator.new()
+var vel_max := 230.0
+var jump_cooldown := true
+var jump_cooldown_timer: float
 
 const Animations := {
 	"RUSH": "rush"
 }
 
 func _init() -> void:
+	rng.randomize()
+	var rand_dir = rng.randf_range(-1,1)
+	rand_dir = 1 if rand_dir >= 0 else -1
 	CombatSignalController.connect("damage_baddie", self, "on_hit")
 	attributes.set_properties({
 		"body": self,
 		"sprite": sprite,
 		"animation": Animations.RUSH,
-		"speed": 230,
+		"speed": vel_max,
+		"direction": rand_dir,
 		"inital_hp": 1.0,
 		"gravity": 50,
-		"damage_to_player": 0.02,
+		"damage_to_player": 0.08,
 		"floor_vector": Vector2(0, -1),
 		"should_damage_on_collision": true
 	})
 
 func _ready():
 	attributes.set_sprite($AnimatedSprite)
-	if attributes.direction != mother_dir:
-		change_direction()
 
 
 func _physics_process(delta) -> void:
 	if attributes._has_died():
 		return
 
-	if $TriggerJump.is_colliding():
+	if $TriggerJump.is_colliding() or jump_cooldown:
+		if jump_cooldown:
+			cooldown_timer()
+			
 		if is_on_floor():
 			attributes.velocity += (Vector2(0, -700))
 			attributes._move(delta)
@@ -52,8 +61,13 @@ func _physics_process(delta) -> void:
 
 	attributes._move(delta)
 
-func set_mother_dir(x: float) -> void:
-	mother_dir = sign(x)
+
+
+func cooldown_timer() -> void:
+	jump_cooldown = false
+	yield(get_tree().create_timer(rng.randf_range(0.5,5)), "timeout")
+	jump_cooldown = true
+
 
 func change_direction() -> void:
 	if !attributes._has_died():

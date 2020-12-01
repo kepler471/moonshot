@@ -9,18 +9,19 @@ var weapon_textures = {
 }
 
 var plunger
+var health_bar_pixels = 225
 
 func _ready():
 	plunger = get_parent().get_node("GUI/HealthBarParent/PlungerPosition/Plunger")
 	
 func _process(_delta):
-	var new_health_bar_size = (Utils.player_stats.health*152) / Utils.player_stats.max_health
+	var new_health_bar_size = (Utils.player_stats.health*health_bar_pixels) / Utils.player_stats.max_health
 	var health_bar = get_parent().get_node("GUI/HealthBarParent/HealthBar")
 	if new_health_bar_size > 0:
-		plunger.position.x = 154 - new_health_bar_size
+		plunger.position.y = health_bar_pixels - new_health_bar_size
 		health_bar.rect_size.x = new_health_bar_size
 	else:
-		plunger.position.x = 154
+		plunger.position.y = health_bar_pixels
 		health_bar.rect_size.x = 0
 	update_firerate_hud(Utils.player_stats.modifiers['firerate_pickups'], Utils.player_stats.current_firerate_level)
 

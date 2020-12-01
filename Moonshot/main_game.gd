@@ -30,11 +30,14 @@ func go_up_level():
 	current_room_node.get_node("Player").queue_free()
 	current_room_node.queue_free()
 	level_map.clear()
+	minimap.delete_minimap()
+	minimap = null
 	var minimap_gui_box = get_node('GUI/MinimapBox/MinimapBackground')
-	minimap.set_minimap_size(minimap_gui_box.rect_size / 2)
 	Utils.reset_player()
 	CombatSignalController.connect('player_kill', self, 'activate_death_screen')
 	start_level(level_no)
+	minimap.set_minimap_size(minimap_gui_box.rect_size / 2)
+	HUD_manager.build_hud(minimap)
 	
 	
 func start_level(level_num):
@@ -45,6 +48,7 @@ func start_level(level_num):
 	minimap = returns.minimap
 	var minimap_gui_box = get_node('GUI/MinimapBox/MinimapBackground')
 	minimap.set_minimap_size(minimap_gui_box.rect_size / 2)
+	room_index = Vector2.ZERO
 	get_room_instance(room_index)
 	
 	current_room_node.add_child(Utils.Player)
@@ -62,7 +66,7 @@ func get_room_instance(index):
 		
 	current_room_node = room.get_instance()
 	connect_exit_signal()
-	
+
 	
 func connect_exit_signal():
 	current_room_node.connect("indicate_room_change",self,"change_room") #signal from BaseRoom.gd
