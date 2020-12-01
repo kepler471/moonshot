@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/03 Humanfobia - Altered Cells  (feat Kach).ogg-6fecd2b0a1a77046ca1e749f781304f5.oggstr"
+
+[deps]
+
+source_file="res://Music/03 Humanfobia - Altered Cells  (feat Kach).ogg"
+dest_files=[ "res://.import/03 Humanfobia - Altered Cells  (feat Kach).ogg-6fecd2b0a1a77046ca1e749f781304f5.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
