@@ -37,14 +37,22 @@ var invulnerable = false
 var safety = false
 var dead = false
 var priority_animations = ["stagger", "dodge"]
+var mdiff : Vector2
+var mouse : Vector2
+var msspd : float
 
 
 func _input(event):
-	if event.is_action_pressed("mouse_capture"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+	if event is InputEventMouseMotion:
+		var prev = mdiff
+		mdiff = event.get_relative()
+		mdiff = lerp(prev, mdiff, 0.2)
+		mouse = $TurnAxis.get_global_position() + (mdiff)
 
 
 func _ready() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
 	CombatSignalController.connect("damage_player", self, "take_damage")
 	CombatSignalController.connect("get_player_global_position", self, "_emit_position")
 	CombatSignalController.connect("get_player_global_position_drop", self, "_emit_position_drop")
@@ -52,16 +60,12 @@ func _ready() -> void:
 	Utils.player_arsenal.reset_arsenal()
 	Utils.player_arsenal.set_weapon('laser_blaster')
 
-	if not OS.is_debug_build():
-		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
-
 	animation_name = state_machine.get_animation_name()
 	if animation_name == null:
 		animation_name = "idle"
 
 
 func _physics_process(_delta) -> void:
-
 	var direction = (
 		Input.get_action_strength("move_right")
 		- Input.get_action_strength("move_left")
@@ -73,7 +77,7 @@ func _physics_process(_delta) -> void:
 
 	face_mouse()
 
-	get_node("TurnAxis").rotation = PI + (position + get_node("TurnAxis").position).angle_to_point(get_global_mouse_position())
+	get_node("TurnAxis").rotation = PI + (position + get_node("TurnAxis").position).angle_to_point(mouse)
 
 	if Input.is_action_pressed("shoot") and !cooldown and !safety:
 		var weapon = Utils.player_arsenal.get_weapon()
@@ -134,7 +138,7 @@ func set_animation() -> void:
 
 
 func face_mouse() -> void:
-	var mouse_side := get_global_mouse_position().x - get_global_position().x
+	var mouse_side := mouse.x - get_global_position().x
 	if is_zero_approx(mouse_side):
 		return
 	elif sign(mouse_side) == sign(facing) and playing_reverse:
