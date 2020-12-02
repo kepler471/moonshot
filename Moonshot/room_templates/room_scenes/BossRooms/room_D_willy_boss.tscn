@@ -88,9 +88,10 @@ position = Vector2( -520, -485 )
 position = Vector2( 1713.94, 1052.22 )
 
 [node name="Exit_LEFT" parent="." instance=ExtResource( 13 )]
-position = Vector2( -520, 87 )
+position = Vector2( -520, 76.596 )
 
 [node name="TileMap" type="TileMap" parent="Exit_LEFT"]
+visible = false
 position = Vector2( 519.414, -87 )
 tile_set = ExtResource( 4 )
 cell_size = Vector2( 32, 32 )
@@ -103,6 +104,7 @@ position = Vector2( 1720, 288 )
 scale = Vector2( 1, 0.8 )
 
 [node name="TileMap" type="TileMap" parent="Exit_RIGHT"]
+visible = false
 position = Vector2( -1720.59, -360 )
 scale = Vector2( 1, 1.25 )
 tile_set = ExtResource( 4 )

@@ -68,7 +68,7 @@ tile_data = PoolIntArray( -5505010, 4, 8, -5505009, 4, 10, -5505008, 4, 10, -550
 [node name="Exit_LEFT" parent="." instance=ExtResource( 2 )]
 position = Vector2( -2339.01, 786.301 )
 
-[node name="TileMap3" type="TileMap" parent="Exit_LEFT"]
+[node name="TileMap" type="TileMap" parent="Exit_LEFT"]
 visible = false
 position = Vector2( 2339.01, -786.301 )
 tile_set = ExtResource( 4 )
