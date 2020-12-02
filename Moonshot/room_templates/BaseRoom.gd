@@ -187,9 +187,10 @@ func spawn_items():
 			possible_items = default_possible_items
 		
 		var item_instance = item_drop_chances.get_random_item(possible_items)
-		if node.is_inside_tree():
-			item_instance.global_position = node.global_position
+
 		node.get_parent().add_child(item_instance)
+
+		item_instance.position = node.global_position
 
 	
 func get_baddie_list():
