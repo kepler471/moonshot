@@ -20,6 +20,9 @@ var tilesheet_count = tilesheet_array.size()
 
 var level_no = 0
 
+func _ready():
+	randomize()
+	tilesheet_array.shuffle()
 	
 func get_tilesheet():
 	if level_no >= tilesheet_count:

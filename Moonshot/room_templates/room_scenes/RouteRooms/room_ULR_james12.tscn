@@ -63,7 +63,7 @@ position = Vector2( 882.933, 1040.44 )
 position = Vector2( 3723.16, 1392.24 )
 
 [node name="camera_limit_NW" type="Position2D" parent="."]
-position = Vector2( 844.164, 307.894 )
+position = Vector2( 862.549, 307.894 )
 
 [node name="camera_limit_SE" type="Position2D" parent="."]
 position = Vector2( 3674.47, 1562.87 )
@@ -77,18 +77,23 @@ position = Vector2( 2111.08, 366.549 )
 
 [node name="WallBoi" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
 position = Vector2( 904.94, 770.223 )
+swap_direction = false
 
 [node name="WallBoi2" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
 position = Vector2( 905.894, 469.373 )
+swap_direction = false
 
 [node name="FlyBoi2" parent="level_setups/level_setup_1" instance=ExtResource( 9 )]
 position = Vector2( 2917.47, 480.608 )
+swap_direction = false
 
 [node name="FlyBoi" parent="level_setups/level_setup_1" instance=ExtResource( 9 )]
 position = Vector2( 2356.36, 770.639 )
+swap_direction = false
 
 [node name="FlyBoi3" parent="level_setups/level_setup_1" instance=ExtResource( 9 )]
 position = Vector2( 1936.15, 873.632 )
+swap_direction = false
 
 [node name="baddie_spawn_line1" type="Line2D" parent="level_setups/level_setup_1"]
 position = Vector2( 1176.05, -167.763 )

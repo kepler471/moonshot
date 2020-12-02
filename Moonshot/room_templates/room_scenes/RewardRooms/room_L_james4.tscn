@@ -60,6 +60,19 @@ position = Vector2( -1057.1, -691.023 )
 [node name="camera_limit_SE" type="Position2D" parent="."]
 position = Vector2( 1058.2, 605.595 )
 
+[node name="level_setups" type="Node2D" parent="."]
+position = Vector2( -87.8753, 430.929 )
+
+[node name="level_setup_1" type="Node2D" parent="level_setups"]
+
+[node name="item_spawn_point1" type="Position2D" parent="level_setups/level_setup_1"]
+
+[node name="item_spawn_point2" type="Position2D" parent="level_setups/level_setup_1"]
+position = Vector2( 111.912, -2.3811 )
+
+[node name="item_spawn_point3" type="Position2D" parent="level_setups/level_setup_1"]
+position = Vector2( 248.428, 1.5874 )
+
 [node name="HealthPickup" parent="." instance=ExtResource( 8 )]
 position = Vector2( -62.2245, 80.1134 )
 

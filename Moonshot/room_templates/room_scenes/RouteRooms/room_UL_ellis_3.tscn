@@ -77,26 +77,30 @@ position = Vector2( 880, 456 )
 points = PoolVector2Array( 432, 496, 592, 496 )
 
 [node name="baddie_spawn_line2" type="Line2D" parent="level_setups/level_setup_1"]
-points = PoolVector2Array( 1072, 800, 1240, 784 )
+points = PoolVector2Array( 1070.23, 779.431, 1240, 784 )
 
 [node name="BearBoi" parent="level_setups/level_setup_1/baddie_spawn_line2" instance=ExtResource( 5 )]
+swap_direction = false
 
 [node name="baddie_spawn_point1" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( 848, 656 )
 
 [node name="FlyBoi" parent="level_setups/level_setup_1/baddie_spawn_point1" instance=ExtResource( 7 )]
 position = Vector2( -836.654, -664 )
+swap_direction = false
 
 [node name="baddie_spawn_point2" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( 1336, 1120 )
 
 [node name="BearBoi" parent="level_setups/level_setup_1/baddie_spawn_point2" instance=ExtResource( 5 )]
+swap_direction = false
 
 [node name="baddie_spawn_point3" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( 832, 1160 )
 
 [node name="BearBoi" parent="level_setups/level_setup_1/baddie_spawn_point3" instance=ExtResource( 5 )]
 position = Vector2( 0, 8 )
+swap_direction = false
 
 [node name="item_spawn_point1" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( 912, 952 )

@@ -48,9 +48,7 @@ func _ready() -> void:
 	CombatSignalController.connect("damage_player", self, "take_damage")
 	CombatSignalController.connect("get_player_global_position", self, "_emit_position")
 	CombatSignalController.connect("get_player_global_position_drop", self, "_emit_position_drop")
-	
-	Utils.player_arsenal.reset_arsenal()
-	Utils.player_arsenal.set_weapon('laser_blaster')
+	Utils.player_arsenal.set_weapon(Utils.player_arsenal.get_weapon().name)
 
 	if not OS.is_debug_build():
 		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
@@ -61,7 +59,6 @@ func _ready() -> void:
 
 
 func _physics_process(_delta) -> void:
-
 	var direction = (
 		Input.get_action_strength("move_right")
 		- Input.get_action_strength("move_left")

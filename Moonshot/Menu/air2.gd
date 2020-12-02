@@ -59,7 +59,6 @@ func physics_process(delta: float) -> void:
 
 	Events.emit_signal("player_moved", owner)
 
-	var ld = owner.ledge_wall_detector
 
 	# Landing
 	if owner.is_on_floor():

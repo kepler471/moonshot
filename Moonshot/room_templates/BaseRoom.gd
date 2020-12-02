@@ -80,8 +80,11 @@ func spawn_baddies(difficulty_controller: DifficultyController, room_difficulty)
 	for line in baddie_spawn_lines:
 		line.visible = false
 		var line_points = line.points
-		distance = line_points[0].distance_to(line_points[1])
-		max_no_baddies += distance / min_baddie_spawn_distance
+		if !line_points.size() == 0:
+			distance = line_points[0].distance_to(line_points[1])
+			max_no_baddies += distance / min_baddie_spawn_distance
+		else:
+			continue
 	max_no_baddies = round(max_no_baddies)
 	
 		
@@ -219,10 +222,12 @@ func setup_player_camera():
 		player_camera.limit_bottom = map_limits.end.y * map_cellsize.y + hud_camera_margin
 	
 	else:
+		print(get_node('camera_limit_NW').position.x)
 		player_camera.limit_left = get_node('camera_limit_NW').position.x
 		player_camera.limit_right = get_node('camera_limit_SE').position.x
 		player_camera.limit_top = get_node('camera_limit_NW').position.y
 		player_camera.limit_bottom = get_node('camera_limit_SE').position.y + hud_camera_margin
+		print(player_camera.limit_left)
 
 
 #Level Change Signalling - Likely a far better way to write this code.
