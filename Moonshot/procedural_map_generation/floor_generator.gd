@@ -100,7 +100,7 @@ func fill_with_rooms():
 		if pos == 	Vector2(0, 0):
 			continue
 		var reqs = get_room_requirements(pos)
-		add_Room(get_Room_With_Requirement(reqs), pos)
+		add_Room(get_Room_With_Requirement(reqs, pos), pos)
 	
 	if not boss_room_created:
 		add_boss_room()
@@ -118,7 +118,7 @@ func add_boss_room():
 		while len(room_reqs) != 1:
 			pos = open_Connections.keys()[rng.randi_range(0,open_Connections.size()-1)]
 			room_reqs = get_room_requirements(pos)
-	add_Room(get_Room_With_Requirement(room_reqs), pos)
+	add_Room(get_Room_With_Requirement(room_reqs, pos), pos)
 	boss_room_created = true
 	
 		
@@ -149,7 +149,7 @@ func add_Room (room, location:Vector2):
 
 # Keep fetching a random template room to see if it matches the connection requirements
 # For now only look for fully connected rooms or end rooms
-func get_Room_With_Requirement (requires:Array, end:bool = false):	
+func get_Room_With_Requirement (requires:Array, room_position:Vector2):	
 	var new_room = null
 	# Flip up and down requirements
 	for i in len(requires):
@@ -167,7 +167,7 @@ func get_Room_With_Requirement (requires:Array, end:bool = false):
 		if floor_level == 5 && arrays_match(requires, ['UP']):
 			room_type = "FinalBoss"
 			boss_room_created = true
-		elif not boss_room_created && floor_level != 5:		
+		elif not boss_room_created && floor_level != 5 && room_position.length()> 2:		
 			room_type = "Boss"
 			boss_room_created = true
 		else:
