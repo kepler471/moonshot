@@ -8,7 +8,7 @@
 [ext_resource path="res://assets/tile_maps/TileMap.gd" type="Script" id=8]
 [ext_resource path="res://assets/tile_maps/Damage_TileSet.tres" type="TileSet" id=9]
 
-[node name="Room Root" type="Node2D" groups=[
+[node name="room_UD_james7876" type="Node2D" groups=[
 "Room",
 ]]
 script = ExtResource( 3 )
@@ -55,10 +55,10 @@ collision_mask = 5
 format = 1
 
 [node name="Exit_UP" parent="." instance=ExtResource( 1 )]
-position = Vector2( 123.132, 70.9346 )
+position = Vector2( 142.953, 71.8785 )
 
 [node name="Exit_DOWN" parent="." instance=ExtResource( 1 )]
-position = Vector2( 1897.75, 1051.56 )
+position = Vector2( 1907.83, 1051.56 )
 
 [node name="camera_limit_NW" type="Position2D" parent="."]
 position = Vector2( 20.7872, 83.5719 )
@@ -71,18 +71,23 @@ position = Vector2( 127.803, 109.935 )
 
 [node name="FlyBoi" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1000.52, 549.305 )
+swap_direction = false
 
 [node name="FlyBoi2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 991.531, 489.222 )
+swap_direction = false
 
 [node name="FlyBoi3" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1006.13, 645.888 )
+swap_direction = false
 
 [node name="FlyBoi4" parent="." instance=ExtResource( 2 )]
 position = Vector2( 949.978, 588.612 )
+swap_direction = false
 
 [node name="FlyBoi5" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1076.32, 581.874 )
+swap_direction = false
 
 [node name="Waspy" parent="." instance=ExtResource( 5 )]
 position = Vector2( 876.476, 559.193 )

@@ -13,6 +13,7 @@ font_data = ExtResource( 3 )
 
 [node name="Polygon2D" type="Polygon2D"]
 scale = Vector2( 0.675002, 0.526699 )
+z_index = 10
 color = Color( 0.439216, 0.552941, 0.647059, 1 )
 polygon = PoolVector2Array( 160, 64, 160, 256, 880, 256, 880, 64 )
 script = ExtResource( 2 )

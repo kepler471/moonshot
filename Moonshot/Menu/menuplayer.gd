@@ -7,14 +7,10 @@ onready var state_machine: StateMachine = $StateMachine
 
 onready var collider: CollisionShape2D = $CollisionShape2D setget ,get_collider
 
-
-onready var ledge_wall_detector: Position2D = $LedgeWallDetector
 onready var floor_detector: RayCast2D = $FloorDetector
 
 onready var pass_through: Area2D = $PassThrough
 
-onready var slow: Tween = $ChristopherNodelan
-onready var zoom: Tween = $QuentinTarantinode
 onready var camera: Camera2D = $Camera2D
 
 const FLOOR_NORMAL := Vector2.UP
@@ -100,7 +96,6 @@ func set_is_active(value: bool) -> void:
 	if not collider:
 		return
 	collider.disabled = not value
-	ledge_wall_detector.is_active = value
 
 
 func get_collider() -> CollisionShape2D:
