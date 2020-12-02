@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-const PICK_UP_TRAVEL_SPEED = 0.01
+const PICK_UP_TRAVEL_SPEED = 0.05
 const FIRE_RATE_INCREASE = 1
 const PLAYER_SIGNAL = "emit_player_global_position_drop"
 const MOVE_TO_PLAUER = "move_to_player"
