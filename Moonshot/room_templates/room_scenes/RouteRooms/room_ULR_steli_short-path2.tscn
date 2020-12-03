@@ -107,11 +107,11 @@ position = Vector2( 1609.21, 825.538 )
 [node name="baddie_spawn_point4" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( 797.018, 584.641 )
 
-[node name="Waspy" parent="." instance=ExtResource( 4 )]
+[node name="Waspy" parent="level_setups/level_setup_1" instance=ExtResource( 4 )]
 position = Vector2( 1041.56, 902.927 )
 swap_direction = false
 
-[node name="Waspy2" parent="." instance=ExtResource( 4 )]
+[node name="Waspy2" parent="level_setups/level_setup_1" instance=ExtResource( 4 )]
 position = Vector2( 7654.6, 3178.73 )
 swap_direction = false
 [connection signal="body_entered" from="Exit_UP" to="." method="_on_Exit_UP_body_entered"]

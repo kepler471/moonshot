@@ -100,11 +100,11 @@ position = Vector2( 855.597, 0.105709 )
 
 [node name="level_setup_1" type="Node2D" parent="level_setups"]
 
-[node name="Waspy" parent="." instance=ExtResource( 4 )]
+[node name="Waspy" parent="level_setups/level_setup_1" instance=ExtResource( 4 )]
 position = Vector2( -1258.58, -392.556 )
 swap_direction = false
 
-[node name="Waspy2" parent="." instance=ExtResource( 4 )]
+[node name="Waspy2" parent="level_setups/level_setup_1" instance=ExtResource( 4 )]
 position = Vector2( 4711.92, -1857.54 )
 swap_direction = false
 [connection signal="body_entered" from="Exit_UP" to="." method="_on_Exit_UP_body_entered"]

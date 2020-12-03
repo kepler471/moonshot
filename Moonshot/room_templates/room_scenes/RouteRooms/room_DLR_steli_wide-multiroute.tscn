@@ -108,6 +108,14 @@ points = PoolVector2Array( -9.12244, -0.755646, 232.484, -4.76016 )
 position = Vector2( 1240.58, 74.0825 )
 points = PoolVector2Array( -41.0995, 6.99042, 394.55, 0.754089 )
 
+[node name="GhostyBoi" parent="level_setups/level_setup_1" instance=ExtResource( 4 )]
+position = Vector2( -369.086, -347.778 )
+swap_direction = false
+
+[node name="GhostyBoi2" parent="level_setups/level_setup_1" instance=ExtResource( 4 )]
+position = Vector2( 16899.3, 9259.8 )
+swap_direction = false
+
 [node name="baddie_spawn_point1" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( -2244.45, 67.7853 )
 
@@ -119,14 +127,6 @@ position = Vector2( 392, 1104 )
 
 [node name="item_spawn_point2" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( -2856, -552 )
-
-[node name="GhostyBoi" parent="." instance=ExtResource( 4 )]
-position = Vector2( -369.086, -347.778 )
-swap_direction = false
-
-[node name="GhostyBoi2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 16899.3, 9259.8 )
-swap_direction = false
 [connection signal="body_entered" from="Exit_DOWN" to="." method="_on_Exit_DOWN_body_entered"]
 [connection signal="body_entered" from="Exit_LEFT" to="." method="_on_Exit_LEFT_body_entered"]
 [connection signal="body_entered" from="Exit_RIGHT" to="." method="_on_Exit_RIGHT_body_entered"]

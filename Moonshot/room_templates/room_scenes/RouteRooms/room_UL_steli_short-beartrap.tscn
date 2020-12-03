@@ -75,33 +75,28 @@ position = Vector2( -10.4135, -154.313 )
 
 [node name="BearDroppyBoi" parent="level_setups/level_setup_1" instance=ExtResource( 9 )]
 position = Vector2( -284.548, -526.807 )
-swap_direction = false
 
 [node name="baddie_spawn_line2" type="Line2D" parent="level_setups/level_setup_1"]
 position = Vector2( -199.849, 10.3826 )
 points = PoolVector2Array( -132.625, 6.79507, 117.938, 8.1194 )
 
 [node name="BearBoi" parent="level_setups/level_setup_1/baddie_spawn_line2" instance=ExtResource( 8 )]
-swap_direction = false
 
 [node name="baddie_spawn_line3" type="Line2D" parent="level_setups/level_setup_1"]
 position = Vector2( 243.374, 395.919 )
 points = PoolVector2Array( -48.5659, 6.52222, 133.853, 6.89682 )
 
 [node name="BearBoi" parent="level_setups/level_setup_1/baddie_spawn_line3" instance=ExtResource( 8 )]
-swap_direction = false
 
 [node name="baddie_spawn_point1" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( 100, 200 )
 
 [node name="BearBoi" parent="level_setups/level_setup_1/baddie_spawn_point1" instance=ExtResource( 8 )]
 position = Vector2( -0.749146, 0 )
-swap_direction = false
 
 [node name="baddie_spawn_point2" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( -509.367, -209.974 )
 
 [node name="BearDroppyBoi" parent="level_setups/level_setup_1/baddie_spawn_point2" instance=ExtResource( 9 )]
-swap_direction = false
 [connection signal="body_entered" from="Exit_UP" to="." method="_on_Exit_UP_body_entered"]
 [connection signal="body_entered" from="Exit_LEFT" to="." method="_on_Exit_LEFT_body_entered"]

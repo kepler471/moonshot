@@ -170,6 +170,8 @@ func deactivate_connection(conn):
 	# Get the global location of all the tiles in the tile map
 	var add_tilemap = room_instance.get_node('Exit_' + conn + '/TileMap')
 	var tilemap: TileMap = room_instance.get_node('BaseTiles')
+	var damage_pools = room_instance.get_node('DamagePools')
+	var damage_walls = room_instance.get_node('DamageWalls')
 	var children = room_instance.get_children()
 
 	var needed_tile_type = tilemap.get_cellv(tilemap.get_used_cells()[0])
@@ -177,6 +179,8 @@ func deactivate_connection(conn):
 	var example_tile
 	for tile in tile_locations_to_add:
 		example_tile = tile
+		damage_pools.set_cellv(tile, -1)
+		damage_walls.set_cellv(tile, -1)
 		tilemap.set_cellv(tile, needed_tile_type)
 		tilemap.update_bitmask_area(tile)
 	

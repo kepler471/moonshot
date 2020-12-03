@@ -110,6 +110,25 @@ position = Vector2( -3661.21, 1035.37 )
 
 [node name="level_setup_1" type="Node2D" parent="level_setups"]
 
+[node name="TankyBoi" parent="level_setups/level_setup_1" instance=ExtResource( 11 )]
+position = Vector2( -1784.9, 1321.08 )
+swap_direction = false
+
+[node name="TankyBoi2" parent="level_setups/level_setup_1" instance=ExtResource( 11 )]
+position = Vector2( -1011.6, 1318.85 )
+swap_direction = false
+
+[node name="GhostyBoi" parent="level_setups/level_setup_1" instance=ExtResource( 12 )]
+position = Vector2( 6024.25, -638.848 )
+swap_direction = false
+
+[node name="GhostyBoi2" parent="level_setups/level_setup_1" instance=ExtResource( 12 )]
+position = Vector2( -26696.2, 15077.3 )
+swap_direction = false
+
+[node name="BearCeilingBoi" parent="level_setups/level_setup_1" instance=ExtResource( 10 )]
+position = Vector2( 1338.5, 1008.38 )
+
 [node name="baddie_spawn_line2" type="Line2D" parent="level_setups/level_setup_1"]
 position = Vector2( 1984.48, 1353.97 )
 points = PoolVector2Array( -316.888, 10.4509, 84.219, 7.50781 )
@@ -164,25 +183,6 @@ position = Vector2( -1550.34, 1062.15 )
 
 [node name="item_spawn_point3" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( -1551.26, 1091.41 )
-
-[node name="TankyBoi" parent="." instance=ExtResource( 11 )]
-position = Vector2( -1784.9, 1321.08 )
-swap_direction = false
-
-[node name="TankyBoi2" parent="." instance=ExtResource( 11 )]
-position = Vector2( -1011.6, 1318.85 )
-swap_direction = false
-
-[node name="GhostyBoi" parent="." instance=ExtResource( 12 )]
-position = Vector2( 6024.25, -638.848 )
-swap_direction = false
-
-[node name="GhostyBoi2" parent="." instance=ExtResource( 12 )]
-position = Vector2( -26696.2, 15077.3 )
-swap_direction = false
-
-[node name="BearCeilingBoi" parent="." instance=ExtResource( 10 )]
-position = Vector2( 1338.5, 1008.38 )
 [connection signal="body_entered" from="Exit_DOWN" to="." method="_on_Exit_DOWN_body_entered"]
 [connection signal="body_entered" from="Exit_LEFT" to="." method="_on_Exit_LEFT_body_entered"]
 [connection signal="body_entered" from="Exit_RIGHT" to="." method="_on_Exit_RIGHT_body_entered"]

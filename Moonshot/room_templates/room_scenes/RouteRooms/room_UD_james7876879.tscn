@@ -71,23 +71,18 @@ position = Vector2( 127.803, 109.935 )
 
 [node name="FlyBoi" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1000.52, 549.305 )
-swap_direction = false
 
 [node name="FlyBoi2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 991.531, 489.222 )
-swap_direction = false
 
 [node name="FlyBoi3" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1006.13, 645.888 )
-swap_direction = false
 
 [node name="FlyBoi4" parent="." instance=ExtResource( 2 )]
 position = Vector2( 949.978, 588.612 )
-swap_direction = false
 
 [node name="FlyBoi5" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1076.32, 581.874 )
-swap_direction = false
 
 [node name="Waspy" parent="." instance=ExtResource( 5 )]
 position = Vector2( 876.476, 559.193 )
