@@ -133,7 +133,7 @@ position = Vector2( -376, -328 )
 position = Vector2( -0.749146, 0 )
 
 [node name="baddie_spawn_point2" type="Position2D" parent="level_setups/level_setup_1"]
-position = Vector2( 50, 200 )
+position = Vector2( -198.544, 359.354 )
 
 [node name="item_spawn_point1" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( 119.1, -569.075 )

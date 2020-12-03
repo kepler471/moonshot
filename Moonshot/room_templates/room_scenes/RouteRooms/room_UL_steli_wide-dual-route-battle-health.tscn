@@ -78,8 +78,8 @@ position = Vector2( -1813.02, 110.309 )
 [node name="level_setup_1" type="Node2D" parent="level_setups"]
 
 [node name="baddie_spawn_line2" type="Line2D" parent="level_setups/level_setup_1"]
-position = Vector2( -903.714, 126.849 )
-points = PoolVector2Array( -6.97412, 4.36709, 201.242, 9.41818 )
+position = Vector2( -180.266, 309.565 )
+points = PoolVector2Array( -6.97412, 4.36709, 113.109, 7.03546 )
 
 [node name="BearBoi" parent="level_setups/level_setup_1/baddie_spawn_line2" instance=ExtResource( 6 )]
 swap_direction = false
