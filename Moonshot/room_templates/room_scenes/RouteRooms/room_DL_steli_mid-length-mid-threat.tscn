@@ -64,7 +64,7 @@ position = Vector2( -459.115, 1528.13 )
 position = Vector2( -4016.37, -270.729 )
 
 [node name="camera_limit_NW" type="Position2D" parent="."]
-position = Vector2( -4054.64, -476.971 )
+position = Vector2( -4027.32, -467.282 )
 
 [node name="camera_limit_SE" type="Position2D" parent="."]
 position = Vector2( -12.0205, 1648.59 )

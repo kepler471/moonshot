@@ -23,7 +23,7 @@ func _init() -> void:
 	attributes.set_properties({
 		"body": self,
 		"animation": Animations.RUSH,
-		"speed": 230,
+		"speed": 90,
 		"inital_hp": 1.0,
 		"gravity": -10,
 		"damage_to_player": 0.02,

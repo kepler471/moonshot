@@ -6,7 +6,7 @@ class LaserBlaster:
 	var name = 'laser_blaster'
 	var bullet = load("res://Combat/bullet.tscn")
 	var fire_speed = 0.25
-	var f_mag = 800
+	var f_mag = 1200
 	var damage = 0.4
 	var no_shots = 1
 	var shot_rotation_modifiers = [0]
