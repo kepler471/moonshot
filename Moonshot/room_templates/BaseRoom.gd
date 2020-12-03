@@ -10,6 +10,12 @@ var DifficultyController = load("res://procedural_map_generation/DifficultyContr
 var item_drop_chances = load("res://procedural_map_generation/item_drop_chances.gd").new()
 
 var selected_level_setup
+export var activate_left_exit = true
+export var activate_right_exit = true
+export var activate_up_exit = true
+export var activate_down_exit = true
+var player_spawn_position
+
 export var testing_room_difficulty = 1
 var scaling_factor = 0.75
 # Distance between enemy spawns on a line
@@ -24,12 +30,42 @@ var combined_baddie_spawns = []
 func _ready():
 	if get_tree().get_current_scene().MAIN_GAME == false:
 		self.add_child(Utils.Player)
-		Utils.Player.position = self.get_node("testing_player_spawn").position
+		configure_exits()
+		Utils.Player.position = player_spawn_position
 		Utils.Player.state_machine.transition_to("Move/Spawn", {"room": true})
 		self.setup_player_camera()
 		spawn_things(testing_room_difficulty)
-		
+
+# For testing mode, configures the exits in the map
+func configure_exits():
+	if $Exit_LEFT:
+		if activate_left_exit:
+			$Exit_LEFT/TileMap.clear()
+			player_spawn_position = $Exit_LEFT.global_position
+		else:
+			$Exit_LEFT/TileMap.visible = true
 	
+	if $Exit_RIGHT:
+		if activate_right_exit:
+			$Exit_RIGHT/TileMap.clear()
+			player_spawn_position = $Exit_RIGHT.global_position
+		else:
+			$Exit_RIGHT/TileMap.visible = true
+	
+	if $Exit_UP:
+		if activate_up_exit:
+			$Exit_UP/TileMap.clear()
+			player_spawn_position = $Exit_UP.global_position
+		else:
+			$Exit_UP/TileMap.visible = true
+	if $Exit_DOWN:
+		if activate_down_exit:
+			$Exit_DOWN/TileMap.clear()
+			player_spawn_position = $Exit_DOWN.global_position
+		else:
+			$Exit_DOWN/TileMap.visible = true
+			
+		
 func spawn_things(room_difficulty):
 	randomize()
 	var setup_room_bool = select_level_setup()

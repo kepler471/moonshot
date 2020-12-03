@@ -89,6 +89,7 @@ func change_room(room_change : Vector2, new_entrance):
 		old_entrance = "UP"
 		
 	var old_door_position = current_room_node.get_node('Exit_' + old_entrance).position
+	var old_door_scale = current_room_node.get_node('Exit_' + old_entrance).scale
 	var player_door_diff = Utils.Player.position - old_door_position
 	
 	if (new_entrance == "LEFT") or (new_entrance == "RIGHT"):
@@ -101,8 +102,10 @@ func change_room(room_change : Vector2, new_entrance):
 
 	#Move player to door entrance.
 	var door_position = current_room_node.get_node('Exit_' + new_entrance).position
-
+	var new_door_scale = current_room_node.get_node('Exit_' + new_entrance).scale
 	
+	player_door_diff.x = player_door_diff.x*(new_door_scale.x / old_door_scale.x)
+	player_door_diff.y = player_door_diff.y*(new_door_scale.y / old_door_scale.y)
 	Utils.reset_player()
 		
 	if new_entrance == 'UP':

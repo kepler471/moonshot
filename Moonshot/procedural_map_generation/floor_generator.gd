@@ -31,7 +31,7 @@ var room_locations = {}
 var boss_room_created = false
 var directions = {"LEFT": Vector2.LEFT, "UP": Vector2.DOWN, "RIGHT": Vector2.RIGHT, "DOWN": Vector2.UP}
 var rng = RandomNumberGenerator.new()
-
+var available_room_indexes = {}
 
 func _init(level : int):
 	# Randomize seed
@@ -50,6 +50,10 @@ func _init(level : int):
 # Main algorithm function 
 func complete_Level():		
 	template_rooms = load_template_rooms()
+	# Insert all the indexes for rooms so that there are no duplicate rooms per floor
+	for room_type in template_rooms.keys():
+		available_room_indexes[room_type] = range(0, template_rooms[room_type].size())
+		
 	while len(room_locations.keys()) < max_rooms:
 		grow()
 	
@@ -176,11 +180,20 @@ func get_Room_With_Requirement (requires:Array, end:bool = false):
 		room_type = "Route"
 			
 	while true:
-		var rand_room = template_rooms[room_type][randi()%template_rooms[room_type].size()]
-		if arrays_match(rand_room.connections, requires):
+		rng.randomize()
+		# If no available rooms of that typs then reset the index list
+		if available_room_indexes[room_type].size() == 0:
+			available_room_indexes[room_type] = range(0, template_rooms[room_type].size())
+		# Fetch a random room index from the list
+		var rand_index = available_room_indexes[room_type][randi()%available_room_indexes[room_type].size()]
+		var rand_room = template_rooms[room_type][rand_index]
+		if rand_room.can_make_connections(requires):
 			# Copy the room_template
 			new_room = Room.new(room_type, [], floor_level, rand_room.get_template_name())
+			new_room.set_connections(requires)
+			available_room_indexes[room_type].remove(rand_index)
 			break
+
 	return new_room
 
 
