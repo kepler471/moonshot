@@ -2,7 +2,6 @@ extends Node
 
 
 var item_weights: Dictionary = {
-'FireratePickup' : 0,
 'HealthPickup': 20,
 'FirerateDropUnlock': 1,
 'MachineGun': 10,
@@ -10,7 +9,6 @@ var item_weights: Dictionary = {
 'TwinShot': 10}
 
 var item_paths: Dictionary = {
-'FireratePickup' : "res://items_objects/item_pickups/FireratePickup.tscn",
 'HealthPickup': "res://items_objects/item_pickups/HealthPickup.tscn",
 'FirerateDropUnlock': "res://items_objects/item_pickups/FirerateDropUnlock.tscn",
 'MachineGun': "res://items_objects/weapon_pickups/MachineGun.tscn",
