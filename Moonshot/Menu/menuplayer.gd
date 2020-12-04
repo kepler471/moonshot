@@ -29,10 +29,18 @@ var safety = false
 var dead = false
 var priority_animations = ["stagger", "dodge"]
 
+var joys : Vector2
+var mouse : Vector2
+
 
 func _input(event):
-	if event.is_action_pressed("mouse_capture"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+	if event is InputEventMouseMotion:
+		mouse = get_global_mouse_position()
+		return
+
+	if event is InputEventJoypadMotion:
+		if Utils.get_aim_joystick_direction() != Vector2.ZERO:
+			joys = Utils.get_aim_joystick_direction()
 		
 
 func _ready() -> void:
@@ -54,7 +62,6 @@ func _physics_process(_delta) -> void:
 		
 	set_animation()
 
-	face_mouse()
 
 func flip_facing() -> void:
 	facing *= -1
@@ -76,19 +83,6 @@ func set_animation() -> void:
 	if new_state != null and new_state != animation_name:
 		animation_name = new_state
 		$AnimatedSprite.play(animation_name)
-
-
-func face_mouse() -> void:
-	var mouse_side := get_global_mouse_position().x - get_global_position().x
-	if is_zero_approx(mouse_side):
-		return
-	elif sign(mouse_side) == sign(facing) and playing_reverse:
-		$AnimatedSprite.play(animation_name, false)
-		playing_reverse = false
-	elif sign(mouse_side) == -1 * sign(facing):
-		flip_facing()
-		$AnimatedSprite.play(animation_name, true)
-		playing_reverse = true
 
 
 func set_is_active(value: bool) -> void:
