@@ -38,6 +38,9 @@ func _init(gen):
 	minimap_index[start_pos].queue_free()
 	minimap_index[start_pos] = current_location_type_scene.instance()
 	minimap_index[start_pos].visible = true
+	for key in indexed_connections[Vector2.ZERO]:
+		indexed_connections[Vector2.ZERO][key].visible = true
+		current_not_hidden_conns.append(indexed_connections[Vector2.ZERO][key])
 	current_not_hidden_nodes.append(start_pos)
 	
 	minimap_node.add_child(minimap_index[start_pos])
@@ -109,6 +112,9 @@ func turn_on_visibility(new_pos: Vector2, old_pos: Vector2):
 	minimap_index[new_pos].visible = true
 	current_not_hidden_nodes.append(new_pos)
 	indexed_connections[new_pos][old_pos].visible = true
+	for key in indexed_connections[new_pos]:
+		indexed_connections[new_pos][key].visible = true
+		current_not_hidden_conns.append(indexed_connections[new_pos][key])
 	current_not_hidden_conns.append(indexed_connections[new_pos][old_pos])
 	
 func shift_node_positions(diff: Vector2):

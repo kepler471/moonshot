@@ -6,7 +6,7 @@ class LaserBlaster:
 	var name = 'laser_blaster'
 	var bullet = load("res://Combat/bullet.tscn")
 	var fire_speed = 0.25
-	var f_mag = 800
+	var f_mag = 1200
 	var damage = 0.4
 	var no_shots = 1
 	var shot_rotation_modifiers = [0]
@@ -24,6 +24,9 @@ class LaserBlaster:
 			shots.append(shot) 
 		Utils.player_arsenal.update_hud()
 		return shots
+			
+	func pickup_ammo():
+		pass
 	
 
 
@@ -65,6 +68,10 @@ class MachineGunBlaster:
 	func update_hud():
 		emit_signal('update_hud')
 		
+		
+	func pickup_ammo():
+		ammo += ammo_time/fire_speed
+		
 class ShotgunBlaster:
 	var name = "shotgun"
 	var bullet = load("res://Combat/bullet.tscn")
@@ -95,6 +102,9 @@ class ShotgunBlaster:
 		
 	func update_hud():
 		emit_signal('update_hud')
+			
+	func pickup_ammo():
+		ammo += ammo_time/fire_speed
 		
 class TwinShotBlaster:
 	var name = 'twin_shot'
@@ -128,6 +138,9 @@ class TwinShotBlaster:
 		ammo -= 1
 		Utils.player_arsenal.update_hud()
 		return shots
+		
+	func pickup_ammo():
+		ammo += ammo_time/fire_speed
 
 
 

@@ -9,6 +9,7 @@ var room_type
 var type_scene
 #What connection requirements it has
 var connections
+var activated_connections = []
 var room_template_name
 var room_scene
 var room_instance
@@ -28,7 +29,9 @@ var item_spawn_nodes = []
 var baddie_spawn_lines = []
 var baddie_spawn_points = []
 var combined_baddie_spawns = []
-var loot_destroyable_objects =[]
+
+# Exits that can be removed to make a certain path through the room
+var removable_exits = []
 
 # Type of room that need to be considered
 const ROOM_TYPES : Array = ["Boss", "FinalBoss", "Reward", "Route", "CurrentLocation"]
@@ -84,11 +87,17 @@ func load_template(template_name):
 	# Recreate the connections variable for the template
 	connections = []
 	var directions = {"LEFT": Vector2.LEFT, "UP": Vector2.UP, "RIGHT": Vector2.RIGHT, "DOWN": Vector2.DOWN}
+	var exit_node
 	for exit_location in directions.keys():
 		# Check what doors there are and build connections appropriatly
 		if "Exit_" + exit_location in room_child_nodes:
 			# Confusing, as UP is [0, -1] in godot land
 			connections.append(exit_location)
+			# Check to see if exit is destroyable
+			exit_node = room_instance.get_node("Exit_" + exit_location)
+			if exit_node.get_node('TileMap'):
+				removable_exits.append(exit_location)
+			activated_connections.append(exit_location)
 
 			
 	room_instance.queue_free()
@@ -123,5 +132,72 @@ func instance():
 	var difficulty_controller = DifficultyController.new(level_no)
 	room_difficulty = difficulty_controller.random_room_difficulty(room_type)
 	room_instance.spawn_things(room_difficulty)
+	deactivate_entrances()
+	remove_exit_specific_tilemaps()
 	room_instanced = true
+
+func remove_exit_specific_tilemaps():
+	for conn in removable_exits:
+		room_instance.get_node('Exit_' + conn + '/TileMap').clear()
+		
+func deactivate_entrances():
+	for conn in connections:
+		if not conn in activated_connections:
+			deactivate_connection(conn)
+	
+func can_make_connections(requires):
+	# Remove the destroyable exits from both matching arrays
+	var requires_without_destroyable = subtract_arr(requires, removable_exits)
+	var connections_without_destroyable = subtract_arr(connections, removable_exits)
+	if arrays_match(requires_without_destroyable, connections_without_destroyable):
+		return true
+	else:
+		return false
+
+# Set the connections that will be used in this room, error if connections not available
+func set_connections(requires):
+	activated_connections = []
+	for conn in requires:
+		if conn in connections:
+			pass
+		else:
+			assert(false)
+	activated_connections = requires
+
+
+# Turn off the entrance
+func deactivate_connection(conn):
+	# Get the global location of all the tiles in the tile map
+	var add_tilemap = room_instance.get_node('Exit_' + conn + '/TileMap')
+	var tilemap: TileMap = room_instance.get_node('BaseTiles')
+	var damage_pools = room_instance.get_node('DamagePools')
+	var damage_walls = room_instance.get_node('DamageWalls')
+	var children = room_instance.get_children()
+
+	var needed_tile_type = tilemap.get_cellv(tilemap.get_used_cells()[0])
+	var tile_locations_to_add = add_tilemap.get_used_cells()
+	var example_tile
+	for tile in tile_locations_to_add:
+		example_tile = tile
+		damage_pools.set_cellv(tile, -1)
+		damage_walls.set_cellv(tile, -1)
+		tilemap.set_cellv(tile, needed_tile_type)
+		tilemap.update_bitmask_area(tile)
+	
+	
+func subtract_arr(a : Array, b : Array) -> Array:
+	var final_arr = Array()
+		
+	for i in a:
+		if not i in b:
+			final_arr.append(i)
+	return final_arr
+	
+# Checks if two arrays have the same items, irrespective of order
+func arrays_match(array1, array2):
+	if array1.size() != array2.size(): return false
+	for item in array1:
+		if !array2.has(item): return false
+		if array1.count(item) != array2.count(item): return false
+	return true
 	

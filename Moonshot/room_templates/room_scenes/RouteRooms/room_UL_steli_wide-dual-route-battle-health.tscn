@@ -77,25 +77,44 @@ position = Vector2( -1813.02, 110.309 )
 
 [node name="level_setup_1" type="Node2D" parent="level_setups"]
 
+[node name="BearCeilingBoi" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+position = Vector2( -1149.79, 130.842 )
+
+[node name="BearDroppyBoi" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
+position = Vector2( -258.73, -90.8004 )
+
+[node name="BearDroppyBoi2" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
+position = Vector2( 221.93, -93.3202 )
+
+[node name="Waspy" parent="level_setups/level_setup_1" instance=ExtResource( 10 )]
+position = Vector2( 90.5801, -4110.26 )
+swap_direction = false
+
+[node name="BearCeilingBoi2" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+position = Vector2( -2012.25, -986.9 )
+
+[node name="BearBoi" parent="level_setups/level_setup_1" instance=ExtResource( 6 )]
+position = Vector2( -340.76, -225.128 )
+
+[node name="BearBoi2" parent="level_setups/level_setup_1" instance=ExtResource( 6 )]
+position = Vector2( 259.22, -228.071 )
+
 [node name="baddie_spawn_line2" type="Line2D" parent="level_setups/level_setup_1"]
-position = Vector2( -903.714, 126.849 )
-points = PoolVector2Array( -6.97412, 4.36709, 201.242, 9.41818 )
+position = Vector2( -180.266, 309.565 )
+points = PoolVector2Array( -6.97412, 4.36709, 113.109, 7.03546 )
 
 [node name="BearBoi" parent="level_setups/level_setup_1/baddie_spawn_line2" instance=ExtResource( 6 )]
-swap_direction = false
 
 [node name="baddie_spawn_point1" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( 268.179, -1041.16 )
 
 [node name="BearBoi" parent="level_setups/level_setup_1/baddie_spawn_point1" instance=ExtResource( 6 )]
 position = Vector2( -0.749146, 0 )
-swap_direction = false
 
 [node name="baddie_spawn_point2" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( -202.269, -1305.2 )
 
 [node name="BearCeilingBoi" parent="level_setups/level_setup_1/baddie_spawn_point2" instance=ExtResource( 8 )]
-swap_direction = false
 
 [node name="item_spawn_point1" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( -1115.17, 499.561 )
@@ -106,33 +125,5 @@ position = Vector2( -1115.17, 499.561 )
 position = Vector2( -250.842, -3.73032 )
 
 [node name="health_pickup" parent="level_setups/level_setup_1/item_spawn_point2" instance=ExtResource( 9 )]
-
-[node name="BearCeilingBoi" parent="." instance=ExtResource( 8 )]
-position = Vector2( -2962.81, 241.151 )
-swap_direction = false
-
-[node name="BearDroppyBoi" parent="." instance=ExtResource( 7 )]
-position = Vector2( -2071.75, 19.5086 )
-swap_direction = false
-
-[node name="BearDroppyBoi2" parent="." instance=ExtResource( 7 )]
-position = Vector2( -1591.09, 16.9888 )
-swap_direction = false
-
-[node name="Waspy" parent="." instance=ExtResource( 10 )]
-position = Vector2( -1722.44, -3999.95 )
-swap_direction = false
-
-[node name="BearCeilingBoi2" parent="." instance=ExtResource( 8 )]
-position = Vector2( -3825.27, -876.591 )
-swap_direction = false
-
-[node name="BearBoi" parent="." instance=ExtResource( 6 )]
-position = Vector2( -2153.78, -114.819 )
-swap_direction = false
-
-[node name="BearBoi2" parent="." instance=ExtResource( 6 )]
-position = Vector2( -1553.8, -117.762 )
-swap_direction = false
 [connection signal="body_entered" from="Exit_UP" to="." method="_on_Exit_UP_body_entered"]
 [connection signal="body_entered" from="Exit_LEFT" to="." method="_on_Exit_LEFT_body_entered"]

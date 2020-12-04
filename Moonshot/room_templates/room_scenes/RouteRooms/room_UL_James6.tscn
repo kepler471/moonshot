@@ -77,6 +77,5 @@ points = PoolVector2Array( -392.364, -443.362, -192.154, -588.514 )
 
 [node name="FlyBoi4" parent="level_setups/level_setup1/baddie_spawn_line" instance=ExtResource( 5 )]
 position = Vector2( -264.678, -564.822 )
-swap_direction = false
 [connection signal="body_entered" from="Exit_UP" to="." method="_on_Exit_UP_body_entered"]
 [connection signal="body_entered" from="Exit_LEFT" to="." method="_on_Exit_LEFT_body_entered"]

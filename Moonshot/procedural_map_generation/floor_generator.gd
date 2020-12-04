@@ -31,7 +31,7 @@ var room_locations = {}
 var boss_room_created = false
 var directions = {"LEFT": Vector2.LEFT, "UP": Vector2.DOWN, "RIGHT": Vector2.RIGHT, "DOWN": Vector2.UP}
 var rng = RandomNumberGenerator.new()
-
+var available_room_indexes = {}
 
 func _init(level : int):
 	# Randomize seed
@@ -50,6 +50,10 @@ func _init(level : int):
 # Main algorithm function 
 func complete_Level():		
 	template_rooms = load_template_rooms()
+	# Insert all the indexes for rooms so that there are no duplicate rooms per floor
+	for room_type in template_rooms.keys():
+		available_room_indexes[room_type] = range(0, template_rooms[room_type].size())
+		
 	while len(room_locations.keys()) < max_rooms:
 		grow()
 	
@@ -100,7 +104,7 @@ func fill_with_rooms():
 		if pos == 	Vector2(0, 0):
 			continue
 		var reqs = get_room_requirements(pos)
-		add_Room(get_Room_With_Requirement(reqs), pos)
+		add_Room(get_Room_With_Requirement(reqs, pos), pos)
 	
 	if not boss_room_created:
 		add_boss_room()
@@ -118,7 +122,7 @@ func add_boss_room():
 		while len(room_reqs) != 1:
 			pos = open_Connections.keys()[rng.randi_range(0,open_Connections.size()-1)]
 			room_reqs = get_room_requirements(pos)
-	add_Room(get_Room_With_Requirement(room_reqs), pos)
+	add_Room(get_Room_With_Requirement(room_reqs, pos), pos)
 	boss_room_created = true
 	
 		
@@ -149,7 +153,7 @@ func add_Room (room, location:Vector2):
 
 # Keep fetching a random template room to see if it matches the connection requirements
 # For now only look for fully connected rooms or end rooms
-func get_Room_With_Requirement (requires:Array, end:bool = false):	
+func get_Room_With_Requirement (requires:Array, room_position:Vector2):	
 	var new_room = null
 	# Flip up and down requirements
 	for i in len(requires):
@@ -167,7 +171,7 @@ func get_Room_With_Requirement (requires:Array, end:bool = false):
 		if floor_level == 5 && arrays_match(requires, ['UP']):
 			room_type = "FinalBoss"
 			boss_room_created = true
-		elif not boss_room_created && floor_level != 5:		
+		elif not boss_room_created && floor_level != 5 && room_position.length()> 2:		
 			room_type = "Boss"
 			boss_room_created = true
 		else:
@@ -176,11 +180,20 @@ func get_Room_With_Requirement (requires:Array, end:bool = false):
 		room_type = "Route"
 			
 	while true:
-		var rand_room = template_rooms[room_type][randi()%template_rooms[room_type].size()]
-		if arrays_match(rand_room.connections, requires):
+		rng.randomize()
+		# If no available rooms of that typs then reset the index list
+		if available_room_indexes[room_type].size() == 0:
+			available_room_indexes[room_type] = range(0, template_rooms[room_type].size())
+		# Fetch a random room index from the list
+		var rand_index = available_room_indexes[room_type][randi()%available_room_indexes[room_type].size()]
+		var rand_room = template_rooms[room_type][rand_index]
+		if rand_room.can_make_connections(requires):
 			# Copy the room_template
 			new_room = Room.new(room_type, [], floor_level, rand_room.get_template_name())
+			new_room.set_connections(requires)
+			available_room_indexes[room_type].remove(rand_index)
 			break
+
 	return new_room
 
 

@@ -64,7 +64,7 @@ position = Vector2( -459.115, 1528.13 )
 position = Vector2( -4016.37, -270.729 )
 
 [node name="camera_limit_NW" type="Position2D" parent="."]
-position = Vector2( -4054.64, -476.971 )
+position = Vector2( -4027.32, -467.282 )
 
 [node name="camera_limit_SE" type="Position2D" parent="."]
 position = Vector2( -12.0205, 1648.59 )
@@ -75,6 +75,23 @@ position = Vector2( -1345.37, 381.808 )
 [node name="level_setups" type="Node2D" parent="."]
 
 [node name="level_setup_1" type="Node2D" parent="level_setups"]
+
+[node name="Waspy" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
+position = Vector2( 2077.67, -2526.2 )
+swap_direction = false
+
+[node name="TankyBoi" parent="level_setups/level_setup_1" instance=ExtResource( 4 )]
+position = Vector2( -2650.73, -0.160217 )
+swap_direction = false
+
+[node name="Chick" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
+position = Vector2( -2945.52, 766.213 )
+
+[node name="Chick2" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
+position = Vector2( -3137.46, 723.559 )
+
+[node name="Chick3" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
+position = Vector2( -3335.01, 618.048 )
 
 [node name="baddie_spawn_line2" type="Line2D" parent="level_setups/level_setup_1"]
 position = Vector2( -2092.25, 499.656 )
@@ -98,22 +115,5 @@ points = PoolVector2Array( -4.64783, -0.458496, 154.886, -0.458496 )
 
 [node name="baddie_spawn_point2" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( -3029.73, -55.4774 )
-
-[node name="Waspy" parent="." instance=ExtResource( 8 )]
-position = Vector2( 2077.67, -2526.2 )
-swap_direction = false
-
-[node name="TankyBoi" parent="." instance=ExtResource( 4 )]
-position = Vector2( -2650.73, -0.160217 )
-swap_direction = false
-
-[node name="Chick" parent="." instance=ExtResource( 7 )]
-position = Vector2( -2945.52, 766.213 )
-
-[node name="Chick2" parent="." instance=ExtResource( 7 )]
-position = Vector2( -3137.46, 723.559 )
-
-[node name="Chick3" parent="." instance=ExtResource( 7 )]
-position = Vector2( -3335.01, 618.048 )
 [connection signal="body_entered" from="Exit_DOWN" to="." method="_on_Exit_DOWN_body_entered"]
 [connection signal="body_entered" from="Exit_LEFT" to="." method="_on_Exit_LEFT_body_entered"]

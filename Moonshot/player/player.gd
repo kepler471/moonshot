@@ -38,12 +38,25 @@ var safety = false
 var dead = false
 var priority_animations = ["stagger", "dodge"]
 
+var mouse_diff : Vector2
+var mouse_prev : Vector2
+var joys : Vector2
+var aim : Vector2
+
+
+func _input(event):
+	if event is InputEventMouseMotion:
+		mouse_diff = get_global_mouse_position() - $TurnAxis.get_global_position()
+		joys = mouse_diff
+
+	aim = $TurnAxis.get_global_position() + joys * 100
 
 
 func _ready() -> void:
 	var crs = load("res://player/assets/blankCursor.png")
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 	Input.set_custom_mouse_cursor(crs)
+
 	$TurnAxis/CastPoint/AnimatedSprite.set_animation('laser_blaster')
 	CombatSignalController.connect("damage_player", self, "take_damage")
 	CombatSignalController.connect("get_player_global_position", self, "_emit_position")
@@ -63,6 +76,11 @@ func _physics_process(_delta) -> void:
 		Input.get_action_strength("move_right")
 		- Input.get_action_strength("move_left")
 		)
+
+	if Utils.get_aim_joystick_direction() != Vector2.ZERO:
+		joys = Utils.get_aim_joystick_direction()
+	aim = $TurnAxis.get_global_position() + joys * 100
+
 	CombatSignalController.emit_signal("emit_player_global_position_drop", $TurnAxis.global_position)
 	set_facing(direction)
 		
@@ -70,9 +88,15 @@ func _physics_process(_delta) -> void:
 
 	face_mouse()
 
-	get_node("TurnAxis").rotation = PI + (position + get_node("TurnAxis").position).angle_to_point(get_global_mouse_position())
+	get_node("TurnAxis").rotation = PI + (position + get_node("TurnAxis").position).angle_to_point(aim)
 
-	if Input.is_action_pressed("shoot") and !cooldown and !safety:
+	if (
+			(
+				Input.is_action_pressed("shoot") or
+				Utils.get_aim_joystick_strength().length() > Vector2.ZERO.length()
+			)
+			and !cooldown and !safety
+		):
 		var weapon = Utils.player_arsenal.get_weapon()
 		var weapon_type = weapon.name
 		$WeaponSFX.play(weapon_type)
@@ -136,7 +160,7 @@ func set_animation() -> void:
 
 
 func face_mouse() -> void:
-	var mouse_side := get_global_mouse_position().x - get_global_position().x
+	var mouse_side := aim.x - get_global_position().x
 	if is_zero_approx(mouse_side):
 		return
 	elif sign(mouse_side) == sign(facing) and playing_reverse:
