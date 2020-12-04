@@ -13,7 +13,7 @@ func start_dialog():
 	
 	
 func _input(event):
-	if event is InputEventMouseButton and event.is_pressed():
+	if (event is InputEventMouseButton and event.is_pressed()) or event.is_action_pressed("click"):
 		if get_visible_characters() > get_total_character_count():
 			if page < dialog.size() - 1:
 				page += 1
