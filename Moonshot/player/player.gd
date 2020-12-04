@@ -49,10 +49,6 @@ func _input(event):
 		mouse_diff = get_global_mouse_position() - $TurnAxis.get_global_position()
 		joys = mouse_diff
 
-	if event is InputEventJoypadMotion:
-		if Utils.get_aim_joystick_direction() != Vector2.ZERO:
-			joys = Utils.get_aim_joystick_direction()
-
 	aim = $TurnAxis.get_global_position() + joys * 100
 
 
@@ -80,6 +76,11 @@ func _physics_process(_delta) -> void:
 		Input.get_action_strength("move_right")
 		- Input.get_action_strength("move_left")
 		)
+
+	if Utils.get_aim_joystick_direction() != Vector2.ZERO:
+		joys = Utils.get_aim_joystick_direction()
+	aim = $TurnAxis.get_global_position() + joys * 100
+
 	CombatSignalController.emit_signal("emit_player_global_position_drop", $TurnAxis.global_position)
 	set_facing(direction)
 		
