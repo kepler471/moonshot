@@ -24,7 +24,7 @@ func _init() -> void:
 		"animation": Animations.RUSH,
 		"speed": vel_max,
 		"direction": rand_dir,
-		"inital_hp": 1.0,
+		"inital_hp": 0.4,
 		"gravity": 50,
 		"damage_to_player": 0.08,
 		"floor_vector": Vector2(0, -1),
