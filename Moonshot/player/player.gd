@@ -46,14 +46,8 @@ var aim : Vector2
 
 func _input(event):
 	if event is InputEventMouseMotion:
-		mouse_diff = event.get_relative()
-		if mouse_diff.length() >= 10:
-			joys = mouse_diff
-		## The following condition may help with smoothing, maybe if the third argument is adjusted,
-		## but I found this tricky to get right.
-#		else:
-#			joys = lerp(mouse_prev, mouse_diff, 0.2)
-
+		mouse_diff = get_global_mouse_position() - $TurnAxis.get_global_position()
+		joys = mouse_diff
 
 	if event is InputEventJoypadMotion:
 		if Utils.get_aim_joystick_direction() != Vector2.ZERO:
@@ -64,7 +58,7 @@ func _input(event):
 
 func _ready() -> void:
 	var crs = load("res://player/assets/blankCursor.png")
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 	Input.set_custom_mouse_cursor(crs)
 
 	$TurnAxis/CastPoint/AnimatedSprite.set_animation('laser_blaster')
