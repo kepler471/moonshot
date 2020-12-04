@@ -91,7 +91,6 @@ points = PoolVector2Array( 138.236, 203.01, 269.613, 369.222 )
 
 [node name="FlyBoi7" parent="level_setups/level_setup_1/baddie_spawn_line" instance=ExtResource( 5 )]
 position = Vector2( 247.91, 303.889 )
-swap_direction = false
 
 [node name="baddie_spawn_line2" type="Line2D" parent="level_setups/level_setup_1"]
 position = Vector2( 39.8113, -24.8821 )
@@ -99,7 +98,6 @@ points = PoolVector2Array( 138.236, 203.01, 269.613, 369.222 )
 
 [node name="FlyBoi7" parent="level_setups/level_setup_1/baddie_spawn_line2" instance=ExtResource( 5 )]
 position = Vector2( 247.91, 303.889 )
-swap_direction = false
 
 [node name="baddie_spawn_line3" type="Line2D" parent="level_setups/level_setup_1"]
 position = Vector2( 252.802, -111.472 )
@@ -107,7 +105,6 @@ points = PoolVector2Array( 138.236, 203.01, 269.613, 369.222 )
 
 [node name="FlyBoi7" parent="level_setups/level_setup_1/baddie_spawn_line3" instance=ExtResource( 5 )]
 position = Vector2( 247.91, 303.889 )
-swap_direction = false
 
 [node name="baddie_spawn_line4" type="Line2D" parent="level_setups/level_setup_1"]
 position = Vector2( 299.581, -107.491 )
@@ -115,20 +112,17 @@ points = PoolVector2Array( 138.236, 203.01, 269.613, 369.222 )
 
 [node name="FlyBoi7" parent="level_setups/level_setup_1/baddie_spawn_line4" instance=ExtResource( 5 )]
 position = Vector2( 247.91, 303.889 )
-swap_direction = false
 
 [node name="baddie_spawn_point" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( 485.699, 337.401 )
 
 [node name="BearCeilingBoi2" parent="level_setups/level_setup_1/baddie_spawn_point" instance=ExtResource( 4 )]
 position = Vector2( 452.272, 341.634 )
-swap_direction = false
 
 [node name="baddie_spawn_point2" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( 361.288, 337.401 )
 
 [node name="BearCeilingBoi2" parent="level_setups/level_setup_1/baddie_spawn_point2" instance=ExtResource( 4 )]
 position = Vector2( 452.272, 341.634 )
-swap_direction = false
 [connection signal="body_entered" from="Exit_LEFT" to="." method="_on_Exit_LEFT_body_entered"]
 [connection signal="body_entered" from="Exit_RIGHT" to="." method="_on_Exit_RIGHT_body_entered"]

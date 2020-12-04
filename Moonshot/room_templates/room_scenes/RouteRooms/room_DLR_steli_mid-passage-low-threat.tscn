@@ -103,6 +103,9 @@ position = Vector2( 2853.07, -677.089 )
 
 [node name="level_setup_1" type="Node2D" parent="level_setups"]
 
+[node name="BearCeilingBoi" parent="level_setups/level_setup_1" instance=ExtResource( 5 )]
+position = Vector2( 1059.81, -648.892 )
+
 [node name="baddie_spawn_line1" type="Line2D" parent="level_setups/level_setup_1"]
 position = Vector2( 343.483, -44.8017 )
 points = PoolVector2Array( -25.1975, 20.8583, 49.7208, 21.1589 )
@@ -118,9 +121,6 @@ points = PoolVector2Array( -25.1975, 20.8583, 49.7208, 21.1589 )
 [node name="BearBoi" parent="level_setups/level_setup_1/baddie_spawn_line2" instance=ExtResource( 8 )]
 
 [node name="Chick" parent="level_setups/level_setup_1/baddie_spawn_line2" instance=ExtResource( 4 )]
-
-[node name="BearCeilingBoi" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1059.81, -648.892 )
 [connection signal="body_entered" from="Exit_DOWN" to="." method="_on_Exit_DOWN_body_entered"]
 [connection signal="body_entered" from="Exit_LEFT" to="." method="_on_Exit_LEFT_body_entered"]
 [connection signal="body_entered" from="Exit_RIGHT" to="." method="_on_Exit_RIGHT_body_entered"]

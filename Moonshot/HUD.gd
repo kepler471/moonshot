@@ -24,6 +24,7 @@ func _process(_delta):
 		plunger.position.y = health_bar_pixels
 		health_bar.rect_size.x = 0
 	update_firerate_hud(Utils.player_stats.modifiers['firerate_pickups'], Utils.player_stats.current_firerate_level)
+	update_gun_hud()
 
 func build_hud(minimap):
 	get_parent().find_node('MinimapCentre').add_child(minimap.minimap_node)

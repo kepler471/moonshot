@@ -136,14 +136,12 @@ position = Vector2( -56.8779, 0 )
 
 [node name="BearDroppyBoi" parent="level_setups/level_setup_1/breakable_tile4" instance=ExtResource( 11 )]
 position = Vector2( -581.232, -564.347 )
-swap_direction = false
 
 [node name="baddie_spawn_point1" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( 16, -331.903 )
 
 [node name="BearBoi" parent="level_setups/level_setup_1/baddie_spawn_point1" instance=ExtResource( 6 )]
 position = Vector2( -20.8553, 150.856 )
-swap_direction = false
 
 [node name="baddie_spawn_point2" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( -356.055, 339.311 )
@@ -162,83 +160,71 @@ position = Vector2( -307.674, -105.664 )
 
 [node name="WallBoi2" parent="level_setups/level_setup_1/baddie_spawn_point" instance=ExtResource( 4 )]
 position = Vector2( 36.5342, -6.7027 )
-swap_direction = false
 
 [node name="baddie_spawn_point3" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( -367.052, 221.9 )
 
 [node name="WallBoi2" parent="level_setups/level_setup_1/baddie_spawn_point3" instance=ExtResource( 4 )]
 position = Vector2( -384.637, -165.43 )
-swap_direction = false
 
 [node name="baddie_spawn_point4" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( -193.536, -211.889 )
 
 [node name="BearCeilingBoi6" parent="level_setups/level_setup_1/baddie_spawn_point4" instance=ExtResource( 5 )]
 position = Vector2( -166.217, 183.493 )
-swap_direction = false
 
 [node name="baddie_spawn_point5" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( -392.96, 520.248 )
 
 [node name="BearCeilingBoi6" parent="level_setups/level_setup_1/baddie_spawn_point5" instance=ExtResource( 5 )]
 position = Vector2( -3.57245, 39.9233 )
-swap_direction = false
 
 [node name="baddie_spawn_point6" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( -264.412, 782.098 )
 
 [node name="BearCeilingBoi6" parent="level_setups/level_setup_1/baddie_spawn_point6" instance=ExtResource( 5 )]
 position = Vector2( 1.44373, 28.7345 )
-swap_direction = false
 
 [node name="baddie_spawn_point7" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( -493.247, 524.381 )
 
 [node name="BearCeilingBoi6" parent="level_setups/level_setup_1/baddie_spawn_point7" instance=ExtResource( 5 )]
 position = Vector2( -4.08374, 33.4517 )
-swap_direction = false
 
 [node name="baddie_spawn_point8" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( 40.7074, 268.145 )
 
 [node name="FlyBoi5" parent="level_setups/level_setup_1/baddie_spawn_point8" instance=ExtResource( 12 )]
 position = Vector2( 38.1403, -8.05988 )
-swap_direction = false
 
 [node name="baddie_spawn_point9" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( -532.226, 108.639 )
 
 [node name="FlyBoi5" parent="level_setups/level_setup_1/baddie_spawn_point9" instance=ExtResource( 12 )]
 position = Vector2( 508.148, -479.823 )
-swap_direction = false
 
 [node name="baddie_spawn_point10" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( -34.3436, -419.244 )
 
 [node name="FlyBoi5" parent="level_setups/level_setup_1/baddie_spawn_point10" instance=ExtResource( 12 )]
 position = Vector2( 721.075, -634.793 )
-swap_direction = false
 
 [node name="baddie_spawn_point11" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( -125.414, -447.206 )
 
 [node name="FlyBoi5" parent="level_setups/level_setup_1/baddie_spawn_point11" instance=ExtResource( 12 )]
 position = Vector2( 118.185, -37.8638 )
-swap_direction = false
 
 [node name="baddie_spawn_point12" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( 224.89, -86.6538 )
 
 [node name="FlyBoi5" parent="level_setups/level_setup_1/baddie_spawn_point12" instance=ExtResource( 12 )]
 position = Vector2( 167.574, -23.3876 )
-swap_direction = false
 
 [node name="baddie_spawn_point13" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( 552.474, -185.264 )
 
 [node name="FlyBoi5" parent="level_setups/level_setup_1/baddie_spawn_point13" instance=ExtResource( 12 )]
 position = Vector2( -125.355, -40.4183 )
-swap_direction = false
 [connection signal="body_entered" from="Exit_UP" to="." method="_on_Exit_UP_body_entered"]
 [connection signal="body_entered" from="Exit_RIGHT" to="." method="_on_Exit_RIGHT_body_entered"]

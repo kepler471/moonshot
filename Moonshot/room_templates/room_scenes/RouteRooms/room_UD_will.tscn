@@ -80,14 +80,12 @@ points = PoolVector2Array( 136, 1392, 552, 1408 )
 points = PoolVector2Array( 120, 296, 544, 296 )
 
 [node name="BearBoi" parent="level_setups/level_setup_1/baddie_spawn_line2" instance=ExtResource( 5 )]
-swap_direction = false
 
 [node name="baddie_spawn_point1" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( 224, 800 )
 
 [node name="BearBoi" parent="level_setups/level_setup_1/baddie_spawn_point1" instance=ExtResource( 5 )]
 position = Vector2( -0.749146, 0 )
-swap_direction = false
 
 [node name="baddie_spawn_point2" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( 464, 656 )
@@ -106,14 +104,12 @@ scale = Vector2( 0.743243, 1 )
 points = PoolVector2Array( 120, 296, 544, 296 )
 
 [node name="BearBoi" parent="level_setups/level_setup_2/baddie_spawn_line2" instance=ExtResource( 5 )]
-swap_direction = false
 
 [node name="baddie_spawn_point1" type="Position2D" parent="level_setups/level_setup_2"]
 position = Vector2( 224, 800 )
 
 [node name="BearBoi" parent="level_setups/level_setup_2/baddie_spawn_point1" instance=ExtResource( 5 )]
 position = Vector2( -0.749146, 0 )
-swap_direction = false
 
 [node name="baddie_spawn_point2" type="Position2D" parent="level_setups/level_setup_2"]
 position = Vector2( 464, 656 )

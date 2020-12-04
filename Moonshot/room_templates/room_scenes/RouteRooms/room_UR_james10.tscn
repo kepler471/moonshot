@@ -78,21 +78,18 @@ position = Vector2( -384, -168 )
 
 [node name="BearBoi" parent="level_setups/level_setup_1/baddie_spawn_point" instance=ExtResource( 8 )]
 position = Vector2( -25.781, -9.235 )
-swap_direction = false
 
 [node name="baddie_spawn_point2" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( 80, -306.868 )
 
 [node name="BearBoi2" parent="level_setups/level_setup_1/baddie_spawn_point2" instance=ExtResource( 8 )]
 position = Vector2( 36.039, 0 )
-swap_direction = false
 
 [node name="baddie_spawn_point3" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( 480, -16 )
 
 [node name="BearCeilingBoi" parent="level_setups/level_setup_1/baddie_spawn_point3" instance=ExtResource( 6 )]
 position = Vector2( 29.01, -3.8321 )
-swap_direction = false
 
 [node name="item_spawn_point" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( -323.919, -466.99 )

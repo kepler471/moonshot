@@ -113,9 +113,9 @@ func change_room(room_change : Vector2, new_entrance):
 	elif new_entrance == 'DOWN':
 		Utils.Player.position = door_position + player_door_diff + Vector2(0, -60)
 	elif new_entrance == 'RIGHT':
-		Utils.Player.position = door_position + player_door_diff + Vector2(-40, 0)
+		Utils.Player.position = door_position + player_door_diff + Vector2(-40, -10)
 	elif new_entrance == 'LEFT':
-		Utils.Player.position = door_position + player_door_diff + Vector2(40, 0)
+		Utils.Player.position = door_position + player_door_diff + Vector2(40, -10)
 
 	print("Current Room ::: ", current_room_node.name) # DEBUG
 	current_room_node.add_child(Utils.Player)

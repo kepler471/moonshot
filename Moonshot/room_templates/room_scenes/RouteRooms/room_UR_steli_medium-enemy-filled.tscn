@@ -75,15 +75,23 @@ position = Vector2( 1580.24, 555.91 )
 
 [node name="level_setup_1" type="Node2D" parent="level_setups"]
 
+[node name="Waspy" parent="level_setups/level_setup_1" instance=ExtResource( 6 )]
+position = Vector2( 2672.35, 918.37 )
+swap_direction = false
+
+[node name="Chick" parent="level_setups/level_setup_1" instance=ExtResource( 4 )]
+position = Vector2( -418.644, -774.229 )
+
+[node name="Chick2" parent="level_setups/level_setup_1" instance=ExtResource( 4 )]
+position = Vector2( -461.548, -773.462 )
+
 [node name="baddie_spawn_line1" type="Line2D" parent="level_setups/level_setup_1"]
 position = Vector2( 65.5686, -194.076 )
 points = PoolVector2Array( 228.845, 2.70398, -211.756, 4.48779 )
 
 [node name="FlyBoi" parent="level_setups/level_setup_1/baddie_spawn_line1" instance=ExtResource( 9 )]
-swap_direction = false
 
 [node name="BearBoi" parent="level_setups/level_setup_1/baddie_spawn_line1" instance=ExtResource( 5 )]
-swap_direction = false
 
 [node name="Chick" parent="level_setups/level_setup_1/baddie_spawn_line1" instance=ExtResource( 4 )]
 
@@ -92,7 +100,6 @@ position = Vector2( 1599.84, -346.408 )
 points = PoolVector2Array( -15.4075, 3.75928, 94.1232, 2.96558 )
 
 [node name="BearBoi" parent="level_setups/level_setup_1/baddie_spawn_line2" instance=ExtResource( 5 )]
-swap_direction = false
 
 [node name="Chick" parent="level_setups/level_setup_1/baddie_spawn_line2" instance=ExtResource( 4 )]
 
@@ -101,7 +108,6 @@ position = Vector2( 100, 200 )
 
 [node name="BearBoi" parent="level_setups/level_setup_1/baddie_spawn_point1" instance=ExtResource( 5 )]
 position = Vector2( -0.749146, 0 )
-swap_direction = false
 
 [node name="Chick" parent="level_setups/level_setup_1/baddie_spawn_point1" instance=ExtResource( 4 )]
 position = Vector2( -0.749146, 0 )
@@ -111,19 +117,8 @@ scale = Vector2( 0.710056, 0.878338 )
 position = Vector2( 2572.05, 192.768 )
 
 [node name="BearBoi" parent="level_setups/level_setup_1/baddie_spawn_point2" instance=ExtResource( 5 )]
-swap_direction = false
 
 [node name="Chick" parent="level_setups/level_setup_1/baddie_spawn_point2" instance=ExtResource( 4 )]
 scale = Vector2( 0.710056, 0.878338 )
-
-[node name="Waspy" parent="." instance=ExtResource( 6 )]
-position = Vector2( 2672.35, 918.37 )
-swap_direction = false
-
-[node name="Chick" parent="." instance=ExtResource( 4 )]
-position = Vector2( -418.644, -774.229 )
-
-[node name="Chick2" parent="." instance=ExtResource( 4 )]
-position = Vector2( -461.548, -773.462 )
 [connection signal="body_entered" from="Exit_UP" to="." method="_on_Exit_UP_body_entered"]
 [connection signal="body_entered" from="Exit_RIGHT" to="." method="_on_Exit_RIGHT_body_entered"]

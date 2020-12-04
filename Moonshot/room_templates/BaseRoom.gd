@@ -38,27 +38,28 @@ func _ready():
 
 # For testing mode, configures the exits in the map
 func configure_exits():
-	if $Exit_LEFT:
+	player_spawn_position = $testing_player_spawn.position
+	if $Exit_LEFT/TileMap:
 		if activate_left_exit:
 			$Exit_LEFT/TileMap.clear()
 			player_spawn_position = $Exit_LEFT.global_position
 		else:
 			$Exit_LEFT/TileMap.visible = true
 	
-	if $Exit_RIGHT:
+	if $Exit_RIGHT/TileMap:
 		if activate_right_exit:
 			$Exit_RIGHT/TileMap.clear()
 			player_spawn_position = $Exit_RIGHT.global_position
 		else:
 			$Exit_RIGHT/TileMap.visible = true
 	
-	if $Exit_UP:
+	if $Exit_UP/TileMap:
 		if activate_up_exit:
 			$Exit_UP/TileMap.clear()
 			player_spawn_position = $Exit_UP.global_position
 		else:
 			$Exit_UP/TileMap.visible = true
-	if $Exit_DOWN:
+	if $Exit_DOWN/TileMap:
 		if activate_down_exit:
 			$Exit_DOWN/TileMap.clear()
 			player_spawn_position = $Exit_DOWN.global_position

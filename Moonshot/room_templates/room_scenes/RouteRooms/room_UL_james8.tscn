@@ -147,7 +147,6 @@ position = Vector2( 590.62, 660.694 )
 
 [node name="FlyBoi" parent="level_setups/level_setup_1" instance=ExtResource( 4 )]
 position = Vector2( -80.0841, 111.784 )
-swap_direction = false
 
 [node name="item_spawn_point2" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( -78.4156, 115.121 )

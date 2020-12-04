@@ -95,7 +95,6 @@ points = PoolVector2Array( 1125.76, 103.663, 1225.29, 101.673 )
 
 [node name="BearCeilingBoi5" parent="level_setups/level_setup_1/baddie_spawn_line" instance=ExtResource( 6 )]
 position = Vector2( 1469.66, 106.461 )
-swap_direction = false
 
 [node name="baddie_spawn_line3" type="Line2D" parent="level_setups/level_setup_1"]
 position = Vector2( 253.797, 552.383 )
@@ -103,7 +102,6 @@ points = PoolVector2Array( 1125.76, 103.663, 1225.29, 101.673 )
 
 [node name="BearBoi3" parent="level_setups/level_setup_1/baddie_spawn_line3" instance=ExtResource( 5 )]
 position = Vector2( 1294.26, 654.092 )
-swap_direction = false
 
 [node name="baddie_spawn_line4" type="Line2D" parent="level_setups/level_setup_1"]
 position = Vector2( 397.119, 104.505 )
@@ -111,7 +109,6 @@ points = PoolVector2Array( 1125.76, 103.663, 1225.29, 101.673 )
 
 [node name="BearBoi3" parent="level_setups/level_setup_1/baddie_spawn_line4" instance=ExtResource( 5 )]
 position = Vector2( 1293.75, 671.361 )
-swap_direction = false
 
 [node name="baddie_spawn_line2" type="Line2D" parent="level_setups/level_setup_1"]
 position = Vector2( -542.43, 164.222 )
@@ -119,6 +116,5 @@ points = PoolVector2Array( 1125.76, 103.663, 1225.29, 101.673 )
 
 [node name="BearCeilingBoi5" parent="level_setups/level_setup_1/baddie_spawn_line2" instance=ExtResource( 6 )]
 position = Vector2( 1469.66, 106.461 )
-swap_direction = false
 [connection signal="body_entered" from="Exit_DOWN" to="." method="_on_Exit_DOWN_body_entered"]
 [connection signal="body_entered" from="Exit_LEFT" to="." method="_on_Exit_LEFT_body_entered"]
