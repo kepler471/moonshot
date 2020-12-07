@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://baddies/characters/BearBoi.tscn" type="PackedScene" id=1]
 [ext_resource path="res://items_objects/item_pickups/HealthPickup.tscn" type="PackedScene" id=2]
@@ -6,11 +6,8 @@
 [ext_resource path="res://assets/tile_maps/TileMap.gd" type="Script" id=4]
 [ext_resource path="res://assets/tile_maps/TileSet_v1.tres" type="TileSet" id=5]
 [ext_resource path="res://room_templates/exit_vert.tscn" type="PackedScene" id=6]
-[ext_resource path="res://items_objects/breakable_tile_purple.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/tile_maps/Damage_TileSet.tres" type="TileSet" id=8]
 [ext_resource path="res://room_templates/exit_hori.tscn" type="PackedScene" id=9]
-
-
 
 [node name="Room Root" type="Node2D" groups=[
 "Room",
@@ -29,7 +26,6 @@ tile_set = ExtResource( 8 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 collision_layer = 64
-
 format = 1
 
 [node name="OneWayPlatforms" type="TileMap" parent="."]
@@ -37,7 +33,6 @@ tile_set = ExtResource( 5 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 collision_layer = 8
-
 format = 1
 
 [node name="BaseTiles" type="TileMap" parent="."]
@@ -53,7 +48,6 @@ tile_set = ExtResource( 8 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 collision_layer = 64
-
 format = 1
 
 [node name="Exit_UP" parent="." instance=ExtResource( 6 )]
@@ -80,8 +74,6 @@ position = Vector2( 117.98, 21.5321 )
 [node name="level_setups" type="Node2D" parent="."]
 
 [node name="level_setup_1" type="Node2D" parent="level_setups"]
-
-[node name="breakable_tile" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
 
 [node name="baddie_spawn_line1" type="Line2D" parent="level_setups/level_setup_1"]
 

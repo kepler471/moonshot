@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/tile_maps/TileMap.gd" type="Script" id=1]
 [ext_resource path="res://assets/tile_maps/Damage_TileSet.tres" type="TileSet" id=2]
 [ext_resource path="res://room_templates/BaseRoom.gd" type="Script" id=3]
-[ext_resource path="res://items_objects/breakable_tile_purple.tscn" type="PackedScene" id=4]
 [ext_resource path="res://baddies/characters/FlyBoi.tscn" type="PackedScene" id=6]
 [ext_resource path="res://room_templates/exit_hori.tscn" type="PackedScene" id=7]
 [ext_resource path="res://room_templates/exit_vert.tscn" type="PackedScene" id=8]
@@ -113,8 +112,6 @@ position = Vector2( 1674.33, 607.427 )
 [node name="level_setups" type="Node2D" parent="."]
 
 [node name="level_setup_1" type="Node2D" parent="level_setups"]
-
-[node name="breakable_tile" parent="level_setups/level_setup_1" instance=ExtResource( 4 )]
 
 [node name="baddie_spawn_line1" type="Line2D" parent="level_setups/level_setup_1"]
 points = PoolVector2Array( 2285.62, 1738.33, 2480.05, 1738.33 )

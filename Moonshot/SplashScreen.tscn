@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://splash_screen.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/basic_font.tres" type="DynamicFont" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://baddies/characters/FlyBoi.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/fonts/basic_font_size_64.tres" type="DynamicFont" id=5]
 [ext_resource path="res://baddies/characters/BearBoi.tscn" type="PackedScene" id=6]
-[ext_resource path="res://items_objects/breakable_tile_purple.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/tile_maps/TileSet_v1.tres" type="TileSet" id=8]
 [ext_resource path="res://items_objects/item_pickups/HealthPickup.tscn" type="PackedScene" id=9]
 [ext_resource path="res://baddies/characters/BearDroppyBoi.tscn" type="PackedScene" id=10]
@@ -107,15 +106,6 @@ __meta__ = {
 position = Vector2( 564.86, 331.332 )
 current = true
 zoom = Vector2( 1.1, 1.1 )
-
-[node name="Node2D" parent="." instance=ExtResource( 7 )]
-position = Vector2( 688, 368 )
-
-[node name="Node2D2" parent="." instance=ExtResource( 7 )]
-position = Vector2( 624, 368 )
-
-[node name="Node2D3" parent="." instance=ExtResource( 7 )]
-position = Vector2( 656, 368 )
 
 [node name="FlyBoi" parent="." instance=ExtResource( 4 )]
 position = Vector2( 859.243, 483.705 )
