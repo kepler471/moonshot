@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://room_templates/BaseRoom.gd" type="Script" id=1]
 [ext_resource path="res://assets/tile_maps/TileSet_v1.tres" type="TileSet" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://assets/tile_maps/TileMap.gd" type="Script" id=4]
 [ext_resource path="res://baddies/characters/BearBoi.tscn" type="PackedScene" id=5]
 [ext_resource path="res://room_templates/exit_vert.tscn" type="PackedScene" id=6]
-[ext_resource path="res://items_objects/breakable_tile_purple.tscn" type="PackedScene" id=7]
 
 [node name="room_UD_will" type="Node2D" groups=[
 "Room",
@@ -71,8 +70,6 @@ position = Vector2( 554, 48 )
 
 [node name="level_setup_1" type="Node2D" parent="level_setups"]
 
-[node name="breakable_tile" parent="level_setups/level_setup_1" instance=ExtResource( 7 )]
-
 [node name="baddie_spawn_line1" type="Line2D" parent="level_setups/level_setup_1"]
 points = PoolVector2Array( 136, 1392, 552, 1408 )
 
@@ -91,8 +88,6 @@ position = Vector2( -0.749146, 0 )
 position = Vector2( 464, 656 )
 
 [node name="level_setup_2" type="Node2D" parent="level_setups"]
-
-[node name="breakable_tile" parent="level_setups/level_setup_2" instance=ExtResource( 7 )]
 
 [node name="baddie_spawn_line1" type="Line2D" parent="level_setups/level_setup_2"]
 position = Vector2( 554, 8 )
