@@ -8,4 +8,8 @@ func _ready():
 	base_tile_set.tile_set_texture(4,new_tiles)
 	base_tile_set.tile_set_texture(18,new_tiles)
 	base_tile_set.tile_set_texture(20,new_tiles)
+	base_tile_set.tile_set_texture(21,new_tiles)
+	base_tile_set.tile_set_texture(22,new_tiles)
+	base_tile_set.tile_set_texture(23,new_tiles)
+	base_tile_set.tile_set_texture(24,new_tiles)
 	self.tile_set = base_tile_set

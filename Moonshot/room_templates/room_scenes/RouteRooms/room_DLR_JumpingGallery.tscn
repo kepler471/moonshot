@@ -141,7 +141,6 @@ position = Vector2( 3600, 550 )
 position = Vector2( 2240, 592 )
 
 [node name="GhostyBoi" parent="level_setups/level_setup_1/baddie_spawn_point" instance=ExtResource( 8 )]
-swap_direction = false
 
 [node name="baddie_spawn_point4" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( 2720, 672 )

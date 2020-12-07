@@ -125,5 +125,6 @@ position = Vector2( -1115.17, 499.561 )
 position = Vector2( -250.842, -3.73032 )
 
 [node name="health_pickup" parent="level_setups/level_setup_1/item_spawn_point2" instance=ExtResource( 9 )]
+
 [connection signal="body_entered" from="Exit_UP" to="." method="_on_Exit_UP_body_entered"]
 [connection signal="body_entered" from="Exit_LEFT" to="." method="_on_Exit_LEFT_body_entered"]
