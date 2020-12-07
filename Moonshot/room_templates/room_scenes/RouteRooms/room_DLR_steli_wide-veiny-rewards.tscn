@@ -183,6 +183,7 @@ position = Vector2( -1550.34, 1062.15 )
 
 [node name="item_spawn_point3" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( -1551.26, 1091.41 )
+
 [connection signal="body_entered" from="Exit_DOWN" to="." method="_on_Exit_DOWN_body_entered"]
 [connection signal="body_entered" from="Exit_LEFT" to="." method="_on_Exit_LEFT_body_entered"]
 [connection signal="body_entered" from="Exit_RIGHT" to="." method="_on_Exit_RIGHT_body_entered"]

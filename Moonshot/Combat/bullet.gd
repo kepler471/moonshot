@@ -4,6 +4,12 @@ signal animation_finished
 
 onready var animation: AnimationPlayer = $AnimatedSprite/AnimationPlayer
 onready var anim_sprite: AnimatedSprite = $AnimatedSprite
+var _contacts = []
+var _contact_tiles = []
+#Fetch the breakable tile map
+onready var breakable_tilemap = get_parent().get_node("BreakableTiles")
+onready var tilemap = get_parent().get_node("BaseTiles")
+
 var f_mag = 800
 var damage = 0.4
 
@@ -43,3 +49,26 @@ func _on_AnimationPlayer_animation_finished(anim_name) -> void:
 	emit_signal("animation_finished", anim_name)
 	if anim_name == "hit":
 		call_deferred("free")
+		
+func _integrate_forces(state):
+
+	if breakable_tilemap:
+		for i in range(state.get_contact_count()):
+			
+			# Just gather contact points in an array to draw them later
+			var contact_pos = state.get_contact_local_position(i)
+			_contacts.append(contact_pos)
+			
+			var tile_pos = breakable_tilemap.world_to_map(contact_pos)
+			_contact_tiles.append(tile_pos)
+		
+		
+	update()
+
+# Damage tiles if breakable
+func _on_RigidBody2D_tree_exited():
+	if len(_contact_tiles) > 0:
+		for tile in _contact_tiles:
+			TileSheetLoader.damage_breakable_tile(tilemap, breakable_tilemap,_contact_tiles[0])
+		
+		

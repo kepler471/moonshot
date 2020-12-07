@@ -36,6 +36,15 @@ cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 collision_layer = 8
 format = 1
 
+[node name="BreakableTiles" type="TileMap" parent="."]
+z_index = 2
+tile_set = ExtResource( 8 )
+cell_size = Vector2( 32, 32 )
+cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
+format = 1
+tile_data = PoolIntArray( 196621, 20, 0, 524294, 21, 0, 524295, 21, 0, 524296, 21, 0, 524297, 21, 0, 524298, 21, 0, 524299, 21, 0, 524300, 21, 0 )
+script = ExtResource( 2 )
+
 [node name="BaseTiles" type="TileMap" parent="."]
 tile_set = ExtResource( 8 )
 cell_size = Vector2( 32, 32 )
@@ -64,10 +73,10 @@ position = Vector2( 17.8482, 92.0631 )
 position = Vector2( 111.332, 92.4619 )
 
 [node name="camera_limit_NW" type="Position2D" parent="."]
-position = Vector2( 144.797, 71.2937 )
+position = Vector2( -760, -696 )
 
 [node name="camera_limit_SE" type="Position2D" parent="."]
-position = Vector2( 184.749, 114.79 )
+position = Vector2( 1080, 536 )
 
 [node name="testing_player_spawn" type="Position2D" parent="."]
 position = Vector2( 117.98, 21.5321 )
@@ -83,14 +92,12 @@ position = Vector2( 117.98, 21.5321 )
 [node name="baddie_spawn_line2" type="Line2D" parent="level_setups/level_setup_1"]
 
 [node name="BearBoi" parent="level_setups/level_setup_1/baddie_spawn_line2" instance=ExtResource( 5 )]
-swap_direction = false
 
 [node name="baddie_spawn_point1" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( 100, 200 )
 
 [node name="BearBoi" parent="level_setups/level_setup_1/baddie_spawn_point1" instance=ExtResource( 5 )]
 position = Vector2( -0.749146, 0 )
-swap_direction = false
 
 [node name="baddie_spawn_point2" type="Position2D" parent="level_setups/level_setup_1"]
 position = Vector2( 50, 200 )

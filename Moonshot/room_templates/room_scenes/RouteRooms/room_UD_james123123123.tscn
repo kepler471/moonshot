@@ -67,15 +67,12 @@ swap_direction = false
 
 [node name="FlyBoi" parent="." instance=ExtResource( 7 )]
 position = Vector2( 899.808, 439.027 )
-swap_direction = false
 
 [node name="FlyBoi2" parent="." instance=ExtResource( 7 )]
 position = Vector2( 684.031, 488.126 )
-swap_direction = false
 
 [node name="FlyBoi3" parent="." instance=ExtResource( 7 )]
 position = Vector2( 569.036, 441.611 )
-swap_direction = false
 
 [node name="HealthPickup" parent="FlyBoi3" instance=ExtResource( 8 )]
 position = Vector2( 692.554, -210.609 )

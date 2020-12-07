@@ -114,11 +114,9 @@ swap_direction = false
 
 [node name="GhostyBoi" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
 position = Vector2( -4435.89, 3328.65 )
-swap_direction = false
 
 [node name="GhostyBoi2" parent="level_setups/level_setup_1" instance=ExtResource( 8 )]
 position = Vector2( 659.818, -3749.57 )
-swap_direction = false
 [connection signal="body_entered" from="Exit_UP" to="." method="_on_Exit_UP_body_entered"]
 [connection signal="body_entered" from="Exit_DOWN" to="." method="_on_Exit_DOWN_body_entered"]
 [connection signal="body_entered" from="Exit_LEFT" to="." method="_on_Exit_LEFT_body_entered"]
